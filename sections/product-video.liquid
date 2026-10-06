@@ -1,0 +1,166 @@
+{% assign desktop_video = product.metafields.custom.desktop_video %}
+{% assign mobile_video = product.metafields.custom.mobile_video %}
+
+{% if desktop_video != blank and mobile_video != blank %}
+  <div class="video-fw  {{ section.settings.bg_scheme }}">
+    <div class="fw-action w-inline-block" onclick="initializePlyrInline(this)">
+      <div class="video-preview">
+        <video
+          class="video-thumbnail"
+          preload="metadata"
+          muted
+          playsinline
+          autoplay
+          loop
+          disablepictureinpicture
+        >
+          <source src="{{ desktop_video }}" type="video/mp4" media="(min-width: 768px)">
+          <source src="{{ mobile_video }}" type="video/mp4" media="(max-width: 767px)">
+        </video>
+        {% comment %} <img
+          src="{{ 'play-icon.svg' | asset_url }}"
+          alt="Play icon"
+          class="play-overlay"
+        > {% endcomment %}
+      </div>
+
+      <div
+        class="video-container"
+        data-desktop="{{ desktop_video }}"
+        data-mobile="{{ mobile_video }}"
+      ></div>
+    </div>
+  </div>
+
+  <style>
+    .video-fw {
+      position: relative;
+      width: 100%;
+    }
+
+    .fw-action {
+      position: relative;
+      display: block;
+      cursor: pointer;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    @media (max-width: 767px) {
+      .fw-action {
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    .video-preview {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 64px;
+      height: 64px;
+      pointer-events: none;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: none;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+  {% unless content_for_header contains 'plyr.css' %}
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+  {% endunless %}
+  {% unless content_for_header contains 'plyr.polyfilled.js' %}
+    <script defer src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  {% endunless %}
+
+  <script>
+    function initializePlyrInline(wrapper) {
+      const preview     = wrapper.querySelector('.video-preview');
+      const container   = wrapper.querySelector('.video-container');
+      const desktopSrc  = container.dataset.desktop;
+      const mobileSrc   = container.dataset.mobile;
+
+      if (!desktopSrc || !mobileSrc || container.dataset.initialized === "true") return;
+      container.dataset.initialized = "true";
+
+      preview.style.display = 'none';
+      container.style.display = 'block';
+
+      const video = document.createElement('video');
+      video.setAttribute("playsinline", true);
+      video.setAttribute("autoplay", true);
+      video.setAttribute("muted", true);
+      video.setAttribute("controls", true);
+
+      const desktopSource = document.createElement('source');
+      desktopSource.src = desktopSrc;
+      desktopSource.type = 'video/mp4';
+      desktopSource.media = '(min-width: 768px)';
+
+      const mobileSource = document.createElement('source');
+      mobileSource.src = mobileSrc;
+      mobileSource.type = 'video/mp4';
+      mobileSource.media = '(max-width: 767px)';
+
+      video.appendChild(desktopSource);
+      video.appendChild(mobileSource);
+      container.appendChild(video);
+
+      new Plyr(video, {
+        controls: ['play', 'progress', 'mute'],
+        fullscreen: { enabled: false }
+      });
+    }
+  </script>
+{% endif %}
+{% schema %}
+{
+  "name": "Product Inline Video ",
+  "settings": [
+    {
+      "type": "select",
+      "id": "bg_scheme",
+      "label": "Background scheme",
+      "options": [
+        { "value": "color-background-1 gradient", "label": "Background 1" },
+        { "value": "color-background-2 gradient", "label": "Background 2" },
+        { "value": "", "label": "None (transparent)" }
+      ],
+      "default": "color-background-1 gradient"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Inline Video"
+    }
+  ]
+}
+{% endschema %}

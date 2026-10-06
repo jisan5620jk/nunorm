@@ -1,0 +1,320 @@
+
+
+<section class="want-to-learn-sec layout">
+  <div class="page-width">
+   <!--/ heading /-->
+
+    <h2 class="sec-heading">{{ section.settings.sec-head }}</h2>
+    <p class="pera-wrap">{{ section.settings.content }}</p>
+    
+  <div class="learn-video-outer">
+{% if section.settings.custom-filter == true %}
+<div class="filter-section">
+<div class="filter-custom-section">
+ <div class="inner-filter">
+   <div class="filter-btn filter-btn-1" data-item="{{ section.settings.btn-1|remove:" "}}">{{ section.settings.btn-1 }}</div>
+   <div class="filter-btn filter-btn-2" data-item="{{ section.settings.btn-2 |remove:" " }}">{{ section.settings.btn-2 }}</div>
+   <div class="filter-btn filter-btn-3" data-item="{{ section.settings.btn-3 |remove:" "}}">{{ section.settings.btn-3 }}</div>
+   <div class="filter-btn filter-btn-4" data-item="{{ section.settings.btn-4 |remove:" "}}">{{ section.settings.btn-4 }}</div>
+   <div class="filter-btn filter-btn-5" data-item="{{ section.settings.btn-5|remove:" " }}">{{ section.settings.btn-5 }}</div>
+   <div class="filter-btn filter-btn-6" data-item="{{ section.settings.btn-6|remove:" " }}">{{ section.settings.btn-6 }}</div>
+ </div>	
+  <div class="inner-filter">
+   <div class="filter-btn filter-btn-7" data-item="{{ section.settings.btn-7 |remove:" "}}">{{ section.settings.btn-7 }}</div>
+   <div class="filter-btn filter-btn-8" data-item="{{ section.settings.btn-8 |remove:" "}}">{{ section.settings.btn-8 }}</div>
+   <div class="filter-btn filter-btn-9" data-item="{{ section.settings.btn-9 |remove:" "}}">{{ section.settings.btn-9 }}</div>
+   <div class="filter-btn filter-btn-10" data-item="{{ section.settings.btn-10 |remove:" " }}">{{ section.settings.btn-10 }}</div>
+   <div class="filter-btn filter-btn-11" data-item="{{ section.settings.btn-11 |remove:" "}}">{{ section.settings.btn-11 }}</div>
+   <div class="filter-btn filter-btn-12" data-item="{{ section.settings.btn-12 |remove:" "}}">{{ section.settings.btn-12 }}</div>
+ </div>	
+</div>
+<button class="filter-result-btn">VIEW RESULT</button>
+<a class="filter-result-all">View all</a>
+</div>
+{% endif %}
+
+{% for block in section.blocks %}
+  <!--/ learn video /-->
+    <!--/ box 1 /-->
+    <div class="video-box {{ block.settings.filter-id |remove:" " }}">
+      <div class="video-set">
+<!--         <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Mask_group_81d458c1-eef8-48ac-85bd-c993ea35306b.png?v=1684998204">
+        <span class="play"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/paly.svg?v=1685001011"></span> -->
+        <!--/vedio/-->
+     
+          <!--/ play pause button  /-->
+        <div class="play-pause-btn"> 
+        <button class="PP-btn play_btn"  type="button" id="wtl-play-btn-loop-{{ forloop.index }}"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169"></button>
+        <button class="PP-btn pause_btn" type="button" id="wtl-pause-btn-loop-{{ forloop.index }}" style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169"></button>
+      </div>
+       <video loop autoplay muted class="small-hide" id="wtl-loop-Video-{{ forloop.index }}" width="100%" height="463px" playsinline>
+         <source type="video/mp4" src="{{ block.settings.v-url }}"></source>
+       </video>
+       <img class="loop-img" id="wtl-loop-banner-bg-{{ forloop.index }}" src="{{ block.settings.poster-img | img_url: 'master' }}">
+      
+      
+<script>
+$(document).ready(function(){
+var vid = document.getElementById("wtl-loop-Video-{{ forloop.index }}");
+$("#wtl-play-btn-loop-{{ forloop.index }}").click(function(){      
+$("#wtl-loop-Video-{{ forloop.index }}").show();
+$("#wtl-loop-banner-bg-{{ forloop.index }}").hide();
+$("#wtl-pause-btn-loop-{{ forloop.index }}").show();
+$("#wtl-play-btn-loop-{{ forloop.index }}").hide();
+  $("#wtl-play-btn-loop-{{ forloop.index }}").play(); 
+  });
+  $("#wtl-pause-btn-loop-{{ forloop.index }}").click(function(){
+  $("#wtl-loop-Video-{{ forloop.index }}").hide();
+  $("#wtl-loop-banner-bg-{{ forloop.index }}").show();
+  $("#wtl-pause-btn-loop-{{ forloop.index }}").hide();
+  $("#wtl-play-btn-loop-{{ forloop.index }}").show(); 
+  vid.pause();
+  });
+});
+</script>
+<script>
+$(document).ready(function(){
+  $("#wtl-loop-Video-{{ forloop.index }}").hide();
+  $("#pause-btn").hide();
+});
+</script>
+      
+      
+    </div>
+    <!--/ below pera /-->
+      <div class="video-caption">
+        <h3><span class="count-num">{{ block.settings.serial-no }}</span>{{ block.settings.head }}</h3>
+        <p>{{ block.settings.content }}</p>
+      </div>
+
+ </div>
+  {% endfor %}
+ 
+    </div>
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<div class="slider_mobile_want_learn">
+
+  <div class="swiper mySwiper_want">
+    <div class="swiper-wrapper">
+
+{% for block in section.blocks %}
+  <!--/ learn video /-->
+    <!--/ box 1 /-->
+    <div class="video-box swiper-slide">
+     <div class="video-set">
+     
+          <!--/ play pause button  /-->
+        <div class="play-pause-btn"> 
+        <button class="PP-btn play_btn"  type="button"  id="mob-wtl-play-btn-{{ forloop.index }}"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169"></button>
+        <button class="PP-btn pause_btn" type="button"  id="mob-wtl-pause-btn-{{ forloop.index }}" style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169"></button>
+        </div>
+       <video   class="small-hide" id="mob-wtl-loop-Video-{{ forloop.index }}" width="100%" height="100%" playsinline>
+         <source type="video/mp4" src="{{ block.settings.v-url }}"></source>
+       </video>
+       <img class="loop-img" id="mob-wtl-banner-bg-{{ forloop.index }}" src="{{ block.settings.poster-img | img_url: 'master' }}">
+      
+      
+
+<script>
+  
+$(document).ready(function(){
+  $("#mob-wtl-loop-Video-{{ forloop.index }}").hide();
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").hide();
+  $("#mob-wtl-play-btn-{{ forloop.index }}").click(function(){
+  $("#mob-wtl-banner-bg-{{ forloop.index }}").hide();
+  $("#mob-wtl-loop-Video-{{ forloop.index }}").show();
+  $("#mob-wtl-play-btn-{{ forloop.index }}").hide();
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").show();
+  $('#mob-wtl-loop-Video-{{ forloop.index }}').trigger('play');
+  });
+
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").click(function(){
+  $("#mob-wtl-banner-bg-{{ forloop.index }}").show();
+  $("#mob-wtl-loop-Video-{{ forloop.index }}").hide();
+  $("#mob-wtl-play-btn-{{ forloop.index }}").show();
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").hide();
+  $('#mob-wtl-loop-Video-{{ forloop.index }}').trigger('pause');
+  });
+});
+</script>
+            
+    </div>
+      <div class="video-caption">
+        <h3><span class="count-num">{{ block.settings.serial-no }}</span>{{ block.settings.head }}</h3>
+        <p>{{ block.settings.content }}</p>
+      </div>
+
+ </div>
+  {% endfor %}
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  </div>
+</section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper_want", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+
+ <script>
+$(document).ready(function(){
+  $(".filter-custom-section .filter-btn").click(function(){
+    $(".filter-custom-section .filter-btn.active").removeClass("active");
+    $(this).addClass("active");
+  });
+  $(".filter-result-btn").click(function(){
+    var data = $(".filter-btn.active").attr("data-item");
+    $(".video-box").hide();
+    $(".video-box."+data).show();
+  });
+   $(".filter-result-all").click(function(){
+    $(".video-box").show();
+
+  });
+});
+</script>   
+
+{% schema %}
+  {
+    "name": "Want To Learn 2",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "content",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "btn-1",
+        "label": "LARGE PORES"
+      },
+      {
+        "type": "text",
+        "id": "btn-2",
+        "label": "ACNE"
+      },
+      {
+        "type": "text",
+        "id": "btn-3",
+        "label": "RAZOR BUMPS"
+      },
+      {
+        "type": "text",
+        "id": "btn-4",
+        "label": "DRY SKIN"
+      },
+       {
+        "type": "text",
+        "id": "btn-5",
+        "label": "OILY SKIN"
+      },
+       {
+        "type": "text",
+        "id": "btn-6",
+        "label": "PATCHY OR INGROWN HAIR"
+      },
+      {
+        "type": "text",
+        "id": "btn-7",
+        "label": "MULTIPLE SKIN TONES"
+      },
+     {
+        "type": "text",
+        "id": "btn-8",
+        "label": "DARK"
+      },
+      {
+        "type": "text",
+        "id": "btn-9",
+        "label": "ECZEMA"
+      },
+      {
+        "type": "text",
+        "id": "btn-10",
+        "label": "PSORIASIS"
+      },
+      {
+        "type": "text",
+        "id": "btn-11",
+        "label": "REDNESS"
+      },
+      {
+        "type": "text",
+        "id": "btn-12",
+        "label": "WRINKLES"
+      },
+      {
+        "type": "checkbox",
+        "id": "custom-filter",
+        "label": "Filter option"
+      }
+    ],
+    "blocks": [
+    {
+      "type": "vedio-box",
+      "name": "Want To Learn",
+      "settings": [
+        {
+          "type": "text",
+          "id": "filter-id",
+          "label": "Filter Id"
+        },
+        {
+          "type": "url",
+          "id": "v-url",
+          "label": "Video Url"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster-img",
+          "label": "Add Poster Image"
+        },
+        {
+          "type": "text",
+          "id": "serial-no",
+          "label": "Add Heading No"
+        },
+        {
+          "type": "text",
+          "id": "head",
+          "label": "Box Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Description"
+        }
+      ]
+    }
+    ],
+    "presets": [
+      {
+        "name": "Want To Learn 2"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

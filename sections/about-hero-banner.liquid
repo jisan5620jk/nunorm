@@ -1,0 +1,47 @@
+<!--/ Hero banner sectionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn /-->
+<section class="about-page-hero layout">
+  <!--/ img  /-->
+  <div class="img-box">
+    <img src="{{ section.settings.img | img_url: 'master' }}" width="100%">
+  </div>
+
+
+  <!--/ caption /-->
+  <div class="caption-box">
+    <h1 class="bigger-heading">{{ section.settings.sec-head }}</h1>
+    <p class="pera">{{ section.settings.content }}</p>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "about-hero-banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      },
+      {
+        "type": "html",
+        "id": "sec-head",
+        "label": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "content",
+        "label": "Description"
+      }
+    ],
+    "presets": [
+      {
+        "name": "about-hero-banner"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

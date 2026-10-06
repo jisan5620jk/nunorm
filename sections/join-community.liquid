@@ -1,0 +1,226 @@
+{% style %}
+  .nunorm-community-section {
+    padding: 60px 16px 70px;
+    background: linear-gradient(90deg, #F7D3A1 0%, #FBEEDA 100%);
+  }
+
+  .nunorm-community {
+    text-align: center;
+  }
+
+  .nunorm-community__logo-wrapper {
+    margin-bottom: 24px;
+  }
+
+  .nunorm-community__logo {
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .nunorm-community__heading {
+    margin: 0 0 24px;
+    font-size: 28px;
+    font-family: Montserrat;
+    font-weight: 800;
+    line-height: 38px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #213346;
+  }
+
+  .nunorm-community__body {
+    max-width: 1126px;
+    margin: 0 auto 24px;
+  }
+
+  .nunorm-community__body p {
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 12px;
+  }
+
+  .nunorm-community__button {
+    display: inline-block;
+    padding: 12.5px 40px;
+    margin-bottom: 16px;
+    background-color: #a12c28;
+    color: #FBEEDA;
+    text-decoration: none;
+    border-radius: 10px;
+    font-family: Montserrat;
+    min-width: 230px;
+    width: fit-content;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    transition: transform 0.2s ease;
+  }
+
+  .nunorm-community__button:hover {
+    transform: translateY(-1px);
+  }
+
+  .nunorm-community__footer {
+    margin-top: 8px;
+  }
+
+  .nunorm-community__subtext {
+    margin: 0 0 16px;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    color: #213346;
+  }
+
+  .nunorm-community__secondary-link {
+    color: #0067D5;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: underline;
+  }
+
+  .nunorm-community__secondary-link:hover {
+    text-decoration: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .nunorm-community__heading {
+      font-size: 36px;
+      line-height: 41.6px;
+    }
+
+    .nunorm-community__body p {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+{% endstyle %}
+
+<section id="section-{{ section.id }}" class="nunorm-community-section">
+  <div class="nunorm-community">
+    {% if section.settings.logo != blank %}
+      <div class="nunorm-community__logo-wrapper">
+        <img
+          src="{{ section.settings.logo | img_url: '200x' }}"
+          alt="{{ section.settings.logo.alt | escape }}"
+          loading="lazy"
+          class="nunorm-community__logo"
+        >
+      </div>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h2 class="nunorm-community__heading">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.body != blank %}
+      <div class="nunorm-community__body rte">
+        {{ section.settings.body }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="nunorm-community__button">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
+
+    {% if section.settings.subtext != blank or section.settings.secondary_label != blank %}
+      <div class="nunorm-community__footer">
+        {% if section.settings.subtext != blank %}
+          <p class="nunorm-community__subtext">
+            {{ section.settings.subtext }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.secondary_label != blank and section.settings.secondary_link != blank %}
+          <a href="{{ section.settings.secondary_link }}" class="nunorm-community__secondary-link">
+            {{ section.settings.secondary_label }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Join community banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Top logo image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "JOIN THE NUNORM COMMUNITY"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body text",
+      "default": "<p>We’re thrilled to have you join us on this journey. By becoming a NuNorm affiliate, you’re not just sharing premium, easy-to-use self-care essentials—you’re helping us challenge old norms and support men’s mental health every step of the way.</p><p>Together, we’re building a supportive, inclusive space where self-care is for everyone.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary button label",
+      "default": "APPLY NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Footer text",
+      "default": "Already a member?"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary link label",
+      "default": "Log in"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Join community banner"
+    }
+  ]
+}
+{% endschema %}

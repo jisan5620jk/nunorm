@@ -1,0 +1,303 @@
+<div class="content-2-column layout {{ section.settings.text_position }}">
+  <div class="content-wrapper">
+    <div class="column text-column">
+      {% if section.settings.heading != blank %}
+        <h2 class="content-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.logo-img %}
+        <img
+          src="{{ section.settings.logo-img | image_url: width: 1200 }}"
+          alt="Logo"
+          loading="lazy"
+          class="content-image logo-img{% if section.settings.image_radius %} has-radius{% endif %}"
+          width=""
+          height="">
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <div
+          class="content-body"
+          data-aos="fade-up"
+          data-aos-duration="1500">{{ section.settings.body }}</div>
+      {% endif %}
+
+
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn-primary">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="column media-column">
+      {% if section.settings.media_type == 'image' %}
+        {% if section.settings.image %}
+          <div class="image-container aspect-{{ section.settings.image_ratio }}">
+            <img
+              src="{{ section.settings.image | image_url: width: 1200 }}"
+              alt="{{ section.settings.image.alt | escape }}"
+              loading="lazy"
+              class="content-image{% if section.settings.image_radius %} has-radius{% endif %}">
+          </div>
+        {% endif %}
+      {% elsif section.settings.media_type == 'video' %}
+        {% if section.settings.video_url %}
+          <div class="video-wrapper">
+            {% if section.settings.video_url != blank %}
+              <video
+                src="{{ section.settings.video_url }}"
+                autoplay
+                loop
+                controls
+                playsinline
+                style="width:100%; height:auto; object-fit:cover;"></video>
+            {% endif %}
+          {% comment %} 
+                                    <iframe
+                                                      src="{{ section.settings.video_url | escape }}"
+                                                      frameborder="0"
+                                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                      allowfullscreen
+                                    loading="lazy"></iframe> {% endcomment %}
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .content-2-column {
+    padding: 60px 20px;
+  }
+
+  .content-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .column {
+    flex: 1 1 50%;
+  }
+
+  .content-heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: #8d3b2e;
+    margin-bottom: 20px;
+  }
+
+  .content-body {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 30px;
+  }
+
+  .content-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #213345;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+
+  .content-button:hover {
+    background-color: #101d2b;
+  }
+
+  .content-2-column.text-right .content-wrapper {
+    flex-direction: row-reverse;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 40px 0 40px 0;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .image-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .content-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .content-image.has-radius {
+    border-radius: 20% 0 20% 0;
+  }
+
+  .aspect-1-1 {
+    aspect-ratio: 1 / 1;
+  }
+
+  .aspect-4-3 {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-3-4 {
+    aspect-ratio: 3 / 4;
+  }
+
+  .aspect-3-5 {
+    aspect-ratio: 3 / 5;
+  }
+
+  @media screen and (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+
+    .content-2-column.text-right .content-wrapper,
+    .content-2-column.text-left .content-wrapper {
+      flex-direction: column;
+    }
+
+    .column {
+      width: 100%;
+    }
+
+    .media-column {
+      order: 2;
+    }
+
+    .text-column {
+      order: 1;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Content 2 Column",
+    "tag": "div",
+    "settings": [
+      {
+        "type": "select",
+        "id": "text_position",
+        "label": "Text Position",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-right",
+            "label": "Right"
+          }
+        ],
+        "default": "text-left"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Our Story"
+      },
+      {
+        "type": "richtext",
+        "id": "body",
+        "label": "Body Text",
+        "default": "<p>NuNorm began with a simple but powerful moment. Jeff, our founder, saw his kids experimenting with makeup—especially his son Quincy, who used it with such a carefree spirit that it brought out confidence and joy.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo-img",
+        "label": "Logo Image"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+        "default": "Learn More"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "select",
+        "id": "media_type",
+        "label": "Media Type",
+        "options": [
+          {
+            "value": "image",
+            "label": "Image"
+          },
+          {
+            "value": "video",
+            "label": "Video"
+          }
+        ],
+        "default": "image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_ratio",
+        "label": "Image Aspect Ratio",
+        "options": [
+          {
+            "value": "1-1",
+            "label": "1 / 1"
+          },
+          {
+            "value": "4-3",
+            "label": "4 / 3"
+          },
+          {
+            "value": "3-4",
+            "label": "3 / 4"
+          },
+          {
+            "value": "3-5",
+            "label": "3 / 5"
+          }
+        ],
+        "default": "1-1"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_radius",
+        "label": "Enable Border Radius on Image",
+        "default": false
+      },
+      {
+        "type": "url",
+        "id": "video_url",
+        "label": "Video Embed URL (YouTube or Vimeo)"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Content 2 Column",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

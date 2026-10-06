@@ -1,0 +1,201 @@
+{{ 'before-after.css' | asset_url | stylesheet_tag }}
+
+<!-- / before after outer / -->
+<section class="before-after-home page-width layout">
+  <!-- / heading / -->
+
+  <div class="before-after-heading">
+    
+    <div class="before-after-left-side">
+      <h2 class="sec-heading">{{ section.settings['sec-heading'] }}</h2>
+    </div>
+
+    <div class="before-after-right-side">
+      {% if section.settings['sec-subheading'] != blank %}
+        <p class="sec-subheading">{{ section.settings['sec-subheading'] }}</p>
+      {% endif %}
+      {% if section.settings.subheading_mobile != blank %}
+        <div class="before-after-right-side-sub-heading-mobile">{{ section.settings.subheading_mobile }}</div>
+      {% endif %}
+      <p class="pera-wrap">{{ section.settings['pera-wrap'] }}</p>
+    </div>
+
+  </div>
+
+  <div class="after_main_before_img">
+    <div class="before_main_img">
+      {% if section.settings.before_img != blank %}
+        <img
+          loading="lazy"
+          class="before_img"
+          height="{{  section.settings.before_img.height }}"
+          width="{{  section.settings.before_img.width }}"
+          src="{{ section.settings.before_img | image_url: width: 800 }}"
+          alt="{{ section.settings.before_img.alt }}"
+        >
+      {% endif %}
+      {% if section.settings.before != blank %}
+        <div class="before_after_main">{{ section.settings.before }} <span class="before_after_main_brand">NUNORM</span></div>
+      {% endif %}
+    </div>
+
+    <div class="after_main_img">
+      {% if section.settings.after_img != blank %}
+        <img
+          loading="lazy"
+          class="after_img"
+          height="{{ section.settings.after_img.height }}"
+          width="{{ section.settings.after_img.width }}"
+          src="{{ section.settings.after_img | image_url: width: 800 }}"
+          alt="{{ section.settings.after_img.alt }}"
+        >
+      {% endif %}
+
+      {% if section.settings.after != blank %}
+        <div class="before_after_main">{{ section.settings.after }} <span class="before_after_main_brand">NUNORM</span></div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings['flip_box_content'] != blank %}
+    <div class="flip-container">
+      <div class="flip-box">
+        <div class="flip-box-front before_after_flip_content">
+          {{ section.settings['flip_box_content'] }}
+          <span class="before_after_flip_content_mobile_cta">Tap to learn how+</span>
+        </div>
+        {% if section.settings['flip_box_hover_content'] != blank %}
+          <div class="flip-box-back before_after_flip_hover">
+            {{ section.settings['flip_box_hover_content'] }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+    
+  <!-- / try it now / -->
+  {% if section.settings.btn-head != blank or section.settings.btn-sub-head != blank  %}
+    <div class="try-it-now">
+      {% if section.settings.btn-head != blank %}
+        <h3>{{ section.settings['btn-head'] }}</h3>
+      {% endif %}
+      {% if section.settings.btn-sub-head != blank %}
+        <p class="pera">{{ section.settings['btn-sub-head'] }}</p>
+      {% endif %}
+  
+      <!-- / button / -->
+      {% if section.settings['btn-text'] != blank %}
+        <div class="button_gray">
+          <span class="gray_button_circle"> </span>
+  
+          <a {% comment %}href="{{ section.settings.btn-link }}"{% endcomment %} class="button_gray_inner custom-try-on">
+            <span class="button_text_container">
+              {{ section.settings['btn-text'] }}
+            </span>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+
+
+{% schema %}
+{
+  "name": "before-after-home",
+  "settings": [
+
+     {
+    "type": "liquid",
+    "id": "before-after-home",
+    "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+    "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+  },
+  {
+    "type": "text",
+    "id": "sec-heading",
+    "label": "Heading"
+  },
+  {
+    "type": "text",
+    "id": "sec-subheading",
+    "label": "Subheading - Desktop"
+  },
+  {
+    "type": "richtext",
+    "id": "subheading_mobile",
+    "label": "Subheading - Mobile"
+  },
+  {
+    "type": "inline_richtext",
+    "id": "pera-wrap",
+    "label": "Content"
+  },
+  {
+    "type": "header",
+    "content": "Flip Box"
+  },
+  {
+    "type": "richtext",
+    "id": "flip_box_content",
+    "label": "Flip Box Content"
+  },
+  {
+    "type": "richtext",
+    "id": "flip_box_hover_content",
+    "label": "Flip Box Content - Hover"
+  },
+  {
+    "type": "image_picker",
+    "id": "before_img",
+    "label": "Before image"
+  },
+  {
+    "type": "image_picker",
+    "id": "after_img",
+    "label": "After image"
+  },
+  {
+    "type": "text",
+    "id": "before",
+    "label": "Before"
+  },
+  {
+    "type": "text",
+    "id": "before_after_arrow",
+    "label": "Main Text With Arrow"
+  },
+  {
+    "type": "text",
+    "id": "after",
+    "label": "After"
+  },
+  {
+    "type": "text",
+    "id": "btn-head",
+    "label": "Heading"
+  },
+  {
+    "type": "inline_richtext",
+    "id": "btn-sub-head",
+    "label": "Sub Heading"
+  },
+  {
+    "type": "text",
+    "id": "btn-text",
+    "label": "Button Text"
+  },
+  {
+    "type": "url",
+    "id": "btn-link",
+    "label": "Button Link"
+  }
+
+  ],
+ "presets": [
+  {
+    "name": "before-after-home"
+  }
+]
+}
+{% endschema %}

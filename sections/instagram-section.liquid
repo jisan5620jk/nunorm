@@ -1,0 +1,246 @@
+<section class="instagram_section layout">
+
+<div class="head_area">
+
+  {% if section.settings.title != blank %}
+  <h2>{{ section.settings.title }}</h2>
+  {% endif %}
+  
+  {% if section.settings.sub_title != blank %}
+  <div class="sub_title">{{ section.settings.sub_title }}</div>
+  {% endif %} 
+  
+</div>
+
+<div class="profile_box">
+
+{% if section.settings.profile_img != blank %}
+      <div class="profile_img">        
+      <img src="{{ section.settings.profile_img | img_url:'master' }}">
+      </div>
+{% endif %}
+    
+    <div class="profile_text">
+
+      {% if section.settings.Instagram_id != blank %}
+      <h3>@{{ section.settings.Instagram_id }} <a href="https://www.instagram.com/{{ section.settings.Instagram_id }}"><span>Follow</span></a></h3>
+      {% endif %}
+      
+      {% if section.settings.bio_text != blank %}
+      <div>{{ section.settings.bio_text }}</div>
+      {% endif %}
+
+    </div>
+
+</div>
+
+<div class="instagram_solution_grid">
+{% for block in section.blocks %}
+  <div class="instagram_image">
+
+<a href="{{ block.settings.link }}">
+{% if block.settings.img != blank %}
+<img src="{{ block.settings.img | img_url:'master' }}">
+{% endif %}
+</a>
+
+  </div>
+{% endfor %}
+</div>
+  
+</section>
+
+{% schema %}
+  {
+    "name": "Instagram Section",
+    "class": "instagram_section_main",
+    "settings": [
+
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+
+      {
+        "type": "richtext",
+        "id": "sub_title",
+        "label": "Description"
+      },
+
+      {
+        "type": "image_picker",
+        "id": "profile_img",
+        "label": "Profile Image"
+      },
+
+      {
+        "type": "text",
+        "id": "Instagram_id",
+        "label": "Instagram User Name"
+      },
+
+      {
+        "type": "text",
+        "id": "bio_text",
+        "label": "Instagram Bio"
+      }
+    ],
+        "blocks": [
+      {
+        "type": "Image",
+        "name": "Image",
+        "settings": [
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      },
+
+      {
+        "type": "url",
+        "id": "link",
+        "label": "link"
+      }
+
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Instagram Section"
+      }
+    ]
+  }
+{% endschema %}
+
+<style>
+
+.instagram_section_main h2 {
+    text-align: center;
+    font-family: Point Panther;
+    font-style: normal;
+    margin: 0;
+    padding-bottom: 12px;
+}
+
+.instagram_section_main .sub_title p {
+    text-align: center;
+    font-style: normal;
+    margin: 0;
+}
+
+.instagram_section_main .profile_box {
+    display: flex;
+    align-items: center;
+    padding: 30px 0;
+    gap: 0px 20px;
+}
+
+.instagram_section_main .profile_box h3 {
+    margin: 0;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 15.647px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-bottom: 4px;
+}
+
+.instagram_section_main .profile_box h3 span {
+    color: #58ADF0;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-left: 9px;
+}
+
+.instagram_section_main .profile_box .profile_text > div {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 12.353px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.instagram_section_main .profile_box img {
+    max-width: 50px;
+    border-radius: 100px;
+    max-height: 50px;
+}
+
+.instagram_section_main .profile_box .profile_text {
+    position: relative;
+    top: -3px;
+}
+
+.instagram_section_main .instagram_solution_grid .instagram_image img {
+    max-height: 190px;
+    max-width: 190px;
+}
+
+.instagram_section_main .instagram_solution_grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 27px 44px;
+}
+
+.instagram_section_main {
+    padding-bottom: 65px;
+}
+
+.instagram_section_main .profile_box h3 a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1440px) {
+.instagram_image {
+    width: 19%;
+}
+
+.instagram_section_main .instagram_solution_grid {
+    gap: 1%;
+}
+
+.instagram_section_main .instagram_solution_grid .instagram_image img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+}
+
+@media screen and (max-width: 767px) {
+.instagram_section_main h2 {
+    font-size: 30px;
+    padding-bottom: 5px;
+}
+
+.instagram_section_main .profile_box {
+    padding: 20px 0;
+    gap: 0px 10px;
+}
+
+.instagram_section_main .instagram_solution_grid .instagram_image {
+    width: 32%;
+}
+
+.instagram_section_main .instagram_solution_grid {
+    gap: 2%;
+}
+
+.instagram_section_main .instagram_solution_grid .instagram_image img {
+    width: 100%;
+}
+
+.instagram_section_main {
+    padding-bottom: 5px;
+}
+
+}
+</style>

@@ -1,0 +1,328 @@
+{%- if section.settings.enable_newsletter_popup -%}
+  {{ 'component-ui-newsletter-popup.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'ui-newsletter-popup.js' | asset_url }}" defer="defer"></script>
+
+  <ui-newsletter-popup
+    class="ui-newsletter-popup"
+    section-id="{{ section.id }}"
+    data-expiration-unit="{{ section.settings.expiration_unit }}"
+    data-expiration-value="{{ section.settings.expiration_value }}"
+    {% if request.design_mode %}
+      open
+    {% endif %}
+    {% if request.design_mode and section.settings.show_success_preview %}
+      data-show-success-preview
+    {% endif %}
+  >
+    <div class="ui-newsletter-popup__main">
+      <button class="ui-newsletter-popup__close">{% render 'icon-close' %}</button>
+
+      <div
+        class="ui-newsletter-popup__signup {% if request.design_mode and section.settings.show_success_preview %} is-hidden {% endif %}"
+      >
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 375 | image_tag: class: 'ui-newsletter-popup__image' }}
+        {% endif %}
+
+        <div class="ui-newsletter-popup__content">
+          <div class="ui-newsletter-popup__header">
+            {%- if section.settings.title != blank -%}
+              <h2 class="ui-newsletter-popup__title">{{ section.settings.title }}</h2>
+            {%- endif -%}
+
+            {%- if section.settings.text != blank -%}
+              <div class="ui-newsletter-popup__subtitle">{{ section.settings.text }}</div>
+            {%- endif -%}
+          </div>
+
+          <form class="ui-newsletter-popup__form" novalidate>
+            <div class="ui-newsletter-popup-msg"></div>
+            <div class="ui-newsletter-popup__fieldset">
+              <input
+                class="ui-newsletter-popup__input ui-newsletter-popup__input-name"
+                type="text"
+                id="name"
+                name="fullname"
+                placeholder="Your name"
+                autocomplete="name"
+              >
+              <input
+                class="ui-newsletter-popup__input ui-newsletter-popup__input-email"
+                type="email"
+                id="email"
+                placeholder="Your email"
+                name="email"
+                autocomplete="email"
+              >
+              <input
+                class="ui-newsletter-popup__input ui-newsletter-popup__input-phone"
+                type="tel"
+                id="phone"
+                placeholder="Your mobile number"
+                name="phone"
+                autocomplete="tel"
+              >
+              <button class="ui-newsletter-popup__button" type="submit">
+                {{ section.settings.button_label | default: 'Subscribe' }}
+              </button>
+            </div>
+
+            {%- if section.settings.consent_text != blank -%}
+              {% comment %}
+                <label class="ui-newsletter-popup__consent">
+                  <input class="ui-newsletter-popup__input-checkbox" type="checkbox" id="marketing-consent" required>
+                  {{ section.settings.consent_text | strip_html }}
+                </label>
+              {% endcomment %}
+
+              <div class="ui-newsletter-popup__consent">
+                <input
+                  class="ui-newsletter-popup__input-checkbox"
+                  id="marketing-consent"
+                  type="checkbox"
+                  name="marketing-consent"
+                >
+                <label class="ui-newsletter-popup__label" for="marketing-consent" for="marketing-consent">
+                  <span>
+                    <svg width="10px" height="8px">
+                      <use xlink:href="#check-consent"></use>
+                    </svg></span
+                  ><span> {{ section.settings.consent_text | strip_html }}</span></label
+                >
+                <svg class="inline-svg">
+                  <symbol id="check-consent" viewbox="0 0 12 10">
+                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                  </symbol>
+                </svg>
+              </div>
+            {%- endif -%}
+          </form>
+        </div>
+      </div>
+      <div class="ui-newsletter-popup__success {% unless request.design_mode and section.settings.show_success_preview %}is-hidden{% endunless %}">
+        {%- if section.settings.image_success != blank -%}
+          {{ section.settings.image_success | image_url: width: 375 | image_tag: class: 'ui-newsletter-popup__image' }}
+        {%- endif -%}
+
+        <div class="ui-newsletter-popup__content">
+          <div class="ui-newsletter-popup__header">
+            {%- if section.settings.title_success != blank -%}
+              <h2 class="ui-newsletter-popup__title">{{ section.settings.title_success }}</h2>
+            {%- endif -%}
+
+            {%- if section.settings.text_success != blank -%}
+              <div class="ui-newsletter-popup__subtitle">{{ section.settings.text_success }}</div>
+            {%- endif -%}
+          </div>
+
+          <div class="ui-newsletter-popup__copy-sucesss-message is-hidden">Code copied to clipboard!</div>
+
+          <div class="ui-newsletter-popup__fieldset">
+            <div class="ui-newsletter-popup__promo-code">
+              {{ section.settings.discount_code | default: 'BeTheNNRM' }}
+            </div>
+            <button class="ui-newsletter-popup__button ui-newsletter-popup__button-copy">
+              {{ section.settings.button_label_success | default: 'Copy promo code' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ui-newsletter-popup>
+
+  {% style %}
+    .ui-newsletter-popup {
+      --ui-newsletter-popup-bg-color: {{ section.settings.bg_color }};
+      --ui-newsletter-popup-border-color: {{ section.settings.border_color }};
+      --ui-newsletter-popup-close-icon-color: {{ section.settings.close_icon_color }};
+      --ui-newsletter-popup-title-color: {{ section.settings.title_color }};
+      --ui-newsletter-popup-subtitle-color: {{ section.settings.subtitle_color }};
+      --ui-newsletter-popup-button-bg-color: {{ section.settings.button_bg_color }};
+      --ui-newsletter-popup-button-text-color: {{ section.settings.button_text_color }};
+      --ui-newsletter-popup-overlay-color: {{ section.settings.overlay_color.red }}, {{ section.settings.overlay_color.green }}, {{ section.settings.overlay_color.blue }};
+      --ui-newsletter-popup-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0}};
+
+    }
+  {% endstyle %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Newsletter Popup",
+  "tag": "aside",
+  "class": "section section--newsletter-popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_newsletter_popup",
+      "label": "Enable newsletter popup",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_success_preview",
+      "label": "Show success preview",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "expiration_unit",
+      "label": "Expiration Unit",
+      "options": [
+        {
+          "value": "days",
+          "label": "Days"
+        },
+        {
+          "value": "hours",
+          "label": "Hours"
+        }
+      ],
+      "default": "hours"
+    },
+    {
+      "type": "range",
+      "id": "expiration_value",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "label": "Expiration time (in days/hours)",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "min": 1,
+      "max": 10,
+      "step": 0.5,
+      "unit": "s",
+      "label": "delay (in seconds)",
+      "default": 1.5
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#213346"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#953F2F"
+    },
+    {
+      "type": "color",
+      "id": "close_icon_color",
+      "label": "Close icon color",
+      "default": "#FBEEDB"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#953F2F"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#8D2C27"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FBEEDA"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30,
+      "info": "Set to 0 to hide overlay"
+    },
+    {
+      "type": "header",
+      "content": "Signup form"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "1st Time Customer?"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Get <strong>15% off</strong><br\/>your first order.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Grab Your Code"
+    },
+    {
+      "type": "richtext",
+      "id": "consent_text",
+      "label": "Consent text",
+      "default": "<p>By entering your email and phone number, you consent to receive marketing email messages and SMS/text messages from or on behalf of NuNorm at the email address and phone number provided. At any time you can reply STOP to opt-out or HELP for more information. View our <a href=\"https://www.nunorm.com/policies/terms-of-service\" target=\"_blank\">terms</a> and <a href=\"https://www.nunorm.com/policies/privacy-policy\" target=\"_blank\">privacy policy</a> on our website.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Sign up success"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_success",
+      "label": "Image success"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title_success",
+      "label": "Title",
+      "default": "TRY US. LOVE US </br>RINSE & REPEAT"
+    },
+    {
+      "type": "richtext",
+      "id": "text_success",
+      "label": "Text",
+      "default": "<p>Welcome to your NuNorm! </p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label_success",
+      "label": "Button label",
+      "default": "Grab Your Code"
+    },
+    {
+      "type": "text",
+      "id": "discount_code",
+      "label": "Discount code",
+      "default": "BeTheNNRM"
+    }
+  ]
+}
+{% endschema %}

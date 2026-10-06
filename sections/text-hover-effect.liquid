@@ -1,0 +1,70 @@
+{{ 'text-hover-effect.css' | asset_url | stylesheet_tag }}
+
+<section class="text-hover-effect-section layout">
+
+  {% if section.settings.desktop_title != blank and section.settings.desktop_subtitle != blank %}
+    <div class="text-hover-effect-desktop">
+      <div class="text-hover-effect-desktop-title">
+        {{ section.settings.desktop_title }}
+     </div>
+      <div class="text-hover-effect-desktop-subtitle">
+        {{ section.settings.desktop_subtitle }}
+     </div>
+    </div>
+  {% endif %}
+
+  {% if section.settings.mobile_title != blank and section.settings.mobile_subtitle != blank %}
+    <div class="flip-container text-hover-effect-mobile">
+      <div class="flip-box">
+        <div class="flip-box-front">
+          {{ section.settings.mobile_title }}
+          <span class="text-hover-effect-mobile-cta">Tap to learn how+</span>
+        </div>
+        <div class="flip-box-back">
+          {{ section.settings.mobile_subtitle }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+</section>
+
+
+{% schema %}
+{
+  "name": "text-hover-effect",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "text-hover-effect",
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+      "type": "richtext",
+      "id": "desktop_title",
+      "label": "Desktop Title"
+    },
+    {
+      "type": "richtext",
+      "id": "desktop_subtitle",
+      "label": "Desktop Sub Title"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_title",
+      "label": "Mobile Title"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_subtitle",
+      "label": "Mobile Sub Title"
+    }
+  ],
+  "presets": [
+    {
+      "name": "text-hover-effect"
+    }
+  ]
+}
+{% endschema %}

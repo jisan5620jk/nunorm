@@ -1,0 +1,326 @@
+import {
+  tap,
+  pipe,
+  ifElse,
+  onClick,
+  getState,
+  components,
+  setTabindex,
+  withTargetDo,
+  mapFunctions,
+  curriedSetState,
+  curriedAddClass,
+  toggleAriaHidden,
+  setAriaPressedTrue,
+  curriedRemoveClass,
+  curriedSetInnerText,
+  setAriaPressedFalse,
+  setTabIndexMinusOne,
+  mutateChildComponent,
+  getIdQueryOFComponent,
+} from "{{ 'utils.js' | asset_url }}"
+
+// MODULE SPECIFIC UTILITY FUNCTIONS
+
+/**
+ * Removes the active class from an element.
+ * @param {HTMLElement} el - The element to remove the active class from.
+ * @returns {void} The element without the active class.
+ 
+ */
+const removeActiveClass = curriedRemoveClass('active')
+
+/**
+ * Adds the active class to an element.
+ * @param {HTMLElement} el - The element to add the active class to.
+ * @returns {void} The element with the active class.
+ */
+const addActiveClass = curriedAddClass('active')
+
+const setActiveToTarget = pipe(getIdQueryOFComponent, tap(addActiveClass))
+
+/**
+ * Utility function to check if the element's state indicates that it is not playing.
+ * @param {HTMLElement} el - The element to check for the playing state.
+ * @returns {boolean} - Returns true if the element is not playing, false otherwise.
+ */
+const isNotPlaying = el => !getState(el).playing
+
+/**
+ * Performs a callback on the target element specified by the data-video-cover attribute of the provided element,
+ * then returns the original element to continue the data stream.
+ * @param {Function} callback - The callback function to perform on the target element.
+ * @returns {Function} - The function that performs the callback on the target element.
+ */
+const withVideoCoverDo = callback => el => {
+  const target = document.querySelector(`#${el.dataset.videoCover}`)
+  if (target) {
+    callback(target)
+  }
+  return el
+}
+
+const withButtonDo = callback => el => {
+  const target = document.querySelector(`#${el.dataset.buttonTarget}`)
+  if (target) {
+    callback(target)
+  }
+  return el
+}
+
+/**
+ * Performs a callback on the target element specified by the data-target attribute of the provided element,
+ * then returns the original element to continue the data stream.
+ * @param {Function} callback - The callback function to perform on the target element.
+ * @returns {Function} - The function that performs the callback on the target element.
+ */
+const toggleVideoCoverAriaHidden = withVideoCoverDo(toggleAriaHidden)
+
+/**
+ * Performs a callback on the target element specified by the data-target attribute of the provided element,
+ * then returns the original element to continue the data stream.
+ * @param {Function} callback - The callback function to perform on the target element.
+ * @returns {Function} - The function that performs the callback on the target element.
+ */
+const toggleVideoPlayAriaHidden = withTargetDo(toggleAriaHidden)
+
+const toggleFullScreenAriaHidden = withButtonDo(toggleAriaHidden)
+
+const setTextPlaying = curriedSetInnerText('Playing')
+
+const setTextPaused = curriedSetInnerText('Paused')
+
+const log = element => console.log(element)
+
+// DOM Manipulation
+/**
+ * Opens a specific tab and displays its content.
+ * @param {Event} _ - The click event object.
+ * @returns {void} The tab content displayed.
+ */
+const hideAllTabContent = _ =>
+  components('tab-content').forEach(removeActiveClass)
+
+/**
+ * Deactivates all tab triggers.
+ * @param {Event} _ - The click event object.
+ * @returns {void} The tab triggers deactivated.
+ */
+const deActivateAllTabTriggers = _ =>
+  components('tab-trigger').forEach(removeActiveClass)
+
+/**
+ * Removes focus from all the active tab triggers.
+ * @param {Event} _ - The click event object.
+ * @returns {void} The active tab triggers without focus.
+ */
+const removeFocusFromActiveTabTriggers = _ =>
+  components('tab-trigger').forEach(setTabIndexMinusOne)
+
+/**
+ * Sets the active class to the tab trigger, which is the event target of the click event
+ * @param {HTMLElement} el - The tab trigger that was clicked.
+ * @param {Event} _ - The click event object.
+ * @returns {void} The tab trigger with the active class.
+ */
+const setActiveTabTrigger = (el, _) => addActiveClass(el)
+
+/**
+ * Opens an element in full screen.
+ * @param {HTMLElement} el - The element to open in full screen.
+ * @param {Event} _ - The click event object.
+ */
+
+const openFullscreen = (el, _) => {
+  /**openFullscreen
+   * NodeList of play buttons for looping the video.
+   * @type {HTMLVideoElement}
+   */
+  const elem = getIdQueryOFComponent(el)
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen()
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen()
+  }
+}
+
+const toggleFullScreenButton = el => toggleFullScreenAriaHidden(el)
+
+/**
+ * Opens a tab and displays its content while hiding others.
+ * @param {HTMLElement} el The event that triggered the tab change.
+ * @param {string} _ The name of the tab to open.
+ * @returns {void} The tab content displayed.
+ */
+
+const setFocusToElement = (el, _) => setTabindex(el)
+
+const setActiveToTargetOfTrigger = (el, _) => setActiveToTarget(el)
+
+
+/**
+ * Sets the play button to pressed.
+ * @param {HTMLElement} el - The play button element.
+ * @returns {void} The play button element with the pressed state set.
+ */
+const setPlayButtonPressed = el => {
+  const setAriaPressedTrueToPlayButton = mutateChildComponent(
+    'play-button',
+    setAriaPressedTrue
+  )
+  const setAriaPressedFalseToPauseButton = mutateChildComponent(
+    'pause-button',
+    setAriaPressedFalse
+  )
+
+  const setFocusToPauseButton = mutateChildComponent(
+    'pause-button',
+    tap(setTabindex)
+  )
+
+  const setFocusToPlayButton = mutateChildComponent(
+    'play-button',
+    tap(setTabindex)
+  )
+
+  const setPLayingState = curriedSetState({ playing: true })
+  const setAriaPressedToChildPlayButton = pipe(
+    setAriaPressedFalseToPauseButton,
+    setAriaPressedTrueToPlayButton,
+    setFocusToPauseButton,
+    setFocusToPlayButton,
+    setPLayingState,
+    log
+  )
+  setAriaPressedToChildPlayButton(el)
+}
+
+/**
+ * Sets the pause button to pressed.
+ * @param {HTMLElement} el - The pause button element.
+ * @returns {void} The pause button element with the pressed state set.
+ */
+const setPauseButtonPressed = el => {
+  const setAriaPressedTrueToPauseButton = mutateChildComponent(
+    'pause-button',
+    setAriaPressedTrue
+  )
+  const setAriaPressedFalseToPlayButton = mutateChildComponent(
+    'play-button',
+    setAriaPressedFalse
+  )
+
+  const setFocusToPlayButton = mutateChildComponent(
+    'play-button',
+    tap(setTabindex)
+  )
+
+  const setFocusToPauseButton = mutateChildComponent(
+    'pause-button',
+    tap(setTabindex)
+  )
+
+  const setPausedState = curriedSetState({ playing: false })
+  const setAriaPressedToChildPauseButton = pipe(
+    setAriaPressedFalseToPlayButton,
+    setAriaPressedTrueToPauseButton,
+    setFocusToPauseButton,
+    setFocusToPlayButton,
+    setPausedState
+  )
+  setAriaPressedToChildPauseButton(el)
+}
+
+/**
+ * Sets the playing state of the button.
+ * @param {HTMLElement} el - The button element.
+ * @returns {void} The button element with the playing state set.
+ */
+const setButtonPlayingState = el => {
+  const updateButtonStates = pipe(
+    ifElse(isNotPlaying, setPlayButtonPressed, setPauseButtonPressed)
+  )
+
+  updateButtonStates(el)
+}
+
+/**
+ * Toggles the aria-hidden attribute of the video cover.
+ * @param {HTMLElement} el - The video cover element.
+ * @returns {void} The video cover with the aria-hidden attribute toggled.
+ */
+const toggleVideoCover = el => el && toggleVideoCoverAriaHidden(el)
+
+/**
+ * Toggles the play and pause states of the video.
+ * @param {HTMLVideoElement} el - The video element.
+ * @returns {void} The video with the play and pause states toggled.
+ */
+const toggleVideoPlay = el => {
+  const video = getIdQueryOFComponent(el)
+  video && video.paused ? video.play() : video.pause()
+}
+
+/**
+ * toggle video aria hidden status
+ * @param {HTMLElement} el - The video element.
+ * @returns {void} The video with the aria-hidden attribute toggled.
+ */
+const toggleVideoHidden = el => el && toggleVideoPlayAriaHidden(el)
+
+const setLiveRegionTextPlaying = el => {
+  const setPLayingTextToLiveRegion = mutateChildComponent(
+    'video-live-region',
+    setTextPlaying
+  )
+
+  setPLayingTextToLiveRegion(el)
+}
+
+const setLiveRegionTextPaused = el => {
+  const setPausedTextToLiveRegion = mutateChildComponent(
+    'video-live-region',
+    setTextPaused
+  )
+
+  setPausedTextToLiveRegion(el)
+}
+
+/**
+ * Toggles the live region text from 'paused' to 'playing' and vice versa.
+ */
+const toggleLiveRegionText = el => {
+  const updateLiveRegionTextStates = pipe(
+    ifElse(isNotPlaying, setLiveRegionTextPaused, setLiveRegionTextPlaying)
+  )
+
+  el && updateLiveRegionTextStates(el)
+}
+
+// HANDLERS
+const tabTriggerHandler = mapFunctions(
+  onClick(hideAllTabContent),
+  onClick(deActivateAllTabTriggers),
+  onClick(removeFocusFromActiveTabTriggers),
+  onClick(setActiveTabTrigger),
+  onClick(setFocusToElement),
+  onClick(setActiveToTargetOfTrigger)
+)
+
+const fullScreenButtonHandler = onClick(openFullscreen)
+
+const playPauseHandler = mapFunctions(
+  onClick(setButtonPlayingState),
+  onClick(toggleVideoCover),
+  onClick(toggleVideoPlay),
+  onClick(toggleVideoHidden),
+  onClick(toggleFullScreenButton),
+  onClick(toggleLiveRegionText)
+)
+
+// EVENT HANDLER INITIALIZATION
+components('tab-trigger').map(el => tabTriggerHandler(el))
+
+components('full-video-button').map(el => fullScreenButtonHandler(el))
+
+components('play-pause-container').map(el => playPauseHandler(el))

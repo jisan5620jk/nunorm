@@ -1,0 +1,80 @@
+<!-- / Hero banner sectionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn / -->
+<section class="community-page-hero layout">
+  <!-- / img  / -->
+  <div class="img-box">
+    <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" alt="{{ section.settings.img.alt }}">
+  </div>
+
+  <!-- / caption / -->
+  <div class="caption-box">
+    <h1 class="bigger-heading hero-home__title">{{ section.settings.head }}</h1>
+    <p class="hero-home__description">{{ section.settings.description }}</p>
+    {% if section.settings['btn-link'] != blank %}
+      <div class="button_gray">
+        <span class="gray_button_circle desplode-gray-circle" style="left: 149.391px; top: 73.9844px;"> </span>
+        <a href="{{ section.settings.btn-link }}" class="button_gray_inner">
+          <span class="button_text_container">
+            {{ section.settings['btn-text'] }}
+          </span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{section.id}} .community-page-hero {
+      background-color: {{section.settings.background_color}};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "community-hero-banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "head",
+      "label": "Heading",
+      "default": "Join the <strong>Community</strong>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "NuNorm welcomes you to join a community of guys who appreciate self-care and self-expression. Connect with others, discuss your feelings, and become more confident."
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn-link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "community-hero-banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

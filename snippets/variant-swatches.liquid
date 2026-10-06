@@ -1,0 +1,252 @@
+<div
+  class="product-variants"
+  {% if variant.title == 'Default Title' %}
+    style="display: none;"
+  {% endif %}
+>
+  {% assign selected_variant_id = product.selected_or_first_available_variant.id %}
+
+  {% for variant in product.variants %}
+    {% assign is_selected = false %}
+    {% if variant.id == selected_variant_id %}
+      {% assign is_selected = true %}
+      {% assign selected_variant_title = variant.title %}
+    {% endif %}
+
+    {% assign swatch_image = variant.metafields.custom.pdp_swatch_image %}
+    {% assign swatch_image_media = variant.metafields.custom.swatch_image %}
+    {% assign swatch_color = variant.metafields.custom.color %}
+    {% assign input_id = 'variant-' | append: variant.id %}
+
+    <label
+      class="variant-color-swatch {% if is_selected %}is-selected{% endif %}"
+      for="{{ input_id }}"
+      title="{{ variant.title }}"
+      data-variant-id="{{ variant.id }}"
+      data-variant-title="{{ variant.title }}"
+      data-variant-image="{{ variant.featured_image.id  }}"
+      {% if variant.title == 'Default Title' %}
+        style="display: none;"
+      {% endif %}
+      data-swatch-image-media="{{ swatch_image_media | img_url: 'master' }}"
+    >
+      <input
+        type="radio"
+        name="id"
+        id="{{ input_id }}"
+        value="{{ variant.id }}"
+        class="visually-hidden"
+        {% if is_selected %}
+          checked
+        {% endif %}
+      >
+
+      {% if swatch_image != blank %}
+        <div
+          class="swatch-image"
+          style="background-image: url({{ swatch_image | image_url: width: 80 }});"
+        ></div>
+      {% elsif swatch_color != blank %}
+        <div
+          class="swatch-color"
+          style="background-color: {{ swatch_color }};"
+        ></div>
+      {% endif %}
+    </label>
+  {% endfor %}
+</div>
+
+<p
+  class="selected-variant-label"
+  {% if variant.title == 'Default Title' %}
+    style="display: none;"
+  {% endif %}
+>
+  <span
+    id="selected-variant-text"
+    {% if selected_variant_title == 'Default Title' %}
+      style="display: none;"
+    {% endif %}
+  >
+    {{- selected_variant_title -}}
+  </span>
+</p>
+
+<style>
+    .variant-color-swatch {
+      display: inline-block;
+      border: 2px solid transparent;
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      position: relative;
+      margin: 0 4px 8px 0;
+    }
+
+    .variant-color-swatch.is-selected {
+      border-color: #000;
+    }
+
+    .swatch-image,
+    .swatch-color {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      width: 0;
+      height: 0;
+    }
+    .thumb-list-inner br {
+      display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swatches = document.querySelectorAll(".variant-color-swatch input[type='radio']");
+    const selectedLabel = document.getElementById('selected-variant-text');
+    const galleryImage = document.querySelector('#mainMediaImage');
+    const thumbsContainer = document.querySelector('.thumb-list-inner');
+
+    // Save default thumbnails (as <div class="thumb"> elements)
+    let defaultThumbs = [];
+    if (thumbsContainer) {
+      defaultThumbs = Array.from(thumbsContainer.querySelectorAll('.thumb')).map((div) => {
+        return {
+          html: div.outerHTML,
+          src: div.querySelector('img')?.src || '',
+        };
+      });
+    }
+
+    // Function to update thumbnails for a variant
+    function updateVariantImages(swatchInput) {
+      if (!swatchInput) return;
+
+      // Update selected swatch styling
+      document.querySelectorAll('.variant-color-swatch').forEach((label) => label.classList.remove('is-selected'));
+      const selected = swatchInput.closest('.variant-color-swatch');
+      selected.classList.add('is-selected');
+
+      // Update selected variant label
+      const newTitle = selected.getAttribute('data-variant-title');
+      if (selectedLabel && newTitle) selectedLabel.textContent = newTitle;
+
+      // Update main gallery image
+      const newImageSrc = selected.getAttribute('data-swatch-image-media');
+      if (galleryImage && newImageSrc) galleryImage.src = newImageSrc;
+
+      if (!window.productData || !window.productData.variants || !thumbsContainer) return;
+
+      // Get selected variant
+      const variantId = selected.getAttribute('data-variant-id');
+      const selectedVariant = window.productData.variants.find((v) => v.id.toString() === variantId);
+
+      const metafieldImages = selectedVariant?.metafields?.custom?.feature_images?.value;
+
+      // Reset thumbs container
+      thumbsContainer.innerHTML = '';
+
+      // Step 1: Add variant metafield images first (wrap in same <div class="thumb"> structure)
+      if (metafieldImages && metafieldImages.length) {
+        metafieldImages.forEach((src) => {
+          const div = document.createElement('div');
+          div.classList.add('thumb');
+          div.setAttribute('data-image', src);
+
+          const img = document.createElement('img');
+          img.src = src;
+          div.appendChild(img);
+
+          thumbsContainer.appendChild(div);
+        });
+      }
+
+      // Step 2: Add default thumbs after
+      defaultThumbs.forEach((item) => {
+        const temp = document.createElement('div');
+        temp.innerHTML = item.html;
+        thumbsContainer.appendChild(temp.firstElementChild);
+      });
+
+      // After updating thumbsContainer
+      const event = new CustomEvent('variant:updated', { detail: { variantId } });
+      document.dispatchEvent(event);
+    }
+
+    // Attach event listeners
+    swatches.forEach((radio) => {
+      radio.addEventListener('change', () => updateVariantImages(radio));
+    });
+
+    // Run on page load for the currently selected swatch
+    const checkedSwatch = document.querySelector(".variant-color-swatch input[type='radio']:checked");
+    {% comment %} if (checkedSwatch) updateVariantImages(checkedSwatch); {% endcomment %}
+
+
+  });
+
+
+
+
+
+
+  // Observe changes to .thumb-list-inner and attach click listeners to .thumb elements dynamically
+  document.addEventListener("DOMContentLoaded", function () {
+    const thumbsContainer = document.querySelector('.thumb-list-inner');
+    if (!thumbsContainer) return;
+
+    // Function to attach click listeners to all .thumb elements
+    function attachThumbListeners() {
+      thumbsContainer.querySelectorAll(".thumb").forEach(function (thumb) {
+        thumb.addEventListener("click", function () {
+          let variantImageId = this.getAttribute("data-variantimageid");
+
+          // Remove is-selected from all swatches and uncheck all radios
+          document.querySelectorAll('.product-variants .variant-color-swatch').forEach(function (swatch) {
+            swatch.classList.remove('is-selected');
+            const radio = swatch.querySelector("input[type='radio']");
+            if (radio) radio.checked = false;
+          });
+
+          // Find the swatch with matching data-variant-image and add is-selected
+          document.querySelectorAll('.product-variants .variant-color-swatch').forEach(function (swatch) {
+            if (swatch.getAttribute('data-variant-image') === variantImageId) {
+              swatch.classList.add('is-selected');
+              const radio = swatch.querySelector("input[type='radio']");
+              if (radio) radio.checked = true;
+            }
+          });
+
+
+
+
+        });
+      });
+    }
+
+
+    // Initial attachment
+    attachThumbListeners();
+
+    // Observe DOM changes in .thumb-list-inner
+    const observer = new MutationObserver(function (mutationsList) {
+      for (const mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          attachThumbListeners();
+        }
+      }
+    });
+
+    observer.observe(thumbsContainer, { childList: true, subtree: true });
+  });
+</script>

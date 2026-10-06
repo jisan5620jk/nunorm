@@ -1,0 +1,127 @@
+<div class="product-features">
+  {% if product.metafields.custom.product_ingredients != blank %}
+    <div class="feature-group">
+      <h3>What Set's Us Apart:</h3>
+      {{ product.metafields.custom.product_ingredients | metafield_tag }}
+      {% comment %}
+        {% if product.metafields.custom.product_extended_ingredients != blank %}
+          <a
+            href="#"
+            class="see-toggle"
+            role="button"
+            style="color: #213346;font-size: 13px;"
+            aria-expanded="false"
+            aria-controls="more-1"
+            data-more="Ingredients"
+            data-less="View Less"
+          >
+            All Ingredients
+          </a>
+
+          <div
+            id="more-1"
+            class="see-content"
+            hidden
+          >
+            {{ product.metafields.custom.product_extended_ingredients | metafield_tag }}
+          </div>
+        {% endif %}
+      {% endcomment %}
+    </div>
+  {% endif %}
+  {% if product.metafields.custom.product_badges != blank %}
+    <div class="feature-group">
+      <h3>Recommended For</h3>
+
+      {% assign badges = product.metafields.custom.product_badges.value %}
+      {% if badges != blank %}
+        <div class="product-badges-row">
+          {% for badge in badges %}
+            {% assign alt_txt = badge.alt | default: 'Product badge ' | append: forloop.index %}
+            <div class="badge-item">
+              {{ badge | image_url: width: 400 | image_tag: alt: alt_txt, loading: 'lazy' }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener('click', function (e) {
+    const t = e.target.closest('.see-toggle');
+    if (!t) return;
+    e.preventDefault();
+
+    const id = t.getAttribute('aria-controls');
+    const box = document.getElementById(id);
+    if (!box) return;
+
+    const isHidden = box.hasAttribute('hidden');
+    if (isHidden) {
+      box.removeAttribute('hidden');
+      t.setAttribute('aria-expanded', 'true');
+      t.textContent = t.dataset.less || 'See less';
+    } else {
+      box.setAttribute('hidden', '');
+      t.setAttribute('aria-expanded', 'false');
+      t.textContent = t.dataset.more || 'See more';
+    }
+  });
+</script>
+
+<style>
+  .product-features {
+    margin-top: 0;
+    border-bottom: 2px solid #213346;
+  }
+
+  .product-features h3 {
+    font-size: 18px !important;
+    font-family: 'Montserrat';
+    color: #213346;
+    display: block;
+    padding: 30px 0 10px;
+    border-top: 2px solid #213346;
+    font-family: Point Panther;
+  }
+
+  .product-features ul {
+    list-style: disc;
+    margin-left: 0;
+    padding: 0 15px 0;
+  }
+
+  .product-features li {
+    Margin-bottom: 4px;
+  }
+  .product-badges-row {
+    display: flex;
+    justify-content: space-between;
+    /* equal spacing */
+    align-items: center;
+    gap: 4px;
+    flex-wrap: nowrap;
+    /* keep in one row */
+    margin-bottom: 18px;
+  }
+
+  .product-badges-row .badge-item {
+    flex: 1;
+    /* all take equal width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 120px;
+  }
+
+  .product-badges-row img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .see-content p {
+    font-size: 13px;
+  }
+</style>

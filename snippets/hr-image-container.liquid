@@ -1,0 +1,64 @@
+{% if section.settings.image != blank %}
+  {% liquid
+    if section.settings.image.alt == blank
+      assign alt = section.settings.title
+    else
+      assign alt = section.settings.image.alt
+    endif
+  %}
+{% endif %}
+<div class="HR_Image-container">
+  {%- case section.settings.media_selector -%}
+    {%- when 'image' -%}
+      {% if request.page_type == 'index' %}
+        {% if section.settings.hero_image != blank %}
+          <img
+            sizes="100vw"
+            class="HR_Image"
+            height="{{ section.settings.hero_image.height }}"
+            width="{{ section.settings.hero_image.width }}"
+            loading="eager"
+            src=" {{ section.settings.hero_image | image_url: width: 1000 }}"
+            srcset="{{ section.settings.hero_image |  image_url:  width:  1000 }} 1000w,  {{  section.settings.hero_image | image_url: width: 1500 }} 1500w, {{ section.settings.hero_image |  image_url: width: 2000 }} 2000w"
+            alt="{{ alt }}"
+          >
+        {% elsif section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: preload: true, alt: alt, class: 'HR_Image' }}
+        {% endif %}
+      {% else %}
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: preload: true, alt: alt, class: 'HR_Image' }}
+        {% endif %}
+      {% endif %}
+    {%- when 'video' -%}
+      {%- if section.index == 1 -%}
+        {{
+          section.settings.video
+          | video_tag:
+            class: 'hero__video',
+            controls: false,
+            loop: true,
+            preload: 'auto',
+            muted: true,
+            autoplay: true,
+            playsinline: true,
+            width: '100%',
+            image_size: '1100x'
+        }}
+      {%- else -%}
+        {{
+          section.settings.video
+          | video_tag:
+            class: 'hero__video',
+            controls: false,
+            loop: true,
+            preload: 'metadata',
+            muted: true,
+            autoplay: false,
+            playsinline: true,
+            width: '100%',
+            image_size: '1100x'
+        }}
+      {%- endif -%}
+  {%- endcase -%}
+</div>

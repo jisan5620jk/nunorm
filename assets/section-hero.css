@@ -1,0 +1,228 @@
+/* Acronym-shorttext guide: Hero: HR */
+
+.HR_Container {
+  background-color: var(--section-background-color);
+  width: 100%;
+  position: relative;
+  @media (min-width: 767px) {
+    display: flex;
+  }
+}
+
+.HR_Desktop-wrapper {
+  display: none;
+  @media (min-width: 767px) {
+    display: flex;
+  }
+}
+
+.HR_Mobile-wrapper {
+  display: block;
+  @media (min-width: 767px) {
+    display: none;
+  }
+}
+
+.HR_Text-container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: var(--spacing-md) calc(var(--spacing-sm) - 1vw) var(--spacing-lg)
+    calc(var(--spacing-sm) - 1vw);
+  @media (min-width: 767px) {
+    max-width: 55%;
+    padding: calc(var(--spacing-md) - 1vw) calc(var(--spacing-sm) - 1vw)
+      var(--spacing-md) 7rem;
+  }
+}
+
+.HR_Title {
+  color: var(--section-hero-heroText-color);
+  font-size: calc(var(--hero-size-1) - 1vw);
+  line-height: 1.2;
+  text-align: var(--text-alignment);
+  max-width: 300px;
+  margin: 0 auto 3.33vw auto;
+  @media (min-width: 422px) {
+    font-size: calc(var(--hero-size-1) - 2.5vw);
+  }
+  @media (min-width: 470px) {
+    font-size: calc(var(--hero-size-1) - 3vw);
+  }
+  @media (min-width: 520px) {
+    font-size: calc(var(--hero-size-1) - 2vw);
+  }
+  @media (min-width: 767px) {
+    font-size: var(--hero-size-2);
+    line-height: 1;
+    margin: 0;
+    max-width: 100%;
+  }
+  @media (min-width: 1000px) {
+    font-size: var(--hero-size-3);
+  }
+}
+
+.HR_Subtitile-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 0 var(--spacing-sm) 0;
+  @media (min-width: 767px) {
+    flex-direction: row;
+    margin: 0 0 1rem 0;
+  }
+}
+
+.HR_Subtitle {
+  /* font-size: calc(var(--subtitle-size-1) - 1.5vw); */
+  font-size: 1.5rem;
+  margin: 0 0 4vw 0;
+  text-align: var(--text-alignment);
+  color: var(--section-hero-subtitle-color);
+  line-height: var(--line-height);
+  @media (min-width: 767px) {
+    font-size: var(--subtitle-size-2);
+    margin: 0 0 1rem 0;
+  }
+
+  @media (min-width: 1600px) {
+    /* font-size: var(--subtitle-size-2); */
+  }
+}
+
+@media (max-width: 767px) {
+  .HR_Subtitle {
+    font-style: italic;
+  }
+}
+
+.HR_Subtitle-image {
+  aspect-ratio: 187/67;
+  height: auto;
+  object-fit: contain;
+  width: 21.4vw;
+  @media (min-width: 767px) {
+    bottom: 5px;
+    position: relative;
+    width: 7.3vw;
+  }
+}
+
+.HR_Button {
+  background-color: var(--section-hero-button-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  color: var(--section-hero-button-text-color);
+  display: block;
+  font-size: var(--button-font-size-1);
+  font-weight: var(--button-font-weight);
+  margin: 0 auto;
+  max-width: var(--button-max-width);
+  padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: fit-content;
+  @media (min-width: 767px) {
+    font-size: var(--button-font-size-2);
+    padding: 1vw 3.8vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .HR_Button {
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.HR_Image-container {
+  aspect-ratio: 1/1;
+  display: flex;
+  width: 100%;
+  @media (min-width: 767px) {
+    aspect-ratio: 155/111;
+    width: 45%;
+  }
+}
+
+@media (max-width: 767px) {
+  .HR_Image-container {
+    aspect-ratio: unset;
+  }
+}
+
+.HR_Image {
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  width: 100%;
+}
+
+@media (min-width: 767px) {
+  .HR_Image {
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .HR_Image {
+    aspect-ratio: unset;
+  }
+}
+
+.HR_Image_badge {
+  width: 105px;
+  height: auto;
+}
+
+@media (max-width: 1380px) {
+  .HR_Image_badge {
+    width: 110px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .HR_Image_badge {
+    width: 78px;
+  }
+}
+
+@media (max-width: 767px) {
+  .HR_Image_badge {
+    width: 57px;
+  }
+}
+
+.HR_badges_wrapper {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+@media (max-width: 750px) {
+  .HR_badges_wrapper {
+   display: none;
+  }
+}
+
+.hero__video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.hero__badgelist {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
+  @media (min-width: 750px) {
+    display: none;
+}

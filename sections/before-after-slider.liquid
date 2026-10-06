@@ -1,0 +1,185 @@
+{% stylesheet %}
+
+.before-after-slider {
+    padding: 80px 0px;
+}
+
+  
+.before-after-slider .headline {
+  margin-bottom: 10px;
+  color: #213346;
+
+}
+
+  .text-wrap.center {
+    max-width: 70%;
+    margin: 0px auto;
+}
+
+.before-after-slider .subtext {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  font-size: 16px;
+  color: #333;
+}
+
+.before-after-carousel {
+  max-width: 100vw;
+  margin: 0 auto;
+}
+
+.before-after-carousel .slick-slide {
+  padding: 0 10px;
+  width: 40vw !important;
+}
+
+.before-after-carousel .carousel-box {
+  background-color: #f9c07a;
+  border-radius: 16px;
+  padding: 40px 20px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #742f21;
+  margin: 0px 4px;
+  aspect-ratio: 5 / 3;
+}
+
+  .slick-list{
+    margin: 0px 0px !important;
+  }
+
+  section#shopify-section-template--24561958256914__before_after_slider_AU3cb3 i {
+    color: #953f2f;
+}
+
+  .before-after-carousel .slick-dots {
+  display: flex !important;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 0;
+  list-style: none;
+}
+
+.before-after-carousel .slick-dots li {
+  margin: 0 3px;
+  width: 10px;
+  height: 4px;
+  background-color: #882c29;
+  opacity: 0.5;
+  border-radius: 1px;
+  transition: opacity 0.3s ease;
+}
+
+.before-after-carousel .slick-dots li.slick-active {
+  opacity: 1;
+}
+
+.before-after-carousel .slick-dots button {
+  display: none;
+}
+
+  @media (max-width: 768px){
+    .before-after-carousel .slick-slide {
+  padding: 0 10px;
+  width: 70vw !important;
+}
+
+    .before-after-slider {
+    padding: 60px 0px 40px 0px;
+}
+  }
+
+{% endstylesheet %}
+<div class="layout">
+
+<div class="text-wrap center">
+  <h3 class="headline">{{ section.settings.headline }}</h3>
+  <p class="subtext">{{ section.settings.subtext }}</p>
+</div>
+
+  <div class="before-after-carousel">
+    {% for block in section.blocks %}
+      <div class="carousel-box">
+        {{ block.settings.content }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% javascript %}
+$(document).ready(function(){
+  $('.before-after-carousel').slick({
+    slidesToShow: 3,
+    variableWidth: true,
+    centerMode: true,
+    slidesToScroll: 1,
+    dots: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Before and After Slider",
+  "tag": "section",
+  "class": "before-after-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "FRUSTRATED WITH MAKEUP THAT DOESN’T WORK FOR YOU?"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "when using most makeup, men report a noticeable shade difference and heavy feeling on their skin. ours is different—designed for men’s skin with a lightweight, buildable finish that lets you control your coverage from subtle to defined."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Slide Content",
+          "default": "Before & After Carousel"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before and After Slider",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

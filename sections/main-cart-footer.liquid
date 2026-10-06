@@ -1,0 +1,235 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width{% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
+  <div>
+     <!-- sample product code start-->
+        {% assign sample-variant =settings.sample-product.variants.first.id  %}        
+
+        <div id="custom-sample-product-cart" data-id="{{ sample-variant }}" data-title="{{ settings.sample-product.title }}"></div>
+      <!-- sample product code end -->
+    
+    <div class="cart__footer">
+      {%- if settings.show_cart_note -%}
+        <cart-note class="cart__note field">
+          <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+          <textarea
+            class="text-area field__input"
+            name="note"
+            form="cart"
+            id="Cart-note"
+            placeholder="{{ 'sections.cart.note' | t }}"
+          >{{ cart.note }}</textarea>
+        </cart-note>
+      {%- endif -%}
+
+      <div class="cart__blocks">
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'subtotal' -%}
+            <div class="dk-tipping-static"></div> 
+              <div class="js-contents" {{ block.shopify_attributes }}>
+                <div class="totals">
+                  <h2 class="totals__subtotal">{{ 'sections.cart.subtotal' | t }}</h2>
+                  <p class="totals__subtotal-value">{{ cart.total_price | money_with_currency }}</p>
+                </div>
+
+                <div>
+                  {%- if cart.cart_level_discount_applications.size > 0 -%}
+                    <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                      {%- for discount in cart.cart_level_discount_applications -%}
+                        <li class="discounts__discount discounts__discount--position">
+                          {%- render 'icon-discount' -%}
+                          {{ discount.title }}
+                          (-{{ discount.total_allocated_amount | money }})
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+
+                <small class="tax-note caption-large rte">
+                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- elsif cart.taxes_included -%}
+                    {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                  {%- elsif shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                  {%- else -%}
+                    {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                  {%- endif -%}
+                </small>
+              </div>
+            {%- else -%}
+              <div class="cart__ctas" {{ block.shopify_attributes }}>
+                <noscript>
+                  <button type="submit" class="cart__update-button button button--secondary" form="cart">
+                    {{ 'sections.cart.update' | t }}
+                  </button>
+                </noscript>
+
+                <button
+                  type="submit"
+                  id="checkout"
+                  class="cart__checkout-button button"
+                  name="checkout"
+                  onClick="cartsampleFunction()"
+                  {% if cart == empty %}
+                    disabled
+                  {% endif %}
+                  form="cart"
+                >
+                  {{ 'sections.cart.checkout' | t }}
+                </button>
+              </div>
+
+              {%- if additional_checkout_buttons -%}
+                <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                  {{ content_for_additional_checkout_buttons }}
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {% endfor %}
+
+        <div id="cart-errors"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+ $("#main-cart-items .cart-item .cart-item__name").each(function() { 
+   var product_name = $(this).text();
+    var sample_name = $("#custom-sample-product").attr("data-title")
+      if(product_name == sample_name)
+      {
+        var remove_id = $(this).attr("data-id");
+        $(remove_id).click();
+      } 
+       
+      });
+});
+</script>    
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function isIE() {
+      const ua = window.navigator.userAgent;
+      const msie = ua.indexOf('MSIE ');
+      const trident = ua.indexOf('Trident/');
+
+      return msie > 0 || trident > 0;
+    }
+
+    if (!isIE()) return;
+    const cartSubmitInput = document.createElement('input');
+    cartSubmitInput.setAttribute('name', 'checkout');
+    cartSubmitInput.setAttribute('type', 'hidden');
+    document.querySelector('#cart').appendChild(cartSubmitInput);
+    document.querySelector('#checkout').addEventListener('click', function (event) {
+      document.querySelector('#cart').submit();
+    });
+  });
+
+  function cartsampleFunction(){
+   
+    var validation = false;
+    var variant_id = null;
+    var variant_name = null;
+    $("#main-cart-items .cart-item .cart-item__name").each(function() {
+      var product_name = $(this).text();
+      var variant_position = $(this).attr("variant-id");
+      variant_name = $(variant_position).attr("data-value");
+      
+      if(product_name == "Shine Eraser")
+      {
+         validation = true;
+      }
+      else
+      {
+         if(product_name == "Tinted Hydrator")
+         {
+           if((variant_name =="Ivory") || (variant_name =="Marble") || (variant_name =="Sandstone") || (variant_name =="Topaz") )
+           {
+            variant_id ="47745503985938"; 
+           }
+           if((variant_name =="Sienna") || (variant_name =="Copper") || (variant_name =="Terracotta") || (variant_name =="Sepia") )
+           {
+            variant_id ="47745528594706"; 
+           }
+          if(variant_name =="Umber" || variant_name =="Onyx" )
+           {
+            variant_id ="47745532592402"; 
+           }
+          
+         }
+         if(product_name == "Quick Cover")
+         {
+          
+           if((variant_name =="Stone") || (variant_name =="Oak") || (variant_name =="Sand") || (variant_name =="Dune") || (variant_name =="Pine"))
+           {
+            variant_id ="47745503985938"; 
+           }
+           if((variant_name == "Honey") || (variant_name =="Pecan") || (variant_name =="Mocha") || (variant_name =="Bronze") || (variant_name =="Teak"))
+           {
+           variant_id ="47745528594706"; 
+           }
+           if((variant_name =="Hickory") || (variant_name =="Chestnut") || (variant_name =="Cherrywood") || (variant_name =="Walnut") || (variant_name =="Mahogany") || (variant_name =="Espresso"))
+           {   
+           variant_id ="47745532592402"; 
+           }
+         }
+        if((product_name == "Brow Rescue") || (product_name == "The Okuni Brush")  )
+         {
+           variant_id ="47745503985938"; 
+         }
+       
+      }
+     
+      });
+    
+    if(validation == false)
+    {
+     
+        var q = 1;
+        var ajax = {
+            type: "POST",
+            url: "/cart/add.js",
+            data: "quantity=" + q + "&id=" + variant_id,
+            dataType: "json",
+            success: function (n) {
+             
+            },
+            error: function (n, c) {
+               console.log('fail');
+            }
+         };
+        jQuery.ajax(ajax)
+    }
+   }  
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart-footer.name",
+  "class": "cart__footer-wrapper",
+  "blocks": [
+    {
+      "type": "subtotal",
+      "name": "t:sections.main-cart-footer.blocks.subtotal.name",
+      "limit": 1
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.main-cart-footer.blocks.buttons.name",
+      "limit": 1
+    },
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+
+
+.Avada-Subscription__Radio-Item {    
+    background: transparent !important;    
+}
+.Avada-Subscription__Radio-Label {
+    font-weight: 600;
+}
+.Avada-Subscription__Price.-option {
+    font-weight: 500;
+}
+
+
+.product-main-new__details.pdp-top .price-wrap p.price {
+    font-size: 22px !important;
+}
+
+@media (max-width: 400px) {
+    .custom-review .stars span {
+        font-size: 18px !important;
+    }
+    .jdgm-star.jdgm--on:before {        
+        font-size: 18px;
+    }
+    .custom-review .review-count {
+        font-size: 20px !important;        
+    }
+}

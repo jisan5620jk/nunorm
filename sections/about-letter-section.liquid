@@ -1,0 +1,66 @@
+<section class="about_letter_section layout">
+  
+    {% if section.settings.img != blank %}
+    <img class="logo_leeter" src="{{ section.settings.img | img_url:'master' }}" alt="{{ section.settings.img.alt }}">
+    {% endif %}
+
+{% if section.settings.title != blank %}
+<h3>{{ section.settings.title }}</h3>
+{% endif %}
+
+    {% if section.settings.sub_title != blank %}
+    <div class="sub_title_inner">{{ section.settings.sub_title }}</div>
+    {% endif %} 
+
+{% if section.settings.img1 != blank %}
+<img class="sign_letter" src="{{ section.settings.img1 | img_url:'master' }}" alt="{{ section.settings.img1.alt }}">
+{% endif %}
+
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "About Letter Section",
+    "class": "about_letter_section_main",
+    "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+
+        {
+          "type": "richtext",
+          "id": "sub_title",
+          "label": "Description"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "img1",
+          "label": "Image"
+        }
+
+    ],
+    "presets": [
+      {
+        "name": "About Letter Section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

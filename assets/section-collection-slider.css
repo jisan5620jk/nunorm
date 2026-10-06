@@ -1,0 +1,57 @@
+/* Acronym-shorttext guide: Collection-slider: cs */
+
+
+.CS_Header {
+  font-family: 'Point Panther';
+  font-style: var(--font-heading-style);
+  font-weight: 500;
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  color: rgb(var(--color-foreground));
+  line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
+  word-break: break-word;
+  text-align: center;
+  font-style: normal;
+  font-size: calc(var(--font-heading-scale) * 3rem);
+  @media(min-width: 767px) {
+    color: #48646e;
+    font-size: 36px;
+    margin: 0 auto 10px;
+  }
+  span { /* Necessary tag styling because of CMS */
+    color: #C07147;
+  }
+}
+
+.CS_card-header {
+  font-family: Point Panther;
+  font-style: normal;
+  color: #213346;
+  font-size: 5vw;
+  margin: 1.33em 0 0 0; /* remove default margin */
+  font-weight: 500;
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  word-break: break-word;
+  @media (min-width: 767px) {
+    font-size: 26px;
+    margin: 0;
+  }
+}
+
+.carousel-home-resources .jdgm-preview-badge .jdgm-star.jdgm-star {
+  color: #515050;
+}
+
+.carousel-home-resources .jdgm-prev-badge {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin: 10px 0 0 0;
+  gap: 10px;
+}
+
+.carousel-home-resources .jdgm-prev-badge__text {
+  font-size: 13px;
+  color: #515050;
+  line-height: 23px;
+  margin: 0 0 0 0;
+  font-weight: 100;
+}

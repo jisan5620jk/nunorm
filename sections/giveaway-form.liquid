@@ -1,0 +1,73 @@
+<style>
+      .giveaway-form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 10px;
+      }
+
+
+    .giveaway-form-wrapper {
+        background: #fff4e4;
+    }
+    .giveaway-form-wrapper input.needsclick::placeholder{
+      font-size: 16px !important;
+        color: #827F77 !important;
+        font-weight: 500 !important;
+    }
+    .giveaway-form-wrapper input.needsclick    {
+        font-size: 16px !important;
+        color: #827F77 !important;
+        font-weight: 500 !important;
+        border-radius: 4px !important;
+        border: 1px solid #827F7780 !important;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+   .giveaway-form-wrapper button.needsclick {
+      background: #953F2F !important;
+      border-radius: 10px !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      width: fit-content !important;
+      margin: auto !important;
+      padding: 10px 30px !important;
+      height: 30px !important;
+      line-height: 30px !important;
+  }
+  @media (max-width: 768px){
+    .giveaway-form-container{
+      padding-bottom: 0;
+
+    }
+    .giveaway-form-wrapper button.needsclick {
+      width: 100% !important;
+
+    }
+
+  }
+</style>
+
+<div class="giveaway-form-wrapper">
+  <div class="giveaway-form-container">
+    {{ section.settings.form }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Giveaway Form",
+  "settings": [
+    {
+      "type": "html",
+      "id": "form",
+      "label": "Form Html"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Giveaway Form"
+    }
+  ]
+}
+{% endschema %}

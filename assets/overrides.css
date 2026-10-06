@@ -1,0 +1,18 @@
+/* Quick patch to force theme-setting colors for buttons */
+.btn-primary{
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+}
+.btn-primary:hover{
+  background-color: var(--btn-primary-bg-hover) !important;
+  color: var(--btn-primary-text-hover) !important;
+}
+
+.btn-secondary{
+  background-color: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-text) !important;
+}
+.btn-secondary:hover{
+  background-color: var(--btn-secondary-bg-hover) !important;
+  color: var(--btn-primary-text-hover) !important;
+}

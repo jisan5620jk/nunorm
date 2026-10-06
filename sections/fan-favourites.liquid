@@ -1,0 +1,111 @@
+<style>
+    .fan-favourites {
+        padding: 70px 30px;
+        background: #fff6ea;
+    }
+  .fan-favourites-container{
+      max-width: 1020px;
+      margin: auto;
+  }
+  .fan-favourites__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+  }
+  .fan-favourites__title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #213346;
+    margin: 0 0 30px;
+  }
+
+  /* Span inside the title (Italic emphasis) */
+  .fan-favourites__title em {
+    font-style: italic;
+    color: #7a1c20;
+  }
+  @media(max-width: 768px){
+    .fan-favourites__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .fan-favourites {
+        padding: 40px 30px;
+    }
+    .fan-favourites__title {
+        font-size: 28px;
+        margin: 0 0 20px;
+    }
+  }
+  @media(max-width: 575px){
+    .fan-favourites__grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .fan-favourites__title {
+        font-size: 24px;
+    }
+  }
+</style>
+
+<section class="fan-favourites">
+  <div class="fan-favourites-container">
+    <h2 class="fan-favourites__title">{{ section.settings.heading }}</h2>
+
+    <div class="fan-favourites__grid">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Fan Favourites",
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop Fan Favorites While You Wait"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "default": "btn-primary",
+      "options": [
+        { "value": "btn-primary", "label": "Primary Button" },
+        { "value": "btn-secondary", "label": "Secondary Button" },
+        { "value": "btn-tertiary", "label": "Tertiary Button" },
+        { "value": "btn-fourth", "label": "Fourth Button" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fan Favourites",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

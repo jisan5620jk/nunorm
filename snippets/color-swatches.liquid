@@ -1,0 +1,83 @@
+{%- unless product.has_only_default_variant -%}
+  {%- for option in product.options_with_values -%}
+    <fieldset
+      id="ProductSelect-option-{{ forloop.index0 }}"
+      class="core-collection-variant"
+      name="{{ option.name | handleize }}"
+    >
+      <legend class="form__label">
+        Shade-<span data-component-color-swatch-legend data-index="{{ count }}" class="top-variant-mob-title-{{ count }}"> {{ product.selected_or_first_available_variant.options }}</span>
+      </legend>
+      {%- for value in option.values -%}
+        {%- liquid
+          assign product_available = true
+          if product.options.size == 1
+            assign product_available = product.variants[forloop.index0].available
+          endif
+
+          for variant in product.variants
+            if variant.title contains value
+              assign img = variant.image.id
+              assign color = variant.metafields.custom.color.value
+              assign variant-id = variant.id
+              assign variant_title = variant.metafields.custom.variant_title.value
+            endif
+          endfor
+
+          assign color_swatch_image = value | prepend: 'Shade-' | append: '.png' | file_img_url
+
+          assign option_selected_variant = product.variants | where:'title', value | first
+          if option_selected_variant.metafields.custom.swatch_image.value != blank
+            assign product_image_url  = option_selected_variant.metafields.custom.swatch_image.value | image_url: width: 800
+          else 
+            assign product_image_url  = option_selected_variant.image | image_url: width: 800
+          endif
+        %}
+
+        <div
+          class="variant-input"
+          data-index="option{{ option_index }}"
+          data-value="{{ value | escape }}"
+        >
+          <input
+            type="radio"
+            {% if form_id %}
+              form="{{ form_id }}"
+            {% endif %}
+            id="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+            data-id="{{ variant-id }}"
+            d-title="{{ variant_title }}"
+            d-matatitle="{{ product.selected_or_first_available_variant.title }} "
+            d-price="{{ product.price |money }}"
+            media-data="{{ img }}"
+            media-img="{{ product_image_url }}"
+            value="{{ value | escape }}"
+            data-index="option{{ option_index }}"
+            name="{{ option.name }}"
+            class="{% unless product_available %} disabled{% endunless %} {% if option.selected_value == value %}active{% endif %} visible_item"
+            {% if option.selected_value == value %}
+              checked="checked"
+            {% endif %}
+          >
+          <label    
+            data-component-color-swatch
+            class="custom-redio-mob-color-{{ count }}-{{ forloop.index }} custom-redio-color1 {% if forloop.index == 1 %}active{% endif %}"
+            data-id="{{ variant-id }}"
+            data-index="{{ count }}"
+            data-price="{{ option_selected_variant.price |money }}"
+            data-legend="{{ value }}"
+            data-variant-image="{{ product_image_url }}"
+            d-price="{{ product.price |money }}"
+            for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+            style="background: {% if color_swatch_image != blank %} url('{{color_swatch_image}}') {% else %} {{ color }} {% endif %}"
+            {% unless product_available %}
+              class="disabled"
+            {% endunless %}
+          >
+            {{ value }}
+          </label>
+        </div>
+      {%- endfor -%}
+    </fieldset>
+  {%- endfor -%}
+{%- endunless -%}

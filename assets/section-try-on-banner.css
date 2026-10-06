@@ -1,0 +1,38 @@
+/* Acronym-shorttext guide: Try On Banner: TOB */
+
+.TOB_Header {
+    margin: 0 auto 0 auto;
+    letter-spacing: 1px !important;
+    max-width: 230px;
+    line-height: 1;
+    color: #fbeeda;
+    font-style: var(--font-heading-style);
+    font-family: 'Point Panther';
+    font-weight: 500;
+    word-break: break-word;
+    font-size: 6.4vw;
+    max-width: 61.33vw;
+    font-style: italic;
+    display: inline;
+    @media(min-width: 770px) {
+        font-size: 4.8vw;
+        letter-spacing: -1px;
+        margin-bottom: 3rem;
+    }
+}
+
+.new-line:before {
+    content: "";
+    display: block;
+  }
+
+.TOB_logo-image {
+    width: 30.4vw;
+    margin-bottom: -2.9vw;
+    margin-left: -1.9vw;
+    @media(min-width: 770px) {
+        width: 22vw;
+        margin-bottom: -2vw;
+        margin-left: -2vw;
+    }
+}

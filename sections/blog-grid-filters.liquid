@@ -1,0 +1,586 @@
+<style>
+  #section-{{ section.id }} {
+    position: relative;
+    padding: 80px 0 80px;
+    background: linear-gradient(90deg, #F7D3A1 0%, #FBEEDA 100%);
+    z-index: 1;
+  }
+  #section-{{ section.id }} .blog-inner {
+    max-width: 1360px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+
+  #section-{{ section.id }} .blog-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  #section-{{ section.id }} .blog-filter-btn {
+    padding: 13.5px 24px;
+    border-radius: 10px;
+    border: none;
+    color: #FBEEDA;
+    background: #7A1C20;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 1.44px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #section-{{ section.id }} .blog-filter-btn.is-active {
+    background-color: #341c11;
+  }
+
+  #section-{{ section.id }} .blog-filter-btn:focus-visible {
+    outline: 2px solid #341c11;
+    outline-offset: 2px;
+  }
+
+  #section-{{ section.id }} .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 48px;
+  }
+
+  #section-{{ section.id }} .blog-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #section-{{ section.id }} .blog-card-image {
+    width: 100%;
+    padding: 6px;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+  }
+
+  #section-{{ section.id }} .blog-card-image a,
+  #section-{{ section.id }} .blog-card-image img {
+    display: block;
+    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+  }
+
+  #section-{{ section.id }} .blog-card-image img {
+    object-fit: cover;
+  }
+
+  #section-{{ section.id }} .blog-card-body {
+    padding: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  #section-{{ section.id }} .blog-card-title {
+    margin: 0 0 10px 0;
+    color: #213345;
+    font-family: Montserrat;
+    font-weight: 900;
+    font-style: Italic;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+
+  #section-{{ section.id }} .blog-card-meta {
+    font-size: 11px;
+    color: #876451;
+    margin-bottom: 12px;
+  }
+
+  #section-{{ section.id }} .blog-card-readmore {
+    margin-top: auto;
+    color: #7A1C20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 25.2px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  #section-{{ section.id }} .blog-card-readmore svg {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+  }
+
+  #section-{{ section.id }} .blog-card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #section-{{ section.id }} .blog-card-link:hover .blog-card-title {
+    color: #a53a2f;
+  }
+
+  #section-{{ section.id }} .blog-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 42px;
+    margin-bottom: 28px;
+  }
+
+  #section-{{ section.id }} .blog-page-dot {
+    font-family: Montserrat;
+    width: 87.59px;
+    font-weight: 400;
+    padding: 17px;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    background: transparent;
+    color: #000000;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    border-bottom: 1px solid #CDCCCC;
+  }
+
+  #section-{{ section.id }} .blog-page-dot.is-active {
+    border-bottom: 3px solid #000000;
+  }
+
+  #section-{{ section.id }} .blog-view-more-wrap {
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  #section-{{ section.id }} .blog-view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18.8px 32px;
+    max-width: 230px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #933F2C;
+    color: #FBEEDA;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #section-{{ section.id }} .blog-view-more-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  #section-{{ section.id }} .blog-view-more-btn:focus-visible {
+    outline: 2px solid #341c11;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 960px) {
+    #section-{{ section.id }} {
+      padding-top: 56px;
+      padding-bottom: 72px;
+    }
+
+    #section-{{ section.id }} .blog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    #section-{{ section.id }} .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 575px) {
+    #section-{{ section.id }} .blog-card-title {
+      font-size: 16px;
+      line-height: 26px;
+    }
+  }
+
+  @media (max-width: 399px) {
+    #section-{{ section.id }} .blog-card-title {
+      font-size: 16px;
+      line-height: 26px;
+    }
+    #section-{{ section.id }} .blog-filter-row {
+      flex-direction: column;
+      {% comment %} align-items: center;
+      justify-content: center; {% endcomment %}
+    }
+    #section-{{ section.id }} .blog-filter-row * {
+      {% comment %} width: fit-content; {% endcomment %}
+    }
+  }
+</style>
+
+<section id="section-{{ section.id }}" class="blog-grid-filters-section">
+  <div class="blog-inner">
+    {% assign blog = blogs[section.settings.blog_handle] %}
+
+    {% if blog != blank %}
+      <div class="blog-filter-row" data-blog-filters>
+        <button
+          type="button"
+          class="blog-filter-btn is-active"
+          data-sort="all"
+        >
+          {{ section.settings.label_all | default: 'All Articles' }}
+        </button>
+        <button
+          type="button"
+          class="blog-filter-btn"
+          data-sort="most_read"
+        >
+          {{ section.settings.label_most_read | default: 'Most Read' }}
+        </button>
+        <button
+          type="button"
+          class="blog-filter-btn"
+          data-sort="newest"
+        >
+          {{ section.settings.label_newest | default: 'Newest to Oldest' }}
+        </button>
+        <button
+          type="button"
+          class="blog-filter-btn"
+          data-sort="oldest"
+        >
+          {{ section.settings.label_oldest | default: 'Oldest to Newest' }}
+        </button>
+      </div>
+
+      <div class="blog-grid" data-article-grid>
+        {% assign limit_articles = section.settings.article_limit | default: 12 %}
+        {% for article in blog.articles limit: limit_articles %}
+          {% assign views = 0 %}
+          {% if section.settings.views_namespace != blank and section.settings.views_key != blank %}
+            {% assign views_meta = article.metafields[section.settings.views_namespace][section.settings.views_key] %}
+            {% if views_meta %}
+              {% assign views = views_meta | plus: 0 %}
+            {% endif %}
+          {% endif %}
+
+          <article
+            class="blog-card"
+            data-article-card
+            data-date="{{ article.published_at | date: '%s' }}"
+            data-views="{{ views }}"
+          >
+            <div class="blog-card-image">
+              <a href="{{ article.url }}" class="blog-card-link">
+                {% if article.image %}
+                  {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: article.title }}
+                {% else %}
+                  <div style="padding-top:70%; background:#d4c2ae;"></div>
+                {% endif %}
+              </a>
+            </div>
+            <div class="blog-card-body">
+              <a href="{{ article.url }}" class="blog-card-link">
+                <h3 class="blog-card-title">
+                  {{ article.title | upcase }}
+                </h3>
+              </a>
+              <a href="{{ article.url }}" class="blog-card-readmore">
+                <span>{{ section.settings.label_read_more | default: 'Read more' }}</span>
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0649 0.000367758C12.2637 0.000491512 12.4543 0.0794995 12.5948 0.220037C12.7353 0.360575 12.8143 0.55115 12.8145 0.749901L12.8145 9.23518C12.818 9.33584 12.8013 9.43618 12.7652 9.53022C12.7291 9.62426 12.6745 9.71007 12.6045 9.78253C12.5346 9.855 12.4508 9.91263 12.358 9.95199C12.2653 9.99135 12.1656 10.0116 12.0649 10.0116C11.9642 10.0116 11.8645 9.99135 11.7718 9.95199C11.6791 9.91263 11.5953 9.855 11.5253 9.78253C11.4554 9.71007 11.4007 9.62426 11.3647 9.53022C11.3286 9.43618 11.3118 9.33584 11.3154 9.23518L11.3154 2.56009L1.28155 12.5939C1.1409 12.7346 0.950133 12.8136 0.751221 12.8136C0.552309 12.8136 0.361543 12.7346 0.220891 12.5939C0.0802392 12.4533 0.00122164 12.2625 0.0012213 12.0636C0.00122097 11.8647 0.0802396 11.6739 0.220891 11.5333L10.2547 1.49943L3.57965 1.49943C3.47899 1.50299 3.37865 1.48623 3.28461 1.45016C3.19057 1.41409 3.10476 1.35946 3.0323 1.2895C2.95983 1.21955 2.9022 1.13572 2.86284 1.04301C2.82348 0.950306 2.80319 0.850619 2.80319 0.7499C2.80319 0.649182 2.82348 0.549495 2.86284 0.456787C2.9022 0.364079 2.95983 0.280249 3.0323 0.210298C3.10476 0.140347 3.19057 0.085707 3.28461 0.0496392C3.37865 0.0135714 3.47899 -0.00318543 3.57965 0.000367516L12.0649 0.000367758Z" fill="#7A1C20"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="blog-pagination" data-blog-pagination></div>
+
+      {% if section.settings.enable_view_more %}
+        <div class="blog-view-more-wrap">
+          <button type="button" class="blog-view-more-btn" data-blog-view-more>
+            {{ section.settings.label_view_more | default: 'View more' }}
+          </button>
+        </div>
+      {% endif %}
+    {% else %}
+      <p style="text-align:center;">Select a blog in the section settings to show articles.</p>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  (function() {
+    var section = document.getElementById('section-{{ section.id }}');
+    if (!section) return;
+
+    var grid = section.querySelector('[data-article-grid]');
+    if (!grid) return;
+
+    var cards = Array.prototype.slice.call(
+      grid.querySelectorAll('[data-article-card]')
+    );
+    if (!cards.length) return;
+
+    var filtersRow   = section.querySelector('[data-blog-filters]');
+    var paginationEl = section.querySelector('[data-blog-pagination]');
+    var viewMoreBtn  = section.querySelector('[data-blog-view-more]');
+
+    var itemsPerPage = {{ section.settings.items_per_page | default: 6 | json }};
+    if (itemsPerPage < 1) { itemsPerPage = 6; }
+
+    var currentSort        = 'all';
+    var currentVisibleCount = itemsPerPage;
+
+    function sortCards(sortType) {
+      var sorted = cards.slice();
+
+      if (sortType === 'most_read') {
+        // views DESC, tie‑breaker comments_count DESC
+        sorted.sort(function(a, b) {
+          var av = parseInt(a.getAttribute('data-views') || '0', 10);
+          var bv = parseInt(b.getAttribute('data-views') || '0', 10);
+          if (isNaN(av)) av = 0;
+          if (isNaN(bv)) bv = 0;
+
+          if (av === bv) {
+            var ac = parseInt(a.getAttribute('data-comments') || '0', 10);
+            var bc = parseInt(b.getAttribute('data-comments') || '0', 10);
+            if (isNaN(ac)) ac = 0;
+            if (isNaN(bc)) bc = 0;
+            return bc - ac;
+          }
+
+          return bv - av;
+        });
+      } else if (sortType === 'newest' || sortType === 'all') {
+        // নতুন আগে
+        sorted.sort(function(a, b) {
+          var ad = parseInt(a.getAttribute('data-date') || '0', 10);
+          var bd = parseInt(b.getAttribute('data-date') || '0', 10);
+          if (isNaN(ad)) ad = 0;
+          if (isNaN(bd)) bd = 0;
+          return bd - ad; // বড় timestamp আগে
+        });
+      } else if (sortType === 'oldest') {
+        // পুরনো আগে
+        sorted.sort(function(a, b) {
+          var ad = parseInt(a.getAttribute('data-date') || '0', 10);
+          var bd = parseInt(b.getAttribute('data-date') || '0', 10);
+          if (isNaN(ad)) ad = 0;
+          if (isNaN(bd)) bd = 0;
+          return ad - bd; // ছোট timestamp আগে
+        });
+      }
+
+      // DOM‑এ নতুন অর্ডার বসানো
+      sorted.forEach(function(card) {
+        grid.appendChild(card);
+      });
+
+      cards = sorted;
+    }
+
+    function updateVisibility() {
+      cards.forEach(function(card, index) {
+        if (index < currentVisibleCount) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (viewMoreBtn) {
+        viewMoreBtn.disabled = currentVisibleCount >= cards.length;
+      }
+
+      updatePagination();
+    }
+
+    function updatePagination() {
+      if (!paginationEl) return;
+      paginationEl.innerHTML = '';
+
+      var total = cards.length;
+      var pages = Math.ceil(total / itemsPerPage);
+      if (pages <= 1) return;
+
+      var currentPage = Math.ceil(currentVisibleCount / itemsPerPage);
+      if (currentPage < 1) currentPage = 1;
+      if (currentPage > pages) currentPage = pages;
+
+      for (var i = 1; i <= pages; i += 1) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'blog-page-dot' + (i === currentPage ? ' is-active' : '');
+        btn.setAttribute('data-page', i);
+        btn.textContent = i; // সংখ্যা দেখাবে
+        paginationEl.appendChild(btn);
+      }
+    }
+
+    function setSort(sortType) {
+      currentSort = sortType;
+      sortCards(sortType);
+      currentVisibleCount = itemsPerPage;
+      updateVisibility();
+    }
+
+    if (filtersRow) {
+      filtersRow.addEventListener('click', function(event) {
+        var btn = event.target.closest('[data-sort]');
+        if (!btn) return;
+
+        var sortType = btn.getAttribute('data-sort');
+        if (!sortType) return;
+
+        var allBtns = filtersRow.querySelectorAll('[data-sort]');
+        Array.prototype.forEach.call(allBtns, function(b) {
+          b.classList.toggle('is-active', b === btn);
+        });
+
+        setSort(sortType);
+      });
+    }
+
+    // View more: সব একসাথে দেখাবে
+    if (viewMoreBtn) {
+      viewMoreBtn.addEventListener('click', function() {
+        currentVisibleCount = cards.length;
+        updateVisibility();
+      });
+    }
+
+    // পেজ নম্বরে ক্লিক করলে cumulative ভাবে দেখাবে
+    if (paginationEl) {
+      paginationEl.addEventListener('click', function(event) {
+        var target = event.target.closest('[data-page]');
+        if (!target) return;
+        var page = parseInt(target.getAttribute('data-page') || '1', 10);
+        if (isNaN(page) || page < 1) return;
+
+        currentVisibleCount = page * itemsPerPage;
+        if (currentVisibleCount > cards.length) {
+          currentVisibleCount = cards.length;
+        }
+        updateVisibility();
+      });
+    }
+
+    // initial state
+    setSort('all');
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Blog grid with filters",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog_handle",
+      "label": "Blog"
+    },
+    {
+      "type": "number",
+      "id": "article_limit",
+      "label": "Maximum number of articles to load",
+      "default": 12
+    },
+    {
+      "type": "number",
+      "id": "items_per_page",
+      "label": "Articles per view (per click on View more)",
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "views_namespace",
+      "label": "Metafield namespace for view count (Most read)",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "views_key",
+      "label": "Metafield key for view count (Most read)",
+      "default": "views"
+    },
+    {
+      "type": "text",
+      "id": "label_all",
+      "label": "Label: All articles",
+      "default": "All Articles"
+    },
+    {
+      "type": "text",
+      "id": "label_most_read",
+      "label": "Label: Most read",
+      "default": "Most Read"
+    },
+    {
+      "type": "text",
+      "id": "label_newest",
+      "label": "Label: Newest to oldest",
+      "default": "Newest to Oldest"
+    },
+    {
+      "type": "text",
+      "id": "label_oldest",
+      "label": "Label: Oldest to newest",
+      "default": "Oldest to Newest"
+    },
+    {
+      "type": "text",
+      "id": "label_read_more",
+      "label": "Label: Read more",
+      "default": "Read more"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_view_more",
+      "label": "Enable View more button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_view_more",
+      "label": "View more button label",
+      "default": "View more"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Blog grid with filters"
+    }
+  ]
+}
+{% endschema %}

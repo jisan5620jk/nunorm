@@ -1,0 +1,72 @@
+<style>
+  .jk-product-features-timeline {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+  }
+
+  .jk-product-features-timeline h3.main-title {
+    font-size: 20px;
+    margin-top: 20px;
+    border-top: 2px solid #213346;
+    padding: 20px 0 10px;
+  }
+
+  .jk-feature-item {
+    position: relative;
+    padding: 0 0 3rem 1.4rem;
+  }
+
+  .jk-feature-last .jk-feature-item {
+    padding: 0 0 0 2rem;
+  }
+
+  .jk-feature-last .jk-feature-item:before {
+      width: 0;
+  }
+
+  .jk-feature-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    width: 1px;
+    height: 100%;
+    background-color: #213346;
+  }
+
+  .jk-feature-item::after {
+    content: '';
+    position: absolute;
+    left: -4.5px;
+    top: 0.3rem;
+    width: 10px;
+    height: 10px;
+    background-color: #213346;
+    border-radius: 50%;
+  }
+
+  .jk-product-features-timeline h3.jk-feature-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    }
+
+  .jk-feature-description {
+    margin: 0;
+  }
+</style>
+
+<div
+  class="jk-product-features-timeline {% if block.settings.lastIndex %}jk-feature-last{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <h3 class="main-title">{{ block.settings.feature_block_title }}</h3>
+  <div class="jk-feature-item">
+    <div class="jk-feature-content">
+      <h3 class="jk-feature-title">{{ block.settings.feature_title }}</h3>
+      <p class="jk-feature-description">{{ block.settings.feature_description }}</p>
+    </div>
+  </div>
+</div>

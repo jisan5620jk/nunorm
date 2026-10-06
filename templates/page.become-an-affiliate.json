@@ -1,0 +1,126 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "h1,h2,h3,h4,p {color: #213346 !important;}",
+        "h4 {font-size: 18px 1important;}",
+        "h1 {font-size: 32px !important;}",
+        "h3 {font-size: 24px !important;}",
+        "h2 {font-size: 27px !important;}",
+        "@media (max-width: 768px) {h2 {font-size: 20px !important; } h1 {font-size: 25px; } h2 {font-size: 22px !important; } h4 {font-size: 17px; } h3 {font-size: 20px !important; }}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "join_community_cyXkXF": {
+      "type": "join-community",
+      "name": "Join community banner",
+      "settings": {
+        "logo": "shopify://shop_images/image_5.png",
+        "heading": "JOIN THE NUNORM COMMUNITY",
+        "body": "<p>We’re thrilled to have you join us on this journey. By becoming a NuNorm affiliate, you’re not just sharing premium, easy-to-use self-care essentials designed specifically for men’s skin—you’re helping us challenge old norms and support men’s mental health every step of the way. Here’s what you can look forward to as a NuNorm affiliate: - Earn With Purpose: Every referral helps fund men’s mental health programs through the EQUAL Project. - Exclusive Perks: Enjoy early access to new product launches, special discounts, and community events. - Effortless Sharing: Get access to creative assets, product education, and personal support—so you can confidently introduce NuNorm to your network. - Real Impact: Your voice matters. Together, we’re building a supportive, inclusive space where self-care is for everyone.</p>",
+        "button_label": "APPLY NOW",
+        "button_link": "#",
+        "subtext": "Already a member?",
+        "secondary_label": "Log in",
+        "secondary_link": "https://collabs.shopify.com/application/Z2lkOi8vZG92ZXRhbGUtYXBpL0FnZW5jeS8xMjE3Mjk=?origin=THEME_EXTENSION"
+      }
+    },
+    "partnership_opportunities_VEteFM": {
+      "type": "partnership-opportunities",
+      "blocks": {
+        "image_MHmetj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bbbcfb_db05a06d76274a3a911409e48c9943ac_mv2_jpg.png",
+            "alt_text": ""
+          }
+        },
+        "image_xEgFeQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bbbcfb_db05a06d76274a3a911409e48c9943ac_mv2.jpg_1.png",
+            "alt_text": ""
+          }
+        },
+        "image_qhtiak": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bbbcfb_db05a06d76274a3a911409e48c9943ac_mv2.jpg_2.png",
+            "alt_text": ""
+          }
+        },
+        "image_zQVEPC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bbbcfb_db05a06d76274a3a911409e48c9943ac_mv2.jpg_3.png",
+            "alt_text": ""
+          }
+        },
+        "pill_wwMAhe": {
+          "type": "pill",
+          "settings": {
+            "label": "AFFILIATE MARKETING"
+          }
+        },
+        "pill_qNBA3w": {
+          "type": "pill",
+          "settings": {
+            "label": "GIFTING"
+          }
+        },
+        "pill_QTK4tX": {
+          "type": "pill",
+          "settings": {
+            "label": "DISCOUNT CODES"
+          }
+        },
+        "pill_xVWCjy": {
+          "type": "pill",
+          "settings": {
+            "label": "CAMPAIGNS"
+          }
+        },
+        "pill_QxeifH": {
+          "type": "pill",
+          "settings": {
+            "label": "CONTENT CREATION"
+          }
+        }
+      },
+      "block_order": [
+        "image_MHmetj",
+        "image_xEgFeQ",
+        "image_qhtiak",
+        "image_zQVEPC",
+        "pill_wwMAhe",
+        "pill_qNBA3w",
+        "pill_QTK4tX",
+        "pill_xVWCjy",
+        "pill_QxeifH"
+      ],
+      "name": "Partnership opportunities",
+      "settings": {
+        "heading": "PARTNERSHIP OPPORTUNITIES"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "join_community_cyXkXF",
+    "partnership_opportunities_VEteFM"
+  ]
+}

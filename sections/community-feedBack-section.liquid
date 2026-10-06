@@ -1,0 +1,497 @@
+{{ 'hero-bg-video.css' | asset_url | stylesheet_tag }}
+{% assign community = product.metafields.custom.section_product_page_content.value %}
+{% if community != blank %}
+  <section class="hero-video-wrapper  {{ section.settings.custom_class }} {{ section.settings.text_position }} {% if section.settings.fix-bg %} fix-bg {% endif %}  custom__product-template bottom-right">
+    <div
+      class="hero-text-block"
+      data-aos="fade-up"
+      data-aos-duration="1800"
+      style="color: {{ section.settings.text_color }}"
+    >
+      <h2
+        class="hero-heading"
+        style="font-size: {{ section.settings.heading_size_desktop }}px; color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading | raw }}
+      </h2>
+      <p
+        class="hero-subtext"
+        style="font-size: {{ section.settings.subtext_size_desktop }}px; color: {{ section.settings.subtext_color }};"
+      >
+        {{ section.settings.subtext | raw }}
+
+        <div class="stats-wrap">
+          {% if community.list_1_number != blank %}
+            <div class="stat-row">
+              <div class="stat-percent">{{ community.list_1_number }}%</div>
+              <div class="stat-text">{{ community.list_1_content }}</div>
+            </div>
+          {% endif %}
+          {% if community.list_2_number != blank %}
+            <div class="stat-row">
+              <div class="stat-percent">{{ community.list_2_number }}%</div>
+              <div class="stat-text">{{ community.list_2_content }}</div>
+            </div>
+          {% endif %}
+
+          {% if community.list_3_number != blank %}
+            <div class="stat-row">
+              <div class="stat-percent">{{ community.list_3_number }}%</div>
+              <div class="stat-text">{{ community.list_3_content }}</div>
+            </div>
+          {% endif %}
+          {% if community.statistic_4_percentage != blank %}
+            <div class="stat-row">
+              <div class="stat-percent">{{ community.statistic_4_percentage }}%</div>
+              <div class="stat-text">{{ community.statistic_4_description }}</div>
+            </div>
+          {% endif %}
+          {% if community.statistic_5_percentage != blank %}
+            <div class="stat-row">
+              <div class="stat-percent">{{ community.statistic_5_percentage }}%</div>
+              <div class="stat-text">{{ community.statistic_5_description }}</div>
+            </div>
+          {% endif %}
+        </div>
+      </p>
+      {% if section.settings.button_text != blank %}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="{{ section.settings.button_style }}"
+        >
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+    {% comment %} {% if community != blank %} {% endcomment %}
+    <div
+      class="hero-image-container"
+    >
+      <img
+        src="{{ community.section_background_image | image_url: width: 1200 }}"
+        alt="{{ product.title | escape }}"
+        class="hero-image-bg"
+        loading="lazy"
+        width=""
+        height=""
+      >
+    </div>
+    {% comment %}
+      {% else %}
+      {% if section.settings.media_type == 'video' and section.settings.video_url != blank %}
+        <div class="hero-video-container ">
+          <video class="hero-video-bg" autoplay loop muted playsinline>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <button
+            class="hero-video-toggle"
+            aria-label="Pause background video"
+            aria-pressed="false"
+          >
+            ❚❚
+          </button>
+        </div>
+      {% elsif section.settings.media_type == 'image' and section.settings.image_bg != blank %}
+        <div
+          class="hero-image-container"
+          {% if section.settings['fix-bg'] %}
+            style="
+              background-image: url('{{ section.settings.image_bg | image_url }}');
+              background-size: calc(100% * var(--bg-zoom));
+              background-attachment: fixed;
+            "
+          {% endif %}
+        >
+          <img
+            src="{{ section.settings.image_bg | image_url: width: 1200 }}"
+            alt="{{ section.settings.image_bg.alt | escape }}"
+            class="hero-image-bg"
+            loading="lazy"
+            width=""
+            height=""
+            {% if section.settings['fix-bg'] %}
+              style="display: none !important;"
+            {% endif %}
+          >
+        </div>
+      {% else %}
+        <div class="hero-image-container fallback-bg"></div>
+      {% endif %}
+    {% endcomment %}
+    {% comment %} {% endif %} {% endcomment %}
+  </section>
+{% endif %}
+<style>
+  /* Desktop: keep "fixed" feel */
+  .hero-video-wrapper.fix-bg .hero-image-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+    background-position: center center !important;
+  }
+  .hero-video-wrapper.fix-bg .hero-image-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* desktop only; see mobile override */
+    transform: scale(var(--bg-zoom, 1));
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Mobile: disable background-attachment: fixed and rely on transforms only */
+  @media (max-width: 767px) {
+    .hero-video-wrapper.fix-bg .hero-image-container::before {
+      background-attachment: scroll; /* iOS Safari fix */
+      background-size: cover !important;
+    }
+    .hero-video-wrapper.fix-bg .hero-image-container{
+      background-size: cover !important;
+      background-position: center center !important;
+    }
+    /* Use small viewport height on mobile to avoid URL bar jumps */
+    .hero-video-wrapper { height: 100svh; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video-wrapper.fix-bg .hero-image-container::before {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<style>
+      .stats-wrap {
+        max-width: 800px;
+        margin: 20px auto;
+        color: #213345;
+      }
+      .stat-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e6e6e6;
+  color: #fbeeda;
+      }
+      .stat-row:last-child {
+        border-bottom: none;
+      }
+      .stat-percent {
+        flex: 0 0 80px;
+        text-align: right;
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 1;
+  color: #F7D3A1;
+  font-style: italic;
+      }
+      .stat-text {
+        flex: 1;
+        line-height: 1.5;
+  text-align: left;
+      }
+</style>
+
+<style>
+  .hero-video-wrapper {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+  }
+  .hero-text-block {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-heading {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .hero-subtext {
+    margin-top: 20px;
+  }
+  .hero-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 14px 28px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  .button-maroon {
+    background-color: #953F2F;
+    color: #FBEEDA;
+  }
+  .button-blue {
+    background-color: #213345;
+    color: #FBEEDA;
+  }
+  .button-tan {
+    background-color: #FBEEDA;
+    color: #FBEEDA;
+  }
+  .hero-video-container,
+  .hero-image-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .hero-image-bg,
+  .hero-video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .fallback-bg {
+    background-color: #ccc;
+  }
+  .hero-video-toggle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 3;
+    width: 44px;
+  }
+  @media (max-width: 768px) {
+    .hero-video-wrapper {
+      padding: 20px;
+      align-items: flex-end;
+      min-height: 500px;
+    }
+    .hero-heading {
+      font-size: {{ section.settings.heading_size_mobile }}px !important;
+    }
+    .hero-subtext {
+      font-size: {{ section.settings.subtext_size_mobile }}px !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Community FeedBack",
+  "tag": "section",
+  "class": "hero-video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class",
+      "default": "custom class"
+    },
+
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (supports HTML)",
+      "default": "LOOK GOOD, FEEL GREAT WITH <span style=\"color:#eac295\">NATURAL MAKEUP</span> FOR MEN"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size (Desktop)",
+      "min": 12,
+      "max": 64,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile)",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "default": 22
+    },
+
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext (supports HTML)",
+      "default": "Simple, easy-to-use products made for men’s skin — so you look <span style=\"color:#eac295\">sharp</span> and feel confident."
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_desktop",
+      "label": "Subtext Size (Desktop)",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_mobile",
+      "label": "Subtext Size (Mobile)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community FeedBack"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function () {
+    const containers = document.querySelectorAll('.hero-video-container');
+
+    containers.forEach((container) => {
+      const video = container.querySelector('.hero-video-bg');
+      const button = container.querySelector('.hero-video-toggle');
+
+      if (!video || !button) return;
+
+      // Force mute and play on load (helps with iOS autoplay)
+      video.muted = true;
+      video.play().catch(() => {
+        // If play fails, some browsers may delay it until interaction
+        console.log('Autoplay prevented, will retry after user interaction');
+      });
+
+      button.addEventListener('click', () => {
+        const isPaused = video.paused || video.ended;
+
+        if (isPaused) {
+          video.play();
+          button.textContent = '❚❚';
+          button.setAttribute('aria-label', 'Pause background video');
+          button.setAttribute('aria-pressed', 'false');
+        } else {
+          video.pause();
+          button.textContent = '▶';
+          button.setAttribute('aria-label', 'Play background video');
+          button.setAttribute('aria-pressed', 'true');
+        }
+      });
+    });
+  });
+{% endjavascript %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Find every hero that has fixed-background mode enabled
+    const heroes = document.querySelectorAll('.hero-video-wrapper.fix-bg');
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced || heroes.length === 0) return;
+
+    const MAX_ZOOM = 2.25; // final zoom when the hero has fully traversed the viewport
+    const EASE_POWER = 1.8;
+
+    function progressThrough(el) {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+
+      // Total distance the viewport travels while the element is relevant:
+      // from just before it enters (top == vh) until it's fully past (bottom == 0).
+      // That's (element height + viewport height).
+      const total = r.height + vh;
+
+      // How much we've traversed so far:
+      // when el.top == vh  -> traversed = 0  (not yet entered)
+      // when el.top == 0   -> traversed = vh (top hits viewport)
+      // when el.bottom == 0-> traversed = total (fully crossed)
+      const traversed = Math.min(Math.max(vh - r.top, 0), total);
+
+      return traversed / total; // 0 → 1 across the entire pass
+    }
+
+    // Per-hero handlers
+    heroes.forEach((hero) => {
+      const bgContainer = hero.querySelector('.hero-image-container');
+      if (!bgContainer) return;
+
+      let ticking = false;
+
+      const update = () => {
+        const p = progressThrough(hero); // 0 → 1 as the hero passes
+        const eased = Math.pow(p, EASE_POWER); // ease the progress
+        const scale = 1 + (MAX_ZOOM - 1) * eased; // 1 → MAX_ZOOM
+        bgContainer.style.setProperty('--bg-zoom', scale.toFixed(4));
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      };
+
+      // Use IntersectionObserver to bind/unbind listeners efficiently,
+      // but keep updating as long as the hero is around the viewport.
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              update();
+              window.addEventListener('scroll', onScroll, { passive: true });
+              window.addEventListener('resize', onScroll);
+            } else {
+              // Once it's fully crossed, lock at end state; otherwise reset if above.
+              const rect = hero.getBoundingClientRect();
+              if (rect.bottom <= 0) {
+                // fully past the top edge: keep final zoom
+                bgContainer.style.setProperty('--bg-zoom', MAX_ZOOM);
+              } else {
+                // not reached yet (or scrolled back above): reset
+                bgContainer.style.setProperty('--bg-zoom', 1);
+              }
+              window.removeEventListener('scroll', onScroll);
+              window.removeEventListener('resize', onScroll);
+            }
+          });
+        },
+        {
+          // Small positive rootMargin keeps updates active slightly before/after edges
+          root: null,
+          threshold: 0,
+          rootMargin: '100px 0px 100px 0px',
+        }
+      );
+
+      io.observe(hero);
+    });
+  });
+</script>

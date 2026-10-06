@@ -1,0 +1,34 @@
+{% layout none %}
+
+{% assign match_sku = request.match %}
+<p>Match SKU: {{ match_sku }}</p>
+{% assign match_sku_two = request.query_params.match %}
+<p>Match SKU: {{ match_sku_two }}</p>
+
+{%- if match_sku -%}
+  {%- assign product_variant = all_products | map: 'variants' | flatten | where: 'sku', match_sku | first -%}
+  {%- if product_variant -%}
+    <div>
+      <p>Product Title: {{ product_variant.title }}</p>
+      <p>Color: {{ product_variant.color }}</p>
+      <!-- Add other details you want to display -->
+    </div>
+  {%- else -%}
+    <p>No matching product found.</p>
+  {%- endif -%}
+{%- else -%}
+  <p>No SKU provided.</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Section name",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

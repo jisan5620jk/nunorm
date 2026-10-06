@@ -1,0 +1,305 @@
+.sub_wrap {
+  font-weight: 500;
+  letter-spacing: 0px;
+}
+
+.bi-arrow-left-right {
+  padding: 0px 30px;
+  font-size: 17px;
+}
+
+span#message_above_popup {
+  margin: 0px auto;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #d9a785;
+}
+
+.custom-model-message {
+  margin-left: 7px;
+  background-color: var(--color-rustic-garnet);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+a#powered {
+  display: none !important;
+}
+
+.custom-shade .product-info .product-variant .inline-color-variant {
+  padding-bottom: 30px;
+}
+
+.radio-btn-color:hover .variant-title {
+  color: var(--color-peach-whisper) !important;
+}
+
+.radio-btn-color {
+  position: relative;
+  display: inline-block;
+}
+
+.radio-btn-color .variant-title {
+  visibility: hidden !important;
+  display: none;
+  width: 100px;
+  background-color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -100%;
+}
+
+.radio-btn-color:hover .variant-title {
+  visibility: visible !important;
+  display: block;
+}
+
+.custom-model-main {
+  text-align: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear, z-index 0.15;
+  -o-transition: opacity 0.15s linear, z-index 0.15;
+  transition: opacity 0.15s linear, z-index 0.15;
+  z-index: -1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.model-open {
+  z-index: 999999999999999;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.custom-modal-inner {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  display: inline-block;
+  vertical-align: middle;
+  width: 430px;
+  margin: 30px auto;
+  max-width: 100%;
+}
+
+.custom-modal-wrap {
+  display: block;
+  width: calc(100% - 15px);
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background-clip: padding-box;
+  outline: 0;
+  text-align: left;
+  margin: auto;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: calc(77vh);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+@media(min-width: 1000px) {
+    .custom-modal-wrap {
+        max-height: calc(100vh - 70px);
+        overflow-y: clip;
+    }
+}
+
+.model-open .custom-modal-inner {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+  position: relative;
+  z-index: 999;
+}
+
+.text-info {
+  color: #000;
+  line-height: 24px;
+  text-align: center;
+  padding: 5px 20px;
+}
+
+.model-open .bg-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+
+.bg-overlay {
+  background: rgba(0, 0, 0, 0);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-transition: background 0.15s linear;
+  -o-transition: background 0.15s linear;
+  transition: background 0.15s linear;
+  pointer-events: none;
+}
+
+.close-btn {
+  position: absolute;
+  right: 12px;
+  top: 5px;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  font-size: 26px;
+  color: var(--color-peach-whisper);
+  font-family: Montserrat, sans-serif;
+  background-color: #000;
+  border-radius: 100px;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-try-on span.button_text_container {
+  cursor: pointer;
+}
+
+button#close {
+  display: none;
+}
+
+.shade-finder-privacy-policy-response-container {
+  gap: 2%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shade-finder-privacy-policy h2 {
+    margin-top: 0;
+}
+
+.shade-finder-privacy-policy-response-agree {
+  background-color: var(--color-sunset-terra);
+  font-family: Montserrat, sans-serif;
+  border-radius: 6.96px;
+  font-style: normal;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--color-peach-whisper);
+  padding: 0 40px;
+  width: 49%;
+  box-shadow: none !important;
+  text-decoration: none;
+  border: none;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 25px;
+  min-height: 45px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.shade-finder-privacy-policy-response-disagree {
+  background-color: #262626;
+  border-radius: 6.96px;
+  font-style: normal;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--color-peach-whisper);
+  padding: 0 40px;
+  width: 49%;
+  text-decoration: none;
+  justify-content: center;
+  border: none;
+  box-shadow: none;
+  font-size: 16px;
+  line-height: 25px;
+  min-height: 45px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+@media screen and (min-width: 800px) {
+  .custom-model-main:before {
+    content: "";
+    display: inline-block;
+    height: auto;
+    vertical-align: middle;
+    margin-right: -0px;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .custom-modal-wrap {
+    overflow-y: scroll;
+  }
+  .custom-modal-inner {
+    margin-top: 45px;
+  }
+}
+
+.product-info.active {
+  display: block;
+}
+
+.product-info {
+  display: none;
+}
+
+.try-on-add-btn {
+  border: 1px solid #000;
+  width: 100%;
+  background-color: #fff;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 6px 5px;
+  font-family: Montserrat, sans-serif;
+  display: block;
+}
+
+.shade-finder-variant-title-container {
+  margin: 0 10px 0 auto;
+  text-align: left;
+  color: var(--color-rustic-garnet);
+  position: absolute;
+  bottom: 86px;
+  right: 0;
+  text-align: center;
+}
+
+.shade-finder-variant-title-container {
+  width: 55%;
+}
+
+.custom-shade {
+  position: relative;
+}

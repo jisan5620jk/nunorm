@@ -1,0 +1,46 @@
+<!--------------------/ a letter from our ceo Sectionnnnnnnnnnnnnnnnnn /----->
+<section class="letter-ceo layout">
+  <div class="page-width">
+    <h1 class="sec-heading">{{ section.settings.sec-head }}</h1>
+    <div class="pera">
+      {{ section.settings.content }}
+    </div>
+    <!--/ ceo sig /-->
+    <div class="ceo-sig">
+    <img src="{{ section.settings.img | img_url: 'master' }}https://cdn.shopify.com/s/files/1/0758/3639/1698/files/ceo.png?v=1685014627">
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "a-letter-from-our-ceo",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "heading"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "signature Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "a-letter-from-our-ceo"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

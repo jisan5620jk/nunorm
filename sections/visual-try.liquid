@@ -1,0 +1,88 @@
+{% unless section.settings.hide == '1' %}
+  {{ 'section-try-on-banner.css' | asset_url | stylesheet_tag }}
+
+  <!-- / visual try-on / -->
+  <div class="visual-try-on-color layout">
+    <section class="visual-try-on-outer">
+      <!-- / box info / -->
+      <div class="box-inner">
+        {% if section.settings.head != blank %}
+          <h2 class="TOB_Header">{{ section.settings.head | replace: '<img', '<img class="TOB_logo-image"' }}</h2>
+        {% endif %}
+
+        {% if section.settings.content != blank %}
+          <p class="pera">{{ section.settings.content }}</p>
+        {% endif %}
+
+        {% if section.settings.link != blank %}
+          <a class="arrow-link" href="{{ section.settings.link }}">
+            <span>{{ section.settings['btn-text'] }}</span>
+            <img loading="lazy" src="{{ 'Arrow_2.svg' | asset_img_url }}">
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- / box images / -->
+      <div class="box-inner">
+        {% if section.settings.image != blank %} 
+          {{
+            section.settings.image
+            | image_url: width: 1500
+            | image_tag: style: 'display:block; width: 100%; height: auto;', loading: 'lazy'
+          }}
+        {% endif %}
+      </div>
+    </section>
+  </div>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "visual-try-home",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hide",
+      "label": "Hide",
+      "default": "0"
+    },
+    {
+    "type": "liquid",
+    "id": "visual-try-home",
+    "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+    "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+      "type": "html",
+      "id": "head",
+      "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "content",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+ "presets": [
+  {
+    "name": "visual-try-home"
+  }
+]
+}
+{% endschema %}
+

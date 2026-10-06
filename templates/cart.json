@@ -1,0 +1,97 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_Eczyi7": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XJVzPW": {
+          "type": "heading",
+          "settings": {
+            "heading": "Make an impact with each purchase",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XJVzPW"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {}
+    },
+    "image_with_text_bDzhyN": {
+      "type": "image-with-text",
+      "blocks": {
+        "text_h6jLKq": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>2% of your order will go directly towards funding men’s mental health programs. </strong>NuNorm was founded alongside The E.Q.U.A.L Project, a non-profit foundation dedicated to helping men build their relationship with self-care. Through an annual grant, we support organizations doing impactful work. </p><p>With every purchase, you make a direct contribution to help someone in need. Each year, we invite our community to vote on how we can make the most significant impact. Sign up to learn more below and stay tuned for upcoming announcements.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_h6jLKq"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/NuNorm_Community.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "socail_icon_on": false
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer",
+    "rich_text_Eczyi7",
+    "image_with_text_bDzhyN"
+  ]
+}

@@ -1,0 +1,443 @@
+/* Acronym-shorttext guide: Email Modal: EM */
+
+/* semi transparent modal background, absolutely positioned */
+
+/*
+ * CSS Naming Convention Guide
+ * 
+ * Structure: [shortcode]_[Kebab-case-first-letter-capitalized]_[Sub-component]--[modifier]
+ * 
+ * Definitions:
+ * - shortcode: A short, prefix code that represents the component or section of the project, 
+ *     helping to quickly identify which part of the project the class pertains to.
+ *     Example: 'em' for Email Modal.
+ * 
+ * - Kebab-case-first-letter-capitalized: The name of the block or element, written in kebab-case
+ *     (hyphenated lowercase), with the first letter of each word capitalized.
+ *     Example: 'Block-heading' for a heading block within the FSU component.
+ * 
+ * - Sub-component: If the class is a part of a larger component, the sub-component's name is 
+ *     concatenated using an underscore.
+ *     Example: 'Block-text' for text within a block.
+ * 
+ * - Modifier: Modifiers indicate a different version or state of the block or element and are 
+ *     separated by two hyphens. Modifiers are optional.
+ *     Example: '--desktop' for a desktop-specific styling of a component.
+ * 
+ * Examples:
+ * - em_Block-heading: Represents the main heading within the Footer Sign Up component.
+ * - em_Block-text--large: Represents a larger variant of the block text within the FSU component.
+ * 
+ * Guidelines:
+ * 1. Always start the class name with the shortcode related to the project or component.
+ * 2. Use kebab-case for naming blocks or elements, capitalizing the first letter of each word.
+ * 3. Use underscores to separate the main component name from sub-components or elements.
+ * 4. Use two hyphens to separate the base name from modifiers.
+ * 5. Ensure that the names are descriptive yet concise.
+ * 
+ * By adhering to this convention, we can ensure our stylesheets are organized, and our classes 
+ * are easily identifiable and understandable at a glance.
+ */
+
+.EM_Background {
+  align-items: center;
+  background-color: rgb(251 238 219 / 0.75);
+  display: none;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 100; /* above everything */
+  letter-spacing: 0px;
+  @media (min-width: 750px) {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
+.EM_Background {
+  --button-max-width: 100%;
+  --button-min-height: 7.53vw;
+}
+
+.EM_Background.is-open {
+  display: flex;
+}
+
+.EM_content-wrapper {
+  aspect-ratio: 1/1;
+  background-color: var(--background-color);
+  background-image: var(--background-image-mobile);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 101% 101%;
+  box-shadow: -1.9vw 1.9vw 0 0 var(--email-modal-border-color);
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  padding: 9.58vw 5.51% 6.47vw 5.51%;
+  position: relative;
+  width: 90vw;
+  @media (min-width: 400px) {
+    max-width: 73.8vw;
+  }
+  @media (min-width: 1000px) {
+    background-image: var(--background-image);
+    aspect-ratio: 21/17;
+    box-shadow: -0.44vw -0.44vw 0 0 var(--email-modal-border-color);
+    max-width: 31.25vw;
+    padding: 2vw 0.78vw 1.48vw 1.48vw;
+  }
+}
+
+.EM_content-wrapper.EM_content-wrapper--success  {
+  background-image: var(--background-image-success-mobile);
+  padding: 6.47vw 5.51% 6.47vw 5.51%;
+  @media(min-width: 1000px) {
+    background-image: var(--background-image-success);
+    padding: 1.48vw 0 1.48vw 1.48vw;
+  }
+}
+
+.EM_content-wrapper--hasErrorMessageActive {
+  padding: 5.35vw 5.51% 0vw 5.51%;
+  @media(min-width: 1000px) {
+    padding: 1.26vw;
+  }
+}
+
+.EM_content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 68.18%;
+  @media (min-width: 1000px) {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content auto;
+  }
+}
+
+.EM_content-wrapper--success .EM_content {
+  max-width: 79%;
+  @media (min-width: 1000px) {
+    max-width: 100%;
+    grid-template-columns: 35% auto 38.12%;
+  }
+}
+
+.EM_Loading-overlay {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.EM_Loading-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  margin: -25px 0 0 -25px;
+  border: 5px solid var(--color-black);
+  border-top: 5px solid var(--color-rustic-garnet);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: block !important; /* overriding global style to hide empty div */
+}
+
+.EM_content-wrapper--loading .EM_Loading-overlay {
+  display: block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.EM-Modal-content {
+  width: 100%;
+}
+
+.EM_header {
+  font-size: 6.23vw;
+  color: var(--email-modal-header-text-color);
+  font-family: var(--font-heading-family);
+  font-weight: bold;
+  margin:0; /* remove default margin */
+  line-height: 1;
+  @media (min-width: 1000px) {
+    font-size: 2.23vw;
+    margin: 0 0 0.37vw 0;
+    text-align: center;
+    grid-column: 1;
+  }
+}
+
+.EM_header-text {
+  margin: 0;
+}
+
+.EM_content-wrapper--success .EM_header-text {
+  display: none;
+}
+
+.EM_header-text-success-version {
+  display: none;
+}
+
+.EM_content-wrapper--success .EM_Header-container {
+  @media(min-width: 1000px) {
+    grid-column: 1/2 span;
+    grid-row: 1;
+  }
+}
+
+.EM_content-wrapper--success .EM_header-text-success-version {
+  display: block;
+  font-size: 5.75vw;
+  margin: 0;
+  -webkit-text-stroke-width: 0.25px;
+  -webkit-text-stroke-color: var(--color-warm-cream);
+  @media (min-width: 1000px) {
+    margin: 0;
+    font-size: 2.0vw;
+  }  
+}
+
+.EM_Close-button {
+  position: absolute;
+  right: 2.4vw;
+  top: 2.4vw;
+  height: 4.8vw;
+  width: 4.8vw;
+  background: none;
+  border: none;
+  padding: 0;
+  @media (min-width: 1000px) {
+    height: 1.742vw;
+    width: 1.742vw;
+    top: 0.74vw;
+    right: 0.74vw;
+  }
+}
+
+/* using tag selector since content is generated by user input */
+.EM_subtitle-text,
+.EM_subtitle-text p {
+  font-size: 2.7vw;
+  font-weight: normal;
+  color: var(--email-modal-body-text-color);
+  margin: 0; /* remove default margin */
+  max-width: 90%;
+  line-height: 1.1;
+  @media (min-width: 1000px) {
+    font-size: 1.19vw;
+    text-align: center;
+    grid-column: 1;
+    max-width: 100%;
+  }
+}
+
+.EM_content-wrapper--success .EM_subtitle-text {
+  grid-column: 1/2 span;
+}
+
+.EM_content-wrapper--success .EM_Content-text-container {
+  display: none;
+}
+
+.EM_Content-text-container-success-version {
+  display: none;
+}
+
+.EM_content-wrapper--success .EM_Content-text-container-success-version {
+  display: block;
+}
+
+.EM_subtitle-text {
+  margin: 0 0 3vw 0;
+}
+
+.EM_Input-container {
+  margin: 0; /* remove default margin */
+  padding: 0; /* remove default padding */
+  border: none; /* remove default border */
+}
+
+.EM_Functionality-container {
+  margin: auto 0 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1000px) {
+    grid-column: 2;
+  }
+}
+
+.EM_content-wrapper--success .EM_Functionality-container {
+  grid-column: 2/3 span;
+}
+
+.EM_Form {
+  display: block;
+}
+
+.EM_content-wrapper--success .EM_Form {
+  display: none;
+}
+
+.EM_Input {
+  background-color: var(--color-warm-cream);
+  border: none;
+  border-radius: 10px;
+  color: var(--color-black);
+  font-family: var(--font-body-family);
+  font-size: 2.63vw;
+  font-weight: 400;
+  margin: 0 0 3.67vw 0;
+  min-height: var(--button-min-height);
+  opacity: 1;
+  padding: 0 0 0 1.43vw;
+  width: 100%;
+  max-width: var(--button-max-width);
+  @media (min-width: 1000px) {
+    font-size: 1.04vw;
+    min-height: 1.78vw;
+    margin: 0 0 0.81vw 0;
+    max-width: 100%;
+  }
+}
+
+.EM_Input::placeholder {
+  text-align: center;
+  color: var(--color-black)
+}
+
+.EM_Input:focus-visible {
+  outline: none;
+  border: 2px solid #953f2f;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.EM_Submit-button {
+  background-color: var(--email-modal-submit-button-color);
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+  color: var(--email-modal-submit-button-text-color);
+  font-size: 2.63vw;
+  min-height: var(--button-min-height);
+  outline: none;
+  width: 100%;
+  max-width: var(--button-max-width);
+  @media (min-width: 1000px) {
+    font-size: 1.04vw;
+    min-height: 2.15vw;
+    font-weight: 500;
+    max-width: 100%;
+  }
+}
+
+.EM_Submit-button_Submit-text {
+  display: none;
+}
+
+.EM_Submit-button_Submit-text[aria-hidden='true'] {
+  display: block;
+}
+
+.EM_Error-message-container {
+}
+
+.EM_Error-message {
+  display: none;
+  background-color: var(--color-peach-cream);
+  padding: 0 2.15vw;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 2.1vw;
+  border: 1px solid var(--color-soft-silver);
+  text-align: center;
+  margin: 2.40vw 0;
+  max-width: var(--button-max-width);
+  min-height: var(--button-min-height);
+  justify-content: center;
+  align-items: center;
+  @media(min-width: 1000px) {
+    font-size: 0.74vw;
+    min-height: 2vw; 
+    padding: 0vw;
+    margin: 0.74vw 0;
+    max-width: 100%;
+  }
+}
+
+.EM_Error-message[data-error-active='true'] {
+  display: flex;
+}
+
+.EM_Success-content-container {
+  margin: auto 0 0 0;
+  width: 100%;
+  display: none;
+}
+
+.EM_content-wrapper--success .EM_Success-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.EM_Copy-text {
+  background-color: var(--color-warm-cream);
+  border: none;
+  border-radius: 10px;
+  color: var(--color-black);
+  font-family: var(--font-body-family);
+  font-size: 2.39vw;
+  font-weight: 400;
+  margin: 0 0 2vw 0;
+  min-height: var(--button-min-height);
+  opacity: 1;
+  padding: 0 0 0 1.43vw;
+  width: 100%;
+  max-width: 87%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (min-width: 1000px) {
+    font-size: 1.04vw;
+    min-height: 1.78vw;
+    margin: 0 0 0.81vw 0;
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+.EM_Success-button {
+  background-color: var(--email-modal-submit-button-color);
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+  color: var(--email-modal-submit-button-text-color);
+  font-size: 2.63vw;
+  min-height: var(--button-min-height);
+  outline: none;
+  width: 100%;
+  max-width: 87%;
+  @media (min-width: 1000px) {
+    font-size: 1.04vw;
+    min-height: 2.15vw;
+    font-weight: 500;
+    max-width: 100%;
+  }
+}

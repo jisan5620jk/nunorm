@@ -1,0 +1,178 @@
+{% stylesheet %}
+.blog-slider {
+  padding: 80px 0px;
+}
+.text-wrap.center {
+  max-width: 70%;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.blog-slider .headline {
+  color: #213346;
+  margin-bottom: 10px;
+}
+.blog-slider .subtext {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #213346;
+}
+.blog-carousel {
+  max-width: 100vw;
+  margin: 0 auto;
+}
+.blog-carousel .slick-slide {
+  padding: 0 10px;
+  width: 40vw !important;
+}
+.blog-carousel .carousel-box {
+  position: relative;
+  background-color: #f9c07a;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0px 16px;
+  text-decoration: none;
+}
+.blog-carousel .carousel-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+.blog-carousel .carousel-box .post-title {
+  margin: 20px;
+  background: transparent;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 26px;
+  font-weight: 400;
+  color: #fbeeda;
+  position: relative;
+  z-index: 2;
+}
+.slick-list {
+  margin: 0px 0px !important;
+}
+.blog-carousel .slick-dots {
+  display: flex !important;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 0;
+  list-style: none;
+}
+.blog-carousel .slick-dots li {
+  margin: 0 3px;
+  width: 10px;
+  height: 4px;
+  background-color: #882c29;
+  opacity: 0.5;
+  border-radius: 1px;
+  transition: opacity 0.3s ease;
+}
+.blog-carousel .slick-dots li.slick-active {
+  opacity: 1;
+}
+.blog-carousel .slick-dots button {
+  display: none;
+}
+@media (max-width: 768px){
+  .blog-carousel .slick-slide {
+    padding: 0 10px;
+    width: 70vw !important;
+  }
+  .blog-slider {
+    padding: 60px 0px 40px 0px;
+  }
+  .blog-carousel .carousel-box .post-title {
+    margin: 15px;
+    background: transparent;
+    padding: 0px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fbeeda;
+    position: relative;
+    z-index: 2;
+}
+  .blog-carousel .carousel-box {
+    margin: 0px 8px;
+  }
+}
+{% endstylesheet %}
+
+<div class="blog-slider layout">
+  <div class="text-wrap center">
+    <h3 class="headline">{{ section.settings.headline }}</h3>
+    <p class="subtext">{{ section.settings.subtext }}</p>
+  </div>
+
+  <div class="blog-carousel">
+    {% for article in blogs[section.settings.blog].articles limit: 12 %}
+      <a href="{{ article.url }}" class="carousel-box" style="background-image: url('{{ article.image | image_url: width: 800 }}');">
+        <div class="post-title">{{ article.title }}</div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% javascript %}
+$(document).ready(function(){
+  $('.blog-carousel').slick({
+    slidesToShow: 3,
+    variableWidth: true,
+    centerMode: true,
+    slidesToScroll: 1,
+    dots: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Blog Post Slider",
+  "tag": "section",
+  "class": "blog-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Latest from the Blog"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Discover insights, stories, and inspiration from our community."
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Post Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

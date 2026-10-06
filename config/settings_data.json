@@ -1,0 +1,1086 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "hero_image": "shopify://shop_images/Jocelyn_holding_Anti-Shine_1.png",
+    "logo": "shopify://shop_images/nunorm-logo-gradient.png",
+    "logo_width": 180,
+    "favicon": "shopify://shop_images/nunorm-logo-gradient.png",
+    "colors_solid_button_labels": "#fbeeda",
+    "colors_accent_1": "#953f2f",
+    "gradient_accent_1": "",
+    "colors_accent_2": "#8c2a26",
+    "gradient_accent_2": "",
+    "colors_text": "#213346",
+    "colors_outline_button_labels": "#953f2f",
+    "colors_background_1": "#f7d3a1",
+    "gradient_background_1": "linear-gradient(90deg, rgba(247, 211, 161, 1), rgba(251, 238, 218, 1) 100%)",
+    "colors_background_2": "#953f2f",
+    "gradient_background_2": "linear-gradient(90deg, rgba(247, 211, 161, 1) 1%, rgba(251, 238, 219, 1) 59%)",
+    "equal-page-color": "linear-gradient(90deg, rgba(193, 115, 74, 1), rgba(250, 235, 215, 1) 100%)",
+    "type_header_font": "poppins_n7",
+    "heading_scale": 100,
+    "type_body_font": "montserrat_n4",
+    "body_scale": 100,
+    "page_width": 1600,
+    "spacing_sections": 0,
+    "spacing_grid_horizontal": 4,
+    "spacing_grid_vertical": 4,
+    "buttons_border_thickness": 1,
+    "buttons_border_opacity": 100,
+    "buttons_radius": 2,
+    "buttons_shadow_opacity": 0,
+    "buttons_shadow_horizontal_offset": 0,
+    "buttons_shadow_vertical_offset": 4,
+    "buttons_shadow_blur": 5,
+    "variant_pills_border_thickness": 1,
+    "variant_pills_border_opacity": 55,
+    "variant_pills_radius": 40,
+    "variant_pills_shadow_opacity": 0,
+    "variant_pills_shadow_horizontal_offset": 0,
+    "variant_pills_shadow_vertical_offset": 4,
+    "variant_pills_shadow_blur": 5,
+    "inputs_border_thickness": 1,
+    "inputs_border_opacity": 55,
+    "inputs_radius": 0,
+    "inputs_shadow_opacity": 0,
+    "inputs_shadow_horizontal_offset": 0,
+    "inputs_shadow_vertical_offset": 4,
+    "inputs_shadow_blur": 5,
+    "card_style": "standard",
+    "card_image_padding": 0,
+    "card_text_alignment": "left",
+    "card_color_scheme": "background-2",
+    "card_border_thickness": 0,
+    "card_border_opacity": 10,
+    "card_corner_radius": 0,
+    "card_shadow_opacity": 0,
+    "card_shadow_horizontal_offset": 0,
+    "card_shadow_vertical_offset": 4,
+    "card_shadow_blur": 5,
+    "collection_card_style": "standard",
+    "collection_card_image_padding": 0,
+    "collection_card_text_alignment": "left",
+    "collection_card_color_scheme": "background-2",
+    "collection_card_border_thickness": 0,
+    "collection_card_border_opacity": 10,
+    "collection_card_corner_radius": 0,
+    "collection_card_shadow_opacity": 0,
+    "collection_card_shadow_horizontal_offset": 0,
+    "collection_card_shadow_vertical_offset": 4,
+    "collection_card_shadow_blur": 5,
+    "blog_card_style": "standard",
+    "blog_card_image_padding": 0,
+    "blog_card_text_alignment": "left",
+    "blog_card_color_scheme": "inverse",
+    "blog_card_border_thickness": 0,
+    "blog_card_border_opacity": 10,
+    "blog_card_corner_radius": 0,
+    "blog_card_shadow_opacity": 0,
+    "blog_card_shadow_horizontal_offset": 0,
+    "blog_card_shadow_vertical_offset": 4,
+    "blog_card_shadow_blur": 5,
+    "text_boxes_border_thickness": 0,
+    "text_boxes_border_opacity": 10,
+    "text_boxes_radius": 0,
+    "text_boxes_shadow_opacity": 0,
+    "text_boxes_shadow_horizontal_offset": 0,
+    "text_boxes_shadow_vertical_offset": 4,
+    "text_boxes_shadow_blur": 5,
+    "media_border_thickness": 1,
+    "media_border_opacity": 5,
+    "media_radius": 0,
+    "media_shadow_opacity": 0,
+    "media_shadow_horizontal_offset": 0,
+    "media_shadow_vertical_offset": 4,
+    "media_shadow_blur": 5,
+    "popup_border_thickness": 1,
+    "popup_border_opacity": 10,
+    "popup_corner_radius": 0,
+    "popup_shadow_opacity": 0,
+    "popup_shadow_horizontal_offset": 0,
+    "popup_shadow_vertical_offset": 4,
+    "popup_shadow_blur": 5,
+    "drawer_border_thickness": 1,
+    "drawer_border_opacity": 10,
+    "drawer_shadow_opacity": 0,
+    "drawer_shadow_horizontal_offset": 0,
+    "drawer_shadow_vertical_offset": 4,
+    "drawer_shadow_blur": 5,
+    "badge_position": "bottom left",
+    "badge_corner_radius": 40,
+    "sale_badge_color_scheme": "accent-2",
+    "sold_out_badge_color_scheme": "inverse",
+    "accent_icons": "accent-2",
+    "brand_headline": "",
+    "brand_description": "<p></p>",
+    "brand_image_width": 100,
+    "social_facebook_link": "https://www.facebook.com/mynunorm",
+    "social_instagram_link": "https://www.instagram.com/mynunorm/",
+    "social_youtube_link": "https://www.youtube.com/@mynunorm",
+    "social_tiktok_link": "http://tiktok.com/@mynunorm",
+    "social_twitter_link": "",
+    "social_snapchat_link": "",
+    "social_pinterest_link": "",
+    "social_tumblr_link": "",
+    "social_vimeo_link": "",
+    "social_discord_link": "",
+    "social_linkedin_link": "",
+    "predictive_search_enabled": true,
+    "predictive_search_show_vendor": false,
+    "predictive_search_show_price": false,
+    "currency_code_enabled": true,
+    "cart_type": "drawer",
+    "show_vendor": false,
+    "show_cart_note": false,
+    "cart_drawer_collection": "",
+    "sample-product": "",
+    "cart_messaging": "2% of your order will go directly towards funding men’s mental health programs. To learn more, check out the EQUAL Foundation on our About Page.",
+    "upsell_cart_drawer_collection": [
+      "tinted-hydrator",
+      "quick-cover-stick",
+      "shine-eraser",
+      "okuni-brush",
+      "brow-rescue",
+      "vera-sponge",
+      "brow-tamer",
+      "reset-wipes",
+      "travel-bag"
+    ],
+    "progress_free_shipping_image": "shopify://shop_images/car.svg",
+    "progress_free_gift_image": "shopify://shop_images/gift-box.svg",
+    "free_gift_product": "vera-sponge-free",
+    "non_subscription_products": [
+      "vera-sponge-free",
+      "vera-sponge"
+    ],
+    "free_gift_goal": 100,
+    "progress_title_default": "Wait! Never pay for shipping.",
+    "progress_message_default": "Add <b>${remaining}</b> more for Free Shipping on your order!",
+    "progress_message_free_shipping": "Add <b>${remaining}</b> more for a Free  Sponge!",
+    "progress_message_free_gift": "You're saving <b>10% + Free Shipping + Free  Sponge!</b>",
+    "subscription_benefits_text_1": "<p><strong>SAVE UP TO 10% OFF </strong>on all orders</p>",
+    "subscription_benefits_text_2": "<p><strong>CANCEL </strong>or pause at any time</p>",
+    "subscription_benefits_text_3": "<p><strong>GAIN LOYALTY POINTS</strong> on each order</p>",
+    "subscription_benefits_text_4": "<p><strong>OUT OF STOCK PROTECTION</strong></p>",
+    "body_text_case": "sentence",
+    "primary_button_bg": "#953f2f",
+    "primary_button_bg_hover": "#fbeeda",
+    "primary_button_text": "#fbeeda",
+    "primary_button_text_hover": "#213346",
+    "secondary_button_bg": "#213346",
+    "secondary_button_bg_hover": "#fbedda",
+    "secondary_button_text": "#fbedda",
+    "secondary_button_text_hover": "#953f2f",
+    "tertiary_button_bg": "#fbeeda",
+    "tertiary_button_bg_hover": "#953f2f",
+    "tertiary_button_text": "#953f2f",
+    "tertiary_button_text_hover": "#fbeeda",
+    "fourth_button_bg": "#953f2f",
+    "fourth_button_bg_hover": "#fbeeda",
+    "fourth_button_text": "#fbeeda",
+    "fourth_button_text_hover": "#fbeeda",
+    "h1_size_desktop": 26,
+    "h1_size_laptop": 26,
+    "h1_size_mobile": 22,
+    "h2_size_desktop": 24,
+    "h2_mb_desktop": 15,
+    "h2_size_laptop": 24,
+    "h2_size_mobile": 20,
+    "h3_size_desktop": 22,
+    "h3_size_laptop": 22,
+    "h3_size_mobile": 18,
+    "h4_size_desktop": 20,
+    "h4_size_laptop": 20,
+    "h4_size_mobile": 16,
+    "h5_size_desktop": 18,
+    "h5_size_mobile": 14,
+    "h6_size_desktop": 16,
+    "big_desc_size_desktop": 18,
+    "big_desc_mb_desktop": 14,
+    "big_desc_size_laptop": 18,
+    "big_desc_mb_laptop": 14,
+    "big_desc_size_mobile": 16,
+    "medium_desc_size_desktop": 16,
+    "medium_desc_mb_desktop": 10,
+    "medium_desc_size_laptop": 16,
+    "medium_desc_mb_laptop": 10,
+    "medium_desc_size_mobile": 14,
+    "small_desc_size_desktop": 14,
+    "small_desc_mb_desktop": 10,
+    "small_desc_size_laptop": 14,
+    "small_desc_mb_laptop": 10,
+    "checkout_logo_image": "shopify://shop_images/Background_24.png",
+    "checkout_body_background_color": "#ffffff",
+    "checkout_sidebar_background_color": "#f5f5f5",
+    "checkout_accent_color": "#8d2c27",
+    "checkout_button_color": "#8d2c27",
+    "subscription_box_icon": true,
+    "sections": {
+      "main-password-header": {
+        "type": "main-password-header",
+        "settings": {
+          "color_scheme": "background-1"
+        }
+      },
+      "main-password-footer": {
+        "type": "main-password-footer",
+        "settings": {
+          "color_scheme": "background-1"
+        }
+      },
+      "Tutorial-page-hero-banner": {
+        "type": "Tutorial-page-hero-banner",
+        "settings": {
+          "background_color": "#fbeeda",
+          "img": "shopify://shop_images/Brow_Rescue_Mirror_Noel_Success.jpg",
+          "img1": "shopify://shop_images/Brow_Rescue_Mirror_Noel_Success.jpg",
+          "head": "Become A <em><strong>Makeup Pro</strong></em>",
+          "description": "Quick makeup and skincare tutorials tailored for beginners.",
+          "btn-text": "",
+          "btn-link": ""
+        }
+      },
+      "not-sure-where-to-start": {
+        "type": "not-sure-where-to-start",
+        "blocks": {
+          "65562efd-419b-464e-9109-a2defbf7ed1f": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-comedones-acne-5585458_1.svg?v=1684995180",
+              "box-head": "skin diseases",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna."
+            }
+          },
+          "0d1dd494-e067-44df-9dcb-f839b107c643": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-deep-mimic-wrinkles-5585452_1.svg?v=1684995180",
+              "box-head": "inflammatory disorders",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna."
+            }
+          },
+          "b1c98035-6573-4c72-b14f-2adc2de759a5": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-post-acne-scars-5585463_1.svg?v=1684995180",
+              "box-head": "premature aging",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna."
+            }
+          },
+          "e9634d59-095d-4a32-80c2-bf46edb2eb1e": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-mens-face-clear-skin-5585475_1.svg?v=1684995180",
+              "box-head": "boosting self-confidence",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna."
+            }
+          }
+        },
+        "block_order": [
+          "65562efd-419b-464e-9109-a2defbf7ed1f",
+          "0d1dd494-e067-44df-9dcb-f839b107c643",
+          "b1c98035-6573-4c72-b14f-2adc2de759a5",
+          "e9634d59-095d-4a32-80c2-bf46edb2eb1e"
+        ],
+        "settings": {
+          "head": "",
+          "content": ""
+        }
+      },
+      "visual-try": {
+        "type": "visual-try",
+        "settings": {
+          "hide": "0",
+          "visual-try-home": "",
+          "head": "VISUAL TRY-ON <span class=\"new-line\">is the NUNORM</span>",
+          "content": "Say goodbye to trial and error and get the perfect shade instantly. Whether you’re dealing with blemishes, redness, eye bags, or dark circles, our AI Powered Shade Finder + Try On Tool ensures our products are tailored exactly to your needs.",
+          "btn-text": "FIND YOUR SHADE",
+          "link": "shopify://collections/store",
+          "image": "shopify://shop_images/Mask_group_fc3740d1-850c-49ab-9fc2-d78fc310bf62.png"
+        }
+      },
+      "want-to-learn": {
+        "type": "want-to-learn",
+        "blocks": {
+          "f6d7a7c9-1884-4005-a068-b2836be4dc54": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "LARGE PORES",
+              "product-1": "shine-eraser",
+              "product-content-1": "Mattifies the skin and helps absorb excess oil to instantly reduce the appearance of pores.",
+              "product-2": "quick-cover-stick",
+              "product-content-2": "Melts onto skin to blur enlarged, visible pores while leaving a smooth matte finish.",
+              "product-3": "tinted-hydrator",
+              "product-content-3": "Blurs imperfections and keeps skin looking fresh all day.",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+              "poster-img": "shopify://shop_images/edfb5c79-59ef-4890-aa5a-372c0a851857_1.png",
+              "content": "A common skin concern caused by various factors including genetics, age and excess sebum production. While it is not possible to completely get rid of enlarged pores, there are many ways to reduce their appearance with proper skincare and makeup application."
+            }
+          },
+          "e17f20fd-04d6-4b73-860c-0a668c65df21": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Breakout Spots",
+              "product-1": "shine-eraser",
+              "product-content-1": "Instantly absorbs and reduces excess oil and sweat. Mattifies to reduce shine, making blemishes less noticeable.",
+              "product-2": "quick-cover-stick",
+              "product-content-2": "Great for spot-covering blemishes that may need a little extra coverage.",
+              "product-3": "tinted-hydrator",
+              "product-content-3": "Instantly imparts a natural sheer veil of coverage, reducing and minimizing redness and blemishes.",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+              "poster-img": "shopify://shop_images/Mask_group-3_1.png",
+              "content": "Visible bumps or blemishes on the skin caused by oil, bacteria or dirt clogging the pores/hair follicles resulting in inflammation, redness or scarring."
+            }
+          },
+          "02203564-83de-411d-bca8-a3c670da667a": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Dark Spots",
+              "product-1": "quick-cover-stick",
+              "product-content-1": "Instantly covers and minimizes the appearance of dark spots with a natural skin-like finish.",
+              "product-2": "tinted-hydrator",
+              "product-content-2": "Blurs and minimizes imperfections like dark spots and scars, and evens skin tone. Niacinamide helps brighten the complexion.",
+              "product-3": "",
+              "product-content-3": "",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "",
+              "content": "Also called hyperpigmentation, dark spots on the skin are caused by an overproduction of melanin, giving them a darker than normal color. Causes include sun exposure, hormones, age, and scarring."
+            }
+          },
+          "6ca39882-ccc2-488a-b79e-ea131c546002": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Razor Bumps & Burn",
+              "product-1": "tinted-hydrator",
+              "product-content-1": "Instantly evens skin tone and provides essential hydration. Niacinamide helps strengthen and maintain skin barrier while reducing redness.",
+              "product-2": "",
+              "product-content-2": "",
+              "product-3": "",
+              "product-content-3": "",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+              "poster-img": "shopify://shop_images/Mask_group-1_f0b3d001-0b65-4686-b291-6a63baadb9a7.png",
+              "content": "A common skin irritation caused by shaving that can result in redness and razor bumps, the result of ingrown hairs."
+            }
+          },
+          "2581c395-923d-41ba-b198-a9e698f6ba3d": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Dry Skin",
+              "product-1": "tinted-hydrator",
+              "product-content-1": "Provides a burst of immediate hydration and keeps skin balanced all day without a greasy, heavy feel.",
+              "product-2": "",
+              "product-content-2": "",
+              "product-3": "",
+              "product-content-3": "",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "",
+              "content": "A chronic or temporary skin condition caused by a variety of factors including genetics, age, lifestyle, and seasonality. Characterized by rough, itchy, or flaky skin that can feel dry and tight."
+            }
+          },
+          "13452012-d803-4f8e-ba82-7a53f544e287": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Dull Tired Skin",
+              "product-1": "tinted-hydrator",
+              "product-content-1": "Evens skin tone and imparts a long-lasting healthy glow. Breathes instant life into your complexion, the ultimate “Hangover Face” remedy. Provides antioxidant protection to help prevent future damage.",
+              "product-2": "",
+              "product-content-2": "",
+              "product-3": "",
+              "product-content-3": "",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+              "poster-img": "shopify://shop_images/74a5542a-de4e-414f-9512-ec1e27454c7e_1.png",
+              "content": "A dull, tired complexion caused by various lifestyle and environmental factors like sun exposure, pollution, lack of sleep, alcohol consumption, etc. AKA Hangover Face."
+            }
+          },
+          "a75e9c0d-3533-4875-8426-fb930805db50": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Oily Skin",
+              "product-1": "shine-eraser",
+              "product-content-1": "Absorbs excess oil and sweat to instantly reduce shine and help balance skin’s sebum.",
+              "product-2": "quick-cover-stick",
+              "product-content-2": "Smooth, matte finish helps turn down shine and blur the appearance of pores and texture on shiny, oily skin.",
+              "product-3": "tinted-hydrator",
+              "product-content-3": "Lightweight finish keeps hydration levels balanced without looking or feeling greasy or shiny.",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "",
+              "content": "A chronic or temporary skin condition caused by excess sebum (oil) production, lifestyle or environmental factors (like humidity) that can result in clogged pores, and a greasy, shiny complexion."
+            }
+          },
+          "2d684941-c011-4b3a-be3e-8304a06d26e2": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Combination Skin",
+              "product-1": "shine-eraser",
+              "product-content-1": "Perfect for blotting onto oily areas of face (commonly the forehead and nose) to reduce shine and balance sebum in those areas.",
+              "product-2": "quick-cover-stick",
+              "product-content-2": "Adheres well to all skin types to blur imperfections on all areas of the face.",
+              "product-3": "tinted-hydrator",
+              "product-content-3": "Great for all skin types, balances hydration without leaving skin greasy or shiny.",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "",
+              "content": "A combination of oily, normal, and/or dry skin on different parts of the face."
+            }
+          },
+          "8a7de4c0-392e-41f7-823c-f1621ca549e6": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Sparse or Patchy Facial Hair",
+              "product-1": "brow-rescue",
+              "product-content-1": "Helps fill sparse, patchy brows and facial hair, and provides long lasting definition.",
+              "product-2": "",
+              "product-content-2": "",
+              "product-3": "",
+              "product-content-3": "",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "",
+              "content": "Facial hair, like head hair, rarely grows densely and evenly all over. Understanding your unique growth pattern, keeping hairs nourished, and employing a few tricks and tools will help give your facial hair a more defined, neat look. Fake the fill."
+            }
+          },
+          "6bdc7d06-4eda-4f94-a35a-70b974dda85b": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Multiple Skin Tones",
+              "product-1": "shine-eraser",
+              "product-content-1": "Available in 3 flexible mattifying shades for light, medium and deep complexions.",
+              "product-2": "quick-cover-stick",
+              "product-content-2": "Available in 17 shades from fair to deep, to ensure your near perfect match.",
+              "product-3": "tinted-hydrator",
+              "product-content-3": "Available in 10 sheer shades for a healthy glow on virtually any skin tone.",
+              "product-4": "brow-rescue",
+              "product-content-4": "Available in 8 shades to match most hair colors, including grey.",
+              "v-url": "",
+              "content": "We believe different skin tones are a beautiful aspect of human diversity, and we understand that each one is unique, so we went the extra mile to formulate shades that work for almost anyone."
+            }
+          },
+          "9e70623e-33ef-45c1-a501-c53efec59ace": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Redness",
+              "product-1": "quick-cover-stick",
+              "product-content-1": "Perfect to spot-conceal areas of redness",
+              "product-2": "tinted-hydrator",
+              "product-content-2": "Instantly evens skin tone, and helps calm and correct redness.",
+              "product-3": "",
+              "product-content-3": "",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "",
+              "content": "Common causes of mild skin redness include: physical irritation (like shaving), sunburn, heat, and allergies. It happens to everyone at some point."
+            }
+          },
+          "3a7f42f8-bd56-4cbc-82ab-e18d11e63566": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "Fine Lines & Wrinkles",
+              "product-1": "quick-cover-stick",
+              "product-content-1": "Provides a smooth, matte finish to help blur fine lines and texture.",
+              "product-2": "tinted-hydrator",
+              "product-content-2": "Hydrates and plumps skin to minimize lines and wrinkles, and provides antioxidant protection to help prevent further premature aging.  ",
+              "product-3": "",
+              "product-content-3": "",
+              "product-4": "",
+              "product-content-4": "",
+              "v-url": "",
+              "content": "A normal part of aging, wrinkles are lines or creases on your skin caused by loss of collagen, they can be exacerbated by smoking or sun damage. While we believe you only get better with age, sometimes you just want a little skin refresh"
+            }
+          },
+          "73ebc308-b32e-455d-a9f5-105c119d782b": {
+            "type": "vedio-box",
+            "settings": {
+              "filter-id": "View All",
+              "product-1": "shine-eraser",
+              "product-content-1": "Mattifies the skin and helps absorb excess oil to instantly reduce the appearance of pores.",
+              "product-2": "quick-cover-stick",
+              "product-content-2": "Melts onto skin to blur enlarged, visible pores while leaving a smooth matte finish.",
+              "product-3": "tinted-hydrator",
+              "product-content-3": "Blurs imperfections and keeps skin looking fresh all day.",
+              "product-4": "brow-rescue",
+              "product-content-4": "Quick and easy filling and definition for brows and facial hair.",
+              "v-url": "",
+              "content": ""
+            }
+          }
+        },
+        "block_order": [
+          "f6d7a7c9-1884-4005-a068-b2836be4dc54",
+          "e17f20fd-04d6-4b73-860c-0a668c65df21",
+          "02203564-83de-411d-bca8-a3c670da667a",
+          "6ca39882-ccc2-488a-b79e-ea131c546002",
+          "2581c395-923d-41ba-b198-a9e698f6ba3d",
+          "13452012-d803-4f8e-ba82-7a53f544e287",
+          "a75e9c0d-3533-4875-8426-fb930805db50",
+          "2d684941-c011-4b3a-be3e-8304a06d26e2",
+          "8a7de4c0-392e-41f7-823c-f1621ca549e6",
+          "6bdc7d06-4eda-4f94-a35a-70b974dda85b",
+          "9e70623e-33ef-45c1-a501-c53efec59ace",
+          "3a7f42f8-bd56-4cbc-82ab-e18d11e63566",
+          "73ebc308-b32e-455d-a9f5-105c119d782b"
+        ],
+        "settings": {
+          "sec-head": "Skincare Tips for Blemishes, Dry Skin, and More",
+          "content": "Don’t know where to start with makeup and skincare? Don’t worry! we’ve created easy-to-follow tutorials to help you start your skincare and makeup journey. We have tips for blemishes, razor bumps, applying makeup, and more! Click on the subject below that you want to learn more about! ",
+          "btn-1": "LARGE PORES",
+          "btn-2": "Dull Tired Skin",
+          "btn-3": "Razor Bumps & Burn",
+          "btn-4": "Dry Skin",
+          "btn-5": "Oily Skin",
+          "btn-6": "Sparse or Patchy Facial Hair",
+          "btn-7": "Multiple Skin Tones",
+          "btn-8": "Dark Spots",
+          "btn-9": "Breakout Spots",
+          "btn-10": "Combination Skin",
+          "btn-11": "Redness",
+          "btn-12": "Fine Lines & Wrinkles",
+          "custom-filter": true
+        }
+      },
+      "Everyone-has-the-right-to-wear-makeup": {
+        "type": "Everyone-has-the-right-to-wear-makeup",
+        "settings": {
+          "sec-head": "Makeup and Skincare Made for Men",
+          "content": "<p>From a dermatological perspective, men and women have completely different skin. Still, most makeup and skincare products are primarily catered to women. Our products were created to address this problem and are specifically formulated to ensure that men of all skin types have a product tailored to them.</p>"
+        }
+      },
+      "faq": {
+        "type": "faq",
+        "settings": {
+          "sec-head": "FAQ's",
+          "content": "Your Guide to Men's Makeup Application and Product Insights"
+        }
+      },
+      "our-community": {
+        "type": "our-community",
+        "settings": {
+          "our-community-home": "",
+          "sec-heading": "Real Stories from Our Community",
+          "pera": "Join the NuNorm community for a chance to learn from the experiences of like-minded people. Gain guidance, inspiration, a judgment-free zone, and the opportunity to celebrate mental health and wellness with others. ",
+          "img1": "shopify://shop_images/community-mem-1_089974e3-6fb2-42cd-a06c-a81ae9da1591.jpg",
+          "img11": "shopify://shop_images/community-mem-4_4016c493-da99-4b8e-8582-c513e33b9f45.jpg",
+          "name1": "name",
+          "detail-1": "<p>Lörem ipsum dekafade antilåv. Parast telent neototal triggervarning. <br/>Disk bining sahyska vifask. Ningen nysam pafus paratris.</p>",
+          "img2": "shopify://shop_images/community-mem-2_4ecebf3f-6e07-4595-8b6b-3a5e39723bca.jpg",
+          "img22": "shopify://shop_images/community-mem-1_089974e3-6fb2-42cd-a06c-a81ae9da1591.jpg",
+          "name2": "name",
+          "detail-2": "<p>Lörem ipsum dekafade antilåv. Parast telent neototal triggervarning.<br/>Disk bining sahyska vifask. Ningen nysam pafus paratris.</p>",
+          "img3": "shopify://shop_images/community-mem-3_de3b08b1-38bf-4d9d-ba4d-c069029c63bd.jpg",
+          "img33": "shopify://shop_images/community-mem-2_4ecebf3f-6e07-4595-8b6b-3a5e39723bca.jpg",
+          "name3": "name",
+          "detail-3": "<p>Lörem ipsum dekafade antilåv. Parast telent neototal triggervarning. <br/>Disk bining sahyska vifask. Ningen nysam pafus paratris.</p>",
+          "img4": "shopify://shop_images/community-mem-4_4016c493-da99-4b8e-8582-c513e33b9f45.jpg",
+          "img44": "shopify://shop_images/community-mem-4_4016c493-da99-4b8e-8582-c513e33b9f45.jpg",
+          "name4": "name",
+          "detail-4": "<p>Lörem ipsum dekafade antilåv. Parast telent neototal triggervarning. <br/>Disk bining sahyska vifask. Ningen nysam pafus paratris.</p>",
+          "btn-text": "Join Our Community",
+          "btn-link": "shopify://pages/community-blog"
+        }
+      },
+      "logos-home": {
+        "type": "logos-home",
+        "settings": {
+          "logos-home": "",
+          "sec-heading": "yes, we’ve been featured in:",
+          "logo-1": "shopify://shop_images/1280px-Allure_logo-2.png",
+          "logo-2": "shopify://shop_images/teenvogue-1_1.png",
+          "logo-3": "shopify://shop_images/byrdie-1_0eb546b7-9600-4594-a20b-86599291e1c7.png",
+          "logo-4": "shopify://shop_images/1280px-Allure_logo-2_2.png",
+          "logo-5": "shopify://shop_images/teenvogue-1_1.png"
+        }
+      },
+      "about-hero-banner": {
+        "type": "about-hero-banner",
+        "settings": {
+          "img": "shopify://shop_images/Group_394.png",
+          "sec-head": "THE <i>NUNORM</i> IS HERE",
+          "content": "And everyone is looking—and feeling—great."
+        }
+      },
+      "why-nu-norm": {
+        "type": "why-nu-norm",
+        "blocks": {
+          "77d82cd9-4ad6-4a7e-a3b8-88f82121b6a3": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-comedones-acne-5585458_1.svg?v=1684995180",
+              "box-head": "skin diseases",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna."
+            }
+          },
+          "a28fe96e-fcc7-4b7c-a2a4-39ab82ee12c5": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-deep-mimic-wrinkles-5585452_1.svg?v=1684995180",
+              "box-head": "inflammatory disorders",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna"
+            }
+          },
+          "7eb1b2d0-ac52-4c57-87b0-7da540c13572": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-post-acne-scars-5585463_1.svg?v=1684995180",
+              "box-head": "premature aging",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna."
+            }
+          },
+          "5a36eb05-e75e-43fd-8c14-78f51d18c570": {
+            "type": "box",
+            "disabled": true,
+            "settings": {
+              "img-url": "https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-mens-face-clear-skin-5585475_1.svg?v=1684995180",
+              "box-head": "boosting self-confidence",
+              "box-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna."
+            }
+          }
+        },
+        "block_order": [
+          "77d82cd9-4ad6-4a7e-a3b8-88f82121b6a3",
+          "a28fe96e-fcc7-4b7c-a2a4-39ab82ee12c5",
+          "7eb1b2d0-ac52-4c57-87b0-7da540c13572",
+          "5a36eb05-e75e-43fd-8c14-78f51d18c570"
+        ],
+        "settings": {
+          "sec-head": "WHY WE'RE HERE",
+          "content": "<p>Well, we’re honestly here for YOU. Yes, you. An amazing human being with multitudes of diverse layers that wants to look and feel like their favorite, most authentic self. The traditional, mainstream beauty and makeup industry has always focused on femme faces and really underinvested in what self-care and uncomplicated beauty can look like for men. <br/></p><p>Makeup isn’t just for women. The desire to look and feel your best is universal, but the vast majority of makeup products are made for and marketed exclusively to women. That’s been the norm for as long as we can remember. </p><p></p><p>Now we’re creating a NuNorm. We’ve designed a core line of products formulated specifically for male skin, so you don’t need to navigate outdated social norms, judgment, or confusion around traditional cosmetics ever again.</p>"
+        }
+      },
+      "formulas-backed-by-clinical-studies": {
+        "type": "formulas-backed-by-clinical-studies",
+        "blocks": {
+          "f5999a20-e502-4ebc-950d-ffbbee8b6ec2": {
+            "type": "box",
+            "settings": {
+              "img": "shopify://shop_images/Mask_group_1.png",
+              "head": "CRUELTY-FREE CONFIDENCE",
+              "content": "All our products are cruelty free, because looking and feeling good should never come at another’s expense."
+            }
+          },
+          "79169a90-83ef-45e2-ae7b-19fdf439f2d9": {
+            "type": "box",
+            "settings": {
+              "img": "shopify://shop_images/Mask_group_2.png",
+              "head": "NATURAL, VEGAN INGREDIENTS",
+              "content": "Our clean formulas are sustainable, free of animal products, and friendly to all skin types."
+            }
+          },
+          "8b28b7b1-7432-4b7d-b50e-a39b12ba6a7e": {
+            "type": "box",
+            "settings": {
+              "img": "shopify://shop_images/Group_395_a0bd7366-b98e-46a8-b178-75c9ba6f0bda.png",
+              "head": "MADE FOR YOU",
+              "content": "Nourishing ingredients and formulas made specifically for male skin so you always look uniquely you."
+            }
+          }
+        },
+        "block_order": [
+          "f5999a20-e502-4ebc-950d-ffbbee8b6ec2",
+          "79169a90-83ef-45e2-ae7b-19fdf439f2d9",
+          "8b28b7b1-7432-4b7d-b50e-a39b12ba6a7e"
+        ],
+        "settings": {
+          "sec-head": "THE NU NORM PROMISE"
+        }
+      },
+      "a-letter-from-our-ceo": {
+        "type": "a-letter-from-our-ceo",
+        "settings": {
+          "sec-head": "a letter from our ceo",
+          "content": "<p>We firmly believe that makeup is for everyone, regardless of gender, and we want to change the outdated perception that it is exclusively for women. Our mission is to help men feel confident and empowered by offering high-quality makeup products that cater to their specific needs, and we invite you to step out of your comfort zone and give it a try. We hope to see a future where wearing makeup is <em><strong>nürmalized</strong></em> for all genders, and we are committed to this journey of discovery and transformation.</p>",
+          "img": "shopify://shop_images/image_37.png"
+        }
+      },
+      "multicolumn": {
+        "type": "multicolumn",
+        "blocks": {
+          "7ec497cc-4a98-4722-9b1d-f83b12d9cf17": {
+            "type": "column",
+            "settings": {
+              "title": "Column",
+              "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+              "link_label": "",
+              "link": ""
+            }
+          },
+          "15606f92-4932-4636-a51f-7d4bd38781f1": {
+            "type": "column",
+            "settings": {
+              "title": "Column",
+              "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+              "link_label": "",
+              "link": ""
+            }
+          },
+          "d1fde0f8-54ac-42a2-a648-bf12e5859fe0": {
+            "type": "column",
+            "settings": {
+              "title": "Column",
+              "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+              "link_label": "",
+              "link": ""
+            }
+          },
+          "06eb448d-805b-4653-9fb8-32ee53de992f": {
+            "type": "column",
+            "settings": {
+              "title": "Column",
+              "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+              "link_label": "",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "7ec497cc-4a98-4722-9b1d-f83b12d9cf17",
+          "15606f92-4932-4636-a51f-7d4bd38781f1",
+          "d1fde0f8-54ac-42a2-a648-bf12e5859fe0",
+          "06eb448d-805b-4653-9fb8-32ee53de992f"
+        ],
+        "settings": {
+          "title": "Multicolumn",
+          "heading_size": "h1",
+          "image_width": "full",
+          "image_ratio": "adapt",
+          "columns_desktop": 4,
+          "column_alignment": "left",
+          "background_style": "primary",
+          "button_label": "Button label",
+          "button_link": "",
+          "color_scheme": "background-1",
+          "columns_mobile": "1",
+          "swipe_on_mobile": false,
+          "padding_top": 36,
+          "padding_bottom": 36
+        }
+      },
+      "our-best-saller": {
+        "type": "our-best-saller",
+        "blocks": {
+          "6d491d7a-a88a-41a7-9e12-46357f9dfc76": {
+            "type": "column",
+            "settings": {
+              "image": "shopify://shop_images/1.png",
+              "title": "1. Shine Eraser",
+              "text": "<p>Take the glare down a notch. Our invisible blotting and setting powder is designed to instantly absorb excess oil and sweat, reduce shine and mattify the complexion. Packaged in a discreet, compact slide tin that makes for easy touch ups on the go. <br/></p>",
+              "link_label": "Try it now",
+              "link": "#"
+            }
+          },
+          "18963cad-22b2-4f9a-8fef-8a25bc1dd947": {
+            "type": "column",
+            "settings": {
+              "image": "shopify://shop_images/2.png",
+              "title": "2. Tinted Hydrator",
+              "text": "<p>Looking for a way to even out your skin tone without a lot of fuss? Our tinted hydrator does just that. Our light weight sheer skin tint applies like a refreshing facial lotion that immediately blurs imperfections, evens out your skin tone and provides lasting hydration for a more healthy looking complexion.<br/></p>",
+              "link_label": "Try it now",
+              "link": "#"
+            }
+          },
+          "68a148ae-d942-4ed4-b3a6-2f33ff5a72d7": {
+            "type": "column",
+            "settings": {
+              "image": "shopify://shop_images/3.png",
+              "title": "3. Quick Cover",
+              "text": "<p>Have a good skin day. Our multi-use complexion stick offers lightweight, buildable coverage to instantly conceal and cover blemishes, discoloration and other skin imperfections. Our creamy, flexible formula blends easily and adheres to skin for a natural, soft matte finish. <br/></p>",
+              "link_label": "Try it now",
+              "link": "#"
+            }
+          },
+          "bfa28bbf-04bd-4d8e-a7de-09a0aa1840e9": {
+            "type": "column",
+            "settings": {
+              "image": "shopify://shop_images/Group_193.png",
+              "title": "4. Brow Tamer",
+              "text": "<p>Brows are the key to a put together look. Don’t let yours get out of control! Our invisible clear gel grooms, shapes and sets brows and can be used to tame and hold unruly facial hair while hair care actives help condition hairs and promote stronger, healthier growth over time. <br/></p>",
+              "link_label": "Try it now",
+              "link": "#"
+            }
+          }
+        },
+        "block_order": [
+          "6d491d7a-a88a-41a7-9e12-46357f9dfc76",
+          "18963cad-22b2-4f9a-8fef-8a25bc1dd947",
+          "68a148ae-d942-4ed4-b3a6-2f33ff5a72d7",
+          "bfa28bbf-04bd-4d8e-a7de-09a0aa1840e9"
+        ],
+        "settings": {
+          "title": "SIMPLE.  INCLUSIVE. MADE FOR YOU.",
+          "para_text": "Our core collection simplifies cosmetic overwhelm and provides the four main products you need to put your best face forward.",
+          "heading_size": "h2",
+          "image_width": "full",
+          "image_ratio": "adapt",
+          "columns_desktop": 4,
+          "column_alignment": "center",
+          "background_style": "none",
+          "button_label": "More Products",
+          "button_link": "#",
+          "color_scheme": "background-1",
+          "columns_mobile": "1",
+          "swipe_on_mobile": false,
+          "padding_top": 0,
+          "padding_bottom": 36
+        }
+      },
+      "our-best-sellers-text": {
+        "type": "our-best-sellers-text",
+        "settings": {
+          "sec-head": "OUR BEST SELLERS",
+          "content": "<p>Lörem ipsum dekafade antilåv. Parast telent neototal triggervarning. Disk bining sahyska vifask. Ningen nysam pafus paratris.</p>"
+        }
+      },
+      "email-modal": {
+        "type": "email-modal",
+        "settings": {
+          "dev_mode": false,
+          "email_modal_enable": false,
+          "email_modal_preview": false,
+          "email_modal_success_preview": false,
+          "email_modal_background_image": "shopify://shop_images/Brow_Rescue_Mirror_In_Use_9638bdcb-bc98-4136-b008-8b54ba6e5526.jpg",
+          "email_modal_background_image_mobile": "shopify://shop_images/Brow_Rescue_Mirror_In_Use_Zoomed_In.jpg",
+          "email_modal_success_background_image": "shopify://shop_images/Brow_Rescue_Success_AFTER_IMAGE_e332ff3c-b7f1-4c5d-8679-0dbd604f4022.jpg",
+          "email_modal_success_background_image_mobile": "shopify://shop_images/Brow_Rescue_Mirror_Success_Zoomed_In.jpg",
+          "background_color": "#213346",
+          "border_color": "#953f2f",
+          "email_modal_title": "1st time Customer?",
+          "email_modal_title_success": "Try us. Love us. Rinse & Repeat",
+          "header_text_color": "#953f2f",
+          "close_button_color": "#fbeedb",
+          "email_modal_content": "<p>Get <strong>15% off </strong></p><p>your first order</p>",
+          "email_modal_content_success": "<p>Welcome to your NuNorm!</p>",
+          "email_modal_subtitle_text_color": "#000000",
+          "email_modal_button_text": "GRAB YOUR CODE",
+          "submit_button_background_color": "#8c2a26",
+          "submit_button_text_color": "#ffffff",
+          "email_modal_button_text_success": "COPY YOUR CODE",
+          "email_modal_discount_code": "BeTheNNRM"
+        }
+      },
+      "page-header": {
+        "type": "page-header",
+        "settings": {
+          "image_position": "left",
+          "title": "<em>Become A Makeup Pro</em>",
+          "description": "Quick makeup and skincare tutorials tailored for beginners.",
+          "image": "shopify://shop_images/Brow_Rescue_Mirror_Noel_Success.jpg",
+          "background_color": "#fbeeda",
+          "title_text_color": "#213346",
+          "title_accent_text_color": "#c07147",
+          "description_text_color": "#48646E"
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "judgeme_core_ac3fabba": {
+        "type": "shopify://apps/judge-me-product-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "16548475241908962911": {
+        "type": "shopify://apps/oxi-social-login/blocks/social-login-embed/24ad60bc-8f09-42fa-807e-e5eda0fdae17",
+        "disabled": false,
+        "settings": {}
+      },
+      "14652898158514659544": {
+        "type": "shopify://apps/fly-bundles-upsell/blocks/app-embed/26807bdc-c2ed-4a25-afb2-06e6b1ebf843",
+        "disabled": false,
+        "settings": {}
+      },
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
+      },
+      "4379643256173503040": {
+        "type": "shopify://apps/joy-subscription/blocks/app-embed/6aa30d9c-ff0b-4f29-a82d-a633d8e04b9a",
+        "disabled": false,
+        "settings": {}
+      },
+      "6174324309569838175": {
+        "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
+        "disabled": false,
+        "settings": {}
+      },
+      "18228966181090706294": {
+        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+        "disabled": false,
+        "settings": {
+          "storefrontAccessToken": ""
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "logo_width": 90,
+      "colors_solid_button_labels": "#ffffff",
+      "colors_accent_1": "#121212",
+      "gradient_accent_1": "",
+      "colors_accent_2": "#334fb4",
+      "gradient_accent_2": "",
+      "colors_text": "#121212",
+      "colors_outline_button_labels": "#121212",
+      "colors_background_1": "#ffffff",
+      "gradient_background_1": "",
+      "colors_background_2": "#f3f3f3",
+      "gradient_background_2": "",
+      "type_header_font": "assistant_n4",
+      "heading_scale": 100,
+      "type_body_font": "assistant_n4",
+      "body_scale": 100,
+      "page_width": 1200,
+      "spacing_sections": 0,
+      "spacing_grid_horizontal": 8,
+      "spacing_grid_vertical": 8,
+      "buttons_border_thickness": 1,
+      "buttons_border_opacity": 100,
+      "buttons_radius": 0,
+      "buttons_shadow_opacity": 0,
+      "buttons_shadow_horizontal_offset": 0,
+      "buttons_shadow_vertical_offset": 4,
+      "buttons_shadow_blur": 5,
+      "variant_pills_border_thickness": 1,
+      "variant_pills_border_opacity": 55,
+      "variant_pills_radius": 40,
+      "variant_pills_shadow_opacity": 0,
+      "variant_pills_shadow_horizontal_offset": 0,
+      "variant_pills_shadow_vertical_offset": 4,
+      "variant_pills_shadow_blur": 5,
+      "inputs_border_thickness": 1,
+      "inputs_border_opacity": 55,
+      "inputs_radius": 0,
+      "inputs_shadow_opacity": 0,
+      "inputs_shadow_horizontal_offset": 0,
+      "inputs_shadow_vertical_offset": 4,
+      "inputs_shadow_blur": 5,
+      "card_style": "standard",
+      "card_image_padding": 0,
+      "card_text_alignment": "left",
+      "card_color_scheme": "background-2",
+      "card_border_thickness": 0,
+      "card_border_opacity": 10,
+      "card_corner_radius": 0,
+      "card_shadow_opacity": 0,
+      "card_shadow_horizontal_offset": 0,
+      "card_shadow_vertical_offset": 4,
+      "card_shadow_blur": 5,
+      "collection_card_style": "standard",
+      "collection_card_image_padding": 0,
+      "collection_card_text_alignment": "left",
+      "collection_card_color_scheme": "background-2",
+      "collection_card_border_thickness": 0,
+      "collection_card_border_opacity": 10,
+      "collection_card_corner_radius": 0,
+      "collection_card_shadow_opacity": 0,
+      "collection_card_shadow_horizontal_offset": 0,
+      "collection_card_shadow_vertical_offset": 4,
+      "collection_card_shadow_blur": 5,
+      "blog_card_style": "standard",
+      "blog_card_image_padding": 0,
+      "blog_card_text_alignment": "left",
+      "blog_card_color_scheme": "background-2",
+      "blog_card_border_thickness": 0,
+      "blog_card_border_opacity": 10,
+      "blog_card_corner_radius": 0,
+      "blog_card_shadow_opacity": 0,
+      "blog_card_shadow_horizontal_offset": 0,
+      "blog_card_shadow_vertical_offset": 4,
+      "blog_card_shadow_blur": 5,
+      "text_boxes_border_thickness": 0,
+      "text_boxes_border_opacity": 10,
+      "text_boxes_radius": 0,
+      "text_boxes_shadow_opacity": 0,
+      "text_boxes_shadow_horizontal_offset": 0,
+      "text_boxes_shadow_vertical_offset": 4,
+      "text_boxes_shadow_blur": 5,
+      "media_border_thickness": 1,
+      "media_border_opacity": 5,
+      "media_radius": 0,
+      "media_shadow_opacity": 0,
+      "media_shadow_horizontal_offset": 0,
+      "media_shadow_vertical_offset": 4,
+      "media_shadow_blur": 5,
+      "popup_border_thickness": 1,
+      "popup_border_opacity": 10,
+      "popup_corner_radius": 0,
+      "popup_shadow_opacity": 0,
+      "popup_shadow_horizontal_offset": 0,
+      "popup_shadow_vertical_offset": 4,
+      "popup_shadow_blur": 5,
+      "drawer_border_thickness": 1,
+      "drawer_border_opacity": 10,
+      "drawer_shadow_opacity": 0,
+      "drawer_shadow_horizontal_offset": 0,
+      "drawer_shadow_vertical_offset": 4,
+      "drawer_shadow_blur": 5,
+      "badge_position": "bottom left",
+      "badge_corner_radius": 40,
+      "sale_badge_color_scheme": "accent-2",
+      "sold_out_badge_color_scheme": "inverse",
+      "accent_icons": "text",
+      "brand_headline": "",
+      "brand_description": "<p></p>",
+      "brand_image_width": 100,
+      "social_twitter_link": "",
+      "social_facebook_link": "",
+      "social_pinterest_link": "",
+      "social_instagram_link": "",
+      "social_tiktok_link": "",
+      "social_tumblr_link": "",
+      "social_snapchat_link": "",
+      "social_youtube_link": "",
+      "social_vimeo_link": "",
+      "predictive_search_enabled": true,
+      "predictive_search_show_vendor": false,
+      "predictive_search_show_price": false,
+      "currency_code_enabled": true,
+      "cart_type": "notification",
+      "show_vendor": false,
+      "show_cart_note": false,
+      "cart_drawer_collection": "",
+      "sections": {
+        "main-password-header": {
+          "type": "main-password-header",
+          "settings": {
+            "color_scheme": "background-1"
+          }
+        },
+        "main-password-footer": {
+          "type": "main-password-footer",
+          "settings": {
+            "color_scheme": "background-1"
+          }
+        }
+      }
+    }
+  },
+  "platform_customizations": {
+    "custom_css": []
+  }
+}

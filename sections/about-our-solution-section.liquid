@@ -1,0 +1,114 @@
+<section class="about_our_solution_section layout">
+
+<div class="head_area">
+{% if section.settings.title != blank %}
+<h2>{{ section.settings.title }}</h2>
+{% endif %}
+
+{% if section.settings.sub_title != blank %}
+<div class="sub_title">{{ section.settings.sub_title }}</div>
+{% endif %} 
+  
+</div>
+
+<div class="about_our_solution_grid">
+{% for block in section.blocks %}
+  <div class="solution_box">
+  {% if block.settings.img != blank %}
+<img src="{{ block.settings.img | img_url:'master' }}" alt="{{ block.settings.img.alt }}">
+{% endif %}
+
+  <div class="solution_box_inner">
+{% if block.settings.title != blank %}
+<h3>{{ block.settings.title }}</h3>
+{% endif %}
+
+{% if block.settings.sub_title != blank %}
+<div class="sub_title_inner">{{ block.settings.sub_title }}</div>
+{% endif %} 
+
+{% if block.settings.link != blank %}
+<a class="tyr_it_btn" href="{{ block.settings.link }}">{{ block.settings.link_title }}</a>
+{% endif %}
+</div>
+  </div>
+{% endfor %}
+</div>
+  
+</section>
+
+<style>
+#shopify-section-{{section.id}} {
+    background-color: {{section.settings.bg_color}};
+}
+</style>
+
+
+{% schema %}
+  {
+    "name": "About Our Solution",
+    "class": "about_our_solution_main",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "sub_title",
+        "label": "Description"
+      }
+    ],
+        "blocks": [
+      {
+        "type": "box",
+        "name": "box",
+        "limit": 6,
+        "settings": [
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      },
+                {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "sub_title",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "link_title",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Heading"
+      }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "About Our Solution"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

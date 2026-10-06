@@ -1,0 +1,222 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "h1,h2,h3,h4,p {color: #213346 !important;}",
+        "h4 {font-size: 18px 1important;}",
+        "h1 {font-size: 32px !important;}",
+        "h3 {font-size: 24px !important;}",
+        "h2 {font-size: 27px !important;}",
+        "@media (max-width: 768px) {h2 {font-size: 20px !important; } h1 {font-size: 25px; } h2 {font-size: 22px !important; } h4 {font-size: 17px; } h3 {font-size: 20px !important; }}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "black_friday_hero_YQeGrd": {
+      "type": "black-friday-hero",
+      "disabled": true,
+      "name": "Black Friday Hero",
+      "settings": {
+        "bg_type": "video",
+        "desktop_bg_image": "shopify://shop_images/Section_Section_2.png",
+        "desktop_bg_image_alt": "",
+        "mobile_bg_image": "shopify://shop_images/Screenshot_2025-11-27_at_11.29.58_AM_1.png",
+        "mobile_bg_image_alt": "",
+        "desktop_bg_video": "shopify://files/videos/copy_6E4673B7-9978-4928-883B-7899177B96C6.mov",
+        "desktop_preview_image": "shopify://shop_images/Section_Section_2.png",
+        "mobile_bg_video": "shopify://files/videos/copy_C7CC717D-60F7-4121-8AA2-9382025419E4.mov",
+        "mobile_preview_image": "shopify://shop_images/Section_Section_3.png",
+        "heading": "",
+        "brand_logo": "shopify://shop_images/Heading_2s_Best_Sellers.png",
+        "mobile_brand_logo": "shopify://shop_images/Heading_2_Best_Sellers.png",
+        "brand_tag": "shopify://shop_images/Frame_2147224955.png",
+        "body_text": "<p>Skincare and coverage designed for how men live, move, and sweat. <strong>Enjoy 15% off sitewide all weekend.</strong></p>",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "offer_code": "<p>WITH CODE ‘BLACKFRIDAY15’</p>"
+      }
+    },
+    "nunorm_giftcard_QArQHb": {
+      "type": "nunorm-giftcard",
+      "name": "NuNorm Gift Card Promo",
+      "settings": {
+        "heading": "WIN A <strong>$100</strong>",
+        "brand_name": "shopify://shop_images/NuNorm_Logo.svg",
+        "subheading": "GIFT CARD!",
+        "description": "We’ve teamed up with <strong>Clean Beauty Awards</strong> to spread some holiday cheer. Enter below for a chance to win a <strong>$100 gift card</strong> to use on <strong>any NuNorm product.</strong>",
+        "hero_image": "shopify://shop_images/Frame_2147224936.png",
+        "hero_image_mobile": "shopify://shop_images/Frame_2147224945.png",
+        "background_image": "shopify://shop_images/Hero_1.png",
+        "button_text": "Enter Now",
+        "button_link": ""
+      }
+    },
+    "marquee_alert_blocks_WQUqVe": {
+      "type": "marquee-alert-blocks",
+      "blocks": {
+        "item_RWyEeg": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 0.9,
+            "font_weight": "400"
+          }
+        },
+        "item_AigCLC": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 1,
+            "font_weight": "700"
+          }
+        },
+        "item_AewYUp": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 0.9,
+            "font_weight": "400"
+          }
+        },
+        "item_rRa44q": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 1,
+            "font_weight": "700"
+          }
+        },
+        "item_4bkHaX": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 0.9,
+            "font_weight": "400"
+          }
+        },
+        "item_Btm9fh": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 1,
+            "font_weight": "700"
+          }
+        },
+        "item_kY49gX": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 0.9,
+            "font_weight": "400"
+          }
+        },
+        "item_WHeqmX": {
+          "type": "item",
+          "settings": {
+            "text": "GIVEAWAY ALERT",
+            "opacity": 1,
+            "font_weight": "700"
+          }
+        }
+      },
+      "block_order": [
+        "item_RWyEeg",
+        "item_AigCLC",
+        "item_AewYUp",
+        "item_rRa44q",
+        "item_4bkHaX",
+        "item_Btm9fh",
+        "item_kY49gX",
+        "item_WHeqmX"
+      ],
+      "name": "Marquee Alert",
+      "settings": {
+        "bg_color": "#7a1c20"
+      }
+    },
+    "giveaway_form_r3KCNY": {
+      "type": "giveaway-form",
+      "name": "Giveaway Form",
+      "settings": {
+        "form": "<div class=\"klaviyo-form-S2YTVS\"></div>"
+      }
+    },
+    "flip_countdown_HznDJD": {
+      "type": "flip-countdown",
+      "name": "Flip Countdown",
+      "settings": {
+        "heading": "One lucky winner will be randomly selected on <strong>December 20, 10:00 AM EST</strong>, and the winner will receive $100 gift card to each of the 20 participating brands (via email)",
+        "end_time": "2025-12-19 23:59",
+        "theme": "dark",
+        "show_labels": false,
+        "background": "#fff4e6",
+        "scale": 1.4
+      }
+    },
+    "fan_favourites_rcyGMy": {
+      "type": "fan-favourites",
+      "blocks": {
+        "product_card_G9Rx4p": {
+          "type": "product_card",
+          "settings": {
+            "product": "tinted-hydrator"
+          }
+        },
+        "product_card_BXqFFh": {
+          "type": "product_card",
+          "settings": {
+            "product": "quick-cover-stick"
+          }
+        },
+        "product_card_W7XEzE": {
+          "type": "product_card",
+          "settings": {
+            "product": "shine-eraser"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_G9Rx4p",
+        "product_card_BXqFFh",
+        "product_card_W7XEzE"
+      ],
+      "name": "Fan Favourites",
+      "settings": {
+        "heading": "Shop <em>Fan Favorites</em> While You Wait",
+        "button_style": "btn-primary"
+      }
+    },
+    "test_section_bfGKrc": {
+      "type": "text-section",
+      "name": "Test Section",
+      "settings": {
+        "heading": "<h1>Don’t miss <em>your chance </em>— </h1><p>enter before December <strong>19 11:59 pm!</strong></p>",
+        "bg_image": "shopify://shop_images/section_4.png",
+        "bg_image_mobile": "shopify://shop_images/section_4_1.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "black_friday_hero_YQeGrd",
+    "nunorm_giftcard_QArQHb",
+    "marquee_alert_blocks_WQUqVe",
+    "giveaway_form_r3KCNY",
+    "flip_countdown_HznDJD",
+    "fan_favourites_rcyGMy",
+    "test_section_bfGKrc"
+  ]
+}

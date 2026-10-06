@@ -1,0 +1,311 @@
+<style>
+   .how-to-use-section {
+     {% comment %} background-color: #f7d4a4; {% endcomment %}
+     padding: 80px 0;
+   }
+   .how-to-use-section-container{
+     padding: 0 20px;
+     max-width: 1240px;
+     margin: auto;
+   }
+   .how-to-use-section-row{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 40px;
+   }
+
+
+   .how-to-use-heading {
+     color: #933f2c;
+     font-weight: 700;
+     font-size: 33px;
+     margin: 0 0 15px;
+   }
+   .how-to-use-description {
+     margin: 0;
+     color: #213346;
+     font-size: 16px;
+     margin-bottom: 12px;
+   }
+
+   .how-to-use-subheading {
+     color: #213346;
+     font-weight: 700;
+     margin: 0;
+     font-size: 23px;
+     margin-bottom: 15px;
+   }
+
+   .how-to-use-tips ul {
+     margin: 0;
+     padding: 0 0 0 17px;
+   }
+
+   .how-to-use-tips li {
+     margin-bottom: 5px;
+   }
+
+   .how-to-use-tips a {
+     color: #5a3bcf;
+     text-decoration: underline;
+   }
+
+   .how-to-use-section-row > *{
+     flex: 1;
+   }
+    .how-to-use-video{
+    position: relative;
+    }
+   .how-to-use-video {
+       position: relative;
+       overflow: hidden;
+       border-radius: 40px 0px 40px 0px;
+    }
+   .how-to-use-video iframe, .how-to-use-video video, .how-to-use-video img {
+       width: 100%;
+       height: 100%;
+       border-radius: inherit;
+       display: block;
+     }
+
+
+   .how-to-use-section-row.text-right {
+     flex-direction: row-reverse;
+    }
+
+    .how-to-use-image img{
+        width: 100%;
+        display: block;
+    }
+
+    .how-to-use-tips .metafield-rich_text_field h5 {
+      margin: 9px 0 15px;
+    }
+    .how-to-use-text .metafield-rich_text_field p {
+      font-size: 16px;
+    }
+
+   @media(min-width: 1000px) and (max-width: 1200px)  {
+      .how-to-use-section-row {
+
+          gap: 20px;
+      }
+
+    }
+   @media(max-width: 1200px){
+    .how-to-use-heading {
+      font-size: 28px;
+    }
+
+    }
+   @media(max-width: 1000px){
+    .how-to-use-section-row{
+        flex-direction: column !important;
+     }
+
+    }
+   @media(max-width: 768px){
+    .how-to-use-section {
+
+        padding: 40px 0;
+    }
+    .how-to-use-section-row{
+      gap: 20px;
+    }
+    .how-to-use-heading {
+        font-size: 26px;
+    }
+    .how-to-use-subheading {
+        font-size: 20px;
+    }
+
+
+  }
+   @media(max-width: 576px){
+
+
+    .how-to-use-heading {
+        font-size: 22px;
+    }
+    .how-to-use-subheading {
+        font-size: 18px;
+    }
+    .how-to-use-description {
+      font-size: 15px;
+
+    }
+
+
+  }
+</style>
+
+{% comment %}
+  <div class="how-to-use-section">
+    <div class="how-to-use-section-container">
+      <div class="how-to-use-section-row {{ section.settings.text_position }}">
+        <div class="how-to-use-text">
+          <h2 class="how-to-use-heading">{{ section.settings.heading }}</h2>
+          <p class="how-to-use-description">{{ section.settings.description }}</p>
+          <h3 class="how-to-use-subheading">{{ section.settings.subheading }}</h3>
+          <div class="how-to-use-tips">
+            {{ section.settings.tips }}
+          </div>
+        </div>
+
+        <div class="how-to-use-video">
+          {% if section.settings.video_type == 'link' %}
+            <iframe src="{{ section.settings.video_url }}" frameborder="0" allowfullscreen></iframe>
+          {% elsif section.settings.video_type == 'video' %}
+            {{
+              section.settings.shopify_video
+              | video_tag: autoplay: false, loop: true, muted: false, controls: true, image_size: '1000x'
+            }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+
+{% assign entry = product.metafields.custom.how_to_use_tips_and_tricks.value %}
+
+{% if product.metafields.custom.how_to_use_tips_and_tricks %}
+  <div class="how-to-use-section {{ section.settings.bg_scheme }}">
+    <div class="how-to-use-section-container">
+      <div class="how-to-use-section-row {{ section.settings.text_position }}">
+        <div class="how-to-use-text">
+          <h2 class="how-to-use-heading">{{ entry.title }}</h2>
+          <p class="how-to-use-description">{{ entry.description | metafield_tag }}</p>
+          <h3 class="how-to-use-subheading">{{ entry.title_two }}</h3>
+          <div class="how-to-use-tips">
+            {{ entry.description_2 | metafield_tag }}
+          </div>
+        </div>
+
+        <div class="how-to-use-video">
+          {% if entry.image_video.value.media_type == 'video' %}
+            {{
+              entry.image_video.value
+              | video_tag: autoplay: false, loop: true, muted: false, controls: true, image_size: '1000x'
+            }}
+          {% elsif entry.image_video.value.media_type == 'image' %}
+            {{ entry.image_video.value | image_url: width: 1000 | image_tag: alt: entry.image_video.value.alt }}
+          {% else %}
+            <!-- Optional fallback (e.g. placeholder) -->
+            <img src="{{ product.featured_image | image_url }}" width="" height="" alt="Default placeholder">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "MetaObject Content",
+  "settings": [
+    {
+      "type": "select",
+      "id": "bg_scheme",
+      "label": "Background scheme",
+      "options": [
+        { "value": "color-background-1 gradient", "label": "Background 1" },
+        { "value": "color-background-2 gradient", "label": "Background 2" },
+        { "value": "", "label": "None (transparent)" }
+      ],
+      "default": "color-background-1 gradient"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text Position",
+      "options": [
+        { "value": "text-left", "label": "Left" },
+        { "value": "text-right", "label": "Right" }
+      ],
+      "default": "text-left"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "tips",
+      "label": "Tips List"
+    },
+    {
+      "type": "header",
+      "content": "Media Settings"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media Type",
+      "default": "video",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Image",
+      "visible_if": "{{ section.settings.media_type == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "visible_if": "{{ section.settings.media_type == 'image' }}"
+    },
+    {
+      "type": "header",
+      "content": "Video",
+      "visible_if": "{{ section.settings.media_type == 'video' }}"
+    },
+    {
+      "type": "select",
+      "id": "video_type",
+      "label": "Video Type",
+      "default": "video",
+      "options": [
+        { "value": "link", "label": "Link" },
+        { "value": "video", "label": "Video" }
+      ],
+      "visible_if": "{{ section.settings.media_type == 'video' }}"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL (YouTube, Vimeo, or MP4)",
+      "visible_if": "{{ section.settings.video_type == 'link' }}"
+    },
+    {
+      "type": "video",
+      "id": "shopify_video",
+      "label": "Upload Video",
+      "info": "If Media type image then it will not work.",
+      "visible_if": "{{ section.settings.video_type == 'video' and section.settings.media_type == 'video' }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "MetaObject Content",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,115 @@
+{{ 'section-featured-bundles.css' | asset_url | stylesheet_tag }}
+{{ 'component-card-bundle.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div class="page-width layout">
+    <div class="nunorm-header nunorm-header--center">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.desc != blank -%}
+        <p class="desc">{{ section.settings.desc }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="section__main">
+      <div class="featured-bundles__list">
+        {%- for product in section.settings.product_list -%}
+          {% render 'card-bundle', product: product %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Bundles",
+  "class": "section section-featured-bundles",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Introducing our <strong>Featured Bundles</strong>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Makeup Essentials for Every Man"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "desc",
+      "label": "Description",
+      "default": "The NuNorm core collection includes essential makeup products to help men get the perfect no-makeup makeup look, enhance their features, and boost their confidence."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View all bundles"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 16
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Bundles"
+    }
+  ]
+}
+{% endschema %}

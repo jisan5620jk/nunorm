@@ -1,0 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Overlay",
+  "type": "custom.overlay",
+  "sections": {
+    "newsletter_popup": {
+      "type": "newsletter-popup",
+      "disabled": true,
+      "settings": {
+        "enable_newsletter_popup": true,
+        "show_success_preview": false,
+        "expiration_unit": "hours",
+        "expiration_value": 6,
+        "delay": 1.5,
+        "bg_color": "#213346",
+        "border_color": "#8d2c27",
+        "close_icon_color": "#fbeedb",
+        "title_color": "#953f2f",
+        "subtitle_color": "#000000",
+        "button_bg_color": "#8d2c27",
+        "button_text_color": "#fbeeda",
+        "overlay_color": "#262626",
+        "overlay_opacity": 30,
+        "image": "shopify://shop_images/Give_the_gift_of_confidence_2_ade5a9d7-1d62-497f-90b1-bf873fd3f15f.png",
+        "title": "1st Time Customer?",
+        "text": "<p>Sign up & get <strong>15% off </strong>your first order.</p>",
+        "button_label": "Grab Your Code",
+        "consent_text": "<p>By entering your mobile number, you consent to receive SMS/text messages from or on behalf of NuNorm at the email address and phone number provided. At any time you can reply STOP to opt-out or HELP for more information. View our <a href=\"https://www.nunorm.com/policies/terms-of-service\" target=\"_blank\">terms</a> and <a href=\"https://www.nunorm.com/policies/privacy-policy\" target=\"_blank\">privacy policy</a> on our website.</p>",
+        "image_success": "shopify://shop_images/Get_the_gift_of_confidence_2.png",
+        "title_success": "TRY US. LOVE US RINSE & REPEAT",
+        "text_success": "<p>Welcome to your NuNorm! </p>",
+        "button_label_success": "Grab Your Code",
+        "discount_code": "BeTheNNRM"
+      }
+    }
+  },
+  "order": [
+    "newsletter_popup"
+  ]
+}

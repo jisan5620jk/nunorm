@@ -1,0 +1,587 @@
+<style>
+    .carousel-home-resources {
+    .left-1 {
+      transform: translateX(-500px) translateZ(-400px) rotateY(0deg) !important;
+    }
+    .right-1 {
+      transform: translateX(500px) translateZ(-400px) rotateY(0deg) !important;
+    }
+  }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+      var name = $("#carousel-home-resources").width();
+      $(".carousel-3d-slider").css("width", name / 1.4 );
+    $(".carousel-3d-slide").css("width", name / 1.4);
+  });
+</script>
+
+<section class="core-collection-home page-width layout">
+  <!-- / heading sec / -->
+  <div class="sec-heading">
+    <h1>{{ section.settings['sec-heading'] }}</h1>
+    <p class="pera">{{ section.settings.pera }}</p>
+  </div>
+
+  <div class="wrap-home-resources">
+    <!-- <script src="./home-resources.js" inline></script> -->
+
+    <div class="home-resources-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="carousel-home-resources" class="carousel-home-resources">
+              <carousel-3d
+                :perspective="30"
+                :border="0"
+                :width="1000"
+                :height="750"
+                :controls-visible="false"
+                :autoplay="false"
+                :space="500"
+                :clickable="true"
+              >
+                {% for block in section.blocks %}
+                  {% assign product-handle = block.settings.product %}
+
+                  <slide :index="{{ forloop.index0 }}">
+                    <div class="core_slider_main_box core_slider_main_{{ forloop.index }}">
+                      <div class="video_image_box">
+                        <!-- / video sec / -->
+                        <div class="video-box">
+                          <!-- / play pause button  / -->
+                          <div class="play-pause-btn">
+                            <button class="PP-btn play_btn" type="button" id="play-btn-loop">
+                              <img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169">
+                            </button>
+                            <button class="PP-btn pause_btn" type="button" id="pause-btn-loop" style="display:none;">
+                              <img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169">
+                            </button>
+                          </div>
+                          <video loop autoplay muted class="" id="loop-Video" width="100%" height="100%" playsinline>
+                            <source type="video/mp4" src="{{ block.settings.video }}">
+                          </video>
+                          <img
+                            class="loop-img"
+                            id="loop-banner-bg"
+                            src="{{ block.settings.poster-img | img_url: 'master' }}"
+                          >
+                        </div>
+                        <script>
+                          $(document).ready(function(){
+                           var vid = ".core_slider_main_{{ forloop.index }} video";
+
+                          $(".core_slider_main_{{ forloop.index }} .play_btn").click(function(){
+                          $(".core_slider_main_{{ forloop.index }} video").show();
+                          $(".core_slider_main_{{ forloop.index }} .loop-img").hide();
+                          $(".core_slider_main_{{ forloop.index }} .pause_btn").show();
+                          $(".core_slider_main_{{ forloop.index }} .play_btn").hide();
+                                vid.play();
+                            });
+
+                            $(".core_slider_main_{{ forloop.index }} .pause_btn").click(function(){
+                            $(".core_slider_main_{{ forloop.index }} video").hide();
+                            $(".core_slider_main_{{ forloop.index }} .loop-img").show();
+                            $(".core_slider_main_{{ forloop.index }} .pause_btn").hide();
+                            $(".core_slider_main_{{ forloop.index }} .play_btn").show();
+                            vid.pause();
+                            });
+                          });
+                        </script>
+                        <script>
+                          $(document).ready(function(){
+                            $(".core_slider_main_{{ forloop.index }} video").hide();
+                            $(".core_slider_main_{{ forloop.index }} .pause_btn").hide();
+                          });
+                        </script>
+                      </div>
+
+                      <div class="text_details_box">
+                        {% for media in product-handle.media %}
+                          {% if forloop.index == 1 %}
+                            <a href="{{ product-handle.url }}">
+                              <img
+                                class="product-img"
+                                data-src="{{ media | img_url:'master'}}"
+                                src="{{ media | img_url:'master'}}"
+                                alt=""
+                                data-was-processed="true"
+                              >
+                            </a>
+                          {% endif %}
+                        {% endfor %}
+
+                        <h4 class="feature-item__heading">
+                          <a class="full-unstyled-link" href="{{ product-handle.url }}">{{ product-handle.title }}</a>
+                        </h4>
+                        <p class="feature-item__copy">{{ product-handle.description | strip_html | truncate: 150 }}</p>
+
+                        {%- unless product-handle.has_only_default_variant -%}
+                          {%- for option in product-handle.options_with_values -%}
+                            {%- liquid
+                              assign is_color = false
+                              assign color_option_index = 0
+                              assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
+                              assign color_option_index = forloop.index0
+                              assign downcased_option = option.name | downcase
+                              if downcased_option contains swatch_trigger
+                                assign is_color = true
+                              elsif downcased_option == 'kleur'
+                                assign is_color = true
+                              elsif swatch_trigger == 'color' or downcased_option contains 'colour'
+                                assign is_color = true
+                              endif
+                            -%}
+                            <fieldset
+                              id="ProductSelect-option-{{ forloop.index0 }}"
+                              class="core-collection-variant"
+                              name="{{ option.name | handleize }}"
+                            >
+                              <legend class="form__label">Shade-<span class="top-variant-title"></span></legend>
+                              {%- for value in option.values -%}
+                                {%- liquid
+                                  assign product_available = true
+                                  if product.options.size == 1
+                                    assign product_available = product.variants[forloop.index0].available
+                                  endif
+                                -%}
+                                {% for variant in product-handle.variants %}
+                                  {% if variant.title contains value %}
+                                    {%- assign img = variant.image.id -%}
+                                    {%- assign color = variant.metafields.custom.color.value -%}
+                                    {% assign variant-id = variant.id %}
+                                    {%- assign img-url = variant.image | img_url: 'master' -%}
+                                    {% assign data-price = variant.price | money %}
+                                    {% assign variant-title = variant.metafields.custom.variant_title.value %}
+                                  {% endif %}
+                                {% endfor %}
+
+                                <div
+                                  class="variant-input"
+                                  data-index="option{{ option_index }}"
+                                  data-value="{{ value | escape }}"
+                                >
+                                  <input
+                                    type="radio"
+                                    {% if option.selected_value == value %}
+                                      checked="checked"
+                                    {% endif %}
+                                    form="{{ form_id }}"
+                                    data-id="{{ variant-id }}"
+                                    d-title="{{ variant-title }}"
+                                    d-matatitle="{{ product-handle.selected_or_first_available_variant.title }} "
+                                    d-price="{{ data-price }}"
+
+                                    media-data="{{ img }}"
+                                    media-img="{{ img-url }}"
+                                    value="{{ value | escape }}"
+                                    data-index="option{{ option_index }}"
+                                    name="{{ option.name }}"
+                                    class="{{ is_color }}{% unless product_available %} disabled{% endunless %}{% if is_color %} variant__input--color-swatch{% endif %} {% if option.selected_value == value %}active{% endif %} visible_item"
+                                    {% if is_color %}
+                                      data-color-name="{{ value | escape }}"
+                                    {% endif %}
+                                    {% if is_color %}
+                                      data-color-index="{{ color_option_index }}"
+                                    {% endif %}
+                                    id="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                                  >
+                                  {%- if is_color -%}
+                                    {%- liquid
+                                      assign color_file_name = value | handle | append: '.' | append: swatch_file_extension
+                                      assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
+                                      assign color_swatch_fallback = value | split: ' ' | last | handle
+                                    -%}
+                                    <label
+                                      for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                                      class="color-swatch color-swatch--{{ value | handle }}{% unless product_available %} disabled{% endunless %}"
+                                      style="background-color: {{ color }};{% if images[color_file_name] != blank %}  background-color: url({{ color_image }});{% endif %}"
+                                    >
+                                    </label>
+                                  {%- else -%}
+                                    <label
+                                      class="custom-redio-color1 {% if option.selected_value == value %}active{% endif %}"
+                                      d-price="{{ data-price }}"
+                                      for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                                      {% unless product_available %}
+                                        class="disabled"
+                                      {% endunless %}
+                                      style="background-color: {{ color }}"
+                                    >
+                                      {{ value }}
+                                    </label>
+                                  {%- endif -%}
+                                </div>
+                              {%- endfor -%}
+                            </fieldset>
+                          {%- endfor -%}
+                        {%- endunless -%}
+
+                        <div class="button-box-outer">
+                          <!-- / button / -->
+                          <div class="button_gray">
+                            <span class="gray_button_circle"> </span>
+                            <div class="button_gray_inner">
+                              <span class="button_text_container ">
+                                <form method="post" action="/cart/add" class="ContactForm center ">
+                                  <input
+                                    class="dark_{{ forloop.index }}"
+                                    type="hidden"
+                                    name="id"
+                                    id="variant-id"
+                                    value="{{ product-handle.variants.first.id }}"
+                                  >
+                                  <input min="1" type="hidden" id="quantity" name="quantity" value="1">
+                                  <input
+                                    class="dark_{{ forloop.index }}"
+                                    type="submit"
+                                    value="Add to cart •&nbsp;{{ product-handle.price | money }}"
+                                    class="button"
+                                  >
+                                </form>
+                              </span>
+                            </div>
+                          </div>
+
+                          <!-- / button / -->
+                          <div class="button_gray try_it">
+                            <span class="gray_button_circle"> </span>
+                            <a class="button_gray_inner pink_{{ forloop.index }} custom-try-on">
+                              <span class="button_text_container">
+                                {{ block.settings['btn-text'] }}
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="buton_core">
+                          <button class="btn_main_dark btn_core_dark_{{ forloop.index }}">
+                            Add to cart •&nbsp;<span class="slide-variant-btn">{{ product-handle.price | money }}</span>
+                          </button>
+                          <button class="btn_main_pink  btn_core_pink_{{ forloop.index }}">
+                            {{ block.settings['btn-text'] }}
+                          </button>
+                        </div>
+
+                        <script>
+                          $(document).ready(function(){
+
+                            $(".btn_core_dark_{{ forloop.index }}").click(function(){
+                              $(".dark_{{ forloop.index }}").click();
+                            });
+
+                            $(".btn_core_pink_{{ forloop.index }}").click(function(){
+                              $(".pink_{{ forloop.index }}").click();
+                            });
+
+                          });
+                        </script>
+                      </div>
+                    </div>
+                  </slide>
+                {% endfor %}
+              </carousel-3d>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+<script src="https://wlada.github.io/vue-carousel-3d/js/carousel-3d.umd.js"></script>
+
+<script>
+    new Vue({
+    el: '#carousel-home-resources',
+    data: {
+      slides: 3
+    },
+    components: {
+      'carousel-3d': window['carousel-3d'].Carousel3d,
+      'slide': window['carousel-3d'].Slide
+    }
+  })
+</script>
+<script>
+   $(document).ready ( function () {
+        var title1 = $(".custom-redio-color1.active").text();
+         $(".top-variant-title").text(title1);
+
+      $(".custom-redio-color1").click(function(){
+       $('.custom-redio-color1.active').removeClass('active');
+        $(this).addClass('active');
+        var title = $(this).text();
+        var price = $(".custom-redio-color1.active").attr("d-price");
+        $(".btn_core_dark_{{ forloop.index }} .slide-variant-btn").text(price);
+       $(".top-variant-title").text(title);
+      });
+      $(".variant-input input").click(function () {
+
+       var data =  $(this).attr("data-id");
+      $("#variant-id").val(data);
+      });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "collection home desk BK",
+  "class": "collection_home_main",
+  "settings": [
+  {
+    "type": "liquid",
+    "id": "logos-home",
+    "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+    "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+  },
+  {
+    "type": "text",
+    "id": "sec-heading",
+    "label": "Heading"
+  },
+  {
+    "type": "inline_richtext",
+    "id": "pera",
+    "label": "Content"
+  },
+  {
+    "type": "text",
+    "id": "explore-text",
+    "label": "Explore more text",
+    "default": "Explore more"
+  },
+  {
+    "type": "url",
+    "id": "explore-link",
+    "label": "Explore Link"
+  }
+
+  ],
+  "blocks": [
+  {
+    "type": "product",
+    "name": "core-collection-home",
+    "settings": [
+      {
+        "type": "url",
+        "id": "video",
+        "label": "Add Video Url"
+      },
+      {
+        "type": "image_picker",
+        "id": "poster-img",
+        "label": "Add Poster Image"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Add Product"
+      },
+      {
+        "type": "text",
+        "id": "btn-text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn-link",
+        "label": "Button Link"
+      }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "collection home desk BK"
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+  .collection_home_main .core_slider_main_box {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      margin: auto;
+      margin-top: 1%;
+      box-shadow: 0px 0px 10px 0px #ddd;
+  }
+
+  .carousel-3d-slide {
+      background-color: transparent;
+  }
+
+  .collection_home_main .core_slider_main_box .video_image_box {
+      width: 45%;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box {
+      width: 55%;
+      padding: 20px 80px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box img.product-img {
+      height: 220px;
+      object-fit: contain;
+      padding: 10px;
+      object-position: left;
+      transform: rotate(45deg) translate(50px, -30px);
+      width: auto;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box fieldset {
+      display: flex;
+      gap: 10px;
+      border: none;
+      padding: 0;
+      margin: 0;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box fieldset legend.form__label {
+      display: none;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box fieldset .variant-input {
+      position: relative;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box fieldset input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      margin: 0;
+      z-index: -1;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box fieldset input + label {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box .button-box-outer {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box .buton_core {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box .buton_core button {
+      border-radius: 4.104px;
+      background: #262626;
+      color: #FFF;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 14.149px;
+      font-style: normal;
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: normal;
+      letter-spacing: 2.174px;
+      display: inline-flex;
+      height: 44.112px;
+      padding: 13.317px 19.13px;
+      justify-content: center;
+      align-items: center;
+      gap: 9.318px;
+      flex-shrink: 0;
+      border: none;
+      max-width: 360px;
+      width: 100%;
+       cursor: pointer;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box .buton_core button.btn_main_pink {
+      border-radius: 4.104px;
+      background: #D9A785;
+  }
+
+  .collection_home_main .video-box .loop-img {
+      width: 100%;
+      display: block;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box h4.feature-item__heading {
+      margin-bottom: 0;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box h4.feature-item__heading a {
+      color: #262626;
+      font-family: Point Panther;
+      font-size: 27.073px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 110%; /* 29.78px */
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box p.feature-item__copy {
+      color: #515050;
+      font-family: Montserrat;
+      font-size: 17.658px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 148.682%; /* 32.202px */
+      margin: 0;
+      padding: 20px 0 30px 0;
+  }
+
+  .core_slider_main_box:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      background-color: #00000066;
+      height: 100%;
+      z-index: 999;
+  }
+
+  .carousel-3d-slide.current .core_slider_main_box:after {
+      display: none;
+  }
+
+  @media screen and (max-width: 767px) {
+
+  .collection_home_main .core_slider_main_box {
+      width: 100%;
+      height: 100%;
+      margin-top: 0%;
+      flex-wrap: wrap;
+  }
+
+  .collection_home_main .core_slider_main_box .text_details_box {
+      width: 100%;
+      padding: 10px 20px;
+  }
+
+  .collection_home_main .core_slider_main_box .video_image_box {
+      width: 100%;
+  }
+
+  }
+</style>

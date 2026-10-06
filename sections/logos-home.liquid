@@ -1,0 +1,120 @@
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<!--/ logos outer /-->
+<section class="logos-home layout">
+  <!--/ heading  /-->
+  <h1 class="sec-heading">{{ section.settings.sec-heading }}</h1>
+
+  <!--/ logo list /-->
+  <div class="logo-list">
+    <div class="logo-box">
+      <img src="{{ section.settings.logo-1 | img_url: 'master' }}">
+    </div>
+     <div class="logo-box">
+      <img src="{{ section.settings.logo-2 | img_url: 'master' }}">
+    </div>
+     <div class="logo-box">
+      <img src="{{ section.settings.logo-3 | img_url: 'master' }}">
+    </div>
+     <div class="logo-box">
+      <img src="{{ section.settings.logo-4 | img_url: 'master' }}">
+    </div>
+     <div class="logo-box">
+      <img src="{{ section.settings.logo-5 | img_url: 'master' }}">
+    </div>
+  </div>
+
+  <div class="swiper logo-list_slider">
+
+        <div class="swiper-wrapper">    
+  
+            <div class="logo-box swiper-slide">
+              <img src="{{ section.settings.logo-1 | img_url: 'master' }}">
+            </div>
+             <div class="logo-box swiper-slide">
+              <img src="{{ section.settings.logo-2 | img_url: 'master' }}">
+            </div>
+             <div class="logo-box swiper-slide">
+              <img src="{{ section.settings.logo-3 | img_url: 'master' }}">
+            </div>
+             <div class="logo-box swiper-slide">
+              <img src="{{ section.settings.logo-4 | img_url: 'master' }}">
+            </div>
+             <div class="logo-box swiper-slide">
+              <img src="{{ section.settings.logo-5 | img_url: 'master' }}">
+            </div>
+
+        </div>
+
+    <div class="swiper-pagination"></div>
+
+  </div>
+  
+</section>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".logo-list_slider", {
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  </script>
+
+{% schema %}
+  {
+    "name": "logos-home",
+    "settings": [ 
+
+       {
+      "type": "liquid",
+      "id": "logos-home",
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+      "type": "text",
+      "id": "sec-heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo-1",
+      "label": "Logo Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo-2",
+      "label": "Logo Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo-3",
+      "label": "Logo Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo-4",
+      "label": "Logo Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo-5",
+      "label": "Logo Image 5"
+    }
+    ],
+   "presets": [
+    { 
+      "name": "logos-home"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

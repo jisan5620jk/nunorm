@@ -1,0 +1,203 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "content_2_col_Pj4RMd": {
+      "type": "qual-page",
+      "disabled": true,
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; } .logo-img {margin: auto; } h2.content-heading {margin-top: 1%; } .content-body {margin-bottom: 2%; }}",
+        ".logo-img {/* width: 200px; margin-top: -12px; */ height: auto; width: 100%; max-width: 570px; margin-bottom: 60px;}"
+      ],
+      "name": "Content 2 Column",
+      "settings": {
+        "text_position": "text-left",
+        "heading": "The",
+        "body": "<p>Founded in 2024 alongside NuNorm, the EQUAL Project was created to promote awareness around mental and physical health for men. We are frequently told to tough it out </p><p>Our community helps decide who receives our grants by voting on our final four candidates. You can help direct funding to where it’s needed most, and we encourage independent support of these nonprofits as well. We’d love for you to play an active role—your voice makes a difference.</p>",
+        "logo-img": "shopify://shop_images/Screenshot_2025-08-17_at_11.35.03_PM.png",
+        "button_text": "Learn More",
+        "button_link": "",
+        "media_type": "image",
+        "image": "shopify://shop_images/NuNorm_EQUAL_Project_For_Men_s_Mental_Health_shutterstock_2257172697.jpg",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video_url": ""
+      }
+    },
+    "akta_equal_page_banner_UjpDAt": {
+      "type": "akta-equal-page-banner",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; } .logo-img {margin: auto; } h2.content-heading {margin-top: 1%; } .content-body {margin-bottom: 2%; }}",
+        ".logo-img {/* width: 200px; margin-top: -12px; */ height: auto; width: 100%; max-width: 570px; margin-bottom: 60px;}"
+      ],
+      "name": "Content Equal new",
+      "settings": {
+        "text_position": "text-left",
+        "heading": "The",
+        "body": "<p>Founded in 2024 alongside NuNorm, the EQUAL Project was created to promote awareness around mental and physical health for men. We are frequently told to tough it out </p><p>Our community helps decide who receives our grants by voting on our final four candidates. You can help direct funding to where it’s needed most, and we encourage independent support of these nonprofits as well. We’d love for you to play an active role—your voice makes a difference.</p>",
+        "logo-img": "shopify://shop_images/EQUAL_LOGO_9e8a4ed5-3855-428f-abfc-de019c6c20f9.png",
+        "button_text": "Learn More",
+        "button_link": "",
+        "media_type": "image",
+        "image": "shopify://shop_images/NuNorm_EQUAL_Project_For_Men_s_Mental_Health_shutterstock_2257172697.jpg",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video_url": ""
+      }
+    },
+    "rich_text_FXgPFK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_DVkKHg": {
+          "type": "heading",
+          "settings": {
+            "heading": "We’re committed to making a difference",
+            "heading_size": "h1"
+          }
+        },
+        "text_RzQDdL": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Not just through our products but also by supporting men’s mental health. Each year, we provide a grant and partner with a nonprofit to support their direct impact on men's health in our community.</p>"
+          }
+        },
+        "text_U8zJ6U": {
+          "type": "text",
+          "settings": {
+            "text": "<h4><em>2% of all sales go toward funding The </em><em><strong>EQUAL Grant</strong></em></h4>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DVkKHg",
+        "text_RzQDdL",
+        "text_U8zJ6U"
+      ],
+      "custom_css": [
+        ".rich-text__blocks {max-width: 620px !important;}",
+        "em {color: #953f2f; font-size: 19px;}",
+        ".rich-text__wrapper {width: 100% !important;}",
+        "h4 {max-width: 280px; margin: auto; font-size: 19px !important; font-family: var(--font-body-family); font-weight: var(--font-body-weight); line-height: 1.5em;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "content_2_col_f6eKcA": {
+      "type": "content-2-col",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; }}"
+      ],
+      "name": "Content 2 Column",
+      "settings": {
+        "text_position": "text-left",
+        "heading": "This Years Grant Winner",
+        "body": "<p>Stop Soldier Suicide is a national nonprofit dedicated to reducing military suicide and creating a future where veterans and service members are at no greater risk for suicide than any other American. Since 2023, their flagship ROGER Wellness Program has served over 1,400 veterans and service members, delivering more than 15,000 clinical hours of support.</p>",
+        "button_text": "Learn More About Their Impact",
+        "button_link": "#https://stopsoldiersuicide.org/",
+        "media_type": "image",
+        "image": "shopify://shop_images/ss-Graphic_a7357ce4-d4a3-4c5d-9ec0-0cb7e14de58e.png",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video_url": ""
+      }
+    },
+    "hero_bg_video_VrcMCi": {
+      "type": "hero-bg-video",
+      "name": "Hero with Video or Image",
+      "settings": {
+        "custom_class": "custom class",
+        "media_type": "image",
+        "button_style": "btn-primary",
+        "video_url": "",
+        "image_bg": "shopify://shop_images/11062b_68104b55b67a4db5a32ec6750cf8fda0_mv2.jpg",
+        "fix-bg": true,
+        "heading": "NuNorm X<br><span style=\"color: #c07147;\">Stop Soldier Suicide</span>",
+        "heading_size_desktop": 38,
+        "heading_size_mobile": 22,
+        "subtext": "\"At NuNorm, we believe self-care goes beyond skin deep. It's about fostering a healthier relationship with oneself and the world,\" said Jeff Lau. \"Stop Soldier Suicide embodies the transformative impact we strive to achieve through The EQUAL Project, and we're thrilled to support their incredible work.\"",
+        "subtext_size_desktop": 16,
+        "subtext_size_mobile": 14,
+        "heading_color": "#fbeeda",
+        "subtext_color": "#fbeeda",
+        "button_text": "",
+        "button_link": "shopify://collections/all",
+        "text_position": "bottom-left",
+        "button_color": "maroon"
+      }
+    },
+    "rich_text_VaMJbT": {
+      "type": "rich-text",
+      "blocks": {
+        "text_9FFnXN": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>How you can get involved</h2><p>Supporting men’s mental health is about community—yours included. Whether you’re here to learn, share, or take action, you’re already making a difference just by being part of the conversation.Want to stay in the loop about new ways to support the EQUAL Project? <strong>Sign up for our newsletter</strong> below. You’ll be the first to hear about upcoming initiatives, community stories, and easy ways to get involved—big or small. No spam, just real updates and real impact.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_9FFnXN"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "content_2_col_yUcKPi": {
+      "type": "content-2-col",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; }}"
+      ],
+      "name": "Content 2 Column",
+      "settings": {
+        "text_position": "text-right",
+        "heading": "NuNorm x Pingree Detroit",
+        "body": "<p>We are honored to announce our collaboration with Pingree Detroit, a true beacon of craftsmanship and social responsibility in the leather goods industry. Their mission not only creates jobs for veterans but also contributes significantly to the revitalization of Detroit's economy.</p>",
+        "button_text": "Learn More About Their Impact",
+        "button_link": "# https://pingreedetroit.com/",
+        "media_type": "image",
+        "image": "shopify://shop_images/bbbcfb_2b5266d0e2d64ee7a04ec39e2d34a615_mv2.jpg",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "content_2_col_Pj4RMd",
+    "akta_equal_page_banner_UjpDAt",
+    "rich_text_FXgPFK",
+    "content_2_col_f6eKcA",
+    "hero_bg_video_VrcMCi",
+    "rich_text_VaMJbT",
+    "content_2_col_yUcKPi"
+  ]
+}

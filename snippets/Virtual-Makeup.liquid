@@ -1,0 +1,39 @@
+<script>
+window.ymkAsyncInit = function () {
+YMK.init();
+};
+</script>
+
+<script>
+var listeners = [];
+function registerEvents() {
+var l = YMK.addEventListener("loaded", function () {
+// do something on 'loaded' event
+});
+var l2 = YMK.addEventListener("closed", function () {
+// do something on 'closed' event
+});
+listeners.push(l, l2);
+}
+window.ymkAsyncInit = function () {
+registerEvents();
+YMK.init({ skinSmoothStrength: 50 });
+YMK.open();
+};
+</script>
+<script>
+function applyMakeupBySku(itemGuidOrSkuId) {
+if (YMK.isLoaded()) {
+YMK.applyMakeupBySku(itemGuidOrSkuId);
+}
+}
+function closeYMKModule() {
+YMK.close();
+for (var l in listeners) {
+YMK.removeEventListener(l);
+}
+}
+</script>
+<button onclick="applyMakeupBySku('LIP_COLOR_01_01')">Apply Lip
+Color</button>
+<button onclick="closeYMKModule()">Close</button>

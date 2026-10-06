@@ -1,0 +1,186 @@
+<style>
+  /* ===== Interview Video Section (static CSS) ===== */
+  #iv-{{ section.id }}.iv-section{
+    background: linear-gradient(90deg, #F7D3A1 0%, #FBEEDA 100%);
+    padding:120px 16px 48px;
+  }
+
+  #iv-{{ section.id }} .iv-inner{
+    max-width:1320px;
+    margin:0 auto;
+  }
+
+  #iv-{{ section.id }} .iv-heading{
+    margin:0 auto;
+    margin-bottom: clamp(20px, calc(20px + (51 - 20) * ((100vw - 320px) / (1440 - 320))), 51px);
+    color: #213346;
+    font-family: 'Point Panther';
+    font-weight: 700;
+    font-size: clamp(22px, calc(22px + (32 - 22) * ((100vw - 320px) / (1440 - 320))), 32px);
+    line-height: 145%;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  #iv-{{ section.id }} .iv-frame{
+    background:transparent;
+    overflow:hidden;
+    position:relative;
+    border-radius: 24px;
+  }
+
+  /* 16:9 responsive container */
+  #iv-{{ section.id }} .iv-frame:before{
+    content:"";
+    display:block;
+    padding-top:56.25%;
+  }
+
+  #iv-{{ section.id }} .iv-frame iframe,
+  #iv-{{ section.id }} .iv-frame video{
+    position:absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    display:block;
+    border:0;
+  }
+
+  #iv-{{ section.id }} .iv-fallback{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:16px;
+    padding:18px;
+    text-align:center;
+    background:linear-gradient(135deg, #222 0%, #000 100%);
+  }
+
+  #iv-{{ section.id }} .iv-caption{
+    margin-top:14px;
+    color:rgba(31,43,54,0.9);
+    font-size:16px;
+    line-height:1.5;
+  }
+
+  #iv-{{ section.id }} .iv-caption p{ margin:0; }
+
+  {% comment %} Responsive {% endcomment %}
+  @media screen and (max-width: 767px) {
+    #iv-{{ section.id }}.iv-section{
+      padding:70px 16px 48px;
+    }
+    #iv-{{ section.id }} .iv-heading {
+        max-width: 84%;
+    }
+  }
+  @media screen and (max-width: 419px) {
+    #iv-{{ section.id }} .iv-frame {
+        aspect-ratio: 4 / 3;
+        border-radius: 14px;
+    }
+  }
+</style>
+
+<section class="iv-section" id="iv-{{ section.id }}">
+  <div class="iv-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="iv-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="iv-frame">
+      {% if section.settings.shopify_video != blank %}
+        {{
+          section.settings.shopify_video
+          | video_tag:
+            controls: true,
+            autoplay: false,
+            loop: false,
+            muted: false,
+            playsinline: true,
+            preload: 'metadata'
+        }}
+
+      {% elsif section.settings.video_url != blank %}
+        {% assign v = section.settings.video_url %}
+
+        {% if v.type == 'youtube' %}
+          <iframe
+            class="iv-iframe"
+            src="https://www.youtube.com/embed/{{ v.id }}?rel=0&modestbranding=1"
+            title="{{ section.settings.iframe_title | escape }}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+
+        {% elsif v.type == 'vimeo' %}
+          <iframe
+            class="iv-iframe"
+            src="https://player.vimeo.com/video/{{ v.id }}"
+            title="{{ section.settings.iframe_title | escape }}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+
+        {% else %}
+          <div class="iv-fallback">Please add a valid YouTube or Vimeo URL.</div>
+        {% endif %}
+
+      {% else %}
+        <div class="iv-fallback">Select a Shopify video or paste a YouTube URL.</div>
+      {% endif %}
+    </div>
+
+    {% if section.settings.caption != blank %}
+      <div class="iv-caption rte">{{ section.settings.caption }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Interview video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "CHECK OUT A RECENT INTERVIEW WITH OUR FOUNDER, JEFF LAU"
+    },
+    {
+      "type": "video",
+      "id": "shopify_video",
+      "label": "Shopify video (preferred)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "YouTube/Vimeo URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "text",
+      "id": "iframe_title",
+      "label": "Video title (accessibility)",
+      "default": "Interview video"
+    },
+    {
+      "type": "richtext",
+      "id": "caption",
+      "label": "Caption (optional)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Interview video"
+    }
+  ]
+}
+{% endschema %}

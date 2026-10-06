@@ -1,0 +1,72 @@
+{{ 'section-bg-video.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bg-video.js' | asset_url }}" defer="defer"></script>
+
+<div class="bg-video">
+  <div class="page-width layout">
+    <div class="bg-video__main">
+      <div class="nunorm-header nunorm-header--center">
+        {%- if section.settings.title != blank -%}
+          <h2 class="title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.desc != blank -%}
+          <p class="desc">{{ section.settings.desc }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="bg-video__main-video">
+        <bg-video>
+          {{
+            section.settings.video
+            | video_tag:
+              autoplay: false,
+              loop: true,
+              muted: false,
+              controls: false,
+              image_size: '1080x',
+              class: 'bg-video__video'
+          }}
+        </bg-video>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BG Video",
+  "class": "section section--bg-video section-animate",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "desc",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BG Video"
+    }
+  ]
+}
+{% endschema %}

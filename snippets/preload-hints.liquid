@@ -1,0 +1,8 @@
+{% if request.page_type == 'index' %}
+    {% if settings.hero_image != blank %}
+        {% comment %} imagesrcset will have these widths:  375, 750,  1500, 2000, 3000, 4000, 5000 {% endcomment %}
+        <link  sizes="100vw" rel="preload" as="image" href="{{ settings.hero_image |  image_url: width: 1000  }}" imagesrcset="{{ settings.hero_image |  image_url: 1000 }} 1000w,  {{  settings.hero_image | image_url: width: 1500 }} 1500w, {{ settings.hero_image |  image_url: width: 2000 }} 2000w">
+    {% endif %}
+{% endif %}
+
+{{ settings.type_body_font | font_url |  preload_tag: as: font }}

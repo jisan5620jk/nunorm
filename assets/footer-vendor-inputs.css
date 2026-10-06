@@ -1,0 +1,260 @@
+/*
+ * CSS Naming Convention Guide
+ * 
+ * Structure: [shortcode]_[Kebab-case-first-letter-capitalized]_[Sub-component]--[modifier]
+ * 
+ * Definitions:
+ * - shortcode: A short, prefix code that represents the component or section of the project, 
+ *     helping to quickly identify which part of the project the class pertains to.
+ *     Example: 'fsu' for Footer Sign Up.
+ * 
+ * - Kebab-case-first-letter-capitalized: The name of the block or element, written in kebab-case
+ *     (hyphenated lowercase), with the first letter of each word capitalized.
+ *     Example: 'Block-heading' for a heading block within the FSU component.
+ * 
+ * - Sub-component: If the class is a part of a larger component, the sub-component's name is 
+ *     concatenated using an underscore.
+ *     Example: 'Block-text' for text within a block.
+ * 
+ * - Modifier: Modifiers indicate a different version or state of the block or element and are 
+ *     separated by two hyphens. Modifiers are optional.
+ *     Example: '--desktop' for a desktop-specific styling of a component.
+ * 
+ * Examples:
+ * - fsu_Block-heading: Represents the main heading within the Footer Sign Up component.
+ * - fsu_Block-text--large: Represents a larger variant of the block text within the FSU component.
+ * 
+ * Guidelines:
+ * 1. Always start the class name with the shortcode related to the project or component.
+ * 2. Use kebab-case for naming blocks or elements, capitalizing the first letter of each word.
+ * 3. Use underscores to separate the main component name from sub-components or elements.
+ * 4. Use two hyphens to separate the base name from modifiers.
+ * 5. Ensure that the names are descriptive yet concise.
+ * 
+ * By adhering to this convention, we can ensure our stylesheets are organized, and our classes 
+ * are easily identifiable and understandable at a glance.
+ */
+
+.fsu_Container {
+  padding: 0 15px;
+  @media (min-width: 767px) {
+    padding: 0;
+  }
+}
+
+.fsu_Container--mobile {
+  display: block;
+  @media (min-width: 767px) {
+    display: none;
+  }
+}
+
+.fsu_Container--desktop {
+  display: none;
+  @media (min-width: 767px) {
+    display: block;
+  }
+}
+
+.fsu_Block-heading {
+  text-transform: uppercase;
+  position: relative;
+  font-family: var(--font-heading-family);
+  font-weight: 400;
+  font-size: 5.3vw;
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  color: rgb(var(--color-foreground));
+  line-height: 1;
+  word-break: break-word;
+  display: block;
+  font-size: 1.17em;
+  margin: 0 0 2rem 0;
+  font-weight: bold;
+}
+
+.fsu_Block-text {
+  margin: 0 0 2rem 0;
+}
+
+/* using p tag as the child of this element is a rich text input */
+.fsu_Block-text p {
+  color: var(--color-warm-cream);
+  font-family: var(--font-body-family);
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 22px;
+  margin: 0;
+}
+
+.fsu_Form {
+  display: grid;
+  grid-template-columns: 78.85% 7.85% 13.3%;
+  padding: 5rem 0;
+  @media(min-width: 767px) {
+   padding: 0;
+  }
+}
+
+.fsu_Fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fsu_Fieldset--email {
+  grid-column: 1 / 3 span;
+  grid-row: 1;
+  margin: 0 0 2rem 0;
+  width: 100%;
+}
+
+.fsu_Fieldset--phone {
+  grid-column: 1 /2;
+  grid-row: 2;
+  margin: 0 0 1rem 0;
+  width: 100%;
+}
+
+.fsu_Fieldset--consent {
+  grid-column: 1 / 3 span;
+  grid-row: 3;
+  line-height: 1;
+}
+
+.fsu_Consent-input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  height: 0;
+  width: 0;
+}
+
+.fsu_Consent-label {
+  font-size: 1rem;
+  font-weight: lighter;
+  line-height: inherit;
+  position: relative;
+  @media(min-width: 1500px) {
+    font-size: 0.57vw;
+  }
+}
+
+
+.fsu_Consent-label:before {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--color-light-apricot);
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+
+.fsu_Consent-input:checked + .fsu_Consent-label .fsu_Consent-label_checkbox {
+  top: -1rem;
+  display: block;
+}
+
+.fsu_Consent-label_checkbox {
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  display: none;
+}
+
+.fsu_Button {
+  background-color: var(--color-light-apricot);
+  grid-column: 3;
+  border-radius: 10px;
+  max-height: 13.33vw;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+  @media(min-width:450px) {
+    max-height: 5rem;
+  }
+}
+
+.fsu_Button:disabled {
+  opacity: 0.5;
+}
+
+.fsu_Input {
+  background-color: var(--color-warm-cream);
+  color: var(--color-black);
+  font-family: var(--font-body-family);
+  font-size: 4.33vw;
+  font-weight: normal;
+  min-height: 13.33vw;
+  opacity: 1;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #953F2F;
+  padding: 0 0 0 15px;
+  @media(min-width:450px) {
+    font-size: 2rem;
+    min-height: 5rem;
+  }
+}
+
+input.fsu_Input:focus-visible {
+  outline: none;
+  border: 2px solid #953F2F;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.fsu_Messages-container {
+  grid-column: 1 / 3 span;
+  margin: 1rem 0 0 0;
+}
+
+.fsu_Error-message {
+  color: var(--color-rustic-garnet);
+  background-color: var(--color-apricot-cream);
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 8px 18px;
+  margin: 0 0 2.4rem 0;
+  display: none;
+}
+
+.fsu_Success-message {
+  color: var(--color-rustic-garnet);
+  background-color: var(--color-apricot-cream);
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 8px 18px;
+  grid-column: 1 / 3 span;
+  margin: 1rem 0 2rem 0;
+}
+
+
+.fsu_Error-message {
+  color: var(--color-rustic-garnet);
+  background-color: var(--color-apricot-cream);
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 8px 18px;
+  grid-column: 1 / 3 span;
+  margin: 1rem 0 2rem 0;
+}
+
+.fsu_Success-message[data-form-submitted="true"] {
+  display: block;
+}
+
+.fsu_Success-message[data-form-submitted="false"] {
+  display: none;
+}
+
+[data-error-active="true"].fsu_Error-message {
+  display: block;
+}
+
+[data-error-active="false"].fsu_Error-message {
+  display: none;
+}

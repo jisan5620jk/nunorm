@@ -1,0 +1,626 @@
+{{ 'section-want-to-learn.css' | asset_url | stylesheet_tag }}
+
+
+<section class="want-to-learn-sec layout">
+  <div class="page-width">
+   <!--/ heading /-->
+
+    <h1 class="sec-heading" style="color:#213346;">{{ section.settings.sec-head }}</h1>
+    <p class="pera-wrap">{{ section.settings.content }}</p>
+    
+  <div class="learn-video-outer">
+{% if section.settings.custom-filter == true %}
+<div class="filter-section">
+<div class="filter-custom-section">
+ <div class="inner-filter">
+   <div class="filter-btn filter-btn-1" data-item="{{ section.settings.btn-1|remove:" " |split: '&'}}">{{ section.settings.btn-1 }}</div>
+   <div class="filter-btn filter-btn-2" data-item="{{ section.settings.btn-2 |remove:" " |split: '&' }}">{{ section.settings.btn-2 }}</div>
+   <div class="filter-btn filter-btn-3" data-item="{{ section.settings.btn-3 |remove:" " |split: '&'}}">{{ section.settings.btn-3 }}</div>
+   <div class="filter-btn filter-btn-4" data-item="{{ section.settings.btn-4 |remove:" " |split: '&'}}">{{ section.settings.btn-4 }}</div>
+   <div class="filter-btn filter-btn-5" data-item="{{ section.settings.btn-5|remove:" " |split: '&' }}">{{ section.settings.btn-5 }}</div>
+   <div class="filter-btn filter-btn-6" data-item="{{ section.settings.btn-6|remove:" " |split: '&' }}">{{ section.settings.btn-6 }}</div>
+ </div>	
+  <div class="inner-filter">
+   <div class="filter-btn filter-btn-7" data-item="{{ section.settings.btn-7 |remove:" " |split: '&'}}">{{ section.settings.btn-7 }}</div>
+   <div class="filter-btn filter-btn-8" data-item="{{ section.settings.btn-8 |remove:" " |split: '&'}}">{{ section.settings.btn-8 }}</div>
+   <div class="filter-btn filter-btn-9" data-item="{{ section.settings.btn-9 |remove:" " |split: '&'}}">{{ section.settings.btn-9 }}</div>
+   <div class="filter-btn filter-btn-10" data-item="{{ section.settings.btn-10 |remove:" " |split: '&' }}">{{ section.settings.btn-10 }}</div>
+   <div class="filter-btn filter-btn-11" data-item="{{ section.settings.btn-11 |remove:" " |split: '&'}}">{{ section.settings.btn-11 }}</div>
+   <div class="filter-btn filter-btn-12" data-item="{{ section.settings.btn-12 |remove:" " |split: '&'}}">{{ section.settings.btn-12 }}</div>
+ </div>	
+</div>
+{% comment %}<button class="filter-result-btn">VIEW RESULT</button> {% endcomment %}
+<a class="filter-result-all">View all</a>
+</div>
+{% endif %}
+
+<div id="top-description"></div>
+      
+{% for block in section.blocks %}
+  <!--/ learn video /-->
+<div class="video-box-section" data-description="{{ block.settings.content }}" id="{{ block.settings.filter-id |remove:" " |split: '&' }}">
+
+
+   {% if block.settings.product-1 != blank %}
+    {% assign product = block.settings.product-1 %}
+   
+    <!--/ box 1 /-->
+    <div class="video-box">
+      <div class="video-set">
+   <!--         <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Mask_group_81d458c1-eef8-48ac-85bd-c993ea35306b.png?v=1684998204">
+        <span class="play"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/paly.svg?v=1685001011"></span> -->
+        <!--/vedio/-->
+     
+          <!--/ play pause button  /-->
+        <div class="play-pause-btn"> 
+        <button class="PP-btn play_btn"  type="button" id="wtl-play-btn-loop1-{{ forloop.index }}"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169"></button>
+        <button class="PP-btn pause_btn" type="button" id="wtl-pause-btn-loop1-{{ forloop.index }}" style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169"></button>
+      </div>
+       <video loop autoplay muted class="small-hide" id="wtl-loop-Video1-{{ forloop.index }}" width="100%" height="463px" playsinline>
+         <source type="video/mp4" src="{{ product.metafields.custom.video_url.value }}"></source>
+         
+       </video>
+              <button onclick="openFullscreen('wtl-loop-Video1-{{ forloop.index }}');" id="full-src-Video-{{ forloop.index }}" class="video-full-screen"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/full-screen.png?v=1704274560" width="24" height="24"/></button>
+       <img class="loop-img" id="wtl-loop-banner-bg1-{{ forloop.index }}" src="{{ product.metafields.custom.video_image.value | img_url: 'master' }}" alt="{{ product.metafields.custom.video_image.value.alt }}">
+      
+   
+      <script>
+      $(document).ready(function(){
+     
+      var vid1 = document.getElementById("wtl-loop-Video1-{{ forloop.index }}");
+      $("#wtl-play-btn-loop1-{{ forloop.index }}").click(function(){
+       vid1.play(); 
+      $("#full-src-Video-{{ forloop.index }}").css('display','block');
+      $("#wtl-loop-Video1-{{ forloop.index }}").show();
+      $("#wtl-loop-banner-bg1-{{ forloop.index }}").hide();
+      $("#wtl-pause-btn-loop1-{{ forloop.index }}").show();
+      $("#wtl-play-btn-loop1-{{ forloop.index }}").hide();
+     
+     
+        });
+        $("#wtl-pause-btn-loop1-{{ forloop.index }}").click(function(){
+        $("#wtl-loop-Video1-{{ forloop.index }}").hide();
+        $("#wtl-loop-banner-bg1-{{ forloop.index }}").show();
+        $("#wtl-pause-btn-loop1-{{ forloop.index }}").hide();
+        $("#wtl-play-btn-loop1-{{ forloop.index }}").show(); 
+        vid1.pause();
+        $("#full-src-Video-{{ forloop.index }}").css('display','none');
+        });
+      });
+      </script>
+      <script>
+      $(document).ready(function(){
+        $("#wtl-loop-Video1-{{ forloop.index }}").hide();
+        $("#pause-btn").hide();
+         $("#full-src-Video-{{ forloop.index }}").css('display','none');
+      });
+      </script>
+            
+            
+          </div>
+          <!--/ below pera /-->
+            <div class="video-caption">
+              <a href="{{ product.url }}" class="product-link"><h3>{{ product.title }}</h3></a>
+              <p>{{ block.settings.product-content-1 }}</p>
+              <div class="how-to-use">{{ product.description | split: '<!-- split -->' | first }}</div>
+              <div class="how-to-use__tips">{{ product.description | split: '<!-- split -->' | last }}</div>
+
+            </div>
+      
+       </div>
+   {% endif %}
+
+  {% if block.settings.product-2 != blank %}
+    {% assign product2 = block.settings.product-2 %}
+    <!--/ box 1 /-->
+    <div class="video-box">
+      <div class="video-set">
+<!--         <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Mask_group_81d458c1-eef8-48ac-85bd-c993ea35306b.png?v=1684998204">
+        <span class="play"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/paly.svg?v=1685001011"></span> -->
+        <!--/vedio/-->
+     
+          <!--/ play pause button  /-->
+        <div class="play-pause-btn"> 
+        <button class="PP-btn play_btn"  type="button" id="wtl-play-btn-loop2-{{ forloop.index }}"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169"></button>
+        <button class="PP-btn pause_btn" type="button" id="wtl-pause-btn-loop2-{{ forloop.index }}" style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169"></button>
+      </div>
+       <video loop autoplay muted class="small-hide" id="wtl-loop-Video2-{{ forloop.index }}" width="100%" height="463px" playsinline>
+         <source type="video/mp4" src="{{ product2.metafields.custom.video_url.value }}"></source>
+       </video>
+        <button onclick="openFullscreen('wtl-loop-Video2-{{ forloop.index }}');" id="full-src-Video2-{{ forloop.index }}" class="video-full-screen"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/full-screen.png?v=1704274560" width="24" height="24"/></button>
+       <img class="loop-img" id="wtl-loop-banner-bg2-{{ forloop.index }}" src="{{ product2.metafields.custom.video_image.value | img_url: 'master' }}" alt="{{ product2.metafields.custom.video_image.value.alt }}">
+      
+   <!-- <script>
+    var elem2 = document.getElementById("wtl-loop-Video2-{{ forloop.index }}");
+    function openFullscreen2() {
+      if (elem2.requestFullscreen) {
+        elem2.requestFullscreen();
+      } else if (elem2.webkitRequestFullscreen) { /* Safari */
+        elem2.webkitRequestFullscreen();
+      } else if (elem2.msRequestFullscreen) { /* IE11 */
+        elem2.msRequestFullscreen();
+      }
+    }
+</script>    -->
+      <script>
+      $(document).ready(function(){
+      var vid2 = document.getElementById("wtl-loop-Video2-{{ forloop.index }}");
+      $("#wtl-play-btn-loop2-{{ forloop.index }}").click(function(){
+       vid2.play(); 
+       $("#full-src-Video2-{{ forloop.index }}").css('display','block'); 
+      $("#wtl-loop-Video2-{{ forloop.index }}").show();
+      $("#wtl-loop-banner-bg2-{{ forloop.index }}").hide();
+      $("#wtl-pause-btn-loop2-{{ forloop.index }}").show();
+      $("#wtl-play-btn-loop2-{{ forloop.index }}").hide(); 
+        });
+        $("#wtl-pause-btn-loop2-{{ forloop.index }}").click(function(){
+        $("#wtl-loop-Video2-{{ forloop.index }}").hide();
+        $("#wtl-loop-banner-bg2-{{ forloop.index }}").show();
+        $("#wtl-pause-btn-loop2-{{ forloop.index }}").hide();
+        $("#wtl-play-btn-loop2-{{ forloop.index }}").show(); 
+        vid2.pause();
+        $("#full-src-Video2-{{ forloop.index }}").css('display','none');
+        });
+      });
+      </script>
+      <script>
+      $(document).ready(function(){
+        $("#wtl-loop-Video2-{{ forloop.index }}").hide();
+        $("#pause-btn").hide();
+        $("#full-src-Video2-{{ forloop.index }}").css('display','none');
+      });
+      </script>
+            
+            
+          </div>
+          <!--/ below pera /-->
+            <div class="video-caption">
+              <a href="{{ product2.url }}" class="product-link"><h3>{{ product2.title }}</h3></a>
+              <p>{{ block.settings.product-content-2 }}</p>
+              <div class="how-to-use">{{ product2.description | split: '<!-- split -->' | first }}</div>
+               <div class="how-to-use__tips">{{ product.description | split: '<!-- split -->' | last }}</div>
+            </div>
+      
+       </div>
+   {% endif %}
+
+
+ {% if block.settings.product-3 != blank %}
+    {% assign product3 = block.settings.product-3 %}
+    <!--/ box 1 /-->
+    <div class="video-box">
+      <div class="video-set">
+<!--         <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Mask_group_81d458c1-eef8-48ac-85bd-c993ea35306b.png?v=1684998304">
+        <span class="play"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/paly.svg?v=1685001011"></span> -->
+        <!--/vedio/-->
+     
+          <!--/ play pause button  /-->
+        <div class="play-pause-btn"> 
+        <button class="PP-btn play_btn"  type="button" id="wtl-play-btn-loop3-{{ forloop.index }}"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169"></button>
+        <button class="PP-btn pause_btn" type="button" id="wtl-pause-btn-loop3-{{ forloop.index }}" style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169"></button>
+      </div>
+       <video loop autoplay muted class="small-hide" id="wtl-loop-Video3-{{ forloop.index }}" width="100%" height="463px" playsinline>
+         <source type="video/mp4" src="{{ product3.metafields.custom.video_url.value }}"></source>
+       </video>
+        <button onclick="openFullscreen('wtl-loop-Video3-{{ forloop.index }}');" id="full-src-Video3-{{ forloop.index }}" class="video-full-screen"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/full-screen.png?v=1704274560" width="24" height="24"/></button>
+       <img class="loop-img" id="wtl-loop-banner-bg3-{{ forloop.index }}" src="{{ product3.metafields.custom.video_image.value | img_url: 'master' }}" alt="{{ product3.metafields.custom.video_image.value.alt }}">
+      
+    <!-- <script>
+    var elem3 = document.getElementById("wtl-loop-Video3-{{ forloop.index }}");
+    function openFullscreen3() {
+      alert();
+      if (elem3.requestFullscreen) {
+        elem3.requestFullscreen();
+      } else if (elem3.webkitRequestFullscreen) { /* Safari */
+        elem3.webkitRequestFullscreen();
+      } else if (elem3.msRequestFullscreen) { /* IE11 */
+        elem3.msRequestFullscreen();
+      }
+    }
+</script>   -->
+      <script>
+      $(document).ready(function(){
+      var vid3 = document.getElementById("wtl-loop-Video3-{{ forloop.index }}");
+      $("#wtl-play-btn-loop3-{{ forloop.index }}").click(function(){  
+      vid3.play(); 
+      $("#full-src-Video3-{{ forloop.index }}").css('display','block');
+      $("#wtl-loop-Video3-{{ forloop.index }}").show();
+      $("#wtl-loop-banner-bg3-{{ forloop.index }}").hide();
+      $("#wtl-pause-btn-loop3-{{ forloop.index }}").show();
+      $("#wtl-play-btn-loop3-{{ forloop.index }}").hide();
+        });
+        $("#wtl-pause-btn-loop3-{{ forloop.index }}").click(function(){
+        $("#wtl-loop-Video3-{{ forloop.index }}").hide();
+        $("#wtl-loop-banner-bg3-{{ forloop.index }}").show();
+        $("#wtl-pause-btn-loop3-{{ forloop.index }}").hide();
+        $("#wtl-play-btn-loop3-{{ forloop.index }}").show(); 
+        vid3.pause();
+        $("#full-src-Video3-{{ forloop.index }}").css('display','none');
+        });
+      });
+      </script>
+      <script>
+      $(document).ready(function(){
+        $("#wtl-loop-Video3-{{ forloop.index }}").hide();
+        $("#pause-btn").hide();
+        $("#full-src-Video3-{{ forloop.index }}").css('display','none');
+      });
+      </script>
+            
+            
+          </div>
+          <!--/ below pera /-->
+            <div class="video-caption">
+              <a href="{{ product3.url }}" class="product-link"><h3>{{ product3.title }}</h3></a>
+              <p>{{ block.settings.product-content-3 }}</p>
+               <div class="how-to-use">{{ product3.description | split: '<!-- split -->' | first }}</div>
+                <div class="how-to-use__tips">{{ product.description | split: '<!-- split -->' | last }}</div>
+            </div>
+      
+       </div>
+   {% endif %}
+
+  {% if block.settings.product-4 != blank %}
+    {% assign product4 = block.settings.product-4 %}
+    <!--/ box 1 /-->
+    <div class="video-box">
+      <div class="video-set">
+<!--         <img src="https://cdn.shopify.com/s/files/1/0758/4649/1698/files/Mask_group_81d458c1-eef8-48ac-85bd-c994ea45406b.png?v=1684998404">
+        <span class="play"><img src="https://cdn.shopify.com/s/files/1/0758/4649/1698/files/paly.svg?v=1685001011"></span> -->
+        <!--/vedio/-->
+     
+          <!--/ play pause button  /-->
+        <div class="play-pause-btn"> 
+        <button class="PP-btn play_btn"  type="button" id="wtl-play-btn-loop4-{{ forloop.index }}"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169"></button>
+        <button class="PP-btn pause_btn" type="button" id="wtl-pause-btn-loop4-{{ forloop.index }}" style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169"></button>
+      </div>
+       <video loop autoplay muted class="small-hide" id="wtl-loop-Video4-{{ forloop.index }}" width="100%" height="464px" playsinline>
+         <source type="video/mp4" src="{{ product4.metafields.custom.video_url.value }}"></source>
+       </video>
+         <button onclick="openFullscreen('wtl-loop-Video4-{{ forloop.index }}');" id="full-src-Video4-{{ forloop.index }}" class="video-full-screen"><img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/full-screen.png?v=1704274560" width="24" height="24"/></button>
+       <img class="loop-img" id="wtl-loop-banner-bg4-{{ forloop.index }}" src="{{ product4.metafields.custom.video_image.value | img_url: 'master' }}" alt="{{ product4.metafields.custom.video_image.value.alt }}">
+      
+    <!-- <script>
+    var elem4 = document.getElementById("wtl-loop-Video4-{{ forloop.index }}");
+    function openFullscreen4() {
+      if (elem4.requestFullscreen) {
+        elem4.requestFullscreen();
+      } else if (elem4.webkitRequestFullscreen) { /* Safari */
+        elem4.webkitRequestFullscreen();
+      } else if (elem4.msRequestFullscreen) { /* IE11 */
+        elem4.msRequestFullscreen();
+      }
+    }
+</script>   -->
+      <script>
+      $(document).ready(function(){
+      var vid4 = document.getElementById("wtl-loop-Video4-{{ forloop.index }}");
+      $("#wtl-play-btn-loop4-{{ forloop.index }}").click(function(){ 
+      vid4.play(); 
+      $("#full-src-Video4-{{ forloop.index }}").css('display','block');
+      $("#wtl-loop-Video4-{{ forloop.index }}").show();
+      $("#wtl-loop-banner-bg4-{{ forloop.index }}").hide();
+      $("#wtl-pause-btn-loop4-{{ forloop.index }}").show();
+      $("#wtl-play-btn-loop4-{{ forloop.index }}").hide();
+      $("#wtl-play-btn-loop4-{{ forloop.index }}").play(); 
+        });
+        $("#wtl-pause-btn-loop4-{{ forloop.index }}").click(function(){
+        $("#wtl-loop-Video4-{{ forloop.index }}").hide();
+        $("#wtl-loop-banner-bg4-{{ forloop.index }}").show();
+        $("#wtl-pause-btn-loop4-{{ forloop.index }}").hide();
+        $("#wtl-play-btn-loop4-{{ forloop.index }}").show(); 
+        vid4.pause();
+       $("#full-src-Video4-{{ forloop.index }}").css('display','none');
+        });
+      });
+      </script>
+      <script>
+      $(document).ready(function(){
+        $("#wtl-loop-Video4-{{ forloop.index }}").hide();
+        $("#pause-btn").hide();
+        $("#full-src-Video4-{{ forloop.index }}").css('display','none');
+      });
+      </script>
+            
+            
+          </div>
+          <!--/ below pera /-->
+            <div class="video-caption">
+              <a href="{{ product4.url }}" class="product-link"><h3>{{ product4.title }}</h3></a>
+              <p>{{ block.settings.product-content-4 }}</p>
+               <div class="how-to-use">{{ product4.description | split: '<!-- split -->' | first }}</div>
+                <div class="how-to-use__tips">{{ product.description | split: '<!-- split -->' | last }}</div>
+            </div>
+      
+       </div>
+   {% endif %}
+
+  </div>
+{% endfor %}
+
+
+
+</div>
+    </div>
+
+
+{% comment %}
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<div class="slider_mobile_want_learn">
+
+  <div class="swiper mySwiper_want">
+    <div class="swiper-wrapper">
+
+{% for block in section.blocks %}
+  <!--/ learn video /-->
+    <!--/ box 1 /-->
+    <div class="video-box swiper-slide">
+     <div class="video-set">
+     
+          <!--/ play pause button  /-->
+        <div class="play-pause-btn"> 
+        <button class="PP-btn play_btn"  type="button"  id="mob-wtl-play-btn-{{ forloop.index }}"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169"></button>
+        <button class="PP-btn pause_btn" type="button"  id="mob-wtl-pause-btn-{{ forloop.index }}" style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169"></button>
+        </div>
+       <video   class="small-hide" id="mob-wtl-loop-Video-{{ forloop.index }}" width="100%" height="100%" playsinline>
+         <source type="video/mp4" src="{{ block.settings.v-url }}"></source>
+       </video>
+       <img class="loop-img" id="mob-wtl-banner-bg-{{ forloop.index }}" src="{{ block.settings.poster-img | img_url: 'master' }}">
+      
+      
+
+<script>
+  
+$(document).ready(function(){
+  $("#mob-wtl-loop-Video-{{ forloop.index }}").hide();
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").hide();
+  $("#mob-wtl-play-btn-{{ forloop.index }}").click(function(){
+  $("#mob-wtl-banner-bg-{{ forloop.index }}").hide();
+  $("#mob-wtl-loop-Video-{{ forloop.index }}").show();
+  $("#mob-wtl-play-btn-{{ forloop.index }}").hide();
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").show();
+  $('#mob-wtl-loop-Video-{{ forloop.index }}').trigger('play');
+  });
+
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").click(function(){
+  $("#mob-wtl-banner-bg-{{ forloop.index }}").show();
+  $("#mob-wtl-loop-Video-{{ forloop.index }}").hide();
+  $("#mob-wtl-play-btn-{{ forloop.index }}").show();
+  $("#mob-wtl-pause-btn-{{ forloop.index }}").hide();
+  $('#mob-wtl-loop-Video-{{ forloop.index }}').trigger('pause');
+  });
+});
+</script>
+            
+    </div>
+      <div class="video-caption">
+        <h3><span class="count-num">{{ block.settings.serial-no }}</span>{{ block.settings.head }}</h3>
+        <p>{{ block.settings.content }}</p>
+      </div>
+
+ </div>
+  {% endfor %}
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper_want", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+{% endcomment %}
+  </div>
+</section>
+
+    <script>
+    
+    function openFullscreen(a) {
+      var elem = document.getElementById(a);
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+      }
+    }
+</script>
+
+ <script>
+$(document).ready(function(){
+   
+   $(".video-box-section").hide();
+    $("#ViewAll").show();
+  $(".filter-custom-section .filter-btn").click(function(){
+    $(".filter-custom-section .filter-btn.active").removeClass("active");
+    $(this).addClass("active");
+
+    $("#top-description").show();
+    var data = $(this).attr("data-item");
+    $(".video-box-section").hide();
+    var data_description = $("#"+data).attr("data-description");
+    $("#top-description").text(data_description);
+    $("#"+data).show();
+  });
+ 
+   $(".filter-result-all").click(function(){
+     $("#top-description").hide();
+     $(".video-box-section").hide();
+     $("#ViewAll").show();
+     $(".filter-btn.active").removeClass("active");
+
+  });
+});
+</script>   
+
+{% schema %}
+  {
+    "name": "Want To Learn",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "content",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "btn-1",
+        "label": "LARGE PORES"
+      },
+      {
+        "type": "text",
+        "id": "btn-2",
+        "label": "ACNE"
+      },
+      {
+        "type": "text",
+        "id": "btn-3",
+        "label": "RAZOR BUMPS"
+      },
+      {
+        "type": "text",
+        "id": "btn-4",
+        "label": "DRY SKIN"
+      },
+       {
+        "type": "text",
+        "id": "btn-5",
+        "label": "OILY SKIN"
+      },
+       {
+        "type": "text",
+        "id": "btn-6",
+        "label": "PATCHY OR INGROWN HAIR"
+      },
+      {
+        "type": "text",
+        "id": "btn-7",
+        "label": "MULTIPLE SKIN TONES"
+      },
+     {
+        "type": "text",
+        "id": "btn-8",
+        "label": "DARK"
+      },
+      {
+        "type": "text",
+        "id": "btn-9",
+        "label": "ECZEMA"
+      },
+      {
+        "type": "text",
+        "id": "btn-10",
+        "label": "PSORIASIS"
+      },
+      {
+        "type": "text",
+        "id": "btn-11",
+        "label": "REDNESS"
+      },
+      {
+        "type": "text",
+        "id": "btn-12",
+        "label": "WRINKLES"
+      },
+      {
+        "type": "checkbox",
+        "id": "custom-filter",
+        "label": "Filter option"
+      }
+    ],
+    "blocks": [
+    {
+      "type": "vedio-box",
+      "name": "grid box",
+      "settings": [
+        {
+          "type": "text",
+          "id": "filter-id",
+          "label": "Filter Id"
+        },
+         {
+          "type": "product",
+          "id": "product-1",
+          "label": "Select Product 1"
+        },
+         {
+          "type": "inline_richtext",
+          "id": "product-content-1",
+          "label": "Product Description 1"
+        },
+        {
+          "type": "product",
+          "id": "product-2",
+          "label": "Select Product 2"
+        },
+         {
+          "type": "inline_richtext",
+          "id": "product-content-2",
+          "label": "Product Description 1"
+        },
+        {
+          "type": "product",
+          "id": "product-3",
+          "label": "Select Product 3"
+        },
+         {
+          "type": "inline_richtext",
+          "id": "product-content-3",
+          "label": "Product Description 3"
+        },
+        {
+          "type": "product",
+          "id": "product-4",
+          "label": "Select Product 4"
+        },
+         {
+          "type": "inline_richtext",
+          "id": "product-content-4",
+          "label": "Product Description 4"
+        },
+        
+        {
+          "type": "url",
+          "id": "v-url",
+          "label": "Video Url"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster-img",
+          "label": "Add Poster Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "content",
+          "label": "Description"
+        }
+      ]
+    }
+    ],
+    "presets": [
+      {
+        "name": "Want To Learn"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

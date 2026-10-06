@@ -1,0 +1,115 @@
+{% if template == 'index' %}
+<!-- Lottie Player CDN -->
+<script src="https://unpkg.com/lottie-web@5.7.6/build/player/lottie.min.js"></script>
+<style>
+  /* Loader styles (same as yours) */
+  #page-loader {
+    padding: 0px;
+    width: 100%;
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(.18,.68,.53,.98);
+  }
+  #page-loader.loaded {
+    height: 0 !important;
+  }
+  #page-loader:not(.loaded) {
+    height: 100vh;
+  }
+  #lottie-logo {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    transition: transform 0.6s cubic-bezier(.18,.68,.53,.98), opacity 0.6s cubic-bezier(.18,.68,.53,.98);
+  }
+  #lottie-logo.slide-out {
+    transform: translateY(30vh);
+    opacity: 0;
+  }
+  #lottie-logo svg {
+    overflow: visible !important;
+  }
+  #lottie-logo > div {
+    width: 50vw;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    #lottie-logo > div {
+      width: 80vw;
+    }
+  }
+  .loader-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .grad-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height:100%;
+    z-index: 5;
+    background-color: rgba(0, 16, 32, 0.5);
+    transition: opacity 0.6s cubic-bezier(.18,.68,.53,.98), height 0.6s cubic-bezier(.18,.68,.53,.98);
+  }
+  .grad-overlay.slide-out {
+    opacity: 0;
+    height: 0px;
+  }
+</style>
+
+<section id="page-loader">
+  <div id="lottie-logo"></div>
+  <div class="grad-overlay"></div>
+  <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/bbbcfb_7dc5297340ca43fb8c25da556cbb05cd_mv2.png?v=1753819335" class="loader-bg"  alt="NuNorm brand loading screen with minimalist design">
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if loader has been shown before in this session
+  if (sessionStorage.getItem('loaderShown')) {
+    document.getElementById('page-loader').style.display = 'none';
+    return;
+  }
+
+  const loader = document.getElementById('page-loader');
+  const logoContainer = document.getElementById('lottie-logo');
+  const gradientOverlay = document.querySelector('.grad-overlay');
+
+  const anim = lottie.loadAnimation({
+    container: logoContainer,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: 'https://cdn.shopify.com/s/files/1/0758/3639/1698/files/logocrema_gradient-2.json',
+  });
+
+  anim.addEventListener('DOMLoaded', () => {
+    const stopAtFrame = anim.totalFrames * 0.90;
+    anim.play();
+
+    anim.addEventListener('enterFrame', function checkFrame(e) {
+      if (e.currentTime >= stopAtFrame) {
+        anim.removeEventListener('enterFrame', checkFrame);
+        anim.pause();
+        logoContainer.classList.add('slide-out');
+        gradientOverlay.classList.add('slide-out');
+        loader.classList.add('loaded');
+
+        // Save in sessionStorage so loader doesn't show again
+        sessionStorage.setItem('loaderShown', 'true');
+      }
+    });
+  });
+});
+</script>
+{% endif %}

@@ -1,0 +1,67 @@
+<!---------/ faq’s sectionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn/--->
+<section class="faqs-sec layout">
+
+  <div class="page-width">
+   <!--/ heading /-->
+  <h1 class="sec-heading">{{ section.settings.sec-head }}</h1>
+  <!--/ pera /-->
+  <p class="pera-wrap">{{ section.settings.content }}</p>
+  </div>
+
+  <!---/ accordion /-->
+  <div class="accordion-box page-width">
+{% for block in section.blocks %}
+<button class="accordion"><span class="num-con">{{ forloop.index }}.</span>{{ block.settings.question }}</button>
+<div class="panel">
+  <p>{{ block.settings.ans }}</p>
+</div>
+{% endfor %}
+  </div>
+  
+</section>
+{% schema %}
+  {
+    "name": "faq",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "content",
+        "label": "Description"
+      }
+    ],
+    "blocks":[
+     {
+      "type": "panel",
+      "name": "faq",
+      "settings": [
+        {
+         "type": "text",
+         "id": "question",
+         "label": "Question"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "ans",
+          "label": "Answer"
+        }
+      ]
+     }
+    ],
+    "presets":[
+      {
+        "name": "faq"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

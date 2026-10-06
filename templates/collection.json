@@ -1,0 +1,361 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_bg_video_AA4Ejf": {
+      "type": "hero-bg-video",
+      "custom_css": [
+        "i {color: #f7d3a1;}"
+      ],
+      "name": "Hero with Video or Image",
+      "settings": {
+        "custom_class": "custom class",
+        "media_type": "image",
+        "button_style": "btn-primary",
+        "video_url": "",
+        "image_bg": "shopify://shop_images/bbbcfb_27a6267472a048b3ad7ada3d9c609ece_mv2_3.webp",
+        "fix-bg": false,
+        "heading": "",
+        "heading_size_desktop": 28,
+        "heading_size_mobile": 22,
+        "subtext": "<h1 class=\"hero-heading\" style=\"font-size: 32px; color: #f7d3a1;\">\n      LOOK GOOD, FEEL GREAT WITH  <i> NATURAL MAKEUP FOR MEN</i>\n    </h1>\n\n<p style=\"color: #f7d3a1;\">\n  Simple, easy-to-use products made for men’s skin — so you look sharp and feel confident.\n</p>",
+        "subtext_size_desktop": 16,
+        "subtext_size_mobile": 14,
+        "heading_color": "#fbeeda",
+        "subtext_color": "#fbeeda",
+        "button_text": "",
+        "button_link": "shopify://collections/all",
+        "text_position": "bottom-left",
+        "button_color": "maroon"
+      }
+    },
+    "nunorm_header_Gandr9": {
+      "type": "nunorm-header",
+      "custom_css": [
+        "strong {display: block; font-weight: normal;}",
+        ".title {max-width: 550px !important;}"
+      ],
+      "name": "NuNorm Header",
+      "settings": {
+        "title": "Introducing our <em>core collection</em>",
+        "subtitle": "",
+        "desc": "<strong>When using most makeup, men report a noticeable shade difference.</strong> Our core collection includes essential makeup products to help men get the perfect no-makeup makeup look, enhance their features, boost their confidence.",
+        "button_label": "",
+        "button_url": "",
+        "open_link_in_new_tab": false,
+        "padding_top": 100,
+        "padding_bottom": 48
+      }
+    },
+    "main_collection_q4c3Bw": {
+      "type": "main-collection",
+      "custom_css": [
+        ".collection-wrap {grid-template-columns: 1fr !important; max-width: 1400px !important;}",
+        "@media (max-width: 767px) {.prod-card-title {font-size: 14px; }}",
+        ".filter-col {display: none;}"
+      ],
+      "name": "Main Collection",
+      "settings": {
+        "show_sort": false,
+        "show_shade": false,
+        "show_price": false,
+        "show_collections": false,
+        "show_concerns": false,
+        "filter_collections": [
+          "all-products"
+        ]
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "description": "",
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "17291167986254fcb1": {
+      "type": "apps",
+      "blocks": {
+        "fly_bundles_upsell_app_block_fbt_bx4LNA": {
+          "type": "shopify://apps/fly-bundles-quantity-breaks/blocks/app-block-fbt/26807bdc-c2ed-4a25-afb2-06e6b1ebf843",
+          "settings": {
+            "isStyleEnabled": false,
+            "hTextColor": "#303030",
+            "subhTextColor": "#303030",
+            "bgColor": "#f0f0f0",
+            "pTitleColor": "#303030",
+            "pPriceColor": "#303030",
+            "pDiscountedPriceColor": "#303030",
+            "pImageSize": 100,
+            "pImageObjectFit": "contain",
+            "pImgBorRadius": 5,
+            "varBorRadius": 5,
+            "varBgColor": "#303030",
+            "varColor": "#f0f0f0",
+            "varBorColor": "#303030",
+            "qtyLabelColor": "#303030",
+            "tPriceLabelColor": "#303030",
+            "tPriceColor": "#303030",
+            "tDiscountedPriceColor": "#303030",
+            "atbBorRadius": 5,
+            "atbPadding": 5
+          }
+        }
+      },
+      "block_order": [
+        "fly_bundles_upsell_app_block_fbt_bx4LNA"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "hero_bg_video_HRFEaG": {
+      "type": "hero-bg-video",
+      "name": "Hero with Video or Image",
+      "settings": {
+        "custom_class": "custom class col_custom",
+        "media_type": "image",
+        "button_style": "btn-primary",
+        "video_url": "",
+        "image_bg": "shopify://shop_images/Container.png",
+        "fix-bg": false,
+        "heading": "<h2 class=\"hero-heading\" style=\"font-size: 24px; color: #f7d3a1;\">\n      THE SUSTAINABLE <i>TRAVEL BAG</i> WITH AN IMPACT\n    </h2>",
+        "heading_size_desktop": 24,
+        "heading_size_mobile": 20,
+        "subtext": "we are thrilled to announce our collaboration with <b>pingree detroit</b>, a true beacon of craftsmanship and social responsibility in the leather goods industry. their mission not only creates jobs for veterans but also contributes significantly to the revitalization of detroit's economy.",
+        "subtext_size_desktop": 16,
+        "subtext_size_mobile": 14,
+        "heading_color": "#f7d3a1",
+        "subtext_color": "#fbeedb",
+        "button_text": "Grab Your Bag",
+        "button_link": "shopify://products/travel-bag",
+        "text_position": "bottom-right",
+        "button_color": "maroon"
+      }
+    },
+    "faq_pg_tabs_Ed3Yk8": {
+      "type": "faq-pg-tabs",
+      "blocks": {
+        "custom_tab_rR4iHH": {
+          "type": "custom_tab",
+          "disabled": true,
+          "settings": {
+            "tab_title": "",
+            "tab_richtext": ""
+          }
+        }
+      },
+      "block_order": [
+        "custom_tab_rR4iHH"
+      ],
+      "name": "FAQ Page Tabs",
+      "settings": {
+        "general_faqs": "<p><strong>What is the difference between NuNorm products and other makeup?</strong></p><p>We custom-formulated our products with top laboratories in the US, Italy, and Japan to bring you high-quality ingredients and solutions tailored to common skin concerns unique to men—like larger pores, oiliness, facial hair, and blemishes from ingrown hairs.</p><p>What we heard most from our community was a need for products that are easy to use and feel comfortable all day, without that thick or greasy finish. That’s why none of our products include added fragrance or glitter, and every formula is crafted to provide a natural, lightweight finish that’s buildable for those who want more coverage.</p><p>Many members of our community deal with very oily skin or breakouts, so we made sure our solutions are straightforward, comfortable, and effective for everyday routines.</p><p>Throughout our development process, we had the honor of collaborating with over 100 men to perfect our formulas, ensuring they go beyond conventional makeup and deliver targeted solutions for a naturally confident appearance.</p><p>Our mission is simple: to help men feel like the best version of themselves—no pressure, no pretense. NuNorm is proud to be recognized as an industry leader and 2X award-winning men’s makeup brand, celebrated for innovation, consumer satisfaction, and our wide, inclusive shade range.</p><p>Sustainability is built into everything we do, from recyclable and biodegradable packaging to our ongoing commitment to men’s mental health—2% of every purchase supports the EQUAL Project.</p><p>At the end of the day, NuNorm is made for real men, by listening to real men. We’re here to empower you with high-quality, easy-to-use products that fit your life and help you look and feel your best—every day.</p><p><strong>Is NuNorm cruelty-free?</strong></p><p>Yes, all of our products are cruelty-free. We do not test on animals. We are against animal testing and are committed to making ethical and compassionate choices with our products.</p><p><strong>Are NuNorm products vegan?</strong></p><p>Most of our products are vegan-friendly, but not all. For example, our Recycled Leather Travel Bag is made in partnership with Pingree Detroit, where we upcycle leather waste from car parts like seats and tires. If you’re looking for details on a specific product, just check out our product pages or reach out to us—we’re always happy to help you find the best fit for your needs.</p><p><strong>Are NuNorm ingredients natural?</strong></p><p>All NuNorm products use natural ingredients, and our team of expert toxicologists tests everything to ensure our products are safe and ready for you!</p><p><strong>Are the product shades inclusive?</strong></p><p>We’ve launched 10 shades of our Tinted Hydrator, 17 shades of our Quick Cover foundation and concealer, 8 shades of our Brow Rescue pencil, and 3 shades of our Shine Eraser powder. While this is just the beginning, we’re committed to expanding our range. We’d love any suggestions on how we can continue catering our products to all skin tones.</p><p><strong>How can I find out what shade is best for me?</strong></p><p>Our Virtual Try-On tool simplifies the process of finding your perfect shade. Once you have your color match, our buildable formulas make getting a perfectly natural look easier than ever.</p><p><strong>Are NuNorm products for all men’s skin types?</strong></p><p>Our products were designed for all skin types but can be a little more effective with men’s unique skin qualities. The magic lies in our adaptable formulas. Use a bit more for a darker tone or less for a lighter one. They’re completely customizable!</p><p><strong>Will it look like I am wearing a lot of makeup?</strong></p><p>NuNorm products are designed to naturally conceal without looking caked on. We created our products to give you the perfect no-makeup makeup look!</p><p><strong>How much product should I apply?</strong></p><p>Our products are buildable, so start off with a small amount and add more if you feel the need. You’re in control of how much coverage your look has, so adjust the amount to give your desired results!</p><p><strong>Do I need a brush or sponge or a special applicator?</strong></p><p>You can definitely apply our products with your hands, but we recommend using our Kabuki-style brush or Vera Sponge. They are designed with versatility in mind, making it easy to apply liquids, creams, and powders.</p><p><strong>I’m just starting makeup. Where can I find tutorials?</strong></p><p>We’re so happy to hear you’re just starting your makeup and skincare journey! We have a number of informative makeup tutorials on our Tutorial Page! We hope they help you get started.</p><p><strong>Are NuNorm products suitable for everyone?</strong></p><p>Absolutely—anyone can use NuNorm products. Our formulas are designed to work for a wide range of skin types and concerns, no matter your gender. While we specifically tailored our products to address common needs found in men’s skin, we know great self-care (and great skin) is for everyone. If you’re after lightweight, fragrance-free, glitter-free, and natural-looking coverage with easy-to-use formulas, NuNorm has you covered.</p><p>If you ever need help picking a shade or have specific skin questions, our Shade Finder Tool and community are always here to support you.</p><p><strong>Where can I access the complete ingredient list?</strong></p><p>On all of our products packaging and our product page on our website.</p><p><strong>Is it necessary to purchase a brush or sponge for application?</strong></p><p>No. All of our products can be applied with your hands. However, a brush or sponge may help with a more even application and less mess.</p>"
+      }
+    },
+    "product_faq_2_hXyack": {
+      "type": "product-faq-2",
+      "blocks": {
+        "general_faq_RCzdA7": {
+          "type": "general_faq",
+          "settings": {
+            "question": "gffg",
+            "answer": "dffdf"
+          }
+        },
+        "general_faq_MW4KLd": {
+          "type": "general_faq",
+          "settings": {
+            "question": "gffg",
+            "answer": "dffdf"
+          }
+        },
+        "general_faq_rE8bHd": {
+          "type": "general_faq",
+          "settings": {
+            "question": "gffg",
+            "answer": "dffdf"
+          }
+        },
+        "general_faq_DNRrcC": {
+          "type": "general_faq",
+          "settings": {
+            "question": "gffg",
+            "answer": "dffdf"
+          }
+        }
+      },
+      "block_order": [
+        "general_faq_RCzdA7",
+        "general_faq_MW4KLd",
+        "general_faq_rE8bHd",
+        "general_faq_DNRrcC"
+      ],
+      "disabled": true,
+      "name": "FAQ Tabs 2",
+      "settings": {}
+    },
+    "product_faq_KkiKcG": {
+      "type": "product-faq",
+      "disabled": true,
+      "name": "FAQ Tabs",
+      "settings": {
+        "general_faqs": ""
+      }
+    },
+    "faq_accordion_83nNq4": {
+      "type": "faq-accordion",
+      "blocks": {
+        "general_faq_Ea4pf6": {
+          "type": "general_faq",
+          "settings": {
+            "question": "What is an FAQ section?",
+            "answer": "An FAQ section can be used to quickly answer common questions about your business like \"Where do you ship to?\", \"What are your opening hours?\", \nor \"How can I book a service?\"."
+          }
+        },
+        "general_faq_UBnEbb": {
+          "type": "general_faq",
+          "settings": {
+            "question": "Why do FAQs matter?",
+            "answer": "An FAQ section can be used to quickly answer common questions about your business like \"Where do you ship to?\", \"What are your opening hours?\", \nor \"How can I book a service?\"."
+          }
+        },
+        "general_faq_PRPjMK": {
+          "type": "general_faq",
+          "settings": {
+            "question": "Where can I add my FAQs?",
+            "answer": "An FAQ section can be used to quickly answer common questions about your business like \"Where do you ship to?\", \"What are your opening hours?\", \nor \"How can I book a service?\"."
+          }
+        },
+        "setting_up_fa_qs_yygXEJ": {
+          "type": "Setting_up_FAQs",
+          "settings": {
+            "question": "What is an Setting FAQ section?",
+            "answer": "An FAQ section can be used to quickly answer common questions about your business like \"Where do you ship to?\", \"What are your opening hours?\", \nor \"How can I book a service?\"."
+          }
+        },
+        "setting_up_fa_qs_rcAqJB": {
+          "type": "Setting_up_FAQs",
+          "settings": {
+            "question": "Why do Setting FAQs matter?",
+            "answer": "An FAQ section can be used to quickly answer common questions about your business like \"Where do you ship to?\", \"What are your opening hours?\", \nor \"How can I book a service?\"."
+          }
+        },
+        "setting_up_fa_qs_qLXYTn": {
+          "type": "Setting_up_FAQs",
+          "settings": {
+            "question": "Where can I add my Setting FAQs?",
+            "answer": "An FAQ section can be used to quickly answer common questions about your business like \"Where do you ship to?\", \"What are your opening hours?\", \nor \"How can I book a service?\"."
+          }
+        }
+      },
+      "block_order": [
+        "general_faq_Ea4pf6",
+        "general_faq_UBnEbb",
+        "general_faq_PRPjMK",
+        "setting_up_fa_qs_yygXEJ",
+        "setting_up_fa_qs_rcAqJB",
+        "setting_up_fa_qs_qLXYTn"
+      ],
+      "disabled": true,
+      "name": "FAQ Accordion",
+      "settings": {
+        "title": "Frequently asked questions"
+      }
+    },
+    "content_left_right_ceUh8d": {
+      "type": "content-left-right",
+      "blocks": {
+        "step_HTFF4G": {
+          "type": "step",
+          "settings": {
+            "item_text": "<p><strong>1.  Find your shade &amp; try it on virtually – </strong>select your product then use our AI tool to get your shade recommendation.</p>"
+          }
+        },
+        "step_T9rpVB": {
+          "type": "step",
+          "settings": {
+            "item_text": "<p><strong>2.  Find your shade &amp; Try It On virtually–</strong> select your product then Use our AI tool to get your shade recommendation + explore how our products will work for you.</p>"
+          }
+        },
+        "step_YDV3KH": {
+          "type": "step",
+          "settings": {
+            "item_text": "<p><strong>3.  Feel Confident</strong> – Apply our easy-to-use, buildable products for a natural, polished look every day.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_HTFF4G",
+        "step_T9rpVB",
+        "step_YDV3KH"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h2 em {color: #943f2f !important;}"
+      ],
+      "name": "Confident Steps",
+      "settings": {
+        "title": "<h2><em>3 SIMPLE STEPS</em><br/><strong>TO A CONFIDENT LOOK</strong></h2>",
+        "button_style": "btn-primary",
+        "title_size_desktop": 28,
+        "title_size_mobile": 20,
+        "list_size_desktop": 16,
+        "list_size_mobile": 14,
+        "title_color": "#213345",
+        "list_color": "#213345",
+        "button_text": "Explore Products Made for Men",
+        "mobile_button_text": "Explore Products",
+        "button_link": "shopify://collections/all",
+        "image": "shopify://shop_images/NuNorm_December-43.avif",
+        "image_1": "shopify://shop_images/NuNorm_December-32.avif",
+        "image_2": "shopify://shop_images/NuNorm_December-39.avif",
+        "image_position": "right"
+      }
+    }
+  },
+  "order": [
+    "hero_bg_video_AA4Ejf",
+    "nunorm_header_Gandr9",
+    "main_collection_q4c3Bw",
+    "banner",
+    "product-grid",
+    "17291167986254fcb1",
+    "hero_bg_video_HRFEaG",
+    "faq_pg_tabs_Ed3Yk8",
+    "product_faq_2_hXyack",
+    "product_faq_KkiKcG",
+    "faq_accordion_83nNq4",
+    "content_left_right_ceUh8d"
+  ]
+}

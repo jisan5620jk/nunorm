@@ -1,0 +1,236 @@
+<style>
+  .prod-price{
+    font-family: 'Montserrat';
+    font-weight: 900;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-style: italic;
+    margin-top: 8px;
+    color: #213345;
+    line-height: 150%;
+  }
+  .hidden { display: none !important; }
+</style>
+
+{{ 'main-collection.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-wrap grid grid-cols-12 gap-6 layout">
+  <div class="filter-col">
+    {% render 'collection-filters' %}
+  </div>
+
+  <div id="product-grid" class="prod-col"></div>
+
+  <div class="text-center mt-6 hidden" id="load-more-wrapper">
+    <button id="load-more" class="px-4 py-2 bg-[#c96b3b] text-white rounded">Load More</button>
+  </div>
+
+  <!-- Card Template -->
+  <template id="product-template">
+    <div class="product-card">
+      <a class="card-link" style="text-decoration: none;">
+        <div class="prod-img-wrap">
+          <img src="" alt="" loading="lazy" height="300" width="300">
+
+          <!-- CTAs (JS toggles visibility) -->
+          <button
+            type="button"
+            class="prod-cta btn-primary card-button"
+            style="
+              position: absolute;
+              bottom: 5%;
+            "
+          >
+            <!-- text will be set by JS -->
+          </button>
+
+          <form
+            method="post"
+            style="
+              position: absolute;
+              bottom: 5%;
+              left: 10%;
+              right: 10%;
+            "
+            action="{{ routes.cart_add_url }}"
+            class="card-add-form hidden"
+            style="background: transparent !important;"
+          >
+            <input type="hidden" name="id" value="">
+            <input type="hidden" name="quantity" value="1">
+            <button
+              class="add-to-cart btn-primary prod-cta"
+              type="submit"
+              name="add"
+              style="border: none !important; cursor: pointer;"
+              formaction="/cart/add"
+            >
+              Grab Your Product
+            </button>
+          </form>
+        </div>
+
+        <div class="prod-card-title"></div>
+        <div class="product-title"></div>
+        <div class="prod-price"></div>
+        <div class="product-variants"></div>
+
+        <!-- Start of Judge.me code -->
+      </a>
+      <div class="jdgm-badge-slot" style="margin-top: 6px;"></div>
+    </div>
+  </template>
+</div>
+
+<script>
+  const PRODUCTS = [
+    {% for product in collection.products %}
+      {% unless product.title contains 'Surprise Gift!' %}
+      {
+        id: {{ product.id }},
+        title: {{ product.title | json }},
+        price: {{ product.price | divided_by: 100 }},
+        url: {{ product.url | json }},
+        image: {{ product.metafields.custom.home_page_image | img_url: '400x' | json }},
+        description: {{ product.metafields.custom.description | default: '' | json }},
+        badge_html: {{ product.metafields.judgeme.badge | json }},
+        try_on_button: {{ product.metafields.custom.shop_page_button_fys_or_gyp | default: false | json }},
+        first_variant_id: {{ product.selected_or_first_available_variant.id }},
+        product_available: {{ product.available | json }},
+        collections: {{ product.collections | map: 'handle' | join: ',' | json }},
+        variant_count: {{ product.variants.size }},
+        variants: [
+          {% for variant in product.variants %}
+          {
+            id: {{ variant.id }},
+            title: {{ variant.title | json }},
+            image: {% if variant.featured_image %}{{ variant.featured_image | img_url: '400x' | json }}{% else %}null{% endif %},
+            url: {{ variant.url | json }},
+            price: {{ variant.price | divided_by: 100 }},
+            available: {{ variant.available | json }},
+            swatch_color: {{ variant.metafields.custom.color.value | default: '#cccccc' | json }},
+            {% if variant.metafields.custom.pdp_swatch_image != blank %}
+              swatch_image: {{ variant.metafields.custom.pdp_swatch_image | image_url: width: 80 | json }}
+            {% else %}
+              swatch_image: null
+            {% endif %}
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+        tags: [{% for tag in product.tags %}{{ tag | downcase | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]
+      }{% unless forloop.last and forloop.parentloop.last %},{% endunless %}
+      {% endunless %}
+    {% endfor %}
+  ];
+
+  const grid = document.getElementById('product-grid');
+  const tpl  = document.getElementById('product-template');
+
+  const MONEY_FORMAT = "{{ shop.money_format | strip | escape }}";
+  const LOCALE = "{{ request.locale.iso_code | default: shop.locale | replace:'_','-' }}";
+  const CURRENCY = "{{ shop.currency }}";
+
+  function formatMoney(amount){
+    const dollars = Number(amount);
+    if (!isFinite(dollars)) return '';
+    const isWhole = Math.round(dollars * 100) % 100 === 0;
+
+    if (window.Shopify && typeof Shopify.formatMoney === 'function') {
+      const cents = Math.round(dollars * 100);
+      const out = Shopify.formatMoney(cents, MONEY_FORMAT);
+      return isWhole ? out.replace(/([.,]00)(?!\d)/, '') : out;
+    }
+
+    return new Intl.NumberFormat(LOCALE, {
+      style: 'currency',
+      currency: CURRENCY,
+      minimumFractionDigits: isWhole ? 0 : 2,
+      maximumFractionDigits: isWhole ? 0 : 2
+    }).format(dollars);
+  }
+
+  function renderProducts(products) {
+    grid.innerHTML = '';
+    const frag = document.createDocumentFragment();
+
+    products.forEach(p => {
+      const clone = tpl.content.cloneNode(true);
+
+      // Basics
+      const link = clone.querySelector('.card-link');
+      const img  = clone.querySelector('img');
+      link.href  = p.url;
+      img.src    = p.image;
+      img.alt    = p.title;
+
+      clone.querySelector('.prod-card-title').textContent = `${p.title}`;
+      clone.querySelector('.prod-price').textContent = formatMoney(p.price);
+      clone.querySelector('.product-title').textContent = p.description || '';
+
+      // Variant count label
+      const variantEl = clone.querySelector('.product-variants');
+      if (p.variant_count > 1) {
+        variantEl.textContent = `${p.variant_count} shades`;
+      } else {
+        variantEl.style.display = 'none';
+      }
+
+      // CTAs
+const ctaBtn = clone.querySelector('.card-button');
+
+if (p.try_on_button) {
+  // metafield true → Find Your Shade
+  ctaBtn.textContent = 'Select Your Shade';
+  ctaBtn.addEventListener('click', () => window.location.href = p.url);
+} else {
+  // metafield false → Grab Your Product
+  ctaBtn.textContent = 'Grab Your Product';
+  ctaBtn.addEventListener('click', () => window.location.href = p.url);
+}
+const badgeSlot = clone.querySelector('.jdgm-badge-slot');
+if (badgeSlot) {
+  badgeSlot.innerHTML = p.badge_html || '';
+}
+
+      // Optional data attrs
+      const card = clone.querySelector('.product-card');
+      card.dataset.id = p.id;
+      card.dataset.price = p.price;
+      card.dataset.collections = p.collections || '';
+
+      frag.appendChild(clone);
+    });
+
+    grid.appendChild(frag);
+  }
+
+  // Initial render
+  renderProducts(PRODUCTS);
+</script>
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_sort", "label": "Enable Sort By", "default": true },
+    { "type": "checkbox", "id": "show_shade", "label": "Enable Shade Filter", "default": true },
+    { "type": "checkbox", "id": "show_price", "label": "Enable Price Filter", "default": true },
+    { "type": "checkbox", "id": "show_collections", "label": "Enable Collection Filter", "default": true },
+    { "type": "checkbox", "id": "show_concerns", "label": "Enable Concerns Filter", "default": true },
+    { "type": "collection_list", "id": "filter_collections", "label": "Collections to Filter By" }
+  ],
+  "blocks": [
+    {
+      "type": "concern",
+      "name": "Concern",
+      "settings": [
+        { "type": "image_picker", "id": "concern_icon", "label": "Concern Icon" },
+        { "type": "text", "id": "concern_label", "label": "Label" },
+        { "type": "text", "id": "concern_tag", "label": "Tag to Filter By" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Main Collection", "category": "Collection" }]
+}
+{% endschema %}

@@ -1,0 +1,203 @@
+<div class="card_item">
+  <a class="poruct_p_link" href="{{ card_product.url }}"></a>
+  <div class="card_details">
+    <div class="card_image">
+      {% assign feature-image = card_product.metafields.custom.product_page_image.value | img_url: 'master' %}
+      <img src="{{ feature-image }}" alt="{{ card_product.metafields.custom.product_page_image.value.alt }}">
+    </div>
+    <div class="card_text">
+      {% assign count-variant = 0 %}
+      {% for variant in card_product.variants %}
+        {% assign count-variant = count-variant | plus: 1 %}
+      {% endfor %}
+
+      <a href="{{ card_product.url }}">
+        <h2 class="card_title">{{ card_product.title | escape }}</h2>
+      </a>
+
+      <div class="shor_dis">{{ card_product.metafields.custom.description }}</div>
+
+      {%- unless card_product.has_only_default_variant -%}
+        {%- for option in card_product.options_with_values -%}
+          {%- liquid
+            assign is_color = false
+            assign color_option_index = 0
+            assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
+            assign color_option_index = forloop.index0
+            assign downcased_option = option.name | downcase
+            if downcased_option contains swatch_trigger
+              assign is_color = true
+            elsif downcased_option == 'kleur'
+              assign is_color = true
+            elsif swatch_trigger == 'color' or downcased_option contains 'colour'
+              assign is_color = true
+            endif
+          -%}
+          <legend class="form__label">{{ option.name }}-<span class="top-variant-title-{{ count }}"></span></legend>
+          <div id="ProductSelect-option-{{ forloop.index0 }}" name="{{ option.name | handleize }}">
+            {%- for value in option.values -%}
+              {%- liquid
+                assign product_available = true
+                if product.options.size == 1
+                  assign product_available = product.variants[forloop.index0].available
+                endif
+              -%}
+              {% for variant in card_product.variants %}
+                {% if variant.title contains value %}
+                  {%- assign img = variant.image.id -%}
+                  {%- assign color = variant.metafields.custom.color.value -%}
+                  {% assign variant-id = variant.id %}
+                  {%- assign img-url = variant.image | img_url: 'master' -%}
+                  {% assign variant-title = variant.metafields.custom.variant_title.value %}
+                  {% assign variant_price = variant.price %}
+                  {% assign variant_swatch_image = variant.metafields.custom.swatch_image.value | image_url: width: 140 %}
+                {% endif %}
+              {% endfor %}
+
+              {% unless value contains '$' %}
+                {% assign color_swatch_image = value | prepend: 'Shade-' | append: '.png' | file_img_url %}
+              {% else %}
+                {% assign color_swatch_image = variant_swatch_image %}
+              {% endunless %}
+
+              <div
+                class="variant-input variant-input-{{ count }}-{{ forloop.index }}"
+                data-index="option{{ option_index }}"
+                data-value="{{ value | escape }}"
+              >
+                <input
+                  type="radio"
+                  {% if option.selected_value == value %}
+                    checked="checked"
+                  {% endif %}
+                  form="{{ form_id }}"
+                  d-title="{{ variant-title }}"
+                  d-matatitle="{{ card_product.selected_or_first_available_variant.title }} "
+                  d-price="{{ card_product.price }}"
+                  media-data="{{ img }}"
+                  data-id="{{ variant-id }}"
+                  data-price="{{ variant_price | money }}"
+                  media-img="{{ img-url }}"
+                  value="{{ value | escape }}"
+                  data-index="option{{ option_index }}"
+                  name="{{ option.name }}"
+                  class="{% unless product_available %} disabled{% endunless %}{% if is_color %} variant__input--color-swatch{% endif %} {% if forloop.index == 1 %}active{% endif %} visible_item"
+                  {% if is_color %}
+                    data-color-name="{{ value | escape }}"
+                  {% endif %}
+                  {% if is_color %}
+                    data-color-index="{{ color_option_index }}"
+                  {% endif %}
+                  id="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                >
+                {%- if is_color -%}
+                  {%- liquid
+                    assign color_file_name = value | handle | append: '.' | append: swatch_file_extension
+                    assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
+                    assign color_swatch_fallback = value | split: ' ' | last | handle
+                  -%}
+                  <label
+                    for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                    data-id="{{ variant-id }}"
+                    class="tooltip color-swatch color-swatch--{{ value | handle }}{% unless product_available %} disabled{% endunless %}"
+                    style="background-color: {{ color }};{% if images[color_file_name] != blank %}  background-color: url({{ color_image }});{% endif %}"
+                  >
+                    {{ value }}
+                  </label>
+                {%- else -%}
+                  <label
+                    class="custom-redio-color1 custom-redio-color-{{ forloop.index }} {{ is_color }}"
+                    for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                    {% unless product_available %}
+                      class="disabled"
+                    {% endunless %}
+                    style="background: {% if color_swatch_image != blank %}url({{ color_swatch_image  }}){% else %} {{ color }}{% endif %}; background-size: contain;"
+                  >
+                    {{ value }}
+                  </label>
+                {%- endif -%}
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  var title1 = $('.variant-input-{{ count }}-{{ forloop.index }} input.active').val();
+
+                  $('.top-variant-title-{{ count }}').text(title1);
+
+                  $('.variant-input-{{ count }}-{{ forloop.index }} input').click(function () {
+                    var title = $(this).val();
+                    $('.top-variant-title-{{ count }}').text(title);
+                    $('.visible_item.active').removeClass('active');
+                    $(this).addClass('active');
+                    var data = $(this).attr('data-id');
+                    var price = $(this).attr('data-price');
+                    $('#custom-variant-id-{{ count }}').val(data);
+                    $('#custom-btn-submit-{{ count }}').val('ADD TO CART • ' + price);
+                  });
+                });
+              </script>
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <product-form>
+        {% form 'product',
+          card_product,
+          id: custom_form_id,
+          data-component-add-to-cart-form: '',
+          data-index: count,
+          data-type: 'add-to-cart-form',
+          novalidate: 'novalidate'
+        %}
+          <input
+            type="hidden"
+            name="id"
+            id="custom-variant-id-{{ count }}"
+            value="{{ card_product.variants.first.id }}"
+          >
+
+          <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1">
+
+          <!-- / button / -->
+          <div class="button_gray">
+            <span class="gray_button_circle"> </span>
+            <div class="button_gray_inner">
+              <span class="button_text_container">
+                {% unless card_product.type == 'Gift Card' %}
+                  <input
+                    type="submit"
+                    id="custom-btn-submit-{{ count }}"
+                    value="ADD TO CART • {{ card_product.variants.first.price |money }}"
+                    data-id="#custom-variant-id-{{ count }}"
+                    class="btn custom-submit-cart-btn"
+                  >
+                {% else %}
+                  <a href="{{ card_product.url }}" class="button-nunorm button-nunorm--full">Select Your Value</a>
+                {% endunless %}
+              </span>
+            </div>
+          </div>
+          <!-- / button / -->
+
+          <div class="button_gray try_it {% if card_product.title == 'Facial Wipes' or card_product.title == 'Brow Tamer' or card_product.title == 'Brow Rescue' or card_product.title == 'The Brush' %}hide{% endif %}">
+            <span class="gray_button_circle"> </span>
+
+            {% if card_product.metafields.custom.try_on_button.value == true %}
+              <a href="{{ card_product.url }}" class="button_gray_inner-tryon">
+                <span class="button_text_container"> FIND YOUR SHADE + TRY IT ON </span>
+              </a>
+            {% endif %}
+          </div>
+        {% endform %}
+      </product-form>
+      {% if card_product.metafields.custom.product_badges.value != blank %}
+        <div class="product-card__badgelist">
+          {% for badge in card_product.metafields.custom.product_badges.value %}
+            {{ badge | image_url: width: 150 | image_tag: class: 'product-card__product-badge' }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

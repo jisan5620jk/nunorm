@@ -1,0 +1,160 @@
+{{ 'section-icons-row.css' | asset_url | stylesheet_tag }}
+
+<div
+  style="--background-color: {{section.settings.background_color}}; --background-color-desktop:  {{section.settings.background_color_desktop}} ; --spacing-top: var(--spacing-vertical-{{section.settings.padding_top}}); --spacing-bottom: var(--spacing-vertical-{{ section.settings.padding_bottom }}); "
+  class="IR_Container IR_Container--desktop layout"
+>
+  <h2
+    style="--color: {{ section.settings.text_color }}; --color-desktop: {{ section.settings.text_color_desktop }}"
+    class="IR_Title"
+  >
+    {{ section.settings.title }}
+  </h2>
+  <div class="IR_Icons">
+    {% for block in section.blocks %}
+      <div class="IR_Icon-wrapper">
+        {% if block.settings.icon != blank %}
+          {% liquid
+            assign alt = block.settings.icon.alt | default: block.settings.icon.alt | default: block.settings.icon.filename | split: '.' | first
+          %}
+          {{
+            block.settings.icon
+            | image_url: width: 800
+            | image_tag: sizes: '(min-width: 768px) 46.268vw, 80vw', alt: alt, class: 'IR_Icon'
+          }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div
+  style="--background-color: {{section.settings.background_color}}; --background-color-desktop: {{section.settings.background_color_desktop}} ; --spacing-top: var(--spacing-vertical-{{section.settings.padding_top}}); --spacing-bottom: var(--spacing-vertical-{{ section.settings.padding_bottom }}); "
+  class="IR_Container IR_Container--mobile"
+>
+  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+  <h2
+    style="--color: {{ section.settings.text_color }}; --color-desktop: {{ section.settings.text_color_desktop }}"
+    class="IR_Title"
+  >
+    {{ section.settings.title }}
+  </h2>
+  <div data-icons-row-slider class="swiper IR_Icons">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="IR_Icon-wrapper swiper-slide">
+          {% if block.settings.icon != blank %}
+            {% liquid
+              assign alt = block.settings.icon.alt | default: block.settings.icon.alt | default: block.settings.icon.filename | split: '.' | first
+            %}
+            {{
+              block.settings.icon
+              | image_url: width: 800
+              | image_tag: sizes: '(min-width: 768px) 46.268vw, 80vw', alt: alt, class: 'IR_Icon'
+            }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div data-icons-row-slider-pagination class="swiper-pagination"></div>
+  </div>
+  <script defer src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+  <script defer src="{{ 'section-icons-row.js' | asset_url }}"></script>
+</div>
+
+{% schema %}
+{
+  "name": "Icons Row",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#fbeedb"
+    },
+    {
+      "type": "color",
+      "id": "background_color_desktop",
+      "label": "Background Color Desktop",
+      "default": "#fbeedb"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#8c2a26"
+    },
+    {
+      "type": "color",
+      "id": "text_color_desktop",
+      "label": "Text Color Desktop",
+      "default": "#8c2a26"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        }
+      ],
+      "default": "1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Select an icon to display"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Icons",
+      "name": "Icons Row"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,100 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+  /* Desktop Background */
+  section.text-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 112px 20px;
+  }
+
+  .text-heading * {
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #fff7ea;
+    margin: 0;
+  }
+
+  .text-heading em {
+    font-weight: 700;
+    padding-bottom: 4px;
+    display: inline-block;
+    color: #f9e0bc;
+  }
+
+
+  .text-heading p {
+    margin: 6px 0;
+    display: block;
+  }
+
+  .text-heading strong {
+    font-size: 48px;
+    font-style: italic;
+    position: relative;
+    top: -6px;
+  }
+
+  /* Mobile Background Override */
+  @media (max-width: 767px) {
+    section.text-section {
+      {% if section.settings.bg_image_mobile != blank %}
+        background-image: url({{ section.settings.bg_image_mobile | img_url: 'master' }}) !important;
+      {% endif %}
+      padding: 61px 16px 52px;
+    }
+    .text-heading * {
+      font-size: 24px;
+    }
+    .text-heading p {
+      margin: 0;
+    }
+    .text-heading strong {
+      font-size: 40px;
+    }
+  }
+</style>
+
+<section
+  class="text-section"
+  style="
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | img_url: 'master' }});
+    {% endif %}
+  "
+>
+  <div class="text-heading">
+    {{ section.settings.heading }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Text Section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image (Mobile)"
+    }
+  ],
+  "presets": [{ "name": "Text Section" }]
+}
+{% endschema %}

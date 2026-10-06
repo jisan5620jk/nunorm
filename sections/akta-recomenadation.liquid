@@ -1,0 +1,422 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-related-products.css' | asset_url | stylesheet_tag }}
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }}-padding .btn-primary {
+      font-size: 3vw;
+    }
+  }
+
+  .akta-related-product .product-title {
+        margin-top: 8px;
+        font-family: 'Montserrat';
+        font-size: 16px;
+        color: #213346;
+        font-weight: 400;
+         display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    .akta-related-product .swiper-slide {
+        max-width: 300px;
+        max-width: 365px;
+
+    }
+     /* @media screen and (max-width: 1200px) {
+        .akta-related-product .swiper-slide {
+          max-width: 300px;
+
+        }
+
+    } */
+
+    .akta-related-product .product-card {
+        padding: 10px !important;
+        text-align: center;
+    }
+    .akta-related-product .related-products__heading {
+        margin: 0 0 20px !important;
+        color: #213346 !important;
+        font-weight: 700 !important;
+    }
+    .akta-related-product .swiper-button-next:after,
+    .akta-related-product .swiper-button-prev:after {
+        font-size: 32px;
+        color: #000;
+        display: none;
+    }
+    .recom_slider__button{
+      width: 35px;
+      height: 35px;
+      background: #fbeeda;
+      border-radius: 50%;
+      color: #222;
+
+    }
+    
+    .recom_slider__button svg{
+      width: 25px;
+      height: 25px;
+
+    }
+
+    .akta-related-product .product-variants,
+    .akta-related-product .jdgm-prev-badge {
+        justify-content: center;
+        margin: 2px 0px;
+    }
+    .akta-related-product span.jdgm-prev-badge__text {
+        display: none !important;
+    }
+
+    @media (max-width: 900px) {
+      .akta-related-product .prod-cta {
+          font-size: 12px;
+      }
+  }
+
+
+    @media screen and (max-width: 749px) {
+        .akta-related-product .swiper-slide {
+            max-width: 250px;
+        }
+        .akta-related-product .prod-cta {
+            font-size: 12px;
+            height: 45px;
+        }
+
+    }
+    @media screen and (max-width: 500px) {
+        .akta-related-product .swiper-slide {
+            max-width: 220px;
+        }
+
+    }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
+  <product-recommendations
+    class="related-products akta-related-product page-width section-{{ section.id }}-padding isolate"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
+  >
+    {% if recommendations.performed and recommendations.products_count > 0 %}
+      <h2 class="related-products__heading {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+
+      <!-- Swiper container -->
+      <div class="swiper related-products-swiper">
+        <div class="swiper-wrapper">
+          {% for recommendation in recommendations.products %}
+            <div class="swiper-slide">
+              {% render 'product-card', product: recommendation %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Optional arrows -->
+        <div class="slider-nav">
+          <div class="recom_slider__button swiper-button-prev">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-left-short"
+              viewBox="0 0 16 16"
+            >
+              <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+            </svg>
+          </div>
+          <div class="recom_slider__button swiper-button-next">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-right-short"
+              viewBox="0 0 16 16"
+            >
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Optional pagination -->
+        {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
+      </div>
+      <!-- End Swiper -->
+    {% endif %}
+  </product-recommendations>
+</div>
+
+{% schema %}
+{
+  "name": "Akta Recomendation",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.related-products.settings.paragraph__1.content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "t:sections.related-products.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.related-products.settings.products_to_show.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.related-products.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.related-products.settings.header__2.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.related-products.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.related-products.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.related-products.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.related-products.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.related-products.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.related-products.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.related-products.settings.show_rating.label",
+      "info": "t:sections.related-products.settings.show_rating.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.related-products.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.related-products.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.related-products.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.related-products.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "default": "btn-primary",
+      "options": [
+        { "value": "btn-primary", "label": "Primary Button" },
+        { "value": "btn-secondary", "label": "Secondary Button" },
+        { "value": "btn-tertiary", "label": "Tertiary Button" },
+        { "value": "btn-fourth", "label": "Fourth Button" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Akta Recomendation"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  function initRelatedSwiperDynamic(attempt = 0) {
+    const swiperEl = document.querySelector('.related-products-swiper');
+
+    // If not found yet, try again
+    if (!swiperEl) {
+      if (attempt < 30) {
+        setTimeout(() => initRelatedSwiperDynamic(attempt + 1), 200);
+      }
+      return;
+    }
+
+    // If slides still not injected by ajax, retry
+    if (!swiperEl.querySelector('.swiper-slide')) {
+      if (attempt < 30) {
+        setTimeout(() => initRelatedSwiperDynamic(attempt + 1), 200);
+      }
+      return;
+    }
+
+    // If already initialized, do nothing
+    if (swiperEl.classList.contains('swiper-initialized')) return;
+
+    // Initialize swiper
+    new Swiper('.related-products-swiper', {
+      slidesPerView: 'auto',
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          
+        },
+        768: {
+          slidesPerView: 3,          
+        },
+        991: {
+          slidesPerView: 4,
+          
+        },
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      on: {
+        init() {
+          swiperEl.classList.add('swiper-initialized');
+        },
+      },
+    });
+  }
+
+  // Start checking
+  document.addEventListener('DOMContentLoaded', () => {
+    initRelatedSwiperDynamic();
+  });
+</script>

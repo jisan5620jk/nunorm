@@ -1,0 +1,86 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer_column_1_4FkPxh": {
+          "type": "footer-column-1",
+          "settings": {
+            "foothead": "OUR MISSION",
+            "sub_title": "Join our community",
+            "content": "<p>Empowering you to shine. Your confidence is our priority, and the purpose is not to cover or hide but to elevate and enhance what you’re already working with – it’s all you, just a little better.</p><p></p><p><br/><strong>Address: </strong>3290 W Big Beaver Road #300, Troy MI, 48084</p>",
+            "sub_text": "<p>Sign Up to receive 10% off on your first purchase early access to launches and announcements and content from the NuNorm community</p>",
+            "sign-up-head": "Sign Up To Learn More",
+            "sign-up-content": "<p><strong>Sign up to receive 10% off your first purchase, early access to launches and announcements, and content from the NuNorm community! By entering your email and phone number, you consent to receive marketing email messages and SMS/text messages from or on behalf of NuNorm at the email address<br/>and phone number provided. Emails and text messages may be sent through automated technologies. By providing your phone number, you consent and agree to receive marketing communications to your phone number regardless whether your phone number is registered on a do-not-call list. </strong></p><p><strong>You may unsubscribe at<br/>any time by following the instructions in the communications. Your carrier’s message rates may apply.</strong></p>",
+            "sms-head": "",
+            "sms-content": "<p>NuNorm is here to help men look and feel their best with makeup and skincare formulated to solve men's common skin concerns. We’ve simplified the process by creating easy-to-use products for both makeup beginners and experts.<br/><br/>Get 10% off your first purchase, early launch access, and more from NuNorm. Just fill out the form and we'll text or email you the code. By signing up, you agree to receive emails and SMS. Unsubscribe anytime.</p>"
+          }
+        },
+        "footer_column_2_3KXkJx": {
+          "type": "footer-column-2",
+          "settings": {
+            "mobile-socail_media": false,
+            "head": "Shop",
+            "menu": "footer-shop",
+            "menu1": "footer-shop"
+          }
+        },
+        "footer_column_3_fBwbNz": {
+          "type": "footer-column-3",
+          "settings": {
+            "head-1": "Learn",
+            "menu2": "footer-learn",
+            "head-2": "",
+            "menu3": "footer"
+          }
+        },
+        "footer_column_3_KQeVtN": {
+          "type": "footer-column-3",
+          "settings": {
+            "head-1": "Helpful Links",
+            "menu2": "footer-helpful-links",
+            "head-2": "",
+            "menu3": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "footer_column_1_4FkPxh",
+        "footer_column_2_3KXkJx",
+        "footer_column_3_fBwbNz",
+        "footer_column_3_KQeVtN"
+      ],
+      "settings": {
+        "bg_img_mob": "shopify://shop_images/logo.webp",
+        "signup_head": "Sign Up To Learn More",
+        "signup_content": "<p>Sign up to receive 10% off your first purchase, early access to launches and announcements, and content from the NuNorm community!*</p>",
+        "sign_up_continued": "",
+        "color_scheme": "accent-1",
+        "newsletter_heading": "Sign Up To Learn More",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 100,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

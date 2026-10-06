@@ -1,0 +1,108 @@
+<!-----/ formulas backed by clinical studies  sectionnnnnnnnnnnnnn/-->
+<section class="formulas-backed layout">
+
+
+   <div class="page-width">
+      <!--/ heading /-->
+        <h1 class="sec-heading">{{ section.settings.sec-head }}</h1>
+
+     <!--/ formulas box - /-->
+     <div class="formulas-backed-boxes">
+       {% for block in section.blocks %}
+       <!--/ box 1 /-->
+       <div class="box-outer">
+
+         <!--/  img /-->
+         <div class="box-img">
+           <img src="{{ block.settings.img | img_url: 'master' }}">
+         </div>
+
+         <h4 class="tt">{{ block.settings.head }}</h4>
+         <p>{{ block.settings.content }}</p>
+
+        
+       </div> 
+       {% endfor %}
+       {% comment %}
+         <!--/ box 2 /-->
+       <div class="box-outer">
+
+         <!--/  img /-->
+         <div class="box-img">
+           <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Mask_group-1_1e3f8dbb-e1a0-45e4-a4ff-3b835ce1aa2d.png?v=1685010789">
+         </div>
+
+         <h4 class="tt">Unleash Your Inner Vegan</h4>
+         <p>Lörem ipsum hyponade birenat. Ditt kåren. Os syr, i vana ifall planyska. Tiliga öl för ruska. kaganera krovapp, nening. </p>
+
+       </div>
+
+       <!--/ box 3 /-->
+       <div class="box-outer">
+
+         <!--/  img /-->
+         <div class="box-img">
+           <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Group_395.png?v=1685013093">
+         </div>
+
+         <h4 class="tt">Elevate Your Look, Nourish Your Skin</h4>
+         <p>Lörem ipsum hyponade birenat. Ditt kåren. Os syr, i vana ifall planyska. Tiliga öl för ruska. kaganera krovapp, nening. </p
+         
+       </div>
+
+       {% endcomment %}
+             
+         
+     </div>
+
+   </div>
+  
+</section>
+{% schema %}
+  {
+    "name": "formulas-backed...",
+    "settings": [
+      {
+        "type": "html",
+        "id": "sec-head",
+        "label": "Heading"
+      }
+     
+    ],
+    "blocks": [
+      {
+        "type": "box",
+        "name": "box",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "img",            
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "head",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "content",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+      "name": "formulas-backed..."
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

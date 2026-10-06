@@ -1,0 +1,83 @@
+<section class="about-banner layout">
+
+<div class="banner-grid">
+  
+<div class="banner_image">
+
+{% if section.settings.img != blank %}
+<img src="{{ section.settings.img | img_url:'master' }}" alt="{{ section.settings.img.alt }}">
+{% endif %}
+
+</div>
+
+<div class="banner_text">
+{% if section.settings.title != blank %}
+<div class="banner_heading"> {{ section.settings.title }} </div>
+{% endif %}
+
+  {% if section.settings.banner_logo != blank %}
+    <img class="banner_logo_img" src="{{ section.settings.banner_logo | img_url: 'master' }}" alt="{{ section.settings.banner_logo.alt }}">
+{% endif %}
+
+
+{% if section.settings.pera != blank %}
+<div class="banner_dis"> {{ section.settings.pera }} </div>
+{% endif %}
+  
+</div>
+
+</div>
+  
+</section>
+
+<style>
+
+#shopify-section-{{ section.id }} {
+    background-color: {{section.settings.bg_color}};
+}
+</style>
+
+{% schema %}
+  {
+    "name": "About Banner",
+    "class": "about_banner_main",
+    "settings": [
+       {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      },
+            {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Heading"
+      },
+                  {
+        "type": "image_picker",
+        "id": "banner_logo",
+        "label": "Image"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "pera",
+        "label": "Description"
+      }
+    ],
+    "presets": [
+      {
+        "name": "About Banner"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

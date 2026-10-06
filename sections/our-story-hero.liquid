@@ -1,0 +1,244 @@
+
+  <img
+    src="{{ section.settings.image_1 | image_url }}"
+    loading="lazy"
+    alt=""
+    class="img-pos img-pos-1"
+  >
+
+  <h2
+    class="hero-text text-top-mobile"
+    style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.text_size }}px;"
+  >
+    {{ section.settings.text_block_1 | raw }}
+  </h2>
+
+  <img
+    src="{{ section.settings.image_3 | image_url }}"
+    loading="lazy"
+    alt=""
+    class="img-pos img-pos-3"
+  >
+
+  <h1
+    class="hero-text text-desktop"
+    style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.text_size }}px;"
+  >
+    {{ section.settings.text_block_1 | raw }} {{ section.settings.text_block_2 | raw }}
+  </h1>
+
+  <h2
+    class="hero-text text-bottom-mobile"
+    style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.text_size }}px;"
+  >
+    {{ section.settings.text_block_2 | raw }}
+  </h2>
+
+  <img
+    src="{{ section.settings.image_2 | image_url }}"
+    loading="lazy"
+    alt=""
+    class="img-pos img-pos-2"
+  >
+
+
+<style>
+.our-story-hero {
+  background-color: #213345;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  min-height: 650px;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+/* Image Positions */
+.img-pos {
+  position: absolute;
+  object-fit: cover;
+}
+
+.img-pos-1 {
+  max-width: 19%;
+  inset: 5% auto auto 2%;
+}
+
+.img-pos-2 {
+  max-width: 22%;
+  inset: auto 5% 7% auto;
+}
+
+.img-pos-3 {
+  max-width: 22%;
+  inset: auto auto 6% 5%;
+}
+
+/* Text Styles */
+.hero-text {
+  z-index: 10;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Montserrat, sans-serif;
+  position: relative;
+}
+
+.text-desktop {
+  max-width: 50%;
+}
+
+.text-top-mobile,
+.text-bottom-mobile {
+  display: none;
+}
+
+/* Responsive */
+@media screen and (max-width: 767px) {
+  .our-story-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 24px;
+    grid-column-gap: 16px;
+    grid-auto-rows: auto;
+    height: auto;
+  }
+
+  .img-pos-1,
+  .img-pos-2,
+  .img-pos-3 {
+    position: static;
+    max-width: 100%;
+  }
+
+  .img-pos-3 {
+    max-width: 60%;
+    margin-left: auto;
+  }
+
+  .text-desktop {
+    display: none;
+  }
+
+  .text-top-mobile {
+    display: block;
+    max-width: 100%;
+    padding: 0 40px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .text-bottom-mobile {
+    display: block;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 40px 0;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .img-pos-3 {
+    max-width: 75%;
+  }
+
+  .text-top-mobile {
+    padding: 0 20px;
+    font-size: 18px;
+  }
+
+  .text-bottom-mobile {
+    max-width: 80%;
+    padding: 20px 0;
+    font-size: 18px;
+  }
+}
+</style>
+<script>
+document.addEventListener("scroll", function () {
+  // Run only on desktop
+  if (window.innerWidth > 767) {
+    const scrollTop = window.scrollY;
+
+    // Base factor
+    const scaleFactor = 1 + scrollTop * 0.00025;
+
+    document.querySelectorAll(".img-pos").forEach((img) => {
+      img.style.transform = `scale(${scaleFactor})`;
+    });
+  } else {
+    // Reset scale on mobile
+    document.querySelectorAll(".img-pos").forEach((img) => {
+      img.style.transform = "scale(1)";
+    });
+  }
+});
+</script>
+
+<style>
+.img-pos {
+  transition: transform 0.15s linear;
+  will-change: transform;
+}
+</style>
+
+
+
+{% schema %}
+{
+  "name": "Our Story Hero",
+  "tag": "section",
+  "class": "our-story-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text_block_1",
+      "label": "Top Line Text (HTML allowed)",
+      "default": "We believe men often overlook the importance of mental + physical health."
+    },
+    {
+      "type": "text",
+      "id": "text_block_2",
+      "label": "Bottom Line Text (HTML allowed)",
+      "default": "<span style='color:#FBCB8A;'>Our products were created to enhance your confidence & inspire you to make time for your self-care.</span>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FBEEDA"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text Size (px)",
+      "min": 14,
+      "max": 48,
+      "step": 2,
+      "default": 28
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Top Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Bottom Right Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Bottom Left Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story Hero",
+      "category": "About"
+    }
+  ]
+}
+{% endschema %}

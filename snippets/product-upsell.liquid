@@ -1,0 +1,649 @@
+<style>
+    .upsell-main-wrapper{
+      margin-top: 20px;
+    }
+     .upsell-heading-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 24px;
+    }
+    .upsell-heading {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 28.8px;
+      letter-spacing: 0.6px;
+      margin: 0;
+      color: #213346;
+      display: block;
+      font-family: Point Panther;
+    }
+    .upsell-image {
+      border-radius: 45px 0;
+      border: 4px solid rgba(192, 113, 71, 1);
+      margin-bottom: 14px;
+    }
+    .upsell-image img{
+      border-radius: inherit;
+      width: 100%;
+      display: block;
+    }
+    .upsell-title {
+      margin: 0;
+      font-family: Montserrat;
+      font-weight: 900;
+      font-style: Italic;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: rgba(33, 51, 69, 1);
+      padding-bottom: 8px;
+      {% comment %} margin-bottom: auto; {% endcomment %}
+    }
+    .upsell-shades {
+      font-family: Montserrat;
+      font-weight: 700;
+      font-size: 13.58px;
+      line-height: 24.44px;
+      letter-spacing: 0.58px;
+      color: rgba(140, 42, 38, 1);
+      margin-bottom: 8px;
+    }
+    .upsell-price {
+      color: rgba(33, 51, 69, 1);
+      font-family: Montserrat;
+      font-weight: 900;
+      font-style: Italic;
+      font-size: 20px;
+      line-height: 1.5;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+      .upsell-size-wrapper {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+      }
+    .upsell-size {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      background-color: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      transition: border 0.3s, box-shadow 0.3s;
+      border: 0;
+      outline: 0;
+      border-radius: 0;
+      color: rgba(33, 51, 69, 1);
+    }
+    .upsell-size-icon {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+
+    .upsell-size:focus + .upsell-size-icon {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .upsell-add-to-cart  {
+      background-color: #933f2c;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+    .upsell-add-to-cart.active {
+      background-color: rgba(33, 51, 69, 1);
+    }
+    .upsell-products-wrapper {
+      display: flex;
+      gap: 25px;
+    }
+    .upsell-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      max-width: 33.33%;
+    }
+
+
+    .upsell-variant-swatch-wrapper {
+      padding-bottom: 8px;
+    }
+
+
+    {% comment %} swatch css  {% endcomment %}
+    .upsell-swatch-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .upsell-select-text {
+        color: #000;
+    }
+    .upsell-swatch {
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .upsell-swatch img,
+    .upsell-swatch-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .upsell-swatch.is-active {
+      border-color: #000;
+    }
+
+    .upsell-swatch:hover {
+      transform: scale(1.08);
+      transition: transform .2s ease;
+    }
+    .upsell-swatch {
+      position: relative;
+    }
+
+    .upsell-swatch-tooltip {
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .upsell-swatch-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #111 transparent transparent transparent;
+    }
+
+    .upsell-swatch:hover .upsell-swatch-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+    {% comment %} dropdown {% endcomment %}
+    .upsell-variant-select-wrapper {
+      position: relative;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .upsell-select-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      z-index: 1000;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      border: none;
+      max-height: 200px;
+      overflow-y: auto;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+    .upsell-select-item {
+      display: flex;
+      align-items: center;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
+    .upsell-select-item:hover {
+      background: #f0f0f0;
+    }
+
+    .upsell-select-swatch,
+    .upsell-select-color {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      display: inline-block;
+      border-radius: 50%;
+    }
+
+    .upsell-select-button svg {
+      width: 20px;
+      height: 20px;
+      transition: 0.3s;
+      fill: #000;
+      color: #000;
+    }
+    .upsell-select-button.active svg {
+      transform: rotate(180deg);
+    }
+
+    .upsell-select-button {
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 12px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: 0.3s;
+      border: 2px solid rgba(192, 113, 71, 0);
+      background: #fff;
+
+    }
+    .upsell-select-button.active {
+      border: 2px solid rgba(192, 113, 71, 1);
+    }
+
+    .upsell-product-des {
+      font-size: 12px;
+      line-height: 1.3;
+      margin: 0 0 8px;
+    }
+
+  /* height set */
+    .upsell-title {
+      height: 50px;
+      padding: 0;
+       margin-bottom: auto;
+    }
+    .upsell-product-des {
+      display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      margin: 0 0 8px;
+      height: 46px;
+    }
+    .upsell-wrapper {
+      justify-content: end;
+    }
+
+
+    @media (min-width: 769px) and (max-width: 1024px){
+      .upsell-products-wrapper {
+          gap: 12px;
+      }
+      .upsell-title {
+        font-size: 12px;
+        height: 40px;
+      }
+      .upsell-image {
+          border-radius: 32px 0;
+          margin-bottom: 10px;
+          border-width: 2px;
+      }
+      .upsell-shades {
+          margin-bottom: 4px;
+      }
+      .upsell-price {
+          font-size: 16px;
+          margin-bottom: 4px;
+      }
+      .upsell-select-button {
+        padding: 6px 8px;
+        font-size: 14px;
+      }
+      .upsell-select-title {
+        font-size: 14px;
+      }
+      .upsell-select-item {
+        padding: 4px 4px;
+      }
+      .upsell-select-swatch, .upsell-select-color {
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+      }
+       .upsell-heading {
+        font-size: 16px;
+      }
+    }
+    @media(max-width: 575px){
+      .upsell-products-wrapper {
+          gap: 12px;
+      }
+      .upsell-title {
+        font-size: 12px;
+      }
+      .upsell-image {
+          border-radius: 32px 0;
+          margin-bottom: 10px;
+          border-width: 2px;
+      }
+      .upsell-shades {
+          margin-bottom: 4px;
+      }
+      .upsell-price {
+          font-size: 16px;
+          margin-bottom: 4px;
+      }
+      .upsell-select-button {
+        padding: 6px 8px;
+        font-size: 14px;
+      }
+      .upsell-select-title {
+       font-size: 14px;
+      }
+      .upsell-select-item {
+        padding: 4px 0 4px 4px;
+      }
+      .upsell-select-swatch, .upsell-select-color {
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+      }
+      .upsell-heading {
+        font-size: 14px;
+      }
+    }
+
+
+    @media (min-width: 769px) and (max-width: 1400px) {
+      .product-main-new__details {
+          padding: 0 16px !important;
+      }
+    }
+
+
+
+
+
+    @media(max-width:475px){
+      .upsell-title {
+        font-size: 11px;
+        height: 30px;
+      }
+      .upsell-wrapper {
+          max-width: 50%;
+      }
+    }
+</style>
+
+{% assign upsell_entry = null %}
+
+{% for item in shop.metaobjects.product_upsell.values %}
+  {% if item.reffrence_product.value != blank and item.reffrence_product.value.id == product.id %}
+    {% assign upsell_entry = item %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if upsell_entry != null %}
+  <div class="upsell-main-wrapper">
+    <div class="upsell-heading-wrapper">
+      <h3 class="upsell-heading">{{ upsell_entry.upsell_title }}</h3>
+      <!-- Add to Cart Button -->
+      <button
+        type="button"
+        class="upsell-add-to-cart upsell-add-all-to-cart"
+        data-add-text="{{ upsell_entry.add_button_text }}"
+        data-added-text="{{ upsell_entry.added_button_text }}"
+      >
+        {{ upsell_entry.add_button_text }}
+      </button>
+    </div>
+    <div class="upsell-products-wrapper">
+      {% for up_product in upsell_entry.upsell_products.value %}
+        {% if up_product %}
+          <div
+            class="upsell-wrapper"
+            data-product-id="{{ up_product.id }}"
+            data-variant-id="{{ up_product.selected_or_first_available_variant.id }}"
+          >
+            <!-- Product Image -->
+            <div class="upsell-image">
+              <img src="{{ up_product.featured_image | img_url: '1200x' }}" alt="{{ up_product.title }}">
+            </div>
+
+            <!-- Product Title -->
+            <h4 class="upsell-title">{{ up_product.title }}</h4>
+
+            {% if up_product.variants.size > 1 %}
+              <div class="upsell-variant-select-wrapper" data-product-id="{{ up_product.id }}">
+                <button type="button" class="upsell-select-button">
+                  <span class="upsell-select-text">{{ up_product.selected_or_first_available_variant.title }}</span>
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    height="200px"
+                    width="200px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="m112 184 144 144 144-144"></path>
+                  </svg>
+                </button>
+                <ul class="upsell-select-dropdown">
+                  {% for variant in up_product.variants %}
+                    {% assign swatch_color = variant.metafields.custom.color %}
+                    {% assign swatch_image = variant.metafields.custom.pdp_swatch_image %}
+                    <li
+                      class="upsell-select-item"
+                      data-variant-id="{{ variant.id }}"
+                    >
+                      {% if swatch_image != blank %}
+                        <img
+                          src="{{ swatch_image | image_url: width: 32, height: 32 }}"
+                          alt="{{ variant.title }}"
+                          class="upsell-select-swatch"
+                        >
+                      {% elsif swatch_color != blank %}
+                        <span class="upsell-select-color" style="background-color: {{ swatch_color }};"></span>
+                      {% endif %}
+                      <span class="upsell-select-title">{{ variant.title }}</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+
+            <!-- Product Shade Count -->
+            {% assign shade_count = up_product.variants | map: 'option1' | uniq | size %}
+
+            {% if shade_count > 1 %}
+              <div class="upsell-shades">{{ shade_count }} shades</div>
+            {% endif %}
+
+            {% if upsell_entry.product_description_switch %}
+              <!-- Product description -->
+              <div class="upsell-product-des">
+                {{ up_product.description | strip_html | truncatewords: 10 }}
+              </div>
+            {% endif %}
+            <!-- Product Price -->
+            <div class="upsell-price">
+              {{ up_product.price | money }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+<script>
+  (function () {
+    /* ===============================
+     STORAGE
+  =============================== */
+
+    const selectedUpsells = {};
+
+    function getVariantId(wrapper) {
+      return wrapper.dataset.variantId || null;
+    }
+
+    function getProductId(wrapper) {
+      return wrapper.dataset.productId || null;
+    }
+
+    /* ===============================
+     MAIN BUTTON STATE
+  =============================== */
+
+    function syncMainButton() {
+      const btn = document.querySelector('.upsell-add-all-to-cart');
+      const addText = btn.dataset.addText;
+      const addedText = btn.dataset.addedText;
+      if (!btn) return;
+
+      const wrappers = document.querySelectorAll('.upsell-wrapper');
+
+      const allAdded = Array.from(wrappers).every((wrapper) => {
+        const pid = getProductId(wrapper);
+        const vid = getVariantId(wrapper);
+        return selectedUpsells[pid] === vid;
+      });
+
+      btn.textContent = allAdded ? addedText : addText;
+      btn.classList.toggle('active', allAdded);
+    }
+
+    /* ===============================
+     DROPDOWN VARIANT CHANGE
+  =============================== */
+
+    function bindDropdown(wrapper) {
+      const items = wrapper.querySelectorAll('.upsell-select-item');
+      const text = wrapper.querySelector('.upsell-select-text');
+      const dropdown = wrapper.querySelector('.upsell-select-dropdown');
+      const btn = wrapper.querySelector('.upsell-select-button');
+
+      if (!items.length) return;
+
+      items.forEach((item) => {
+        item.addEventListener('click', () => {
+          const variantId = item.dataset.variantId;
+          const title = item.querySelector('.upsell-select-title').textContent;
+
+          // update wrapper dataset
+          wrapper.dataset.variantId = variantId;
+
+          // update label
+          text.textContent = title;
+
+          dropdown.style.display = 'none';
+          btn.classList.remove('active');
+
+          syncMainButton();
+        });
+      });
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        btn.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          dropdown.style.display = 'none';
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    /* ===============================
+     ADD ALL TO CART
+  =============================== */
+
+    function bindAddAll() {
+      const btn = document.querySelector('.upsell-add-all-to-cart');
+      if (!btn) return;
+
+      btn.addEventListener('click', () => {
+        const wrappers = document.querySelectorAll('.upsell-wrapper');
+
+        const allAdded = Array.from(wrappers).every((wrapper) => {
+          const pid = getProductId(wrapper);
+          const vid = getVariantId(wrapper);
+          return selectedUpsells[pid] === vid;
+        });
+
+        wrappers.forEach((wrapper) => {
+          const pid = getProductId(wrapper);
+          const vid = getVariantId(wrapper);
+
+          if (!vid) return; // safety
+
+          if (allAdded) {
+            delete selectedUpsells[pid];
+          } else {
+            selectedUpsells[pid] = vid;
+          }
+        });
+
+        console.log('Upsells:', selectedUpsells);
+        syncMainButton();
+      });
+    }
+
+    /* ===============================
+     INIT
+  =============================== */
+
+    function init() {
+      const wrappers = document.querySelectorAll('.upsell-wrapper');
+
+      wrappers.forEach((wrapper) => {
+        bindDropdown(wrapper);
+      });
+
+      bindAddAll();
+      syncMainButton();
+    }
+
+    window.getSelectedUpsells = function () {
+      return Object.values(selectedUpsells);
+    };
+
+    document.addEventListener('DOMContentLoaded', init);
+  })();
+</script>

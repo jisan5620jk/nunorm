@@ -1,0 +1,277 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "d2b01a94-b2e9-4eed-9cdf-b5c4973ee3e9": {
+      "type": "community-hero-banner",
+      "disabled": true,
+      "settings": {
+        "background_color": "#fbeeda",
+        "img": "shopify://shop_images/NuNorm_Core_Collection_Makeup_Formulated_For_Men_eef155db-d9e7-4537-b1e4-6886ad1ae609.jpg",
+        "head": "Join the <strong>Community</strong>",
+        "description": "NuNorm welcomes you to join a community of guys who appreciate self-care and self-expression. Connect with others, discuss your feelings, and become more confident.",
+        "btn-text": "",
+        "btn-link": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "fc1845d2-17b1-49d1-a6f3-1f49459f5925": {
+      "type": "slideshow",
+      "blocks": {
+        "template--18997231911186__fc1845d2-17b1-49d1-a6f3-1f49459f5925-slide-1": {
+          "type": "slide",
+          "settings": {
+            "background_color": "",
+            "image": "shopify://shop_images/Group_724.png",
+            "mobile_image": "shopify://shop_images/Background_8ba231d6-6bc1-490d-ada0-9367ae24b159.png",
+            "banner_image_link": "",
+            "heading": "<strong>Hit us up!</strong>",
+            "heading_size": "h1",
+            "subheading": "<em>Questions, suggestions, compliments or concerns? We got you.</em>",
+            "subheading-mob": "Tell your brand's story through images",
+            "subheading1": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_alignment": "left",
+            "slideshow__media": 50,
+            "slideshow__text-wrapper": 50,
+            "image_overlay_opacity": 0,
+            "color_scheme": "background-1",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "template--18997231911186__fc1845d2-17b1-49d1-a6f3-1f49459f5925-slide-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "adapt_image",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 3,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "disabled": true,
+      "settings": {
+        "heading": "Contact us",
+        "section_html": "<div class=\"page__rte rte\">\n    <h3>Need help? Our NuNorm Support Team is here for you!</h3>\n    \n    <p><span id=\"call-chat\">Chat with us live</span> or call 1-888-8NU-NORM , Monday–Friday, 7am–4pm PT. </p>\n    <p>You can also reach us at <a href=\"mailto:support@nunorm.com\">support@nunorm.com</a>.</p>\n<p> </p>\n</div>",
+        "heading_size": "h1",
+        "check-box-form": false,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "85087981-a2ea-4097-8ecc-4f0eeb367db6": {
+      "type": "rich-text",
+      "blocks": {
+        "a0127138-0fa6-432c-b9dc-c2096a4cd141": {
+          "type": "heading",
+          "settings": {
+            "heading": "Contact Us",
+            "heading_size": "h0"
+          }
+        },
+        "template--18997231911186__85087981-a2ea-4097-8ecc-4f0eeb367db6-1687937111204d4346-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Need help? Our Nu Norm Support Team is here for you!",
+            "heading_size": "h2"
+          }
+        },
+        "template--18997231911186__85087981-a2ea-4097-8ecc-4f0eeb367db6-1687937111204d4346-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Chat with us live or call 1-888-8NU-NORM, Monday–Friday, 7am–4pm PT. </p><p>You can also reach us at <a href=\"mailto:support@nunorm.com\">support@nunorm.com</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "a0127138-0fa6-432c-b9dc-c2096a4cd141",
+        "template--18997231911186__85087981-a2ea-4097-8ecc-4f0eeb367db6-1687937111204d4346-0",
+        "template--18997231911186__85087981-a2ea-4097-8ecc-4f0eeb367db6-1687937111204d4346-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "bf659ccd-3af7-4047-a231-43db361e838c": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--18997231911186__bf659ccd-3af7-4047-a231-43db361e838c-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>contact us</h2><p>Please do not hesitate to contact us if you have questions about your delivery, our products, or anything else.<br/><br/><strong>nunorm<br/></strong>Based in Detroit, Michigan<br/><br/>P: <a href=\"tel:(313) 756-6664\" target=\"_blank\" title=\"tel:(313) 756-6664\">(313) 756-6664</a><br/>E: <a href=\"mailto:Hello@NuNorm.com\" target=\"_blank\" title=\"mailto:Hello@NuNorm.com\">hello@nunorm.com</a></p>",
+            "text_style": "body"
+          }
+        },
+        "template--18997231911186__bf659ccd-3af7-4047-a231-43db361e838c-button-1": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        },
+        "e22243bd-5649-45b7-a76a-769b01061306": {
+          "type": "caption",
+          "disabled": true,
+          "settings": {
+            "caption": "Add a tagline",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "template--18997231911186__bf659ccd-3af7-4047-a231-43db361e838c-text-1",
+        "template--18997231911186__bf659ccd-3af7-4047-a231-43db361e838c-button-1",
+        "e22243bd-5649-45b7-a76a-769b01061306"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Mickey_NuNorm_Model_3dd15de3-ec86-4719-9e41-59952f7a4ccc.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 0,
+        "socail_icon_on": true
+      }
+    },
+    "custom_contact_tHxmLY": {
+      "type": "custom-contact",
+      "blocks": {
+        "info_NFTb94": {
+          "type": "info",
+          "settings": {
+            "title": "nunorm",
+            "text": "Based in",
+            "card-link": "",
+            "card-link-text": "Detroit, Michigan"
+          }
+        },
+        "info_9CQTKe": {
+          "type": "info",
+          "settings": {
+            "title": "Phone",
+            "text": "Call us for immediate assistance",
+            "card-link": "tel:3137566664",
+            "card-link-text": "(313) 756-6664"
+          }
+        },
+        "info_Wy6X3M": {
+          "type": "info",
+          "settings": {
+            "title": "Email",
+            "text": "Send inquiries via email for support",
+            "card-link": "mailto:hello@nunorm.com",
+            "card-link-text": "hello@nunorm.com"
+          }
+        },
+        "social_D9pr7K": {
+          "type": "social",
+          "settings": {
+            "social_icon": "shopify://shop_images/contact-instagram.svg",
+            "social_link": ""
+          }
+        },
+        "social_fBjrFz": {
+          "type": "social",
+          "settings": {
+            "social_icon": "shopify://shop_images/contact-tiktok.svg",
+            "social_link": ""
+          }
+        },
+        "social_6BC7UK": {
+          "type": "social",
+          "settings": {
+            "social_icon": "shopify://shop_images/contact-youtube.svg",
+            "social_link": ""
+          }
+        },
+        "social_nJHnGJ": {
+          "type": "social",
+          "settings": {
+            "social_icon": "shopify://shop_images/contact-facebook.svg",
+            "social_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "info_NFTb94",
+        "info_9CQTKe",
+        "info_Wy6X3M",
+        "social_D9pr7K",
+        "social_fBjrFz",
+        "social_6BC7UK",
+        "social_nJHnGJ"
+      ],
+      "name": "Nu Norm Contact",
+      "settings": {
+        "heading": "CONTACT US",
+        "subtext": "Please do not hesitate to contact us if you have questions about your delivery, our products, or anything else.",
+        "social_title": "SOCIALS",
+        "image": "shopify://shop_images/contact-left.png",
+        "form_heading": "Reach out to us",
+        "form_subheading": "Contact us for questions, feedback, or inquiries.",
+        "button": "Submit",
+        "first_name_placeholder": "Enter Your First Name*",
+        "last_name_placeholder": "Enter Your Last Name*",
+        "email_placeholder": "Enter Your Email*",
+        "phone_placeholder": "Enter Your Phone",
+        "message_placeholder": "Your Message Or Question",
+        "privacy_text": "By reaching out to us, you agree to our",
+        "privacy_link_text": "Privacy Policy",
+        "privacy_link": "",
+        "success_message": "Thank you! Your message has been sent successfully."
+      }
+    }
+  },
+  "order": [
+    "d2b01a94-b2e9-4eed-9cdf-b5c4973ee3e9",
+    "main",
+    "fc1845d2-17b1-49d1-a6f3-1f49459f5925",
+    "form",
+    "85087981-a2ea-4097-8ecc-4f0eeb367db6",
+    "bf659ccd-3af7-4047-a231-43db361e838c",
+    "custom_contact_tHxmLY"
+  ]
+}

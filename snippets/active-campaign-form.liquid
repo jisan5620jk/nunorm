@@ -1,0 +1,101 @@
+{% comment %}
+    Params:
+        heading: string
+        is_desktop: boolean
+        empty_email: string
+        empty_phone: string
+        empty_email_and_phone: string
+        empty_consent: string
+{% endcomment %}
+
+{% liquid
+    assign empty_email = 'Please enter your email address'
+    assign empty_phone = 'Please enter your phone number'
+    assign empty_email_and_phone = 'Please enter your email address and phone number'
+    assign empty_consent = 'Please click to consent to our terms'
+    assign malformed_email = 'Please enter a valid email address'
+    assign malformed_phone = 'Please enter a valid phone number'
+    assign malformed_email_and_phone = 'Please enter a valid email address and phone number'
+    assign success = 'Welcome to your NuNorm!'
+    assign error = "Something went wrong. Please try contact us and let us know something went wrong. We're sorry for the inconvenience."
+%}
+
+<article class="fsu_Container {% if is_desktop %} fsu_Container--desktop {% else  %} fsu_Container--mobile {% endif %}" >
+    <h4 class="fsu_Block-heading" >
+        {{ heading }}
+    </h4>
+    <div class="fsu_Block-text" >{{ text }}</div>
+    <form method="POST" action="https://nunorm.activehosted.com/proc.php" data-loading="false" data-component-active-campaign-form class="fsu_Form">
+        <input type="hidden" name="u" value="5" />
+        <input type="hidden" name="f" value="5" />
+        <input type="hidden" name="s" />
+        <input type="hidden" name="c" value="0" />
+        <input type="hidden" name="m" value="0" />
+        <input type="hidden" name="act" value="sub" />
+        <input type="hidden" name="v" value="2" />
+        <input type="hidden" name="or" value="e8331ae13a45083b9b47aff5d9397e8d" />
+        <fieldset class="fsu_Fieldset fsu_Fieldset--email">
+            <label class="visually-hidden" for="email{% if is_desktop %}-desktop{% else %}-mobile{% endif %}">Email</label>
+            <input type="text" data-component-active-campaign-input data-target="active-campaign-form-messages"  aria-invalid="false" data-active-error="" aria-required="true" name="email" id="email{% if is_desktop %}-desktop{% else %}-mobile{% endif %}" placeholder="Enter your email" class="fsu_Input">
+        </fieldset>
+        <fieldset class="fsu_Fieldset fsu_Fieldset--phone">
+            <label class="visually-hidden" for="phone{% if is_desktop %}-desktop{% else %}-mobile{% endif %}">Phone</label>
+            <input type="text" data-component-active-campaign-input data-target="active-campaign-form-messages" aria-invalid="false" data-active-error="" aria-required="true" name="phone" id="phone{% if is_desktop %}-desktop{% else %}-mobile{% endif %}" placeholder="Enter your phone number" class="fsu_Input">
+        </fieldset>
+        <fieldset class="fsu_Fieldset fsu_Fieldset--consent">
+            <input data-component-active-campaign-input class="fsu_Consent-input" data-target="active-campaign-form-messages" data-active-error="" aria-invalid="false" type="checkbox" name="consent" aria-required="true" id="consent{% if is_desktop %}-desktop{% else %}-mobile{% endif %}">
+            <label aria-required="true" class="fsu_Consent-label" for="consent{% if is_desktop %}-desktop{% else %}-mobile{% endif %}">
+                {% render 'icon-checkmark-fat', class: 'fsu_Consent-label_checkbox' %}
+                By entering your email and phone number, you consent to receive marketing email messages and SMS/text messages from or on behalf of NuNorm at the email address and phone number provided.
+            </label>
+        </fieldset>
+        <button disabled data-component-active-campaign-form-submit type="submit" class="fsu_Button">
+            <span class="visually-hidden"> Submit form </span>
+            {% render 'icon-arrow', color: 'var(--color-burgundy)' %}
+        </button>
+
+        <div data-component-active-campaign-form-messages  class="fsu_Messages-container">
+            <p data-component-error-message-summary data-target="error-quantity" aria-live="assertive" class="visually-hidden hidden" >
+                failed to save because <span data-component-error-quantity>n</span> fields are invalid
+            </p>
+
+            <p id="empty-email-and-phone-message" data-component-error-message data-error-active="false" data-error-message="empty-emailAndPhone" class="fsu_Error-message" >
+                {{ empty_email_and_phone }}
+            </p>
+            <p id="malformed-email-and-phone-message" data-component-error-message data-error-active="false" data-error-message="malformed-emailAndPhone" class="fsu_Error-message" >
+                {{ malformed_email_and_phone }}
+            </p>
+
+            <p id="malformed-phone-message" data-component-error-message data-error-active="false" data-error-message="malformed-phone" class="fsu_Error-message" >
+                {{ malformed_phone }}
+            </p>
+            <p id="invalid-phone-message" data-component-error-message data-error-active="false" data-error-message="empty-phone" class="fsu_Error-message" >
+                {{ empty_phone }}
+            </p>
+    
+            <p id="malformed-email-message" data-component-error-message data-error-active="false" data-error-message="malformed-email" class="fsu_Error-message" >
+                {{ malformed_email }}
+            </p>
+            <p id="empty-email-message" data-component-error-message  data-error-active="false" data-error-message="empty-email" class="fsu_Error-message" >
+                {{ empty_email }}
+            </p>
+   
+            <p id="empty-consent-message" data-component-error-message data-error-active="false" data-error-message="empty-consent" class="fsu_Error-message" >
+                {{ empty_consent }}
+            </p>
+
+            <p data-component-success-message data-form-submitted="false" class="fsu_Success-message" >
+                {{ success }}
+            </p>
+            <p data-component-errror-message data-form-error="false" class="fsu_Error-message" >
+                {{ error }}
+            </p>
+        </div>
+
+
+
+
+    </form>
+</article>
+
+{{ 'footer-vendor-inputs.css' | asset_url | stylesheet_tag }}

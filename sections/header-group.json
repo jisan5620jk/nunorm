@@ -1,0 +1,162 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Enjoy free shipping on all orders over $50",
+            "text_alignment": "center",
+            "background_color": "#fbeeda",
+            "text_color": "#213346",
+            "color_scheme": "background-2",
+            "link": "shopify://collections/products"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "settings": {
+        "autoplay": true,
+        "interval": 5
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "inner_menu_GtNqci": {
+          "type": "inner_menu",
+          "settings": {
+            "handle": "Find Your Shade + Try-It On",
+            "choose_inner_menu": "shine-eraser",
+            "inner_title": true,
+            "two_col_class": false,
+            "retype_inner_menu_title": "",
+            "choose_blog": "",
+            "custom_content": true,
+            "custom_image": "shopify://shop_images/Find_Your_NuNorm_Shade.jpg",
+            "custom_title": "Instructions",
+            "short_description": "<ol><li>Select your preferred product</li><li>Click the “Find Your Shade + Try It On” button</li><li>Then using your camera, our Shade Finder AI will instantly match you with your perfect shade.</li></ol>",
+            "link_url": "shopify://collections/all",
+            "btn_text": "View Products",
+            "article_path": "behind-nunorm/the-application-debate-brush-sponge-or-fingertips-what-works-best-for-a-natural-look",
+            "title": "",
+            "choose_collection": [],
+            "show_collec_des": true,
+            "heading": "",
+            "text1": "",
+            "text2": "",
+            "text3": "",
+            "text4": "",
+            "text5": "",
+            "text6": ""
+          }
+        },
+        "inner_menu_ztmtyU": {
+          "type": "inner_menu",
+          "settings": {
+            "handle": "Learn More",
+            "choose_inner_menu": "learn-more-mega-menu-new",
+            "inner_title": true,
+            "two_col_class": false,
+            "retype_inner_menu_title": "",
+            "choose_blog": "men-s-grooming-product-tips",
+            "custom_content": false,
+            "custom_title": "Custom title",
+            "short_description": "<p>Write a short description here...</p>",
+            "link_url": "",
+            "btn_text": "Read More",
+            "article_path": "",
+            "title": "",
+            "choose_collection": [
+              "award-winning",
+              "subscribe-save",
+              "bundles"
+            ],
+            "show_collec_des": true,
+            "heading": "",
+            "text1": "",
+            "text2": "",
+            "text3": "",
+            "text4": "",
+            "text5": "",
+            "text6": ""
+          }
+        },
+        "inner_menu_DWaqAG": {
+          "type": "inner_menu",
+          "settings": {
+            "handle": "shop",
+            "choose_inner_menu": "2025-main-menu-copy",
+            "inner_title": false,
+            "two_col_class": true,
+            "retype_inner_menu_title": "View All Products",
+            "choose_blog": "",
+            "custom_content": false,
+            "custom_title": "Custom title",
+            "short_description": "<p>Write a short description here...</p>",
+            "link_url": "",
+            "btn_text": "Read More",
+            "article_path": "",
+            "title": "",
+            "choose_collection": [
+              "award-winning",
+              "subscribe-save",
+              "bundles"
+            ],
+            "show_collec_des": true,
+            "heading": "",
+            "text1": "",
+            "text2": "",
+            "text3": "",
+            "text4": "",
+            "text5": "",
+            "text6": ""
+          }
+        }
+      },
+      "block_order": [
+        "inner_menu_GtNqci",
+        "inner_menu_ztmtyU",
+        "inner_menu_DWaqAG"
+      ],
+      "custom_css": [
+        ".mobile-cart-button svg {width: 100% !important;}"
+      ],
+      "settings": {
+        "logo_position": "middle-center",
+        "menu": "2025-main-menu-left-1",
+        "header_right_menu": "main-menu-right",
+        "mobile_menu": "mobile-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "always",
+        "show_line_separator": false,
+        "transparent": false,
+        "color_scheme": "background-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

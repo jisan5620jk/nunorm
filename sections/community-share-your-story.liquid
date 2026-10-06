@@ -1,0 +1,69 @@
+<!--/ Community Share /-->
+<section class="community-share-your-story layout">
+ <!--/ box info /-->
+  <div class="box-inner">
+    <h1 class="bigger-heading">{{ section.settings.head }}</h1>
+    <div class="pera">{{ section.settings.content }}</div>
+  
+     <div class="button_gray">
+        <span class="gray_button_circle">
+        </span>
+        <a href="{{ section.settings.btn-link }}" target="_blank" class="button_gray_inner">
+          <span class="button_text_container">
+          {{ section.settings.btn-text }} 
+          </span>
+        </a>
+      </div>
+  
+  </div>
+
+  <!--/ box images /-->
+  <div class="box-inner">
+    <img src="{{ section.settings.image | img_url: 'master' }}" width="100%" style="display:block;">
+  </div>
+
+</section>
+
+{% schema %}
+  {
+    "name": "community share...",
+    "settings": [       
+      {
+        "type": "html",
+        "id": "head",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "btn-text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn-link",
+        "label": "Button Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+   "presets": [
+    {
+      "name": "community share..."
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

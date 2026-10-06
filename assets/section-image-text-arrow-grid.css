@@ -1,0 +1,18 @@
+/* Acronym-shorttext guide: Image Text Arrow Grid: itag */
+
+.ITAG_Card-header {
+    font-size: 4vw;
+    margin: 0;
+    color: #48646e;
+    line-height: 28px;
+    font-family: Point Panther;
+    @media(min-width: 767px) {
+        font-size: 1.44vw;
+    }
+}
+
+.ITAG_Card-text {
+    @media(min-width: 767px) {
+        font-size: 1.44vw;
+    }
+}

@@ -1,0 +1,682 @@
+<style>
+  .contact-custom {
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .contact-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .contact-heading {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .contact-heading .title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Point Panther';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 145%;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    padding-bottom: 24px;
+    color: #213346;
+  }
+
+  .contact-heading .subtitle {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    max-width: 626px;
+    margin: 0 auto;
+  }
+
+  .contact-info-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .contact-info-card {
+    background: #953f2f;
+    padding: 32px;
+    border-radius: 36px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .contact-content-wrapper {
+    border: 1px solid #fbeeda;
+    border-radius: 24px;
+    padding: 30px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 16px;
+  }
+
+  .contact-card-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-weight: 900;
+    font-style: Italic;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #fbeeda;
+  }
+
+  .contact-card-text {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.2px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: #fbeeda;
+  }
+
+  .contact-card-link {
+    text-decoration: none;
+    color: #fbeeda;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-weight: 900;
+    font-style: Italic;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+
+  .contact-social {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .contact-social-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Point Panther';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 145%;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    padding-bottom: 24px;
+    color: #213346;
+  }
+
+  .contact-social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .contact-social a {
+    text-decoration: none;
+  }
+
+  .contact-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 120px;
+    align-items: center;
+  }
+
+  .contact-img img {
+    width: 100%;
+    margin-bottom: -120px;
+  }
+
+  .contact-form-head {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .contact-form-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Point Panther';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 145%;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    padding-bottom: 16px;
+    color: #213346;
+  }
+
+  .contact-form-subtitle {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .contact-form-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contact-form form input,
+  .contact-form form textarea {
+    width: 100%;
+    padding: 20px 16px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: none;
+  }
+
+  .contact-form form input::placeholder,
+  .contact-form form textarea::placeholder {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-transform: capitalize;
+  }
+
+  .contact-form form textarea {
+    height: 120px;
+  }
+
+  .contact-form .btn-primary {
+    max-width: 100%;
+    height: 55px;
+    border: none;
+  }
+
+  .contact-success {
+    background: #e6f9ed;
+    color: #0f7a36;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+
+  .contact-error {
+    background: #fdeaea;
+    color: #c62828;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  .contact-checkbox {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+  }
+
+  .contact-checkbox input {
+    margin-top: 3px;
+    width: 18px !important;
+    height: 18px;
+    position: relative;
+    top: 4px;
+    background: transparent !important;
+  }
+
+  .contact-checkbox a {
+    color: #9a422e;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .contact-checkbox-text {
+    margin-bottom: 10px;
+  }
+
+  .contact-btn {
+    color: #fbeeda;
+    background-color: #8c2a26;
+    border-radius: 6.96px;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    min-height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1200px) {
+    .contact-info-card {
+      padding: 20px;
+    }
+
+    .contact-img img {
+      width: 100%;
+      margin-bottom: -280px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .contact-custom {
+      padding: 60px 0 0;
+    }
+    .contact-info-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-form {
+      margin-top: 30px;
+    }
+
+    .contact-bottom {
+      grid-template-columns: 1fr;
+      margin-top: 30px;
+    }
+
+    .contact-img {
+      order: 2;
+    }
+    .contact-img img {
+      margin-bottom: -10px;
+      margin-top: 20px;
+    }
+
+    {% comment %} .contact-img img {
+      margin-bottom: 30px;
+    } {% endcomment %}
+  }
+
+  @media (max-width: 768px) {
+    .contact-info-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-bottom {
+      grid-template-columns: 1fr;
+    }
+    .contact-custom {
+      padding: 40px 0 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .contact-form-row {
+      gap: 0px;
+      flex-direction: column;
+    }
+
+    .contact-heading .title {
+      font-size: 24px;
+      padding-bottom: 10px;
+    }
+
+    .contact-heading .subtitle {
+      font-size: 18px;
+    }
+
+    .contact-form-title {
+      font-size: 24px;
+    }
+
+    .contact-form-subtitle {
+      font-size: 18px;
+    }
+    .contact-social-title {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .contact-card-link {
+      font-size: 16px;
+    }
+
+    .contact-heading .subtitle {
+      font-size: 16px;
+    }
+
+    .contact-form-subtitle {
+      font-size: 16px;
+    }
+
+    .contact-heading {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .contact-social-icons {
+      gap: 20px;
+    }
+
+    .contact-container {
+      padding: 0 14px;
+    }
+
+    .contact-bottom {
+      gap: 10px;
+    }
+  }
+</style>
+
+<section class="contact-custom">
+  <div class="contact-container">
+    <div class="contact-heading">
+      <h2 class="title">{{ section.settings.heading }}</h2>
+      <p class="subtitle">{{ section.settings.subtext }}</p>
+    </div>
+
+    <div class="contact-info-wrapper">
+      {% for block in section.blocks %}
+        {% if block.type == 'info' %}
+          <div class="contact-info-card">
+            <div class="contact-content-wrapper">
+              <h4 class="contact-card-title">{{ block.settings.title }}</h4>
+
+              <p class="contact-card-text">{{ block.settings.text }}</p>
+              <a class="contact-card-link" href="{{ block.settings.card-link }}">
+                {{- block.settings['card-link-text'] -}}
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="contact-social">
+      <h3 class="contact-social-title">{{ section.settings.social_title }}</h3>
+
+      <div class="contact-social-icons">
+        {% for block in section.blocks %}
+          {% if block.type == 'social' %}
+            <a href="{{ block.settings.social_link }}">
+              {% if block.settings.social_icon != blank %}
+                <img src="{{ block.settings.social_icon | img_url: 'master' }}" alt="social">
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="contact-bottom">
+      <div class="contact-img">
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | img_url: 'master' }}" alt="Thumb">
+        {% endif %}
+      </div>
+
+      <div class="contact-form">
+        <div class="contact-form-head">
+          <h3 class="contact-form-title">{{ section.settings.form_heading }}</h3>
+          <p class="contact-form-subtitle">{{ section.settings.form_subheading }}</p>
+        </div>
+
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <p class="contact-success">
+              {{ section.settings.success_message }}
+            </p>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="contact-error">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <div class="contact-form-row">
+            <input
+              type="text"
+              name="contact[first_name]"
+              placeholder="{{ section.settings.first_name_placeholder }}"
+              required
+            >
+
+            <input
+              type="text"
+              name="contact[last_name]"
+              placeholder="{{ section.settings.last_name_placeholder }}"
+              required
+            >
+          </div>
+
+          <input
+            type="email"
+            name="contact[email]"
+            placeholder="{{ section.settings.email_placeholder }}"
+            required
+          >
+
+          <input
+            type="tel"
+            name="contact[phone]"
+            placeholder="{{ section.settings.phone_placeholder }}"
+          >
+
+          <textarea
+            name="contact[body]"
+            placeholder="{{ section.settings.message_placeholder }}"
+          ></textarea>
+
+          <!-- Privacy Policy Checkbox -->
+          <div class="contact-checkbox">
+            <label>
+              <input class="" type="checkbox" required>
+              <span class="contact-checkbox-text">
+                {{- section.settings.privacy_text }}
+                <a href="{{ section.settings.privacy_link }}">
+                  {{ section.settings.privacy_link_text }}
+                </a>
+              </span>
+            </label>
+          </div>
+
+          <button class="btn-primary contact-btn" type="submit">
+            {{ section.settings.button }}
+          </button>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Nu Norm Contact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "CONTACT US"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Sub Text"
+    },
+    {
+      "type": "text",
+      "id": "social_title",
+      "label": "Social Title",
+      "default": "SOCIALS"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Image"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "default": "Reach out to us",
+      "label": "Form Heading"
+    },
+    {
+      "type": "text",
+      "id": "form_subheading",
+      "label": "Form Subheading"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "default": "Submit",
+      "label": "Button Text"
+    },
+    {
+      "type": "text",
+      "id": "first_name_placeholder",
+      "label": "First Name Placeholder",
+      "default": "Enter Your First Name*"
+    },
+    {
+      "type": "text",
+      "id": "last_name_placeholder",
+      "label": "Last Name Placeholder",
+      "default": "Enter Your Last Name*"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Placeholder",
+      "default": "Enter Your Email*"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone Placeholder",
+      "default": "Enter Your Phone"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Message Placeholder",
+      "default": "Your Message Or Question"
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy Text",
+      "default": "By reaching out to us, you agree to our"
+    },
+    {
+      "type": "text",
+      "id": "privacy_link_text",
+      "label": "Privacy Link Text",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy Link"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Thank you! Your message has been sent successfully."
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Contact Info",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Small Text"
+        },
+        {
+          "type": "text",
+          "id": "card-link",
+          "label": "Card link"
+        },
+        {
+          "type": "text",
+          "id": "card-link-text",
+          "label": "Card link Text"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "social_icon",
+          "label": "Social Icon"
+        },
+        {
+          "type": "url",
+          "id": "social_link",
+          "label": "Social Link"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Nu Norm Contact"
+    }
+  ]
+}
+{% endschema %}

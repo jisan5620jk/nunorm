@@ -1,0 +1,257 @@
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+
+  .section-{{ section.id }} {
+    padding: clamp(40px, 6vw, 80px) 0;
+    text-align: center;
+  }
+  .blog-hero__tags {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 45px;
+  }
+
+  .blog-hero__tag {
+    background: rgba(122, 28, 32, 1);
+    color: rgba(251, 238, 218, 1);
+    padding: 11px 24px;
+    border-radius: 10px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 0;
+    font-family: Montserrat;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 1.44px;
+  }
+
+
+
+  .blog-hero__tag:hover,
+  .blog-hero__tag.is-active {
+    background: ;
+  }
+  .blog-hero__content{
+       max-width: 700px;
+       margin: 0 auto;
+   }
+
+  .blog-hero__heading {
+    margin: 0 0 15px;
+  }
+  .blog-hero__heading h1 {
+    margin: 0;
+    font-size: clamp(18px, calc(18px + (40 - 18) * ((100vw - 320px) / (1023 - 320))), 40px);
+    font-family: Montserrat;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #c37048;
+    line-height: 1.4;
+    letter-spacing: 0.6px;
+    font-style: italic;
+  }
+  .blog-hero__heading em {
+    color: rgba(33, 51, 70, 1);
+    font-weight: 800;
+  }
+  .blog-hero__subheading {
+    margin: 0 auto 22px;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: 400;
+    color: rgba(33, 51, 70, 1);
+    line-height: 1.4;
+    letter-spacing: 0.6px;
+  }
+  .blog-hero__search {
+    margin: 0 auto;
+    position: relative;
+  }
+  .blog-hero__search-input {
+    width: 100%;
+    padding: 14px 48px 14px 16px;
+  }
+  .blog-hero__search-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .blog-hero__search-clear {
+    position: absolute;
+    right: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+  }
+
+  .akta-blog-search .field {
+    height: 62px;
+  }
+
+  .akta-blog-search .field input {
+      height: 100%;
+  }
+  .akta-blog-search  .field__label {
+    left: 16px;
+    top: 18px;
+  }
+  .akta-blog-search  .field__label {
+    left: 16px;
+    top: 18px;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(130, 127, 119, 1);
+    font-family: 'Montserrat';
+  }
+
+  .akta-blog-search .search__button {
+    right: 7px;
+    top: 9px;
+  }
+
+  .akta-blog-search .search__button svg {
+    color: rgba(180, 105, 85, 1);
+    width: 26px;
+    height: 26px;
+  }
+
+  .akta-blog-search .field:after {
+    --color-foreground: rgba(130, 127, 119, 1);
+    box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground),var(--inputs-border-opacity));
+
+  }
+
+  .akta-blog-search .field input {
+    border: 1px solid rgba(130, 127, 119, 1);
+  }
+
+  @media (max-width: 767px){
+    {% comment %} .blog-hero__heading h1 {
+      font-size: 32px;
+    } {% endcomment %}
+    .blog-hero__subheading {
+      font-size: 16px;
+    }
+    .blog-hero-wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 30px;
+    }
+    .blog-hero__tags {
+      margin-bottom: 0;
+    }
+  }
+
+  {% comment %} @media (max-width: 649px){
+    .blog-hero__heading h1 {
+      font-size: 26px;
+    }
+  }
+
+  @media (max-width: 575px){
+    .blog-hero__heading h1 {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 399px){
+    .blog-hero__heading h1 {
+      font-size: 18px;
+    }
+  } {% endcomment %}
+</style>
+
+<section class="blog-hero section-{{ section.id }}">
+  <div class="page-width blog-hero-wrapper">
+    {% if section.settings.show_tags %}
+      <div class="blog-hero__tags">
+        {% for block in section.blocks %}
+          <a
+            href="#{{ block.settings.section_id }}"
+            class="blog-hero__tag"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.tag_text }}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="blog-hero__content">
+      {% if section.settings.heading != blank %}
+        <div class="blog-hero__heading">{{ section.settings.heading }}</div>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="blog-hero__subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+
+      {% if section.settings.show_search %}
+        {% render 'akta-search-form', section: section %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog Hero",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Explore practical insights, expert knowledge, and community-driven advice designed to support your routine."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show blog tags",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag",
+      "name": "Tag Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag_text",
+          "label": "Tag Text",
+          "default": "About Our Products"
+        },
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Target Section Id"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Hero"
+    }
+  ]
+}
+{% endschema %}

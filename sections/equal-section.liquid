@@ -1,0 +1,60 @@
+{{ 'equal-section.css' | asset_url | stylesheet_tag }}
+
+<section class="equal-section layout">
+
+  {% if section.settings.image != blank %} 
+    <div class="equal-section-title-image">
+      {{ section.settings.image | image_url: width: 1500 | image_tag: style: 'display:block; width: 100%; height: auto;', loading: 'lazy' }}
+    </div>
+  {% endif %}
+
+  <div class="equal-section-infos">
+    {% if section.settings.desktop_text != blank %}
+      <div class="equal-section-title-desktop">
+       {{ section.settings.desktop_text }}
+      </div>
+    {% endif %}
+  
+    {% if section.settings.mobile_text != blank %}
+      <div class="equal-section-title-mobile">
+       {{ section.settings.mobile_text }}
+      </div>
+    {% endif %}
+  </div>
+
+</section>
+
+
+{% schema %}
+{
+  "name": "equal-section",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "equal-section",
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "desktop_text",
+      "label": "Desktop Text"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_text",
+      "label": "Mobile Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "equal-section"
+    }
+  ]
+}
+{% endschema %}

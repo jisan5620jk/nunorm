@@ -1,0 +1,46 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "custom_css": [
+        ".grid__item {padding: 12px !important;}",
+        "h3,.card-article__excerpt {color: #213346 !important; text-align: center;}",
+        "h3 {font-size: 16px !important; line-height: 26px !important; font-style: unset; font-weight: 400 !important;}",
+        ".card-article__header {justify-content: center;}",
+        ".card-article__tag {display: none;}",
+        ".btn-primary {margin-top: 18px;}",
+        ".facets-container {display: none;}",
+        "@media (max-width: 767px) {.grid__item {max-width: 100%; width: 100%; } .product-grid {grid-template-columns: 1fr !important; }}",
+        "img, .card__inner {border-radius: 12px;}"
+      ],
+      "settings": {
+        "columns_desktop": 4,
+        "image_ratio": "portrait",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "article_show_date": true,
+        "article_show_author": false,
+        "button_style": "btn-primary",
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

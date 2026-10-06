@@ -1,0 +1,152 @@
+{% comment %}
+  Section: Press logos strip
+{% endcomment %}
+
+<style>
+  /* ===== Press Logos Strip (static CSS) ===== */
+  #press-logos-{{ section.id }}.press-logos-strip{
+    background: linear-gradient(90deg, #F7D3A1 0%, #FBEEDA 100%);
+    position:relative;
+    overflow:hidden;
+    padding: 0 16px;
+  }
+
+  #press-logos-{{ section.id }} .press-logos-strip__row{
+    max-width:930px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding-top: clamp(32px, calc(32px + (52 - 32) * ((100vw - 320px) / (1440 - 320))), 52px);
+    padding-bottom: clamp(32px, calc(32px + (52 - 32) * ((100vw - 320px) / (1440 - 320))), 52px);
+    flex-wrap:wrap;
+  }
+
+  #press-logos-{{ section.id }} .press-logos-strip__item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  #press-logos-{{ section.id }} .press-logos-strip__link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    padding:6px 8px;
+  }
+
+  #press-logos-{{ section.id }} .press-logos-strip__logo{
+    display:block;
+    max-height:32px;
+    width:auto;
+    max-width:169px;
+    object-fit:cover;
+  }
+
+  #press-logos-{{ section.id }} .press-logos-strip__text{
+    font-size:28px;
+    line-height:1;
+    font-weight:800;
+    color:#9b4b3b;
+    letter-spacing:0.01em;
+    white-space:nowrap;
+  }
+
+  @media (max-width: 749px){
+    #press-logos-{{ section.id }} .press-logos-strip__item{
+      min-width:140px;
+      margin: 0 auto;
+    }
+    #press-logos-{{ section.id }} .press-logos-strip__text{
+      font-size:22px;
+    }
+  }
+</style>
+
+<section id="press-logos-{{ section.id }}" class="press-logos-strip">
+  <div class="press-logos-strip__inner">
+    <div class="press-logos-strip__row" role="list">
+      {% for block in section.blocks %}
+        <div class="press-logos-strip__item" role="listitem" {{ block.shopify_attributes }}>
+          {% if block.settings.link != blank %}
+            <a
+              class="press-logos-strip__link"
+              href="{{ block.settings.link }}"
+              aria-label="{{ block.settings.aria_label | escape }}"
+            >
+          {% endif %}
+
+          {% if block.settings.logo != blank %}
+            <img
+              class="press-logos-strip__logo"
+              src="{{ block.settings.logo | image_url: width: 500 }}"
+              srcset="
+                {{ block.settings.logo | image_url: width: 200 }} 200w,
+                {{ block.settings.logo | image_url: width: 350 }} 350w,
+                {{ block.settings.logo | image_url: width: 500 }} 500w
+              "
+              sizes="(max-width: 749px) 40vw, 180px"
+              width="{{ block.settings.logo.width }}"
+              height="{{ block.settings.logo.height }}"
+              alt="{{ block.settings.logo.alt | escape }}"
+              loading="lazy"
+            >
+          {% else %}
+            <span class="press-logos-strip__text">
+              {{ block.settings.fallback_text | escape }}
+            </span>
+          {% endif %}
+
+          {% if block.settings.link != blank %}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Press logos strip",
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_text",
+          "label": "Fallback text (if no image)",
+          "default": "Brand"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        },
+        {
+          "type": "text",
+          "id": "aria_label",
+          "label": "Accessibility label (optional)",
+          "default": "Press logo link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press logos strip",
+      "blocks": [{ "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }]
+    }
+  ]
+}
+{% endschema %}

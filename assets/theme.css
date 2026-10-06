@@ -1,0 +1,61 @@
+.five-stars svg {
+  width: 20px;
+  height: 20px;
+  fill: #8c2926;
+}
+
+.five-stars {
+  margin-top: 10px;
+}
+
+section {
+  padding: 40px 20px;
+}
+
+.full-width {
+  padding: 40px 0px !important;
+}
+
+.hero-video {
+  padding: 0px;
+}
+
+.product-card {
+  padding: 16px;
+  text-align: center;
+}
+.product-card img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: 0;
+}
+
+
+@media (max-width: 768px) { 
+
+  .product-card {
+    padding: 8px;
+    padding: 8px 0px !important;
+    border-radius: 5px !important;
+  }
+}
+
+
+.product-title {
+  margin-top: 24px;
+  font-family: "Montserrat";
+  font-size: 16px;
+  line-height: 120%;
+  color: #213346;
+}
+.product-variants {
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-weight: 700;
+  color: #8c2a26;
+  margin-top: 10px;
+}

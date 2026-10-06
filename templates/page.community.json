@@ -1,0 +1,446 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "blog_hero_MN8ymx": {
+      "type": "blog-hero",
+      "blocks": {
+        "tag_aaJ4qt": {
+          "type": "tag",
+          "settings": {
+            "tag_text": "Men’s Grooming + Product Tips",
+            "section_id": "category-4"
+          }
+        },
+        "tag_kHDtFw": {
+          "type": "tag",
+          "settings": {
+            "tag_text": "Advice From the Community",
+            "section_id": "category-1"
+          }
+        },
+        "tag_Qed9gP": {
+          "type": "tag",
+          "settings": {
+            "tag_text": "Mental & Physical Health",
+            "section_id": "category-3"
+          }
+        },
+        "tag_iT8zyW": {
+          "type": "tag",
+          "settings": {
+            "tag_text": "About NuNorm & The EQUAL Project Advice",
+            "section_id": "category-2"
+          }
+        }
+      },
+      "block_order": [
+        "tag_aaJ4qt",
+        "tag_kHDtFw",
+        "tag_Qed9gP",
+        "tag_iT8zyW"
+      ],
+      "name": "Blog Hero",
+      "settings": {
+        "heading": "<h1><em>RESOURCES TO SUPPORT</em><br/>YOUR GROOMING JOURNEY</h1>",
+        "subheading": "Explore practical insights, expert knowledge, and community-driven advice designed to support your routine.",
+        "show_tags": true,
+        "show_search": true
+      }
+    },
+    "akta_blog_slider_MKEXJC": {
+      "type": "akta-blog-slider",
+      "name": "Akta Blog slider",
+      "settings": {
+        "id": "category-4",
+        "heading": "Men’s Grooming + Product Tips",
+        "blog": "men-s-grooming-product-tips",
+        "post_limit": 6,
+        "tag": "Community",
+        "show_view_more": true,
+        "view_more_text": "View more"
+      }
+    },
+    "akta_blog_slider_fMRCEe": {
+      "type": "akta-blog-slider",
+      "name": "Akta Blog slider",
+      "settings": {
+        "id": "category-1",
+        "heading": "Advice From the Community",
+        "blog": "advice-from-the-community",
+        "post_limit": 6,
+        "tag": "Community",
+        "show_view_more": true,
+        "view_more_text": "View more"
+      }
+    },
+    "akta_blog_slider_BW7pNX": {
+      "type": "akta-blog-slider",
+      "name": "Akta Blog slider",
+      "settings": {
+        "id": "category-3",
+        "heading": "Mental & Physical Health",
+        "blog": "mental-physical-health",
+        "post_limit": 6,
+        "tag": "Community",
+        "show_view_more": true,
+        "view_more_text": "View more"
+      }
+    },
+    "akta_blog_slider_KGyfLp": {
+      "type": "akta-blog-slider",
+      "name": "Akta Blog slider",
+      "settings": {
+        "id": "category-2",
+        "heading": "About NuNorm & The EQUAL Project Advice",
+        "blog": "about-nunorm-the-equal-project",
+        "post_limit": 6,
+        "tag": "Community",
+        "show_view_more": true,
+        "view_more_text": "View more"
+      }
+    },
+    "page_header_deFQ9c": {
+      "type": "page-header",
+      "disabled": true,
+      "settings": {
+        "image_position": "left",
+        "title": "<em>Join the Community</em>",
+        "description": "NuNorm welcomes you to join a community of guys who appreciate self-care and self-expression. Connect with others, discuss your feelings, and become more confident.",
+        "image": "shopify://shop_images/NuNorm_Community_2e5f0971-135e-417e-a7e4-d775dabc88c8.jpg",
+        "background_color": "#fbeeda",
+        "title_text_color": "#213346",
+        "title_accent_text_color": "#c07147",
+        "description_text_color": "#48646e"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "464ce909-089e-4438-a0b7-0db71d993ea3": {
+      "type": "community-hero-banner",
+      "disabled": true,
+      "settings": {
+        "background_color": "#fbeeda",
+        "img": "shopify://shop_images/NuNorm_Community_2e5f0971-135e-417e-a7e4-d775dabc88c8.jpg",
+        "head": "Join the <strong>Community</strong>",
+        "description": "NuNorm welcomes you to join a community of guys who appreciate self-care and self-expression. Connect with others, discuss your feelings, and become more confident.",
+        "btn-text": "",
+        "btn-link": ""
+      }
+    },
+    "911df411-21cb-4c88-8dd7-51edb3ca0c95": {
+      "type": "before-after",
+      "disabled": true,
+      "settings": {
+        "before-after-home": "",
+        "sec-heading": "",
+        "sec-subheading": "",
+        "subheading_mobile": "",
+        "pera-wrap": "",
+        "flip_box_content": "",
+        "flip_box_hover_content": "",
+        "before": "",
+        "before_after_arrow": "",
+        "after": "",
+        "btn-head": "What makes us different?",
+        "btn-sub-head": "Learn more about our work confronting the stigma of mens mental health.",
+        "btn-text": "The Dizzy Foundation",
+        "btn-link": ""
+      }
+    },
+    "39dc5788-3276-4f1a-8417-58646bc70336": {
+      "type": "blog-slider",
+      "blocks": {
+        "597beb4e-2ba5-4036-b2e1-caec71f965a5": {
+          "type": "box",
+          "settings": {
+            "blog": "behind-nunorm",
+            "blog-title": "Community"
+          }
+        },
+        "9bb03ec5-e513-4aa0-833b-5eefe30ea1cd": {
+          "type": "box",
+          "disabled": true,
+          "settings": {
+            "blog": "tips",
+            "blog-title": "Tips"
+          }
+        },
+        "9d17dae5-1a0c-48cc-a03e-3ed406bdd967": {
+          "type": "box",
+          "disabled": true,
+          "settings": {
+            "blog": "tips",
+            "blog-title": "Tips"
+          }
+        },
+        "0a3b17c0-7112-42fa-9bc0-6c9aac6cef16": {
+          "type": "box",
+          "disabled": true,
+          "settings": {
+            "blog": "behind-nunorm",
+            "blog-title": "Blog"
+          }
+        }
+      },
+      "block_order": [
+        "597beb4e-2ba5-4036-b2e1-caec71f965a5",
+        "9bb03ec5-e513-4aa0-833b-5eefe30ea1cd",
+        "9d17dae5-1a0c-48cc-a03e-3ed406bdd967",
+        "0a3b17c0-7112-42fa-9bc0-6c9aac6cef16"
+      ],
+      "disabled": true,
+      "settings": {
+        "sec-head": "Makeup insights: Created specifically for you",
+        "content": "<p>Your go-to guide to men’s makeup, giving beginner-friendly insights and professional tips to help answer all your makeup questions.</p>",
+        "btn-text": "VIEW ALL BLOGS",
+        "btn-link": "shopify://blogs/behind-nunorm"
+      }
+    },
+    "c6aa114f-c59d-4e1e-bacf-669e2d3f4e22": {
+      "type": "visual-try",
+      "disabled": true,
+      "settings": {
+        "hide": "0",
+        "visual-try-home": "",
+        "head": "SHARE\n<i>YOUR STORY!</i>",
+        "content": "We want to hear how you built your confidence. Your story has the power to inspire others! Share your experiences with us, and we’ll help spread the message to others. ",
+        "btn-text": "Join Our Discord",
+        "link": "https://discord.gg/PdUpgCSpA3"
+      }
+    },
+    "07e30448-f5ad-4fcf-ad3a-28792e772356": {
+      "type": "community-our-newnorms",
+      "blocks": {
+        "c6894527-18ea-43f4-acec-a373ad322051": {
+          "type": "box",
+          "settings": {
+            "img": "shopify://shop_images/Joycelyn_Testimonial_2.png",
+            "head": "Meet Jocelyn",
+            "content": "\"Masculinity is confidence. These products give you the extra boost you need to look and feel your best.\""
+          }
+        },
+        "02be707d-cb2e-4ba2-86fd-1a8853549ef5": {
+          "type": "box",
+          "settings": {
+            "img": "shopify://shop_images/Noel_Testimonial.png",
+            "head": "Meet Noel",
+            "content": "\"As a father of a four year old, I'm constantly on the go. I love that these products are made for on the go usage and can fit easily into my daily routines.\""
+          }
+        },
+        "589ef9db-995e-4115-af73-a1999947f671": {
+          "type": "box",
+          "settings": {
+            "img": "shopify://shop_images/Devon_Testimonial.png",
+            "head": "Meet Devon",
+            "content": "“Our masculinity is our confidence, so if you feel confident, that’s a great way to feel good about ourselves.”"
+          }
+        }
+      },
+      "block_order": [
+        "c6894527-18ea-43f4-acec-a373ad322051",
+        "02be707d-cb2e-4ba2-86fd-1a8853549ef5",
+        "589ef9db-995e-4115-af73-a1999947f671"
+      ],
+      "disabled": true,
+      "settings": {
+        "sec-head": "Community Celebrating Confidence"
+      }
+    },
+    "37fe7493-7c32-4e01-94ad-c1cfea3d5b90": {
+      "type": "blog-slider",
+      "blocks": {
+        "45fdcd78-4b57-452b-9d5d-3bdf194b4a34": {
+          "type": "box",
+          "settings": {
+            "blog": "tips",
+            "blog-title": "Community"
+          }
+        }
+      },
+      "block_order": [
+        "45fdcd78-4b57-452b-9d5d-3bdf194b4a34"
+      ],
+      "disabled": true,
+      "settings": {
+        "sec-head": "Community Celebrating Confidence",
+        "content": "",
+        "btn-text": "",
+        "btn-link": ""
+      }
+    },
+    "0f981fc4-ba7e-434b-bbde-d13369170f12": {
+      "type": "want-to-learn-2",
+      "blocks": {
+        "b7a2065b-8d75-409d-a3bb-831f6395ed1b": {
+          "type": "vedio-box",
+          "settings": {
+            "filter-id": "",
+            "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+            "serial-no": "",
+            "head": "The New Masculinity: Exploring Men's Makeup",
+            "content": " “My three-month old doesn’t understand how great sleep is and I looked like a zombie on all my zoom meetings. With NuNorm’s concealer and anti-shine powder I feel so much better about myself and really feel like I am putting my best face forward. I plan to stick with this duo even after my kid learns to sleep. Hopefully soon!”"
+          }
+        },
+        "de83e6f2-468f-4a22-909b-ad7d503f505b": {
+          "type": "vedio-box",
+          "settings": {
+            "filter-id": "",
+            "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+            "serial-no": "",
+            "head": "Bold and Masculine: Men's Makeup Techniques",
+            "content": "“I thought I was just stuck with giant pores and a red rosy nose for life. My girlfriend bought me the tinted moisturizer and anti shine powder because she was tired of me refusing to take pictures with her. I feel so much more confident now and can’t believe it took me this long to try makeup! I’m a convert.”"
+          }
+        }
+      },
+      "block_order": [
+        "b7a2065b-8d75-409d-a3bb-831f6395ed1b",
+        "de83e6f2-468f-4a22-909b-ad7d503f505b"
+      ],
+      "disabled": true,
+      "settings": {
+        "sec-head": "Get Pro-Level Makeup Tips from Our NuNorm Ambassadors",
+        "content": "Our NuNorm ambassadors go beyond makeup tutorials; they share personal stories linking makeup to confidence. Gain valuable tips to elevate your wellness along with improving your makeup skills. ",
+        "btn-1": "",
+        "btn-2": "",
+        "btn-3": "",
+        "btn-4": "",
+        "btn-5": "",
+        "btn-6": "",
+        "btn-7": "",
+        "btn-8": "",
+        "btn-9": "",
+        "btn-10": "",
+        "btn-11": "",
+        "btn-12": "",
+        "custom-filter": false
+      }
+    },
+    "77431403-0197-4ec1-849e-d60b3db30cb7": {
+      "type": "want-to-learn",
+      "blocks": {
+        "e56c4d00-3b41-4ca1-88e2-b8df3d78b68f": {
+          "type": "vedio-box",
+          "settings": {
+            "filter-id": "",
+            "product-1": "",
+            "product-content-1": "",
+            "product-2": "",
+            "product-content-2": "",
+            "product-3": "",
+            "product-content-3": "",
+            "product-4": "",
+            "product-content-4": "",
+            "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+            "content": " “My three-month old doesn’t understand how great sleep is and I looked like a zombie on all my zoom meetings. With NuNorm’s concealer and anti-shine powder I feel so much better about myself and really feel like I am putting my best face forward. I plan to stick with this duo even after my kid learns to sleep. Hopefully soon!”"
+          }
+        },
+        "f867f26e-f0d3-4ddd-9073-408f5480b3be": {
+          "type": "vedio-box",
+          "settings": {
+            "filter-id": "",
+            "product-1": "",
+            "product-content-1": "",
+            "product-2": "",
+            "product-content-2": "",
+            "product-3": "",
+            "product-content-3": "",
+            "product-4": "",
+            "product-content-4": "",
+            "v-url": "https://cdn.shopify.com/videos/c/o/v/9934c9663f8b42ecbae0cf01e35ab006.mp4",
+            "content": "“I thought I was just stuck with giant pores and a red rosy nose for life. My girlfriend bought me the tinted moisturizer and anti shine powder because she was tired of me refusing to take pictures with her. I feel so much more confident now and can’t believe it took me this long to try makeup! I’m a convert.”"
+          }
+        }
+      },
+      "block_order": [
+        "e56c4d00-3b41-4ca1-88e2-b8df3d78b68f",
+        "f867f26e-f0d3-4ddd-9073-408f5480b3be"
+      ],
+      "disabled": true,
+      "settings": {
+        "sec-head": "Get Pro-Level Makeup Tips from Our NuNorm Ambassadors",
+        "content": "Our NuNorm ambassadors go beyond makeup tutorials; they share personal stories linking makeup to confidence. Gain valuable tips to elevate your wellness along with improving your makeup skills. ",
+        "btn-1": "",
+        "btn-2": "",
+        "btn-3": "",
+        "btn-4": "",
+        "btn-5": "",
+        "btn-6": "",
+        "btn-7": "",
+        "btn-8": "",
+        "btn-9": "",
+        "btn-10": "",
+        "btn-11": "",
+        "btn-12": "",
+        "custom-filter": false
+      }
+    },
+    "b4aad967-7dc0-45d9-91a2-4c81ee7930f8": {
+      "type": "community-share-your-story",
+      "disabled": true,
+      "settings": {
+        "head": "SHARE<i>YOUR \nSTORY!</i>",
+        "content": "<p>We want to hear how you built your confidence. Your story has the power to inspire others! Share your experiences with us, and we’ll help spread the message to others. </p>",
+        "btn-text": "Join Our Discord",
+        "btn-link": "https://discord.com/invite/U5Da5keg76"
+      }
+    },
+    "a499ec40-efa6-4ba2-84e6-a234362d52e7": {
+      "type": "manscara-chronicles",
+      "disabled": true,
+      "settings": {
+        "sec-head": "MANSCARA CHRONICLES",
+        "sec-head1": "#NUNORM",
+        "content": "<p>Join our community of men who love to express themselves through makeup, and discover new techinques, products and trends.</p>"
+      }
+    },
+    "314d1f4d-8844-4f8c-8461-026b0793bd70": {
+      "type": "logos-home",
+      "disabled": true,
+      "settings": {
+        "logos-home": "",
+        "sec-heading": "yes, we’ve been featured in:"
+      }
+    },
+    "1709677371b0957cef": {
+      "type": "apps",
+      "settings": {
+        "include_margins": false
+      }
+    }
+  },
+  "order": [
+    "blog_hero_MN8ymx",
+    "akta_blog_slider_MKEXJC",
+    "akta_blog_slider_fMRCEe",
+    "akta_blog_slider_BW7pNX",
+    "akta_blog_slider_KGyfLp",
+    "page_header_deFQ9c",
+    "main",
+    "464ce909-089e-4438-a0b7-0db71d993ea3",
+    "911df411-21cb-4c88-8dd7-51edb3ca0c95",
+    "39dc5788-3276-4f1a-8417-58646bc70336",
+    "c6aa114f-c59d-4e1e-bacf-669e2d3f4e22",
+    "07e30448-f5ad-4fcf-ad3a-28792e772356",
+    "37fe7493-7c32-4e01-94ad-c1cfea3d5b90",
+    "0f981fc4-ba7e-434b-bbde-d13369170f12",
+    "77431403-0197-4ec1-849e-d60b3db30cb7",
+    "b4aad967-7dc0-45d9-91a2-4c81ee7930f8",
+    "a499ec40-efa6-4ba2-84e6-a234362d52e7",
+    "314d1f4d-8844-4f8c-8461-026b0793bd70",
+    "1709677371b0957cef"
+  ]
+}

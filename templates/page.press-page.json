@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "h1,h2,h3,h4,p {color: #213346 !important;}",
+        "h4 {font-size: 18px 1important;}",
+        "h1 {font-size: 32px !important;}",
+        "h3 {font-size: 24px !important;}",
+        "h2 {font-size: 27px !important;}",
+        "@media (max-width: 768px) {h2 {font-size: 20px !important; } h1 {font-size: 25px; } h2 {font-size: 22px !important; } h4 {font-size: 17px; } h3 {font-size: 20px !important; }}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "page_header_VmXEYL": {
+      "type": "page-header",
+      "name": "Page Header",
+      "settings": {
+        "image_position": "left",
+        "title": "In The Headlines",
+        "description": "Welcome to our Press & PR hub, where we showcase the latest buzz surrounding our men's makeup revolution.",
+        "image": "shopify://shop_images/Testimonial-_Mickey_After_1.png",
+        "background_color": "#48646e",
+        "title_text_color": "#fbeeda",
+        "title_accent_text_color": "#c07147",
+        "description_text_color": "#fbeeda"
+      }
+    },
+    "icons_row_X4RLBc": {
+      "type": "icons-row",
+      "blocks": {
+        "icon_YLaX3d": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/MensHealth.png"
+          }
+        },
+        "icon_qHkXwc": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/esquire.png"
+          }
+        },
+        "icon_8YWXNU": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/Forbes_logo.svg"
+          }
+        },
+        "icon_gqQxQA": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/LifeAndStyle.png"
+          }
+        }
+      },
+      "block_order": [
+        "icon_YLaX3d",
+        "icon_qHkXwc",
+        "icon_8YWXNU",
+        "icon_gqQxQA"
+      ],
+      "name": "Icons Row",
+      "settings": {
+        "background_color": "#fbeedb",
+        "background_color_desktop": "#fbeedb",
+        "title": "",
+        "text_color": "#8c2a26",
+        "text_color_desktop": "#8c2a26",
+        "padding_top": "1",
+        "padding_bottom": "1"
+      }
+    },
+    "video_gEBfgr": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "Check out a recent interview with our founder, Jeff Lau",
+        "heading_size": "h2",
+        "enable_video_looping": true,
+        "video_url": "https://www.youtube.com/watch?v=zz3YMuo5gAo",
+        "cover_image": "shopify://shop_images/Jeff_Lau_Founder_NuNorm_Interview_Live_In_The_D.png",
+        "description": "NuNorm Makeup for Men - \"Live in the D\" In case you missed it: NuNorm was featured on 'Live in the D'! Listen in as our founder, Jeff Lau, talks about creating a makeup line that caters specifically to men's needs. From our Quick Cover concealer, to our Tinted Hydrator, discover how we're setting new norms in beauty. Rewatch the live segment and see why confidence has no gender!",
+        "full_width": false,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "press_grid_EJx3kf": {
+      "type": "press-grid",
+      "blocks": {
+        "press_item_xrADEF": {
+          "type": "press-item",
+          "settings": {
+            "image": "shopify://shop_images/5_Reasons_to_Consider_Leveling_Up_Your_Grooming_Routine_by_Men_s_Health.png",
+            "subtitle": "5 Reasons to Consider Leveling Up Your Grooming Game With Makeup",
+            "description": "NO ONE WALKS around with perfect skin all the time. If you’re human, occasional complexion concerns like acne, oily skin, dark circles, and dullness are par for the course. \n<br>\n<br>\nWhen these sorts of things crop up—or anytime you want to look and feel a little more put together—it’s nice to have the option of a quick solution in your grooming arsenal. New cosmetics brand NuNorm, created specifically for men, has arrived to get guys feeling good and looking their best, whenever they need it.",
+            "link": "https://www.menshealth.com/grooming/a46252732/5-reasons-to-consider-leveling-up-your-grooming-game-with-makeup/"
+          }
+        },
+        "press_item_q4wjUX": {
+          "type": "press-item",
+          "settings": {
+            "image": "shopify://shop_images/The_Case_for_Wearing_Concealer_By_Esquire.png",
+            "subtitle": "The Case for Wearing Concealer",
+            "description": "Call it a double standard, but I think people tend to assume that women are always wearing makeup and that men never are. To me, that means that if a guy is wearing makeup, onlookers just think he has great skin. \n<br>\n<br>\nI believe that if more guys realized this, they would be more open to wearing makeup—whether to camouflage skin issues that are getting them down, to look their best for an important event, or just for a good old-fashioned confidence boost.",
+            "link": "https://www.esquire.com/style/a46236014/the-case-for-wearing-concealer/"
+          }
+        },
+        "press_item_KyEcpG": {
+          "type": "press-item",
+          "settings": {
+            "image": "shopify://shop_images/Makeup_For_Men_Is_More_Than_A_Trend_It_s_A_Rapidly_Rising_Market_by_Forbes.png",
+            "subtitle": "Makeup For Men Is More Than A Trend—It’s A Rapidly Rising Market",
+            "description": "Aside from the formulas developed specifically for men’s skin, mental health and empowerment are at the forefront of NuNorm’s brand identity.\n<br>\n<br>\n“Our purpose-driven mission is to empower men to feel confident,” Lau said. -----“We want to improve their mental well-being through the positive impact our products can have on self-esteem and self-expression.”\n\nAware that this is uncharted territory for many, Lau makes product education a priority across all of the brand’s platforms.",
+            "link": "https://www.forbes.com/sites/dahvishira/2024/03/06/makeup-is-more-than-a-trend-for-men-its-a-rapidly-rising-market/?sh=62249a9449b0"
+          }
+        },
+        "press_item_dAb7yN": {
+          "type": "press-item",
+          "settings": {
+            "image": "shopify://shop_images/NuNorm_Launches_Men_s_Makeup_Line_Happi.png",
+            "subtitle": "NuNorm Launches Men's Makeup Line",
+            "description": "Inspired by a powerful moment of self-expression with his son, Lau saw how much society needed to progress and began his mission to help reshape masculinity and increase the well-being and confidence of men. \n<br>\n<br> \n\"Regardless of gender, we want to change the outdated perception that is exclusively for women and help men feel empowered with high-quality makeup products catered to them,\" said Lau.",
+            "link": "https://www.happi.com/contents/view_breaking-news/2024-01-12/nunorm-introduces-makeup-line-for-men/"
+          }
+        }
+      },
+      "block_order": [
+        "press_item_xrADEF",
+        "press_item_q4wjUX",
+        "press_item_KyEcpG",
+        "press_item_dAb7yN"
+      ],
+      "name": "Press Grid",
+      "settings": {
+        "background_color": "#ffffff",
+        "title": "Explore Our latest Press",
+        "subtitle": "Dive into a world of media recognition, industry accolades, and behind-the-scenes glimpses into our brand's journey. Explore how our products are making waves in the realm of male grooming and discover why the press can't stop talking about us.",
+        "text_color": "#4F5050",
+        "padding_top": "7",
+        "padding_bottom": "10"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "page_header_VmXEYL",
+    "icons_row_X4RLBc",
+    "video_gEBfgr",
+    "press_grid_EJx3kf"
+  ]
+}

@@ -1,0 +1,127 @@
+{{ 'section-product-slider.css' |  asset_url | stylesheet_tag }}
+
+<!-- 
+    Shortcut and Acronym guide
+fcc - Featured collection carousel
+ -->
+
+ <div class="fcc-Container layout" >  
+    <div class="fcc-Text-Container">
+        <h2 class="fcc-Title" >{{ section.settings.title }}</h2>
+        <p class="fcc-Description" >{{ section.settings.description }}</p>
+    </div>
+    <div class="fcc-Text-Container--desktop">
+        <h2 class="fcc-Title--desktop" >{{ section.settings.title_desktop }}</h2>
+        <p class="fcc-Description--desktop" >{{ section.settings.description_desktop }}</p>
+    </div>
+    <div class="fcc-Product-Slider-Container">
+        <div class="fcc-Product-Slider" id="fcc-Product-Slider" >
+            <div class="fcc-Product-Slider-Wrapper" id="fcc-Product-Slider-Wrapper" >
+                {% for product in collections[section.settings.collection].products %}
+                    <div class="fcc-Product-Slider-Item" >
+                        <a href="{{ product.url }}" >
+                            {{  }}
+                            <h3>{{ product.title }}</h3>
+                            <form method="post" action="/cart/add">
+                            <button style="--section-fcc-button-color: {{section.settings.button_color}}; --section-fcc-button-text-color: {{ section.settings.button_text_color }};" class="ffc-Product-Card_button" type="submit">ADD TO CART</span>
+                            </button>
+                            </form>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="fcc-Product-Slider-Controls" id="fcc-Product-Slider-Controls" >
+            <button class="fcc-Product-Slider-Prev" id="fcc-Product-Slider-Prev" >Prev</button>
+            <button class="fcc-Product-Slider-Next" id="fcc-Product-Slider-Next" >Next</button>
+        </div>
+    </div>
+ </div>
+
+
+<script type="module" src="{{ 'product-slider.js' | asset_url }}" ></script>
+
+
+{% schema %}
+{
+    "name": "Product slider",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Yeah, You Look Good"
+        },
+        {
+            "type": "text",
+            "id": "title_desktop",
+            "label": "Title Desktop",
+            "default": "MAKEUP FOR EVERY MAN"
+        },
+        {
+            "type": "text",
+            "id": "description",
+            "label": "Description",
+            "default": "Makeup for guys who want to look their best without fuss or confusion. NuNorm is a clean, natural, and subtle line with shades for everyone and confusion for no one. Just you feeling your best."
+        },
+        {
+            "type": "text",
+            "id": "description_desktop",
+            "label": "Description Desktop",
+            "default": "We’ve formulated everyday makeup essentials for men. Our products are easy to use and provide a natural look, with shades for every skin tone."
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        },
+        {
+            "type": "header",
+            "content": "Design"
+        },
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#8c2a26"
+        },
+        {
+            "type": "color",
+            "id": "button_color",
+            "label": "Button color",
+            "default": "#8c2a26"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button text color",
+            "default": "#fbeeda"
+        },
+        {
+            "type": "color",
+            "id": "secondary_button_color",
+            "label": "Secondary button color",
+            "default": "#c07247"
+        },
+        {
+            "type": "color",
+            "id": "secondary_button_text_color",
+            "label": "Secondary button text color",
+            "default": "#fbeeda"
+        }
+        
+        ],
+    "presets": [
+        {
+            "category": "Products",
+            "name": "Product slider"
+        }
+    ]
+}
+{% endschema %}

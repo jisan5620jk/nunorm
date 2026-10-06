@@ -1,0 +1,184 @@
+<div class="FAQ_tabs_accordion faq-tabs layout">
+  <h2>{{ section.settings.title }}</h2>
+  <div class="faq-tabs__nav" style="max-width: 900px; overflow: hidden;">
+    <button class="faq-tab-button active" data-tab="general">General</button>
+    <button class="faq-tab-button" data-tab="reset_wipes">Setting up FAQs</button>
+  </div>
+  <div class="faq-tabs__content">
+    <div class="faq-tab-panel active" data-tab-panel="general">
+      {% for block in section.blocks %}
+        {% if block.type == 'general_faq' %}
+          <div class="faq-accordion">
+            <button class="accordion-header">
+              <span>{{ block.settings.question }}</span>
+              <span class="chevron">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path class="arrowDown" d="M8.14644661,10.1464466 C8.34170876,9.95118446 8.65829124,9.95118446 8.85355339,10.1464466 L12.4989857,13.7981758 L16.1502401,10.1464466 C16.3455022,9.95118446 16.6620847,9.95118446 16.8573469,10.1464466 C17.052609,10.3417088 17.052609,10.6582912 16.8573469,10.8535534 L12.4989857,15.2123894 L8.14644661,10.8535534 C7.95118446,10.6582912 7.95118446,10.3417088 8.14644661,10.1464466 Z"></path>
+                </svg>
+              </span>
+            </button>
+            <div class="accordion-body">
+              <p id="copyText">{{ block.settings.answer }}</p>
+              {% if forloop.index == 1 %}
+              {% render 'faq-social-icons' %}
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="faq-tab-panel" data-tab-panel="reset_wipes">
+      {% for block in section.blocks %}
+        {% if block.type == 'Setting_up_FAQs' %}
+          {% render 'faq-block', block: block %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<style>
+    .faq-tabs__nav {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+  }
+  .faq-tab-button {
+      background: none;
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Montserrat';
+      color: #213345;
+      Font-size: 18px;
+  }
+  .faq-tab-button.active {
+      border-bottom: none;
+      font-weight: bold !important;
+  }
+    .faq-tab-panel {
+      display: none;
+    }
+    .faq-tab-panel.active {
+      display: block;
+    }
+    .faq-accordion {
+      border-top: none;
+      border-bottom: 1px solid var(--color-burgundy);
+  }
+    .accordion-body p {
+      font-size: 15px;
+      color: var(--color-midnight);
+  }
+    .accordion-header {
+      font-family: 'Montserrat';
+      color: var(--color-midnight);
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      font-size: 15px;
+      line-height: 120%;
+      padding: 20px 0px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+    .accordion-header .chevron {
+      transition: transform 0.3s ease;
+    }
+    .accordion-header.active .chevron {
+      transform: rotate(180deg);
+    }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.faq-tab-button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.faq-tab-button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.faq-tab-panel').forEach(p => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.querySelector(`[data-tab-panel="${btn.dataset.tab}"]`).classList.add('active');
+      });
+    });
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', function() {
+        header.classList.toggle('active');
+        const body = header.nextElementSibling;
+        if (body.style.maxHeight) {
+          body.style.maxHeight = null;
+        } else {
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "FAQ Tabs accordion",
+  "tag": "section",
+  "class": "faq_accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "general_faq",
+      "name": "General FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+    {
+      "type": "setup_faq",
+      "name": "Setup FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+
+{
+  "type": "Setting_up_FAQs",
+  "name": "Setting up FAQs",
+  "settings": [
+    { "type": "text", "id": "question", "label": "Question" },
+    { "type": "textarea", "id": "answer", "label": "Answer" }
+  ]
+}
+  ],
+  "presets": [
+    {
+      "name": "FAQ Tabs accordion"
+    }
+  ]
+}
+{% endschema %}

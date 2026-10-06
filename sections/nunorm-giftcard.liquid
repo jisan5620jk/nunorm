@@ -1,0 +1,386 @@
+<style>
+    /* ========== ROOT ========= */
+    .nunorm-giftcard-section {
+      position: relative;
+      padding: 44px 0;
+      overflow: hidden;
+      background: linear-gradient(165.74deg, #FFF1DD 4.96%, #FFF9F0 97.75%);
+    }
+
+    .nunorm-bg img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 0;
+      object-fit: cover;
+      object-position: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* ========== LAYOUT ========= */
+    .nunorm-giftcard-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nunorm-giftcard-left {
+      width: 45%;
+      padding-left: 60px;
+    }
+
+    .nunorm-giftcard-right {
+      width: 55%;
+      text-align: right;
+    }
+
+    .nunorm-hero-image {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    /* ========== TEXT ========= */
+    .nunorm-heading {
+      margin: 0 0 6px;
+      color: #213346;
+      font-family: Montserrat;
+      font-weight: 800;
+      font-size: 64px;
+      line-height: 120%;
+      letter-spacing: 0.6px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+
+    .nunorm-heading strong {
+      font-style: Italic;
+      font-size: 96px;
+      color: #7a1c20;
+    }
+
+    .nunorm-subheading {
+      margin: 0 0 48px;
+      color: #213346;
+      font-family: Montserrat;
+      font-weight: 800;
+      font-size: 64px;
+      line-height: 120%;
+      letter-spacing: 0.6px;
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
+
+    .nunorm-desc {
+      font-family: Montserrat;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 140%;
+      letter-spacing: 0.6px;
+      vertical-align: middle;
+      max-width: 670px;
+      color: #213346;
+    }
+
+    .nunorm-desc strong {
+      font-weight: 700;
+    }
+
+  @media(min-width: 1225px){
+      .nunorm-heading {
+        padding-left: 53px;
+      }
+
+      .nunorm-subheading {
+          padding-left: 53px;
+      }
+
+      .nunorm-desc {
+          padding-left: 53px;
+      }
+      .nunorm-giftcard-left {
+        padding-left: 30px;
+      }
+
+  }
+  @media(max-width: 1224px){
+      .nunorm-heading {
+        padding-left: 49px;
+        font-size: 60px;
+      }
+
+      .nunorm-subheading {
+          padding-left: 49px;
+      }
+
+      .nunorm-desc {
+          padding-left: 49px;
+      }
+      .nunorm-giftcard-left {
+        padding-left: 30px;
+      }
+
+  }
+  @media(max-width: 1199px){
+      .nunorm-heading {
+        padding-left: 42px;
+      }
+
+      .nunorm-subheading {
+          padding-left: 42px;
+      }
+
+      .nunorm-desc {
+          padding-left: 42px;
+      }
+      .nunorm-giftcard-left {
+        padding-left: 30px;
+      }
+
+  }
+    @media(max-width: 999px) and (min-width: 899px){
+      .nunorm-heading strong {
+        font-size: 70px;
+      }
+
+    }
+
+  @media(max-width: 768px){
+      .nunorm-heading {
+        padding-left: 45px;
+      }
+
+      .nunorm-subheading {
+          padding-left: 45px;
+      }
+
+      .nunorm-desc {
+          padding-left: 0px;
+      }
+      .nunorm-giftcard-left {
+        padding-left: 45px;
+      }
+
+  }
+  @media(max-width: 475px){
+      .nunorm-heading {
+        padding-left: 30px;
+      }
+
+      .nunorm-subheading {
+          padding-left: 30px;
+      }
+
+      .nunorm-desc {
+          padding-left: 0px;
+      }
+      .nunorm-giftcard-left {
+        padding-left: 30px;
+      }
+
+  }
+
+
+    /* ========== RESPONSIVE ========= */
+    @media (min-width: 900px) {
+      .nunorm-hero-image.mobile {
+          display: none;
+      }
+    }
+    @media (max-width: 1299px) {
+      .nunorm-giftcard-left {
+          padding-left: 20px;
+      }
+
+      .nunorm-brand img {
+          max-width: 95%;
+      }
+    }
+    @media (max-width: 1199px) {
+
+      .nunorm-heading {
+          font-size: 40px;
+      }
+
+      .nunorm-heading strong {
+          font-size: 86px;
+      }
+
+      .nunorm-brand img {
+          max-width: 90%;
+      }
+
+      .nunorm-subheading {
+          margin: 0px 0 38px;
+          font-size: 54px;
+      }
+
+      .nunorm-desc {
+          font-size: 22px;
+      }
+    }
+    @media (max-width: 899px) {
+      .nunorm-giftcard-section {
+          padding: 50px 0 0;
+      }
+      .nunorm-bg {
+          display: none;
+      }
+
+      .nunorm-giftcard-container {
+        flex-direction: column;
+      }
+
+      .nunorm-giftcard-left {
+        padding: 0 16px;
+      }
+
+      .nunorm-giftcard-left,
+      .nunorm-giftcard-right {
+        width: 100%;
+      }
+
+      .nunorm-hero-image.desktop {
+          display: none;
+      }
+      .nunorm-hero-image.mobile {
+          margin-bottom: -10px;
+      }
+    }
+    @media (max-width: 575px) {
+      .nunorm-heading {
+          font-size: 40px;
+          margin: 0;
+          gap: 14px;
+      }
+
+      .nunorm-heading strong {
+          font-size: 44px;
+      }
+
+      .nunorm-brand img {
+          max-width: 100%;
+      }
+
+      .nunorm-subheading {
+          margin: -8px 0 26px;
+          font-size: 40px;
+      }
+
+      .nunorm-desc {
+          font-size: 16px;
+          margin-bottom: 34px;
+      }
+    }
+</style>
+
+<section class="nunorm-giftcard-section">
+  <div class="nunorm-giftcard-container">
+    <div class="nunorm-giftcard-left">
+      <h2 class="nunorm-heading">
+        {{ section.settings.heading }}
+      </h2>
+
+      <div class="nunorm-brand"><img src="{{ section.settings.brand_name | img_url: 'master' }}" alt="Brand Logo"></div>
+
+      <h4 class="nunorm-subheading">{{ section.settings.subheading }}</h4>
+
+      <p class="nunorm-desc">{{ section.settings.description }}</p>
+    </div>
+
+    <div class="nunorm-giftcard-right">
+      {% if section.settings.hero_image %}
+        <img
+          class="nunorm-hero-image desktop"
+          src="{{ section.settings.hero_image | img_url: 'master' }}"
+          alt="Gift Card Promo Image"
+        >
+      {% endif %}
+      {% if section.settings.hero_image_mobile %}
+        <img
+          class="nunorm-hero-image mobile"
+          src="{{ section.settings.hero_image_mobile | img_url: 'master' }}"
+          alt="Gift Card Promo Image"
+        >
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.background_image %}
+    <div class="nunorm-bg">
+      <img
+        src="{{ section.settings.background_image | img_url: 'master' }}"
+        alt="Background Iamge"
+      >
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "NuNorm Gift Card Promo",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "WIN A $100"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_name",
+      "label": "Brand Logo"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "GIFT CARD!"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "We’ve teamed up with Clean Beauty Awards to spread some holiday cheer. Enter below for a chance to win a $100 gift card to use on any NuNorm product."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image Desktop",
+      "info": "Hero Image (products + gift box)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero Image Mobile",
+      "info": "Hero Image (products + gift box)"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Graphic"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Enter Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "NuNorm Gift Card Promo"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,125 @@
+<section class="about_foundation_section layout">
+
+<div class="head_area">
+{% if section.settings.title != blank %}
+<h2>{{ section.settings.title }}</h2>
+{% endif %}
+  
+</div>
+
+<div class="about_foundation_section_grid">
+{% for block in section.blocks %}
+  <div class="about_foundation_box">
+{% if block.settings.title != blank %}
+<img src="{{ block.settings.img | img_url:'master' }}">
+{% endif %}
+
+{% if block.settings.title != blank %}
+<h3>{{ block.settings.title }}</h3>
+{% endif %}
+
+{% if block.settings.sub_title != blank %}
+<div class="sub_title_inner">{{ block.settings.sub_title }}</div>
+{% endif %} 
+
+  </div>
+{% endfor %}
+</div>
+
+{% if section.settings.link != blank %}
+<a class="tyr_it_btn" href="{{ section.settings.link }}">{{ section.settings.link_title }}</a>
+{% endif %}
+  
+</section>
+
+
+<style>
+#shopify-section-{{section.id}}:after {
+    content: '';
+    height: 40%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+    background-color: {{section.settings.bg_color}};
+}
+
+#shopify-section-{{section.id}} {
+position: relative;
+}
+
+
+@media screen and (max-width: 767px) {
+#shopify-section-{{section.id}}:after {
+    height: 18%;
+}
+}
+
+
+</style>
+
+
+{% schema %}
+  {
+    "name": "About Foundation Section",
+    "class": "about_foundation_main",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "link_title",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Heading"
+      }
+    ],
+        "blocks": [
+      {
+        "type": "box",
+        "name": "box",
+        "limit": 3,
+        "settings": [
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      },
+                {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "sub_title",
+        "label": "Description"
+      }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "About Foundation Section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

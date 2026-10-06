@@ -1,0 +1,864 @@
+.about_banner_main img {
+    width: 100%;
+}
+
+.about_banner_main .banner-grid {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 0px;
+}
+
+.about_banner_main .banner_image {
+    width: 50%;
+    display: flex;
+    order: 2;
+}
+
+.about_banner_main .banner_text {
+    width: 50%;
+    text-align: center;
+}
+
+.about_banner_main .banner_heading {
+    font-family: Point Panther;
+    font-style: normal;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+.about_banner_main .banner_dis {
+    color: #fbeeda;
+    font-family: Montserrat;
+    font-style: normal;
+}
+
+.about_info_main .about_info_section {
+    max-width: 1920px;
+    padding-top: 7rem;
+    margin: auto;
+}
+
+.about_info_main .head_area {
+    text-align: center;
+}
+
+.about_info_main h2 {
+    text-align: center;
+    font-family: Point Panther;
+    font-style: normal;
+}
+
+.about_info_main .sub_title p {
+    margin: 0;
+}
+
+.about_info_main .sub_title {
+    text-align: center;
+    font-style: normal;
+    margin: auto;
+}
+
+.about_info_main .about_info_section_grid {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+.about_info_main .about_info_image {
+    width: 30%;
+}
+
+.about_info_main .about_info_text {
+    width: 65%;
+}
+
+.about_info_main .about_info_text ul {
+    padding: 0;
+}
+
+.about_info_main .about_info_text ul li {
+    font-style: normal;
+    display: block;
+    padding-bottom: 40px;
+} 
+
+.about_info_main .about_info_text ul li p {
+    margin: 0;
+
+}
+.about_info_main .about_info_text ul li p strong {
+  color: #4f5050;
+}
+.about_info_main .about_info_image img {
+    border-radius: 0 80px;
+    width: 100%;
+}
+
+.about_info_main .about_info_text ul li span {
+    color: #48646e;
+    position: absolute;
+    left: 0;
+}
+
+.about_our_solution_main .solution_box a.tyr_it_btn {
+    text-decoration-line: none;
+    border-radius: 35px;
+    background: #C07247;
+    color: #FBEEDA;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1.3px;
+    min-height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    width: fit-content;
+    padding: 10px 30px;
+    margin: auto;
+}
+@media (max-width: 991px){
+  .about_our_solution_main .solution_box a.tyr_it_btn{font-size: 12px;}
+}
+.about_our_solution_main .about_our_solution_section {
+    max-width: 1920px;
+    margin: auto;
+}
+
+.about_our_solution_main  .head_area {
+    text-align: center;
+    padding: 50px 0 70px;
+}
+
+.about_our_solution_main h2 {
+    text-align: center;
+    font-family: Point Panther;
+    font-style: normal;
+    margin: 0;
+    padding-bottom: 13px;
+}
+
+.about_our_solution_main .sub_title {
+    text-align: center;
+    font-style: normal;
+    margin: auto;
+}
+
+.about_our_solution_main .about_our_solution_grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+    gap: 6%;
+}
+
+.about_our_solution_main .solution_box {
+    width: calc(33.33% - 5%);
+    padding: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 400px;
+    position: relative;
+    border-radius: 50px;
+    background: #FFF;
+    box-shadow: 0px 53.91667px 75.48334px 21.56667px rgba(0, 0, 0, 0.10);
+    margin-bottom: 50px;
+}
+
+.about_our_solution_main .solution_box img {
+    max-width: 200px;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.about_our_solution_main .solution_box:hover img {
+    opacity: 0;
+}
+
+.about_our_solution_main .solution_box h3 {
+    text-align: center;
+    font-family: Point Panther;
+    font-style: normal;
+    margin-top: 0;
+    margin-bottom: 9px;
+}
+
+.solution_box_inner {
+    position: absolute;
+    width: 90%;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.solution_box:hover .solution_box_inner {
+    opacity: 1;
+}
+
+.about_our_solution_main .solution_box .sub_title_inner {
+    padding-bottom: 15px;
+    text-align: center;
+    font-style: normal;
+}
+
+.about_image_and_text_main img {
+    margin: auto;
+    width: 100%;
+    border-radius: 70px;
+    background: #ffffff;
+    padding: 15px;
+    box-shadow: 0px 40px 40px 0px #D9D9D9;
+    margin-bottom: 60px;
+}
+
+.about_image_and_text_main {
+    text-align: center;
+}
+
+.about_image_and_text_main .about_image_and_text_grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about_image_and_text_main .about_image_and_text_section {
+    max-width: 1920px;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    margin: auto;
+}
+
+.about_image_and_text_main .img_text_box {
+  width: 100%;
+  padding: 0px;
+}
+
+.about_image_and_text_main .img_text_box h2 {
+    text-align: center;
+    font-family: Point Panther;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.about_image_and_text_main .img_text_box .sub_title_inner {
+    text-align: center;
+    font-style: normal;
+}
+
+.about_letter_section_main .about_letter_section {
+    max-width: 1380px;
+    margin: auto;
+    text-align: center;
+    padding: 3rem 0 1rem 0;
+}
+
+.about_letter_section_main h3 {
+    text-align: center;
+    font-style: normal;
+}
+
+.about_letter_section_main .sub_title_inner p {
+    margin: 0;
+}
+
+.about_letter_section_main .sub_title_inner {
+    /* max-width: 800px; */
+    margin: auto;
+    text-align: center;
+    font-style: normal;
+    padding-bottom: 20px;
+}
+
+.about_letter_section_main img.logo_leeter {
+    max-width: 300px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.about_letter_section_main img.sign_letter {
+    max-width: 170px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.about_foundation_main .about_foundation_section {
+    max-width: 1380px;
+    padding: 40px;
+    margin: auto;
+    text-align: center;
+}
+
+.about_foundation_main .about_foundation_section_grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    justify-content: center;
+}
+
+.about_foundation_main .about_foundation_box {
+    width: 30%;
+}
+
+.about_foundation_main .head_area {
+    padding: 40px 0px 100px 0px;
+}
+
+.about_foundation_main .head_area h2 {
+    text-align: center;
+    font-style: normal;
+    margin: 0;
+}
+
+.about_foundation_main .about_foundation_box img {
+    width: 100%;
+    border-radius: 40px;
+    background: #a8d1d7;
+    min-height: 470px;
+    max-height: 470px;
+    object-fit: cover;
+}
+
+.about_foundation_main .about_foundation_box h3 {
+    font-style: normal;
+    text-align: initial;
+    margin: 18px 0;
+}
+
+.about_foundation_main .about_foundation_box .sub_title_inner {
+    font-style: normal;
+    text-align: left;
+}
+
+.about_foundation_main a.tyr_it_btn {
+    border-radius: 5.585px;
+    background: #262626;
+    color: #FBEEDA;
+    padding: 15px 30px;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+    margin-top: 55px!important;
+    display: block;
+    margin: auto;
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+.about_foundation_main {
+    padding-bottom: 60px;
+}
+
+.about_info_main .about_info_text ul li:last-child {
+    padding-bottom: 0;
+}
+
+.about_image_and_text_main .img_text_box h4 {
+    color: #000;
+    text-align: center;
+    font-family: Point Panther;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin:23px 0;
+}
+
+.about_image_and_text_main .buttons_inner {
+    background: #FBF5EE;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about_image_and_text_main .buttons_inner a {
+    color: #000;
+    margin-left: 10px;
+    text-align: left;
+    font-family: Montserrat;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 174.4%;
+    text-decoration-line: underline;
+}
+
+.about_image_and_text_main .buttons_inner strong {
+    color: #000;
+    text-align: center;
+    font-family: Point Panther;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 174.4%;
+}
+
+.content-boxes-images {
+    display: flex;
+    background-color: #FBF5EE;
+    padding-top: 40px;
+    justify-content:space-between;
+}
+
+.content-boxes-images .inner-content-box {
+    text-align: center;
+}
+
+.content-boxes-images .inner-content-box img {
+    width: 100%;
+}
+
+.content-boxes-images .inner-content-box:nth-child(2) img {
+    max-width: 20%;
+    width: 100%;
+    padding-top: 2.4%;
+}
+
+.inner-content-box.content-left img {
+    border-radius: 0px 80px;
+}
+
+.inner-content-box.content-right img {
+    border-radius: 80px 0px;
+}
+
+.content-boxes-images .inner-content-box p {
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 1.4vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 4.2vw;
+}
+
+.content-boxes-images h1 {
+    color: #48646e;
+    text-align: center;
+    font-family: Point Panther;
+    font-size: 2.3vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 174.4%;
+    margin: 0 0 -20px;
+}
+
+.content-boxes-images .content-center {
+    position: absolute;
+    margin: auto;
+    width: 100%;
+}
+
+.content-left, .content-right {
+    width: 31.2%;
+    padding-top: 12%;
+    margin-bottom: -10px;
+}
+
+#article-header h1, #bloggle_rte h2, #bloggle_rte h3, #bloggle_rte h4, #bloggle_rte h5, #bloggle_rte h6, #bloggle_sideBar .bggle--sideBar--title {
+    margin-bottom: 10px !important;
+    color: #48646e;
+    font-family: 'Point Panther';
+}
+
+#bloggle_sideBar .bggle-latest-article p {
+    padding-top: 10px;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+/* responsive */
+@media screen and (max-width: 1366px) {
+
+.about_banner_main .banner_heading {
+    padding-bottom: 10px;
+}
+
+.about_info_main .about_info_image {
+    width: 40%;
+}
+
+.about_info_main .about_info_text {
+    width: 55%;
+}
+
+.about_info_main .about_info_text ul li {
+
+    margin: 30px 0;
+}
+
+.about_our_solution_main .solution_box h3 {
+    margin: 20px;
+}
+
+.about_image_and_text_main img {
+    margin: auto auto 80px;
+    border-radius: 60px;
+    box-shadow: 0 30px 30px #d9d9d9;
+}
+
+.about_letter_section_main img.logo_leeter {
+    max-width: 220px;
+}
+
+.about_letter_section_main h3 {
+    margin: 20px 0;
+}
+
+.about_foundation_main .head_area {
+    padding: 30px 0 60px;
+}
+
+.about_foundation_main .about_foundation_section_grid {
+    gap: 3%;
+}
+
+.about_foundation_main .about_foundation_box img {
+    min-height: 370px;
+    max-height: 370px;
+}
+
+.about_foundation_main .about_foundation_box h3 {
+    margin: 16px 0;
+}
+
+.about_info_main .about_info_section {
+    padding-top: 10rem;
+}
+
+.about_image_and_text_main .about_image_and_text_section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.about_letter_section_main .about_letter_section {
+    padding: 0rem 0 1rem;
+}
+
+.about_our_solution_main .about_our_solution_grid {
+    gap: 2%;
+}
+
+.about_our_solution_main .solution_box {
+    width: 31.33%;
+}
+
+}
+
+@media screen and (max-width: 1024px) {
+.about_our_solution_main .solution_box {
+    padding: 0 10px;
+}
+
+.about_our_solution_main .solution_box h3 {
+    margin: 12px;
+}
+
+
+.about_info_main .about_info_text ul li {
+    margin: 20px 0;
+}
+
+.about_our_solution_main .head_area {
+    padding: 20px 0 60px;
+}
+
+.about_our_solution_main .about_our_solution_section {
+    padding: 40px 40px 10px 40px;
+}
+
+.about_letter_section_main h3 {
+    margin: 10px 0;
+}
+  
+.about_foundation_main .about_foundation_section_grid {
+    gap: 2%;
+}
+  
+.about_foundation_main .about_foundation_box {
+    width: 32%;
+}
+
+.about_foundation_main .about_foundation_box h3 {
+    margin: 14px 0;
+}
+
+.about_foundation_main {
+    padding-bottom: 40px;
+}
+
+.about_foundation_main a.tyr_it_btn {
+    font-size: 18px;
+}
+
+.about_image_and_text_main .img_text_box h4 {
+    font-size: 26px;
+}
+  
+.about_image_and_text_main .buttons_inner strong {
+    font-size: 27px;
+    line-height: 104.4%;
+}
+
+  .about_image_and_text_main .buttons_inner a {
+    font-size: 20px;
+    line-height: 104.4%;
+}
+
+.content-boxes-images .inner-content-box:nth-child(2) img {
+    padding-top: 3%;
+}
+
+}
+
+@media screen and (max-width: 989px) {
+
+.about_our_solution_main .solution_box {
+    width: 31.33%;
+    padding: 20px;
+}
+
+.about_our_solution_main .about_our_solution_grid {
+    gap: 3%;
+}
+  
+a#typing {
+    margin-left: 0!important;
+    text-align: center;
+    margin-top: 27px;
+    width: 100%!important;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.content-boxes-images .inner-content-box p {
+    font-size: 1.9vw;
+    line-height: 4.8vw;
+}
+
+.inner-content-box.content-left img {
+    border-radius: 0px 60px;
+}
+
+.inner-content-box.content-right img {
+    border-radius: 60px 0px;
+}
+
+.content-boxes-images .inner-content-box:nth-child(2) img {
+    max-width: 15%;
+    padding-top: 0;
+}
+
+.content-left, .content-right {
+    width: 29%;
+}
+
+}
+
+@media screen and (max-width: 767px) {
+
+.about_our_solution_main .solution_box a.tyr_it_btn {
+    font-size: 10px;
+    padding: 10px;
+}
+
+.about_our_solution_main .solution_box img {
+    position: absolute;
+}
+
+.solution_box_inner {
+    position: unset;
+}
+
+.about_foundation_main a.tyr_it_btn {
+    font-size: 15px;
+}
+
+.about_info_main .about_info_text ul li p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.about_info_main .about_info_text ul li {
+    padding-bottom: 10px;
+}
+  
+.about_banner_main .banner_image {
+    width: 100%;
+    order: 2;
+}
+
+.about_banner_main .banner_text {
+    width: 100%;
+    padding: 20px 15px;
+    order: 1;
+}
+
+.about_banner_main .banner_heading {
+    padding-bottom: 5px;
+}
+
+.about_banner_main .banner-grid {
+    padding: 0px;
+    text-align: center;
+    justify-content: center;
+}
+
+.about_info_main .about_info_section {
+    padding: 4rem 15px;
+}
+
+.about_info_main .about_info_image {
+    width: 100%;
+}
+
+.about_info_main .about_info_text {
+    width: 100%;
+}
+
+.about_info_main .about_info_section_grid {
+    flex-wrap: wrap;
+}
+
+.about_info_main .about_info_text ul li {    
+    margin: 15px 0;
+}
+
+.about_our_solution_main .about_our_solution_section {
+    padding: 20px 15px 15px;
+}
+
+.about_our_solution_main .solution_box {
+    width: 48%;
+    margin-bottom: 20px;
+    padding: 10px;
+    min-height: 350px;
+}
+
+.about_our_solution_main .solution_box img {
+    max-width: 130px;
+}
+
+.about_our_solution_main .head_area {
+    padding: 20px 0 40px;
+}
+
+.about_image_and_text_main .about_image_and_text_section {
+    padding: 0 15px;
+}
+
+.about_image_and_text_main img {
+    padding: 6px;
+    border-radius: 40px;
+    margin-bottom: 35px;
+}
+
+.about_image_and_text_main .img_text_box {
+    margin-bottom: 0;
+}
+
+.about_letter_section_main .about_letter_section {
+    padding: 0px 15px 30px;
+}
+
+.about_foundation_main .about_foundation_section {
+    padding: 20px 15px;
+}
+
+.about_foundation_main .about_foundation_box {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.about_image_and_text_main:after {
+    display: none;
+}
+
+.about_foundation_main a.tyr_it_btn {
+    margin-top: 0 !important;
+    padding: 15px;
+}
+
+.about_image_and_text_main .img_text_box h4 {
+    font-size: 4.5vw;
+    margin: 3vw 0;
+}
+
+.about_image_and_text_main .buttons_inner strong {
+    font-size: 25px;
+    line-height: 124.4%;
+}
+
+.about_image_and_text_main .buttons_inner a {
+    font-size: 17px;
+    line-height: 24px;
+}
+
+.about_image_and_text_main {
+    margin-bottom: 35px;
+}
+
+.inner-content-box.content-left img {
+    border-radius: 0 40px;
+}
+
+.inner-content-box.content-right img {
+    border-radius: 40px 0;
+}
+
+.content-boxes-images {
+    flex-wrap: wrap;
+}
+
+.content-boxes-images .inner-content-box {
+    width: 100%;
+}
+
+.content-boxes-images .content-center {
+    position: relative;
+    width: 100%;
+}
+
+.content-boxes-images h1 {
+    font-size: 26px;
+    margin-bottom: -10px;
+}
+
+.content-boxes-images .inner-content-box p {
+    font-size: 16px;
+    line-height: 35px;
+}
+
+.content-boxes-images .inner-content-box:nth-child(2) img {
+    max-width: 50%;
+}
+
+.content-boxes-images {
+    flex-wrap: wrap;
+    padding: 15px 15px 40px 15px;
+}
+
+.content-boxes-images .content-center {
+    padding-top: 30px;
+}
+
+.about_our_solution_main .solution_box h3 {
+    margin: 0px;
+}
+
+}

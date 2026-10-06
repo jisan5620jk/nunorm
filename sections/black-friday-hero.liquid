@@ -1,0 +1,674 @@
+<style>
+    section.bf-hero {
+      position: relative;
+      padding: 0;
+    }
+
+    .bf-hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bf-hero__bg img,
+    .bf-hero__bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bf-hero__bg--mobile {
+      display: none;
+    }
+
+    .bf-hero__content-wrap {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto;
+      padding: 102px 60px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      min-height: 85vh;
+    }
+
+    .bf-hero__content-box {
+      max-width: 769px;
+      max-width: 800px;
+      border: 4px solid #F7D3A1;
+      background-color: #21334580;
+      padding: 28px 32px 30px;
+      backdrop-filter: blur(4px);
+    }
+
+    .bf-hero__heading > * {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    .bf-hero__heading {
+      margin: 0 0 2px;
+      font-family: Montserrat;
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 120%;
+      color: #FBEEDA;
+      letter-spacing: 0.6px;
+      vertical-align: middle;
+      position: relative;
+      width: fit-content;
+    }
+
+    .bf-hero__heading strong {
+      background: linear-gradient(to right, #c1744c, #eccdb4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+      font-size: 64px;
+      text-transform: uppercase;
+    }
+
+    .bf-hero__brand {
+      position: relative;
+      width: fit-content;
+    }
+
+    img.hero-brand-tag {
+      position: absolute;
+      right: -22%;
+      right: -32%;
+      bottom: -30%;
+      bottom: -22%;
+      width: 150px;
+      max-width: none;
+      z-index: 1;
+  }
+
+    .bf-hero__bullets {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+    }
+
+    .bf-hero__bullets li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: Montserrat;
+      font-weight: 500;
+      font-style: Medium;
+      font-size: 20px;
+      line-height: 26.86px;
+      letter-spacing: 0.56px;
+      text-align: center;
+      vertical-align: middle;
+      color: #FBEEDA;
+    }
+
+    .bf-hero__bullet-icon {
+        height: 26px;
+    }
+
+    .bf-hero__body p {
+      margin-bottom: 18px;
+      font-family: Montserrat;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 140%;
+      letter-spacing: 0.6px;
+      vertical-align: middle;
+      color: #FBEEDA;
+      margin: 0;
+    }
+    .bf-hero__body strong {
+      font-weight: 700;
+    }
+
+    /* .bf-hero__cta {
+      margin-top: 24px;
+    } */
+
+    .bf-hero__button {
+    display: inline-block;
+    width: 280px;
+    height: 56px;
+    background-color: #933F2C;
+    color: #FBEEDA;
+    text-decoration: none;
+    border-radius: 10px;
+
+    /* Typography */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700; /* Bold */
+    line-height: 22px;
+    letter-spacing: 0;
+    text-transform: none; /* Not uppercase as per Figma */
+    text-align: center;
+
+    /* Flexbox to center text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Padding inside the text box itself was likely handled by the auto layout in Figma */
+  }
+    .button-with-offer-code {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 24px;
+    }
+    .button-with-offer-code p{
+        margin: 0;
+        color: #FBEEDA;
+    }
+    .bf-hero__content-wrap.mobile-only {
+      display: none;
+    }
+    @media (max-width: 1023px) {
+      .bf-hero__heading > * {
+        font-size: 46px;
+      }
+    }
+    @media (max-width: 767px) {
+      .bf-hero__bg--desktop { display: none; }
+      .bf-hero__bg--mobile { display: block; }
+      .bf-hero__heading {
+        color: #213346; /* black heading on mobile */
+        font-family: Point Panther;
+      }
+      .bf-hero__content-wrap {
+        padding: 0;
+        min-height: 41vh;
+        height: calc(100vh - 376px);
+
+      }
+      .bf-hero__content-box {
+        max-width: 100%;
+        padding: 10px 24px 24px;
+      }
+      .bf-hero__heading > * {
+          font-size: 28px;
+          margin: 0;
+      }
+      .bf-hero__heading strong {
+          font-size: 46px;
+      }
+      .bf-hero__brand img {
+          width: 280px;
+      }
+      img.hero-brand-tag {
+          right: -25%;
+          bottom: -28%;
+          width: 134px !important;
+      }
+      .bf-hero__bullets li {
+          font-size: 18px;
+      }
+      .bf-hero__body p {
+          font-size: 20px;
+      }
+      .bf-hero__content-box.desktop-only {
+          opacity: 0;
+      }
+      .bf-hero__content-wrap.mobile-only {
+        display: block;
+        padding: 0;
+        min-height: auto;
+        height: 255px;
+      }
+      .bf-hero__content-wrap.mobile-only  .bf-hero__content-box {
+        max-width: 100%;
+        padding: 24px;
+        border: none;
+        background: transparent;
+      }
+     .bf-hero__content-wrap.mobile-only .bf-hero__content-box .bf-hero__body p {
+        color: #000;
+        margin-top: 10px;
+      }
+      .button-with-offer-code {
+        display: block;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .bf-hero__heading strong {
+          font-size: 32px;
+      }
+      .bf-hero__brand img {
+          width: 260px;
+      }
+      img.hero-brand-tag {
+          right: -25%;
+          bottom: -28%;
+          width: 134px !important;
+      }
+      .bf-hero__bullets {
+        flex-direction: column;
+        gap: 9px 28px;
+        margin: 10px 0 14px;
+      }
+      .bf-hero__bullets li {
+          font-size: 16px;
+          font-weight: 500;
+      }
+      .bf-hero__body p {
+          font-size: 16px;
+      }
+      .bf-hero__content-wrap.mobile-only  .bf-hero__content-box {
+        max-width: 100%;
+        padding: 30px 20px 30px 20px;
+        border: none;
+        background: transparent;
+      }
+      .bf-hero__button{
+        max-width: 90%;
+      }
+      /* .bf-hero__cta {
+          margin-top: 16px;
+      } */
+
+    }
+
+    @media (max-width: 399px) {
+      .bf-hero__heading strong {
+          font-size: 28px;
+      }
+      .bf-hero__heading > * {
+          font-size: 20px;
+      }
+      .bf-hero__brand img {
+          width: 240px;
+      }
+      img.hero-brand-tag {
+          right: -35%;
+          bottom: -28%;
+          width: 134px !important;
+      }
+      .bf-hero__button{
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 374px) {
+      .bf-hero__content-box {
+        max-width: 100%;
+        padding: 16px 14px 14px;
+      }
+      .bf-hero__heading strong {
+          font-size: 25px;
+      }
+      .bf-hero__heading > * {
+          font-size: 18px;
+      }
+      .bf-hero__brand img {
+          width: 220px;
+      }
+      img.hero-brand-tag {
+        right: -27%;
+        bottom: -28%;
+        width: 110px !important;
+      }
+    }
+</style>
+
+<section id="bf-hero-{{ section.id }}" class="bf-hero">
+  {%- assign bg_type = section.settings.bg_type -%}
+
+  <!-- Desktop background -->
+  <div class="bf-hero__bg bf-hero__bg--desktop">
+    {% if bg_type == 'video' and section.settings.desktop_bg_video %}
+      <video
+        class="bf-hero__video bf-hero__video--desktop"
+        loop
+        muted
+        playsinline
+        poster="{{ section.settings.desktop_preview_image | img_url: 'master' }}"
+      >
+        {% for source in section.settings.desktop_bg_video.sources %}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {% endfor %}
+        Your browser does not support the video tag.
+      </video>
+    {% elsif section.settings.desktop_bg_image %}
+      <img
+        src="{{ section.settings.desktop_bg_image | img_url: 'master' }}"
+        alt="{{ section.settings.desktop_bg_image_alt | escape }}"
+        loading="lazy"
+      >
+    {% endif %}
+  </div>
+
+  <!-- Mobile background -->
+  <div class="bf-hero__bg bf-hero__bg--mobile">
+    {% if bg_type == 'video' and section.settings.mobile_bg_video %}
+      <video
+        class="bf-hero__video bf-hero__video--mobile"
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="{{ section.settings.mobile_preview_image | img_url: 'master' }}"
+      >
+        {% for source in section.settings.mobile_bg_video.sources %}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {% endfor %}
+        Your browser does not support the video tag.
+      </video>
+
+    {% elsif bg_type == 'video' and section.settings.desktop_bg_video %}
+      <video
+        class="bf-hero__video bf-hero__video--mobile"
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="{{ section.settings.desktop_preview_image | img_url: 'master' }}"
+      >
+        {% for source in section.settings.desktop_bg_video.sources %}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {% endfor %}
+        Your browser does not support the video tag.
+      </video>
+
+    {% elsif section.settings.mobile_bg_image %}
+      <img
+        src="{{ section.settings.mobile_bg_image | img_url: 'master' }}"
+        alt="{{ section.settings.mobile_bg_image_alt | escape }}"
+        loading="lazy"
+      >
+    {% elsif section.settings.desktop_bg_image %}
+      <img
+        src="{{ section.settings.desktop_bg_image | img_url: 'master' }}"
+        alt="{{ section.settings.desktop_bg_image_alt | escape }}"
+        loading="lazy"
+      >
+    {% endif %}
+  </div>
+
+  <!-- Content -->
+  <div class="bf-hero__content-wrap">
+    <div class="bf-hero__content-box desktop-only">
+      {% if section.settings.heading != blank %}
+        <div class="bf-hero__heading">
+          {{ section.settings.heading }}
+          <img src="{{ section.settings.brand_tag | img_url: 'master' }}" alt="Brand Tag" class="hero-brand-tag">
+        </div>
+      {% endif %}
+
+      {% if section.settings.brand_logo != blank %}
+        <div class="bf-hero__brand">
+          <img src="{{ section.settings.brand_logo | img_url: 'master' }}" alt="Brand Logo">
+          <img src="{{ section.settings.brand_tag | img_url: 'master' }}" alt="Brand Tag" class="hero-brand-tag">
+        </div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <ul class="bf-hero__bullets">
+          {% for block in section.blocks %}
+            {% if block.type == 'bullet' %}
+              <li {{ block.shopify_attributes }}>
+                <span class="bf-hero__bullet-icon">{{ block.settings.icon }}</span>
+                <span class="bf-hero__bullet-text">
+                  {{ block.settings.text }}
+                </span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if section.settings.body_text != blank %}
+        <div class="bf-hero__body">
+          {{ section.settings.body_text }}
+        </div>
+      {% endif %}
+
+      <div class="button-with-offer-code">
+        {% if section.settings.button_label != blank %}
+          <div class="bf-hero__cta">
+            <a href="{{ section.settings.button_link | default: '#' }}" class="bf-hero__button">
+              {{ section.settings.button_label }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% if section.settings.offer_code != blank %}
+          <div class="bf-hero__offer-code">
+            {{ section.settings.offer_code }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div>
+  <div class="bf-hero__content-wrap mobile-only">
+    <div class="bf-hero__content-box">
+      {% if section.settings.heading != blank %}
+        <div class="bf-hero__heading">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.brand_logo != blank %}
+        <div class="bf-hero__brand">
+          <img src="{{ section.settings.mobile_brand_logo | img_url: 'master' }}" alt="Brand Logo" width="" height="">
+        </div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <ul class="bf-hero__bullets">
+          {% for block in section.blocks %}
+            {% if block.type == 'bullet' %}
+              <li {{ block.shopify_attributes }}>
+                <span class="bf-hero__bullet-icon">{{ block.settings.icon }}</span>
+                <span class="bf-hero__bullet-text">
+                  {{ block.settings.text }}
+                </span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if section.settings.body_text != blank %}
+        <div class="bf-hero__body">
+          {{ section.settings.body_text }}
+        </div>
+      {% endif %}
+
+      <div class="button-with-offer-code">
+        {% if section.settings.button_label != blank %}
+          <div class="bf-hero__cta">
+            <a href="{{ section.settings.button_link | default: '#' }}" class="bf-hero__button">
+              {{ section.settings.button_label }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load', function () {
+    // Only run on desktop (adjust breakpoint if needed)
+    {% comment %} if (window.matchMedia('(max-width: 767px)').matches) {
+      return;
+    } {% endcomment %}
+
+    // Only target the desktop video in THIS section
+    const desktopVideo = document.querySelector('#bf-hero-{{ section.id }} video');
+
+    if (!desktopVideo) return;
+
+    // Ensure muted & playsinline before play() for autoplay policies
+    desktopVideo.muted = true;
+    desktopVideo.setAttribute('muted', '');
+    desktopVideo.playsInline = true;
+    desktopVideo.setAttribute('playsinline', '');
+
+    // Small delay to ensure everything is ready
+    setTimeout(function () {
+      const playPromise = desktopVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function (err) {
+          console.log('Autoplay blocked:', err);
+        });
+      }
+    }, 100);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Black Friday Hero",
+  "settings": [
+    {
+      "type": "select",
+      "id": "bg_type",
+      "label": "Background type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "desktop_bg_image",
+      "label": "Desktop background image",
+      "visible_if": "{{ section.settings.bg_type == 'image' }}"
+    },
+    {
+      "type": "text",
+      "id": "desktop_bg_image_alt",
+      "label": "Desktop image alt text",
+      "visible_if": "{{ section.settings.bg_type == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile background image (optional)",
+      "info": "If empty, desktop image will be used on mobile.",
+      "visible_if": "{{ section.settings.bg_type == 'image' }}"
+    },
+    {
+      "type": "text",
+      "id": "mobile_bg_image_alt",
+      "label": "Mobile image alt text",
+      "visible_if": "{{ section.settings.bg_type == 'image' }}"
+    },
+
+    {
+      "type": "video",
+      "id": "desktop_bg_video",
+      "label": "Desktop background video",
+      "visible_if": "{{ section.settings.bg_type == 'video' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_preview_image",
+      "label": "Desktop video Poster",
+      "visible_if": "{{ section.settings.bg_type == 'video' }}"
+    },
+    {
+      "type": "video",
+      "id": "mobile_bg_video",
+      "label": "Mobile background video (optional)",
+      "info": "If empty, desktop video will be used on mobile.",
+      "visible_if": "{{ section.settings.bg_type == 'video' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_preview_image",
+      "label": "Mobile video Poster",
+      "visible_if": "{{ section.settings.bg_type == 'video' }}"
+    },
+
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "<p><strong>BLACK FRIDAY</strong> at <strong>Your Brand</strong></p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Your Brand Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_brand_logo",
+      "label": "Mobile Brand Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_tag",
+      "label": "Brand Tag"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "<p><strong>15% off for Black Friday.</strong></p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "richtext",
+      "id": "offer_code",
+      "label": "Offer Code",
+      "default": "<p>WITH CODE ‘BLACKFRIDAY15’</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet point",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Text Icon"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Dark circles gone"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Black Friday Hero",
+      "blocks": [
+        { "type": "bullet", "settings": { "text": "Dark circles gone" } },
+        { "type": "bullet", "settings": { "text": "Redness handled" } },
+        { "type": "bullet", "settings": { "text": "Breakouts covered" } },
+        { "type": "bullet", "settings": { "text": "Shine erased" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

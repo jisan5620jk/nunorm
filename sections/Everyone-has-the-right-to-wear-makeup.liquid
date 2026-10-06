@@ -1,0 +1,54 @@
+<section class="wear-makeup-sec layout">
+  <div class="page-width">
+     <!--/ heading /-->
+{% if section.settings.sec-head != blank %}
+  <h2 class="sec-heading">{{ section.settings.sec-head }}</h2>
+{% endif %}
+
+  <!--/ pera /-->
+{% if section.settings.content != blank %}
+  <div class="pera-wrap">{{ section.settings.content }}</div>
+{% endif %}
+
+  <!--/  img sec /-->  
+{% if section.settings.img != blank %}
+  <div class="img-sec">
+    <img src="{{ section.settings.img | img_url: 'master' }}">
+  </div>
+{% endif %}
+
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Everyone-has...",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "heading"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Descrition"
+      },
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+    {
+      "name": "Everyone-has..."
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,129 @@
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<style>
+   .swiper-pagination1 {
+    position: relative !important;
+  }
+  .swiper-pagination-bullet {
+      text-align: center;
+      line-height: 20px;
+      font-size: 12px;
+      color: #0f0f0f !important;
+      opacity: 1;
+      padding: 0 40px;
+      background: none !important;
+    }
+
+    .swiper-pagination-bullet-active {
+      color: #000 !important;
+      background: none !important;
+      padding: 20px 0;
+      border-bottom: 1px solid #000;
+      border-radius: 0 !important;
+      border-bottom-width: 3px;
+    }
+</style>
+<!-----/ Community our newnorms  sectionnnnnnnnnnnnnn/-->
+<section class="formulas-backed layout">
+
+   <div class="page-width">
+      <!--/ heading /-->
+        <h2 class="sec-heading">{{ section.settings.sec-head }}</h2>
+
+     <!--/ formulas box - /-->
+     <div class="formulas-backed-boxes swiper mySwiper1">
+       <div class="swiper-wrapper">
+       {% for block in section.blocks %}
+       <!--/ box 1 /-->
+       <div class="box-outer swiper-slide"> 
+
+         <!--/  img /-->
+         <div class="box-img">
+           <img src="{{ block.settings.img | img_url: 'master' }}" alt="{{ block.settings.img.alt }}">
+         </div>
+         <div class="tag">Community</div>
+         <h4 class="tt">{{ block.settings.head }}</h4>
+         <p>{{ block.settings.content }}</p>
+       </div> 
+       {% endfor %}
+       </div>
+       <div class="swiper-pagination swiper-pagination1"></div>                         
+     </div>
+
+   </div>
+  
+</section>
+<!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper1", {
+      slidesPerView: 1,
+      loop: true,
+      spaceBetween: 30,
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      },
+       pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + "</span>";
+        },
+      },
+    });
+  </script>
+{% schema %}
+  {
+    "name": "community-our-newnorm",
+    "settings": [
+      {
+        "type": "html",
+        "id": "sec-head",
+        "label": "Heading"
+      }
+     
+    ],
+    "blocks": [
+      {
+        "type": "box",
+        "name": "box",
+        "limit": 12,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "img",            
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "head",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "content",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+      "name": "community-our-newnorm"
+      }
+    ]
+  }
+{% endschema %}

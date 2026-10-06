@@ -1,0 +1,228 @@
+<div class="tabs">
+  <button data-component-tab-trigger class="tablinks active" data-target="tab1">details</button>
+  <button data-component-tab-trigger class="tablinks" data-target="tab2">Features & Ingredients</button>
+  <!-- <button data-component-tab-trigger class="tablinks" data-target="tab3" >reviews</button> -->
+  {% if product.metafields.custom.pdp_tab_testimonial != blank %}
+    <button data-component-tab-trigger class="tablinks" data-target="tab3">Testimonials</button>
+  {% endif %}
+  <!-- <button data-component-tab-trigger class="tablinks faq" data-target="tab4">FAQs</button> -->
+</div>
+
+<div id="tab1"  data-component-tab-content class="tabcontent tab  active">
+  <div class="product-description">
+    <div class="tab-inner-dec tab-inner-left {% if product.metafields.custom.video_url.value == blank %}full {% endif %}">
+      {{ product.description }}
+    </div>
+    {% if product.handle != 'okuni-brush' %}
+      {% if product.metafields.custom.video_url.value != blank %}
+        <div class="tab-inner-dec tab-inner-right">
+          <div class="custom-video-collection"> 
+            <div class="video-box">
+              <!-- / play pause button  / -->
+              <div data-component-play-pause-container data-state='{ "playing": false }' data-button-target="full-src-product-video" data-video-cover="loop-banner-bg"  data-target="loop-Video" class="play-pause-btn">
+                <div data-component-video-live-region class="visually-hidden" aria-live="assertive" id="video-status">Paused</div>
+                <button data-component-play-button aria-pressed="false" class="PP-btn play_btn" type="button" id="play-btn-loop">
+                  <img aria-hidden="true" loading="lazy" width="24" height="27" src="{{ 'play-btn.svg' | file_url }}">
+                </button>
+                <button data-component-pause-button aria-pressed="true" class="PP-btn pause_btn" type="button" id="pause-btn-loop">
+                  <img aria-hidden="true" loading="lazy" width="24" height="27" src="{{ 'pause-btn.svg' |  file_url }}">
+                </button>
+              </div>
+              <video
+                loop="true"
+                muted="true"
+                class="small-hide"
+                id="loop-Video"
+                width="100%"
+                height="463px"
+                playsinline=""
+                aria-hidden="true"
+                data-component-tab-content-video
+              >
+                <source type="video/mp4" src="{{ product.metafields.custom.video_url.value }}">
+              </video>
+              <button tab-index="0" aria-hidden="true" data-component-full-video-button data-video-background data-target="loop-Video" id="full-src-product-video" class="video-full-screen">
+                <img class="video-full-screen-icon-image" src="{{ 'full-screen.png' | file_url }}" width="24" height="24">
+              </button>
+
+              {% if product.metafields.custom.video_image.value != blank %}
+                {% assign bg_image = product.metafields.custom.video_image.value | image_url: width: 1000 %}
+                {{  bg_image | image_tag: id: 'loop-banner-bg', class: 'loop-img', alt: bg_image.alt, width: bg_image.width, height: bg_image.height, aria-hidden: "false" }}
+              {% endif %} 
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+<div data-component-tab-content id="tab2" class="tabcontent tab">
+  {% comment %}{{ product.metafields.custom.products_ingredients }}{% endcomment %}
+
+  {{ product.metafields.custom.feature_and_ingredients | metafield_tag }}
+  {% comment %}
+    <div class="img-box-outer">
+    <div class="img-box">
+      <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Group_5.png?v=1686646967">
+      <span>Made from Organic Ingredients</span>
+    </div>
+    <div class="img-box">
+      <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Group_3.png?v=1686646952">
+      <span>Run- Resistant Tech</span>
+    </div>
+    <div class="img-box">
+      <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/Group_2.png?v=1686646933">
+      <span>Soft & Silky Weightless Comfort</span>
+    </div>
+    </div>
+  {% endcomment %}
+</div>
+
+{% if product.metafields.custom.pdp_tab_testimonial != blank %}
+  <div id="tab3"  data-component-tab-content class="tabcontent tab">
+    {{ product.metafields.custom.pdp_tab_testimonial | metafield_tag }}
+  </div>
+{% endif %}
+
+{% comment %}
+  <div id="tab3" class="tabcontent tab faq-acc">
+
+      <div class="trip_videos">
+      <video width="48%" controls>
+        <source src="{{ product.metafields.custom.tips_and_tricks_video_one }}" type="video/mp4">
+        <source src="{{ product.metafields.custom.tips_and_tricks_video_one }}" type="video/ogg">
+        Your browser does not support HTML video.
+      </video>
+
+      <video width="48%" controls>
+        <source src="{{ product.metafields.custom.tips_and_tricks_video_two }}" type="video/mp4">
+        <source src="{{ product.metafields.custom.tips_and_tricks_video_two }}" type="video/ogg">
+        Your browser does not support HTML video.
+      </video>
+      </div>
+
+  </div>
+{% endcomment %}
+{% comment %}
+  <div id="tab4" class="tabcontent tab faq-acc">
+  {{ product.metafields.custom.faq_s }}
+
+  <!---/ accordion /-->
+    <div class="accordion-box page-width">
+  {% for faqs in product.metafields.custom.faqs.value %}
+  {% assign faq = faqs | split: "|" %}
+  <button class="accordion accordian-1"><span class="num-con">{{ forloop.index }}.</span>{{ faq[0] }}</button>
+  <div class="panel">
+    <p>{{ faq[1] }}</p>
+  </div>
+  {% endfor %}
+    </div>
+  </div>
+{% endcomment %}
+
+{% style  %}
+  /*
+  .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+  } */
+
+  .video-full-screen[aria-hidden="true"] {
+    display: none;
+  }
+
+  .video-full-screen[aria-hidden="false"] {
+    display: block;
+  }
+
+  .video-full-screen-icon-image {
+    position: relative;
+    z-index: 10; /* to appear above the video, but not the cover image */
+  }
+
+  #loop-Video[aria-hidden="true"] {
+    display: none;
+  }
+
+  #loop-Video[aria-hidden="false"] {
+    display: block;
+  }
+
+  .PP-btn[aria-pressed="false"] {
+    display: block;
+  }
+
+  .PP-btn[aria-pressed="true"] {
+    display: none;
+  }
+
+  .loop-img{
+     width: 100%;
+     z-index: 11; /* to appear above the video and the expand button */
+  }
+
+  .loop-img[aria-hidden="true"] {
+    display: none;
+  }
+
+  .loop-img[aria-hidden="false"] {
+    display: block;
+  }
+
+  .product-description {
+    text-align: left;
+    display: flex;
+  }
+
+  .tab-inner-dec {
+    width: 50%;
+  }
+
+  .tab-inner-dec.full {
+      width: 100%;
+  }
+  
+  .tab {
+  	overflow: hidden;
+  	text-align: center;
+  }
+
+  .tab button {
+  	background-color: inherit;
+  	border: none;
+  	outline: none;
+  	cursor: pointer;
+  	padding: 5px 20px;
+  	transition: 0.3s;
+  	font-size: 17px;
+  /* 	margin: 10px 0; */
+  }
+
+  .tab button:hover {
+  	border-bottom: 1px solid;
+  }
+
+  .tab button.active {
+  	border-bottom: 1px solid;
+  }
+
+  .tabcontent {
+  	display: none;
+  	padding: 6px 12px;
+  	border-top: none;
+  	text-align: center;
+  }
+
+  .tabcontent.active {
+   display: block;     
+  }
+
+  button.tablinks.faq {
+    text-transform: none !important;
+  }
+{% endstyle %}
+
+<script type="module" src="{{ 'tab-section.js' |  asset_url }}" ></script>

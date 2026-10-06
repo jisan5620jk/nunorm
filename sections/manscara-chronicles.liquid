@@ -1,0 +1,54 @@
+<!--------------------/ a letter from our ceo Sectionnnnnnnnnnnnnnnnnn /----->
+<section class=" Manscara letter-ceo layout">
+  <div class="page-width">
+    <h1 class="sec-heading">{{ section.settings.sec-head }}</h1>
+     <h1 class="sec-heading">{{ section.settings.sec-head1 }}</h1>
+    <div class="pera">
+      {{ section.settings.content }}
+    </div>
+    <!--/ ceo sig /-->
+    {% if section.settings.img != blank %}
+    <div class="ceo-sig">
+    <img src="{{ section.settings.img | img_url: 'master' }}https://cdn.shopify.com/s/files/1/0758/3639/1698/files/ceo.png?v=1685014627">
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Manscara chronicles",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "heading"
+      },
+      {
+        "type": "text",
+        "id": "sec-head1",
+        "label": "heading"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "signature Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Manscara chronicles"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

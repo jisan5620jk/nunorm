@@ -1,0 +1,109 @@
+/* Acronym-shorttext guide: Blog Grid: BG */
+.PR_container {
+  align-items: center;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-top) 0 var(--spacing-bottom) 0;
+  @media (min-width: 1024px) {
+    padding: var(--spacing-top) var(--spacing-md) var(--spacing-bottom) var(--spacing-md);
+  }
+}
+
+.PR_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 11.46vw;
+  @media (min-width: 1024px) {
+    row-gap: 8vw;
+  }
+}
+
+.PR_image {
+  aspect-ratio: 632 / 389;
+  height: auto;
+  object-fit: cover; /* Assuming you want to cover the area of the wrapper */
+  width: 100%;
+}
+
+.PR_image-link {
+  display: block;
+  width: 100%;
+}
+
+.PR_image-wrapper {
+  display: block; /* Makes sure the wrapper is block-level for correct spacing */
+  margin: 0 0 11.46vw 0;
+  width: 100%;
+  @media (min-width: 1024px) {
+    margin: 0 0 3.468vw 0;
+  }
+}
+
+.PR_item {
+  width: 100%;
+  @media (min-width: 1024px) {
+    width: 40.131vw;
+  }
+}
+
+.PR_item-description {
+  color: var(--text-color);
+  margin: 0;
+  padding: 0 5.333vw;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  @media (min-width: 1024px) {
+    padding: 0;
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: 400;
+  }
+}
+
+.PR_item-subtitle {
+  color: var(--text-color);
+  font-size: var(--subtitle-size-4);
+  font-weight: bold;
+  line-height: 1;
+  margin: 0 0 20px 0;
+  text-align: center;
+  padding: 0 5.333vw;
+  @media (min-width: 1024px) {
+    font-size: calc(var(--subtitle-size-3) - 0.2vw);
+    margin: 0 0 2.65vw 0;
+    padding: 0;
+  }
+}
+
+.PR_subtitle {
+  color: var(--text-color);
+  margin: 0 0 40px;
+  padding: 0 10.666vw;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  @media (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: 400;
+    margin: 0 0 6.82vw 0; /* overwrite default h2 margin */
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+.PR_title {
+  color: var(--text-color);
+  font-size: 4.533vw;
+  font-weight: bold;
+  margin: 0 0 20px;
+  text-align: center;
+  @media (min-width: 1024px) {
+    font-size: var(--subtitle-size-3);
+  }
+}

@@ -1,0 +1,97 @@
+/* Acronym-shorttext guide: Icon Row: ir */
+
+.IR_Container {
+  align-items: center;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-top) var(--spacing-sm) var(--spacing-bottom)
+    var(--spacing-sm);
+
+  @media (min-width: 767px) {
+    background-color: var(--background-color-desktop);
+    padding: var(--spacing-top) var(--spacing-xl) var(--spacing-bottom)
+      var(--spacing-xl);
+  }
+}
+
+.IR_Container--mobile {
+  display: flex;
+  overflow: hidden; /* TO fix a bug with swiper js */
+  @media (min-width: 767px) {
+    display: none;
+  }
+}
+
+.IR_Container--desktop {
+  display: none;
+  @media (min-width: 767px) {
+    display: flex;
+  }
+}
+
+.IR_Title {
+  font-size: 6vw;
+  font-weight: var(--font-heading-weight);
+  margin: 0 0 6.933vw 0; /* overwrite default h2 margin */
+  text-align: center;
+  color: var(--color);
+  @media (min-width: 300px) {
+    /* font-size: 6.13vw;  */
+    font-size: 2rem;
+  }
+  @media (min-width: 767px) {
+    margin: 0 0 calc(var(--spacing-vertical-2) - 1.3vw) 0; /* overwrite default h2 margin */
+    font-size: var(--subtitle-size-3);
+    color: var(--color-desktop);
+  }
+}
+
+.IR_Icons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: var(--spacing-sm);
+  max-width: 90vw;
+
+  @media (min-width: 767px) {
+    max-width: 100%;
+    column-gap: calc(4vw*1.7);
+    flex-wrap: nowrap;
+    row-gap: 0;
+  }
+}
+
+.IR_Icon-wrapper {
+  width: 100%;
+  margin: 0 0 6.933vw 0;
+
+  @media (min-width: 767px) {
+    width: 25%;
+    margin: 0;
+  }
+}
+
+.IR_Icon {
+  margin: 0 auto;
+  height: 5.6vw;
+  object-fit: contain;
+  width: 100%;
+
+  @media (min-width: 767px) {
+    height: 3.468vw;
+    margin: 0;
+  }
+}
+
+/* Swiper JS specific styles */
+
+.IR_Icons .swiper-pagination {
+  bottom: -2vw !important; /* overriding global swiper styles */
+}
+
+.IR_Icons .swiper-pagination-bullet {
+  background-color: #141416;
+}

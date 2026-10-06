@@ -1,0 +1,147 @@
+<style>
+    my-accordion {
+      display: block;
+      margin-left: 15px;
+    }
+
+    my-accordion .my_accordion_item + .my_accordion_item {
+      border-top: 1px solid #ddd;
+    }
+
+
+
+    my-accordion .my_accordion_item.active .my_accordion_header {
+      {% comment %} background: #e0e0e0; {% endcomment %}
+    }
+
+    my-accordion .my_accordion_content {
+      padding: 0 14px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+    }
+
+    .my_accordion-header-top {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .my_accordion-header-title {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+      text-transform: uppercase;
+      display: inline-block;
+      font-family: Point Panther;
+    }
+
+    .my_accordion-header-icon {
+      margin-left:12px;
+      transition: transform 0.25s ease;
+      display:inline-block;
+    }
+
+    my-accordion .my_accordion_item.active .my_accordion-header-icon {
+      transform: rotate(180deg);
+    }
+
+    .ingredients-highlights-title {
+      margin: 0;
+      font-size: 20px;
+      padding: 20px 0 10px;
+      margin-top: 30px;
+      border-top: 2px solid #213346;
+  }
+
+  .my_accordion-header-top{
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .my_accordion-header-subtitle {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 400;
+
+  }
+
+  .space-{{ block.id }}{
+    margin-bottom: {{block.settings.margin_bottom  }}px;
+    {% if block.settings.show_border_bottom != false %}
+      border-bottom: 2px solid #213346;
+     {% endif %}
+    {% if block.settings.show_border_top != false %}
+      border-top: 2px solid #213346;
+    {% endif %}
+  }
+  .my_accordion_header {
+    padding-bottom: 10px;
+  }
+  .my_accordion_content p {
+    margin: 0 0 15px;
+    padding: 0;
+  }
+  .my_accordion_content p {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .my_accordion_content {
+    margin-top: 10px;
+    padding: 0;
+  }
+  a.see-toggle.show_All_ingredient_btn {
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  a.see-toggle.show_All_ingredient_btn + .see-content p {
+    margin-top: 0;
+  }
+</style>
+{% if block.settings.show_title %}
+  <h2 class="ingredients-highlights-title">{{ block.settings.block_title }}</h2>
+{% endif %}
+<my-accordion class="space-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="my_accordion_item ">
+    <div class="my_accordion_header" tabindex="0" role="button" aria-expanded="false">
+      <div class="my_accordion-header-top">
+        <span class="my_accordion-header-title">{{ block.settings.acc_title }}</span>
+        <span class="my_accordion-header-icon">...</span>
+      </div>
+      <p class="my_accordion-header-subtitle">{{ block.settings.acc_subtitle }}</p>
+    </div>
+
+    <div class="my_accordion_content" aria-hidden="true">
+      {{ block.settings.acc_content }}
+    </div>
+  </div>
+</my-accordion>
+
+{% if block.settings.show_All_ingredient_btn %}
+  {% if product.metafields.custom.product_extended_ingredients != blank %}
+    <a
+      href="#"
+      class="see-toggle show_All_ingredient_btn"
+      role="button"
+      style="color: #213346;font-size: 13px;"
+      aria-expanded="false"
+      aria-controls="more-1"
+      data-more="All Ingredients"
+      data-less="View Less"
+    >
+      All Ingredients
+    </a>
+
+    <div
+      id="more-1"
+      class="see-content"
+      hidden
+    >
+      {{ product.metafields.custom.product_extended_ingredients | metafield_tag }}
+    </div>
+  {% endif %}
+{% endif %}

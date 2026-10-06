@@ -1,0 +1,93 @@
+/* 
+Shortcut and Acronym guide
+fcc - Featured collection carousel
+*/
+
+.fcc-Container {
+    margin: 2.5rem auto;
+    padding: 0 calc(var(--spacing-sm) - 1vw) 0 calc(var(--spacing-sm) - 1vw);
+}
+
+.fcc-Title {
+    font-size: var( --hero-size-1);
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: 500;
+    letter-spacing: calc(var(--font-heading-scale) * .06rem);
+    color: rgb(var(--color-foreground));
+    line-height: calc(1 + .3/max(1,var(--font-heading-scale)));
+    word-break: break-word;
+    margin: 0 0 1.6rem 0; /* overidding heading default margin */
+    display: block;
+    @media(min-width: 1000px) {
+        display: none;
+
+    }
+}
+
+.fcc-Title--desktop {
+    font-size: var( --hero-size-4);
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: 500;
+    letter-spacing: calc(var(--font-heading-scale) * .06rem);
+    color: var(--color-stormy-sea-blue);
+    line-height: calc(1 + .3/max(1,var(--font-heading-scale)));
+    word-break: break-word;
+    margin: 0 0 1.6rem 0; /* overidding heading default margin */
+    display: none;
+    @media(min-width: 1000px) {
+        display: block;
+    }
+}
+
+.fcc-Description {
+    color: var(--color-slate-gray);
+    font-size: var(--subtitle-size-3);
+    margin: 0 0 1rem;
+    text-align: center;
+    @media(min-width: 1000px) {
+        display: none;
+    }
+}
+
+.fcc-Description--desktop {
+    color: var(--color-slate-gray);
+    font-size: var(--subtitle-size-4);
+    margin: 0 0 1rem;
+    text-align: center;
+    display: none;
+    @media(min-width: 1000px) {
+        display: block;
+    }
+}
+
+.fcc-Product-Slider-Item {
+    display: flex;
+    flex-direction: column;
+}
+
+.ffc-Product-Card_button {
+    background-color: var(--section-fcc-button-color);
+    border: none;
+    border-radius: var(--button-border-radius);
+    color: var(--section-fcc-button-text-color);
+    display: block;
+    font-size: 15px;
+    margin: 0 auto;
+    max-width: var(--button-max-width);
+    padding: var(--button-padding-vertical) 0; 
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    @media(min-width: 370px ) and (max-width: 1200px) {
+        font-size: var(--button-font-size-3);
+    }
+    @media(min-width: 1200px) {
+        font-size: 0.8vw;
+    }
+}

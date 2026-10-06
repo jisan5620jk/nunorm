@@ -1,0 +1,103 @@
+<section class="about_info_section layout">
+
+<div class="head_area">
+{% if section.settings.title != blank %}
+<h2>{{ section.settings.title }}</h2>
+{% endif %}
+
+{% if section.settings.sub_title != blank %}
+<div class="sub_title">{{ section.settings.sub_title }}</div>
+{% endif %} 
+  
+</div>
+
+<div class="about_info_section_grid">
+{% if section.settings.img != blank %}
+<div class="about_info_image">
+
+
+<img src="{{ section.settings.img | img_url:'master' }}">
+
+
+</div>  
+{% endif %}
+{% comment %}
+<div class="about_info_text">
+
+<ul>
+{% if section.settings.text1 != blank %}
+<li>
+<!-- <span>1.</span> -->
+{{ section.settings.text1 }}</li>
+{% endif %}
+
+{% if section.settings.text2 != blank %}
+<li>
+<!-- <span>2.</span> -->
+{{ section.settings.text2 }}</li>
+{% endif %}
+
+{% if section.settings.text3 != blank %}
+<li>
+<!-- <span>3.</span> -->
+{{ section.settings.text3 }}</li>
+{% endif %}
+</ul>
+
+</div>
+{% endcomment %}
+
+</div>
+  
+</section>
+
+{% schema %}
+  {
+    "name": "About Info Section",
+    "class": "about_info_main",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "sub_title",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      },
+            {
+        "type": "richtext",
+        "id": "text1",
+        "label": "List Text"
+      },
+            {
+        "type": "richtext",
+        "id": "text2",
+        "label": "List Text"
+      },
+            {
+        "type": "richtext",
+        "id": "text3",
+        "label": "List Text"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "About Info Section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,348 @@
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+{{ 'section-collection-slider.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: block !important;
+  }
+  .core-collection-home .feature {
+    display: flex;
+    column-gap: 20px;
+  }
+  .feature .video-section {
+    width: 50%;
+  }
+  .feature .feature-item__content {
+    width: 50%;
+  }
+  .visible_item {
+    visibility: hidden;
+  }
+  .custom-redio-color1 {
+    cursor: pointer;
+  }
+</style>
+
+<!-- / the core collection / -->
+<section class="core-collection-home page-width layout">
+  <!-- / heading sec / -->
+  <div class="nunorm-header nunorm-header--center">
+    {%- if section.settings.title != blank -%}
+      <h2 class="title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.desc != blank -%}
+      <p class="desc">{{ section.settings.desc }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="swiper mySwiper1">
+    <div class="collection-control-custom">
+      <div class="button-prev">
+        <img loading="lazy" height="20" width="20" src="{{ 'back.png' | file_img_url }}">
+      </div>
+      <div class="button-next">
+        <img loading="lazy" height="20" width="20" src="{{ 'next_2.png' | file_img_url }}">
+      </div>
+    </div>
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% liquid
+          assign count = forloop.index
+          assign product = block.settings.product
+        %}
+
+        <div class="swiper-slide feature item-{{ forloop.index }}">
+          <div class="feature-item__content  feature-item__content__light core-collection-info">
+            <div class="feature-item__image">
+              {% for media in product.media %}
+                {% if forloop.index == 1 %}
+                  {% case media.media_type %}
+                    {% when 'image' %}
+                      {% assign feature_image = product.metafields.custom.home_page_image.value
+                        | image_url: width: 800
+                      %}
+                      {% if feature_image != blank %}
+                        <a href="{{ product.url }}">
+                          <img
+                            data-index="{{ count }}"
+                            data-component-product-swatch-image
+                            height="220"
+                            width="400"
+                            loading="lazy"
+                            class="product-img"
+                            src="
+                              {{ product.metafields.custom.home_page_image.value
+                              | image_url: width: 800 }}
+                            "
+                            alt="{{ product.metafields.custom.home_page_image.value.alt }}"
+                            data-was-processed="true"
+                          >
+                        </a>
+                      {% endif %}
+                    {% when 'video' %}
+                      <div class="product-single__media" data-media-id="{{ media.id }}">
+                        {{ media | video_tag: controls: true }}
+                      </div>
+                    {% when 'external_video' %}
+                      <div
+                        class="product-single__media"
+                        style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100}}%;"
+                        data-media-id="{{ media.id }}"
+                      >
+                        {{ media | external_video_tag }}
+                      </div>
+                    {% when 'model' %}
+                      // ...
+                  {% endcase %}
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <h3 class="CS_card-header">
+              <a class="full-unstyled-link" href="{{ product.url }}">{{ product.title }}</a>
+            </h3>
+            {% assign short-description = product.metafields.custom.description.value %}
+            {% if short-description != blank %}
+              <p class="feature-item__copy">{{ short-description | strip_html | truncate: 150 }}</p>
+            {% endif %}
+            <product-form>
+              {% comment %} <form data-component-add-to-cart-form data-index="{{ count}}" method="post" id="custom-form-{{ count }}" action="/cart/add"> {% endcomment %}
+              {% liquid
+                assign custom_form_id = 'custom-form-' | append: count
+              %}
+              {% form 'product',
+                product,
+                id: custom_form_id,
+                data-component-add-to-cart-form: '',
+                data-index: count,
+                data-type: 'add-to-cart-form',
+                novalidate: 'novalidate'
+              %}
+                <!-- swatches -->
+                {% render 'color-swatches', product: product, count: count, form_id: false %}
+                <!-- Start of Judge.me code -->
+                <div class="jdgm-widget jdgm-preview-badge">
+                  {{ product.metafields.judgeme.badge }}
+                </div>
+                <!-- End of Judge.me code -->
+                {{ 'judgeme-overwrite.css' | asset_url | stylesheet_tag }}
+
+                <p class="feature-item__price">{{ product.price | money }}</p>
+
+                <div class="button-box-outer">
+                  <!-- / button / -->
+                  <div class="button_gray">
+                    <span class="gray_button_circle"> </span>
+                    <div class="button_gray_inner">
+                      <span class="button_text_container">
+                        <div class="ContactForm center">
+                          <input
+                            data-component-variant-id-input
+                            data-variant-input-index="{{ count }}"
+                            type="hidden"
+                            name="id"
+                            class="variant-id"
+                            id="variant-id-{{ count }}"
+                            value="{{ product.selected_or_first_available_variant.id }}"
+                          >
+                          <input min="1" type="hidden" id="quantity" name="quantity" value="1">
+                          <input
+                            data-index="{{ count }}"
+                            data-component-add-to-cart-form-submit
+                            type="submit"
+                            value="Add to cart"
+                            class="button custom-atc-mob-{{ forloop.index }}"
+                          >
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- / button / -->
+                  {% if product.metafields.custom.try_on_button.value == true %}
+                    <div class="button_gray try_it">
+                      <span class="gray_button_circle"> </span>
+                      <a
+                        data-component-product-anchor
+                        data-index="{{ count }}"
+                        href="{{ block.settings.btn-link }}"
+                        class="button_gray_inner-tryon"
+                      >
+                        <span class="button_text_container">
+                          {{ block.settings['btn-text'] }}
+                        </span>
+                      </a>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endform %}
+            </product-form>
+
+            {% if product.metafields.custom.product_badges.value != blank %}
+              <div class="product-card__badgelist">
+                {% for badge in product.metafields.custom.product_badges.value %}
+                  {{ badge | image_url: width: 150 | image_tag: class: 'product-card__product-badge' }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="collection-control">
+      <div class="swiper-button-prev">
+        <img loading="lazy" height="20" width="20" src="{{  'Group-1.svg' | file_url }}">
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next">
+        <img loading="lazy" height="20" width="20" alt="Next Arrow" src="{{  'Vector_1.png' | file_url }}">
+      </div>
+    </div>
+  </div>
+
+  {% if section.settings['explore-link'] != blank %}
+    <a class="arrow-link " href="{{ section.settings.explore-link }}">
+      <span>{{ section.settings['explore-text'] }}</span>
+    </a>
+  {% endif %}
+</section>
+
+<!-- Swiper JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  document.addEventListener('DOMContentLoaded', function (event) {
+    var swiper = new Swiper('.mySwiper1', {
+      slidesPerView: 1,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + '</span>';
+        },
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 1,
+        },
+        900: {
+          slidesPerView: 1,
+        },
+      },
+    });
+  });
+
+  $('.button-prev').click(function () {
+    $('.swiper-button-prev').click();
+  });
+
+  $('.button-next').click(function () {
+    $('.swiper-button-next').click();
+  });
+</script>
+
+<script defer src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script type="module" src=" {{'core-collection-home.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "core-collection-home",
+  "class": "core-collection-home-mobile",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "logos-home",
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "For Men Who Want a <strong>Natural, Everyday Look.</strong>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "desc",
+      "label": "Description",
+      "default": "You just want something that enhances your natural look. Our products are designed specifically for men like you. They’re easy to use, effective, and are formulated with a clean finish that blends seamlessly into your skin."
+    },
+    {
+      "type": "richtext",
+      "id": "content_mobile",
+      "label": "Content mobile"
+    },
+    {
+      "type": "text",
+      "id": "explore-text",
+      "label": "Explore more text",
+      "default": "Explore more"
+    },
+    {
+      "type": "url",
+      "id": "explore-link",
+      "label": "Explore Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "core-collection-home",
+      "settings": [
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Add Video Url"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster-img",
+          "label": "Add Poster Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Add Product"
+        },
+        {
+          "type": "text",
+          "id": "btn-text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "btn-link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "core-collection-home"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,251 @@
+import {
+  setSrc,
+  listen,
+  setHref,
+  onClick,
+  setText,
+  setValue,
+  components,
+  mapFunctions,
+  curriedAddClass,
+  curriedRemoveClass,
+  bubleEventToCLosest,
+} from "//www.nunorm.com/cdn/shop/t/107/assets/utils.js?v=75136074572860073671754392279"
+
+/**
+ * @typedef {Object} VariantChangeEventDetail
+ * @property {HTMLElement} triggerElement - The element that triggered the variant change event.
+ * @property {string} [price] - The new price to display.
+ * @property {string} [variantImage] - The URL of the new image to display.
+ * @property {string} [id] - The variant ID.
+ * @property {string} [legend] - The new legend text to display.
+ */
+
+/**
+ * @typedef {Object} VariantChangeEvent
+ * @property {VariantChangeEventDetail} detail - The details of the variant change.
+ */
+
+// MODULE SPECIFIC UTILITY FUNCTIONS
+// This section contains utility functions that are designed to be reused across multiple components.
+/**
+ * Adds 'active' class to a provided element.
+ * This is a result of currying the `curriedAddClass` function with 'active' as the argument.
+ * @type {function(HTMLElement): void}
+ */
+const addActiveClass = curriedAddClass("active")
+
+/**
+ * Remove 'active' class from a provided element.
+ * This is a result of currying the `removeActiveClass` function with 'active' as the argument.
+ * @type {function(HTMLElement): void}
+ */
+const removeActiveClass = curriedRemoveClass("active")
+
+
+/**
+ * returns the text for the add to cart button.
+ * @param {*} price
+ * @returns {string} - The text for the add to cart button.
+ */
+const addToCartText = (price) => `Add to cart`
+
+/**
+ * Dispatches a custom event to the closest parent with a matching data attribute.
+ * @param {string} el - Element that the clossest method will be called on.
+ * @param {Object} detail - the detail object to be passed to the event.
+ * @returns {void} - Directly dispatches a custom event to the closest parent with a matching data attribute.
+ */
+const dispatchActiveSwatchToCard = bubleEventToCLosest(
+  "colorswatch:Selected",
+  "[data-component-add-to-cart-form]"
+)
+
+// CURRIED EVENT LISTENERS
+// This section contains curried event listeners that are designed to be reused across multiple components.
+/**
+ * Creates an event listener for the "colorswatch:Selected" event.
+ * This listener will invoke the provided callback function, passing it an HTMLElement.
+ * @param {Function} callback A function that takes an HTMLElement as its argument and returns void.
+ * @returns {Function} A function that, when called with an HTMLElement, sets up the event listener and returns void.
+ */
+const onActiveSwatch = listen("colorswatch:Selected")
+
+// DOM Manipulation
+// This section contains functions that are designed to manipulate the DOM in specific ways.
+// Each function is designed to apply a specific behavior to a specific component (e.g., adding an active class, setting a price, updating an image).
+
+/**
+ * Adds the active class to the color swatch.
+ * @param {HTMLElement} el - The color swatch element.
+ * @param {CustomEvent} event - The event object.
+ * @returns {void} -  Directly updates the classList of the element, affecting the appearance of the color swatch without returning any value.
+ */
+const removeActiveClassFromColorSwatch = (el, event) => {
+  const targetElementIndex = parseInt(
+    event.detail.triggerElement.dataset.index,
+    10
+  )
+  const swatchIndex = parseInt(el.dataset.index, 10)
+  targetElementIndex === swatchIndex &&
+    el !== event.detail.triggerElement &&
+    removeActiveClass(el)
+}
+
+/**
+ * Sets the inline price for the add to cart button.
+ * @param {HTMLInputElement} input - The element to set the value on.
+ * @param {VariantChangeEvent} event - The event object.
+ * @returns {void} - Directly updates the value of the input element, affecting the add to cart button text without returning any value.
+ */
+const setInlinePrice = (input, event) => {
+  const price = event.detail.triggerElement.dataset.price
+  const text = addToCartText(price)
+  setValue(input, text)
+}
+
+/**
+ * Sets the value of an input element to the variant ID extracted from a custom event. This action modifies the input element's value property, which can trigger changes in form state or behavior.
+ * @param {HTMLInputElement} input - The input element whose value is to be set. Typically used for hidden inputs to store data that will be submitted with a form.
+ * @param {VariantChangeEvent} event - The custom event object that contains the variant ID in its detail property.
+ * @returns {void} Directly updates the value of the input element, affecting the form data without returning any value.
+ */
+const setVariantIdValue = (input, event) => {
+  /** @type {string} */
+  const id = event.detail.triggerElement.dataset.id
+  /** @type {number} */
+  const targetElementIndex = parseInt(
+    event.detail.triggerElement.dataset.index,
+    10
+  )
+  /** @type {number} */
+  const inputIndex = parseInt(input.dataset.variantInputIndex)
+
+  targetElementIndex === inputIndex && setValue(input, id)
+}
+
+/**
+ * Sets the legend text for the color swatch.
+ * @param {HTMLElement} el - The element to set the text on.
+ * @param {VariantChangeEvent} event - The event object.
+ * @returns {void} - directly updates the inner text of the element, affecting the appearance of the legend without returning any value.
+ */
+const setLegendText = (el, event) => {
+  /** @type {number} */
+  const targetElementIndex = parseInt(
+    event.detail.triggerElement.dataset.index,
+    10
+  )
+
+  /** @type {number} */
+  const legendIndex = parseInt(el.dataset.index, 10)
+
+  /** @type {string} */
+  const text = event.detail.triggerElement.dataset.legend
+
+  targetElementIndex === legendIndex && setText(el, text)
+}
+
+/**
+ * Sets the variant id in the href of the product anchor.
+ * @param {HTMLAnchorElement} el - The element to set the href on.
+ * @param {VariantChangeEvent} event - The event object.
+ * @returns {void} - directly updates the href of the anchor element, affecting the link without returning any value.
+ */
+const setVariantIdInHrefQueryString = (el, event) => {
+  /** @type {string} */
+  const id = event.detail.triggerElement.dataset.id
+
+  /** @type {URL} */
+  const href = new URL(el.href)
+
+  /** @type {number} */
+  const targetElementIndex = parseInt(
+    event.detail.triggerElement.dataset.index,
+    10
+  )
+
+  /** @type {number} */
+  const anchorIndex = parseInt(el.dataset.index, 10)
+
+  href.searchParams.set("variant", id)
+  targetElementIndex === anchorIndex && setHref(el, href.toString())
+}
+
+/**
+ * Sets the swatch image for the product.
+ * @param {HTMLImageElement} el - The element to set the image on.
+ * @param {VariantChangeEvent} event - The event object.
+ * @returns {void} - directly updates the src of the image element, affecting the appearance of the product image without returning any value.
+ */
+const setSwatchImage = (el, event) => {
+  const targetElementIndex = parseInt(
+    event.detail.triggerElement.dataset.index,
+    10
+  )
+  const imageIndex = parseInt(el.dataset.index, 10)
+  /** @type {string} */
+  const image = event.detail.triggerElement.dataset.variantImage
+
+  targetElementIndex === imageIndex && setSrc(el, image)
+}
+
+//const log = (event) => console.log(event)
+
+// HANDLERS
+// This section contains event handlers that are tailored to specific components and their behaviors.
+// Each handler is a composition of utility functions that are designed to apply specific behaviors to specific components.
+
+const colorSwatchHandler = mapFunctions(
+  onClick(addActiveClass),
+  onClick(dispatchActiveSwatchToCard),
+  onActiveSwatch(removeActiveClassFromColorSwatch)
+)
+
+const addToCartFormSubmitHandler = mapFunctions(
+  onActiveSwatch(setInlinePrice)
+)
+
+const variantIdInputHandler = mapFunctions(onActiveSwatch(setVariantIdValue))
+
+const colorSwatchLegendHandler = mapFunctions(onActiveSwatch(setLegendText))
+
+const productAnchorHandler = mapFunctions(
+  onActiveSwatch(setVariantIdInHrefQueryString)
+)
+
+const productSwatchImageHandler = mapFunctions(
+  onActiveSwatch(setSwatchImage)
+)
+
+// EVENT HANDLER INITIALIZATION
+// This section initializes event handlers on specific components identified by their data attributes.
+// Each handler is tailored to apply specific behaviors (e.g., adding active classes, setting prices, updating images)
+// upon certain events (e.g., clicks, custom events). This setup ensures interactive and dynamic component responses throughout the application.
+
+if (window.isDesktop() && window.isHomepage()) { /* This is a hack to prevent the carousel from firing the event before the components are rendered, I blame previous developer for this choice :() */
+  document.addEventListener("vueCarouselRendered", function() {
+    components("color-swatch").map((el) => colorSwatchHandler(el))
+    components("add-to-cart-form-submit").map((el) => {
+      addToCartFormSubmitHandler(el)
+    })
+    components("variant-id-input").map((el) => variantIdInputHandler(el))
+    components("color-swatch-legend").map((el) => {
+      colorSwatchLegendHandler(el)
+    })
+    components("product-anchor").map((el) => productAnchorHandler(el))
+    components("product-swatch-image").map((el) => productSwatchImageHandler(el))
+  })
+} else {
+  components("color-swatch").map((el) => colorSwatchHandler(el))
+  components("add-to-cart-form-submit").map((el) =>
+    addToCartFormSubmitHandler(el)
+  )
+  components("variant-id-input").map((el) => variantIdInputHandler(el))
+  components("color-swatch-legend").map((el) => {
+    colorSwatchLegendHandler(el)
+  })
+  components("product-anchor").map((el) => productAnchorHandler(el))
+  components("product-swatch-image").map((el) => productSwatchImageHandler(el))
+
+}

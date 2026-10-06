@@ -1,0 +1,244 @@
+{% stylesheet %}
+  .customer-review-quote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 20px;
+    width: 100%;
+  }
+
+  .customer-review-quote__slider {
+    flex: 1 1 40%;
+    position: relative;
+    min-height: 150px;
+  }
+
+  .customer-review-quote__text-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 0;
+    text-align: left;
+    padding: 20px 30px;
+    color: #953F2F;
+    font-size: 26px;
+    line-height: 135%;
+    font-weight: 700;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .customer-review-quote__text-block.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .customer-review-quote__text-block .reviewer {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+    font-weight: 300;
+  }
+
+  /* Gallery styles */
+  .gallery-row {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    flex-wrap: nowrap;
+    margin-bottom: 2rem;
+  }
+
+  .gallery-row.top-row {
+    align-items: flex-end;
+    padding-left: 10%;
+  }
+
+  .gallery-row.bottom-row {
+    align-items: flex-start;
+    padding-right: 10%;
+  }
+
+  .img-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+  }
+
+  .img-1 { width: 20%; aspect-ratio: 1 / 1; border-radius: 0 16px 16px 16px; }
+  .img-2 { width: 40%; aspect-ratio: 5 / 6; border-radius: 16px 0 16px 16px; }
+  .img-3 { width: 20%; aspect-ratio: 1 / 1; border-radius: 16px 0 16px 16px; }
+  .img-4 { width: 16%; aspect-ratio: 5 / 6; border-radius: 0 16px 16px 16px; }
+  .img-5 { width: 35%; aspect-ratio: 1 / 1; border-radius: 16px 0 16px 16px; }
+  .img-6 { width: 25%; aspect-ratio: 3 / 4; border-radius: 16px 0 16px 16px; }
+
+
+    .customer-review-quote__text-block em {
+     color: #8c2a26;
+    }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .customer-review-quote {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .customer-review-quote__slider {
+      width: 100%;
+      margin-bottom: 30px;
+      min-height: 200px;
+    }
+
+   .img-1. .img-2, .img-3, .img-4, .img-5, .img-6{
+     flex: 1;
+   }
+    .gallery-row.top-row {
+      align-items: flex-end;
+      padding-left: 2%;
+  }
+    .gallery-row.bottom-row {
+      align-items: flex-start;
+      padding-left: 2%;
+  }
+  }
+{% endstylesheet %}
+
+<div class="customer-review-quote layout">
+  <div class="customer-review-quote__slider" id="quote-slider">
+    {% for block in section.blocks %}
+      <div class="customer-review-quote__text-block">
+        {{ block.settings.quote }}
+        <div class="reviewer">{{ block.settings.reviewer }}</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="staggered-gallery-section">
+    <div class="gallery-row top-row">
+      <div class="img-wrap img-1">
+        <img src="{{ section.settings.image_1 | image_url: width: 400 }}" alt="Image 1">
+      </div>
+      <div class="img-wrap img-2">
+        <img src="{{ section.settings.image_2 | image_url: width: 400 }}" alt="Image 2">
+      </div>
+      <div class="img-wrap img-3">
+        <img src="{{ section.settings.image_3 | image_url: width: 400 }}" alt="Image 3">
+      </div>
+    </div>
+    <div class="gallery-row bottom-row">
+      <div class="img-wrap img-4">
+        <img src="{{ section.settings.image_4 | image_url: width: 400 }}" alt="Image 4">
+      </div>
+      <div class="img-wrap img-5">
+        <img src="{{ section.settings.image_5 | image_url: width: 400 }}" alt="Image 5">
+      </div>
+      <div class="img-wrap img-6">
+        <img src="{{ section.settings.image_6 | image_url: width: 400 }}" alt="Image 6">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const blocks = document.querySelectorAll('#quote-slider .customer-review-quote__text-block');
+    let current = 0;
+    const duration = 5000;
+
+    function showNext() {
+      blocks.forEach((block, i) => {
+        block.classList.toggle('active', i === current);
+      });
+      current = (current + 1) % blocks.length;
+    }
+
+    if (blocks.length > 0) {
+      showNext();
+      setInterval(showNext, duration);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Customer Review Quote",
+  "tag": "section",
+  "class": "customer-review-quote",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote Text"
+        },
+        {
+          "type": "text",
+          "id": "reviewer",
+          "label": "Reviewer Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Review Quote",
+      "category": "Testimonials",
+      "blocks": [
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "<p>“Flowers are like friends; they bring color to your world.”</p>",
+            "reviewer": "Customer Review 1"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

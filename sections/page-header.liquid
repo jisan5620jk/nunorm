@@ -1,0 +1,127 @@
+{{ 'section-page-header.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    --background-color: {{ section.settings.background_color }};
+    --title-text-color: {{ section.settings.title_text_color }};
+    --title-accent-text-color: {{ section.settings.title_accent_text_color }};
+    --description-text-color: {{ section.settings.description_text_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }} {
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+
+  assign widths = '165, 360, 535, 750, 1070, 1500'
+-%}
+
+{%- capture sizes -%}
+  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+  (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+{%- endcapture -%}
+
+<div class="section-{{ section.id }} page-header">
+  <div class="page-header__main {% if section.settings.image_position == 'right' %}page-header__main--reverse{% endif %}">
+    <div class="page-header__media">
+      {{
+        section.settings.image
+        | image_url: width: 1500
+        | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, class: 'page-header__image'
+      }}
+    </div>
+    <div class="page-header__content">
+      <div class="page-header__content-inner">
+        {%- if section.settings.title != blank -%}
+          <h1 class="page-header__title">{{ section.settings.title }}</h1>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <p class="page-header__description">{{ section.settings.description }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Header",
+  "class": "section section-page-header",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "This is a title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "This is a description"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fbeeda"
+    },
+    {
+      "type": "color",
+      "id": "title_text_color",
+      "label": "Text color",
+      "default": "#213346"
+    },
+    {
+      "type": "color",
+      "id": "title_accent_text_color",
+      "label": "Accent text color",
+      "default": "#c07147",
+      "info": "When part of the title is bold, this color will be used."
+    },
+    {
+      "type": "color",
+      "id": "description_text_color",
+      "label": "Text color",
+      "default": "#48646E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Header"
+    }
+  ]
+}
+{% endschema %}

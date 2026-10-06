@@ -1,0 +1,111 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "disabled": true,
+      "settings": {
+        "articles_per_page": 12,
+        "layout": "grid",
+        "show_image": true,
+        "image_height": "adapt",
+        "show_date": true,
+        "show_author": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "blog_hero_aEne3F": {
+      "type": "blog-hero",
+      "blocks": {
+        "tag_nz9WfQ": {
+          "type": "tag",
+          "settings": {
+            "tag_text": "About NuNorm + The EQUAL Project",
+            "section_id": "category-1"
+          }
+        },
+        "tag_VnycmB": {
+          "type": "tag",
+          "settings": {
+            "tag_text": "About Our Products",
+            "section_id": "category-2"
+          }
+        },
+        "tag_PxBpYD": {
+          "type": "tag",
+          "settings": {
+            "tag_text": "Advice From Our Community",
+            "section_id": "category-3"
+          }
+        }
+      },
+      "block_order": [
+        "tag_nz9WfQ",
+        "tag_VnycmB",
+        "tag_PxBpYD"
+      ],
+      "name": "Blog Hero",
+      "settings": {
+        "heading": "<h1><em>RESOURCES TO SUPPORT</em><br/>YOUR GROOMING JOURNEY</h1>",
+        "subheading": "Explore practical insights, expert knowledge, and community-driven advice designed to support your routine.",
+        "show_tags": true,
+        "show_search": true
+      }
+    },
+    "akta_blog_slider_zHcU4X": {
+      "type": "akta-blog-slider",
+      "name": "Akta Blog slider",
+      "settings": {
+        "id": "category-1",
+        "heading": "Advice From the Community",
+        "blog": "behind-nunorm",
+        "post_limit": 6,
+        "tag": "Community",
+        "show_view_more": true,
+        "view_more_text": "View more"
+      }
+    },
+    "akta_blog_slider_j4YaJE": {
+      "type": "akta-blog-slider",
+      "name": "Akta Blog slider",
+      "settings": {
+        "id": "category-2",
+        "heading": "Advice From the Community",
+        "blog": "behind-nunorm",
+        "post_limit": 6,
+        "tag": "Community",
+        "show_view_more": true,
+        "view_more_text": "View more"
+      }
+    },
+    "akta_blog_slider_e93Gnm": {
+      "type": "akta-blog-slider",
+      "name": "Akta Blog slider",
+      "settings": {
+        "id": "category-3",
+        "heading": "Advice From the Community",
+        "blog": "behind-nunorm",
+        "post_limit": 6,
+        "tag": "Community",
+        "show_view_more": true,
+        "view_more_text": "View more"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "blog_hero_aEne3F",
+    "akta_blog_slider_zHcU4X",
+    "akta_blog_slider_j4YaJE",
+    "akta_blog_slider_e93Gnm"
+  ]
+}

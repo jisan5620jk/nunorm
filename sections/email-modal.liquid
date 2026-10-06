@@ -1,0 +1,316 @@
+{% liquid
+  assign dev_mode = section.settings.dev_mode 
+  if request.design_mode and section.settings.email_modal_preview
+    assign email_modal_preview = true
+  else
+    assign email_modal_preview = false
+  endif
+
+  assign show_modal = section.settings.email_modal_enable
+
+  if cart.attributes['emailModalShown'] == 'true'
+    unless email_modal_preview
+      assign show_modal = false
+    endunless
+  endif
+  
+  if request.design_mode == false and dev_mode
+    assign show_modal = true
+  endif
+%}
+{% if show_modal or email_modal_preview %}
+  {% liquid
+    assign malformed_email = 'PLEASE ENTER A VALID EMAIL'
+    assign empty_email = 'PLEASE ENTER YOUR EMAIL'
+    assign email_modal_background_color = section.settings.background_color
+    assign email_modal_background_image = section.settings.email_modal_background_image
+    assign email_modal_background_image_mobile = section.settings.email_modal_background_image_mobile
+    assign email_modal_success_background_image = section.settings.email_modal_success_background_image
+    assign email_modal_success_background_image_mobile = section.settings.email_modal_success_background_image_mobile
+    assign discount_code = section.settings.email_modal_discount_code
+    assign title = section.settings.email_modal_title
+    assign title_color = section.settings.header_text_color
+    assign success_title = section.settings.email_modal_title_success
+    assign content = section.settings.email_modal_content
+    assign content_color = section.settings.email_modal_subtitle_text_color
+    assign success_content = section.settings.email_modal_content_success
+    assign button_text = section.settings.email_modal_button_text
+    assign submit_button_text_color = section.settings.submit_button_text_color
+    assign submit_button_background_color = section.settings.submit_button_background_color
+    assign button_text_success = section.settings.email_modal_button_text_success
+
+    assign close_button_color = section.settings.close_button_color
+    assign email_modal_success_preview = section.settings.email_modal_success_preview
+  %}
+  {{ 'snippet-email-modal.css' | asset_url | stylesheet_tag }}
+
+  <div data-micromodal-close class="EM_Background" id="email-modal" aria-hidden="true">
+    <div
+      style="--email-modal-border-color: {{section.settings.border_color}}; --background-image: url({{ email_modal_background_image |  image_url: width: 800  }}); --background-image-mobile: url({{ email_modal_background_image_mobile | image_url: width: 800}}); --background-image-success: url({{ email_modal_success_background_image  |  image_url: width: 800 }}); --background-color: {{ email_modal_background_color }}; --background-image-success-mobile: url({{ email_modal_success_background_image_mobile | image_url: width: 800 }});"
+      class="EM_content-wrapper {% if email_modal_success_preview and request.design_mode %}  EM_content-wrapper--success {% endif %}"
+      tabindex="-1"
+      data-component-active-campaign-modal-content-wrapper
+      data-micromodal-close
+    >
+      <div class="EM_content" role="dialog" aria-modal="true" aria-labelledby="email-modal-title">
+        <div aria-hidden="true" class="EM_Loading-overlay">
+          <div class="EM_Loading-circle"></div>
+        </div>
+        <header class="EM_Header-container">
+          <h2
+            style="--email-modal-header-text-color: {{ title_color }};"
+            class="EM_header"
+            id="email-modal-title"
+          >
+            <span class="EM_header-text">
+              {{ title }}
+            </span>
+            <span class="EM_header-text-success-version">
+              {{ success_title }}
+            </span>
+          </h2>
+
+          <button class="EM_Close-button" aria-label="Close modal" data-micromodal-close>
+            {% render 'icon-close', color: close_button_color %}
+          </button>
+        </header>
+
+        <div
+          style="--email-modal-body-text-color: {{ content_color }} ;"
+          class="EM_subtitle-text"
+          id="email-modal-content"
+        >
+          <div class="EM_Content-text-container">
+            {{ content }}
+          </div>
+          <div class="EM_Content-text-container-success-version">
+            {{ success_content }}
+          </div>
+        </div>
+
+        <div aria-hidden="false" class="EM_Functionality-container">
+          <form
+            aria-hidden="false"
+            class="EM_Form"
+            data-component-active-campaign-modal-form
+            action="https://nunorm.activehosted.com/proc.php"
+          >
+            <input type="hidden" name="u" value="5">
+            <input type="hidden" name="f" value="5">
+            <input type="hidden" name="s">
+            <input type="hidden" name="c" value="0">
+            <input type="hidden" name="m" value="0">
+            <input type="hidden" name="act" value="sub">
+            <input type="hidden" name="v" value="2">
+            <input type="hidden" name="or" value="e8331ae13a45083b9b47aff5d9397e8d">
+            <fieldset class="EM_Input-container">
+              <label class="visually-hidden" for="email-modal-active-campaign-email"> Email </label>
+              <input
+                data-active-error=""
+                id="email-modal-active-campaign-email"
+                aria-required="true"
+                data-target="active-campaign-modal-form-messages"
+                name="email"
+                aria-invalid="false"
+                data-component-active-campaign-input
+                class="EM_Input"
+                placeholder="ENTER YOUR EMAIL"
+                type="text"
+              >
+            </fieldset>
+
+            <button
+              data-component-active-campaign-modal-form-submit
+              type="submit"
+              style="--email-modal-submit-button-color: {{ submit_button_background_color }}; --email-modal-submit-button-text-color: {{ submit_button_text_color }} "
+              class="EM_Submit-button"
+            >
+              {{ button_text }}
+            </button>
+
+            <div data-component-active-campaign-modal-form-messages class="EM_Error-message-container">
+              <p
+                id="email-modal-malformed-email-message"
+                data-component-error-message
+                data-error-active="false"
+                data-error-message="malformed-email"
+                class="EM_Error-message"
+              >
+                {{ malformed_email }}
+              </p>
+              <p
+                id="email-modal-empty-email-message"
+                data-component-error-message
+                data-error-active="false"
+                data-error-message="empty-email"
+                class="EM_Error-message"
+              >
+                {{ empty_email }}
+              </p>
+            </div>
+          </form>
+          <div
+            data-component-success-content-container
+            class="EM_Success-content-container"
+          >
+            <div class="EM_Copy-text">
+              <span><b>DISCOUNT CODE:</b>&nbsp;</span>
+              <span data-component-text-to-copy >{{ discount_code }}</span>
+            </div>
+            <button
+              style="--email-modal-submit-button-color: {{ submit_button_background_color }}; --email-modal-submit-button-text-color: {{ submit_button_text_color }}"
+              class="EM_Success-button"
+              data-component-success-button
+            >
+              {{ button_text_success }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="{{ 'email-modal.js' | asset_url }}"></script>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Email Modal",
+    "settings": [
+        {
+          "type": "checkbox",
+          "id": "dev_mode",
+          "label": "Dev Mode",
+          "default": false
+        },
+        {
+            "type": "header",
+            "content": "Email Modal"
+        },
+        {
+            "type": "checkbox",
+            "id": "email_modal_enable",
+            "label": "Enable Email Modal",
+            "default": false,
+            "info": "This will show the modal on the live site, but not on the editor. If you want to see the modal on the editor, check the preview checkbox below."
+        },
+        {
+            "type": "checkbox",
+            "id": "email_modal_preview",
+            "label": "Enable Email Modal Preview",
+             "info": "This will show the email modal on the editor only, if this checked, it will always be visible on the editor. Otherwise the live version will only be shown once",
+            "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "email_modal_success_preview",
+          "label": "Enable Email Modal Success Preview",
+          "default": false
+        },
+        {
+            "type": "image_picker",
+            "id": "email_modal_background_image",
+            "label": "Background Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "email_modal_background_image_mobile",
+            "label": "Background Image Mobile"
+        },
+        {
+          "type": "image_picker",
+          "id": "email_modal_success_background_image",
+          "label": "Background Image Success"
+        },
+        {
+          "type": "image_picker",
+          "id": "email_modal_success_background_image_mobile",
+          "label": "Background Image Success Mobile"
+        },
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background Color",
+            "default": "#213346"
+        },
+        {
+            "type": "color",
+            "id": "border_color",
+            "label": "Border Color",
+            "default": "#953F2F"
+        },
+        {
+            "type": "text",
+            "id": "email_modal_title",
+            "label": "Title",
+            "default": "1st time Customer?"
+        },
+        {
+            "type": "text",
+            "id": "email_modal_title_success",
+            "label": "Title Success",
+            "default": "Try us. Love us. Rinse & Repeat"
+        },
+        {
+            "type": "color",
+            "id": "header_text_color",
+            "label": "Header Text Color",
+            "default": "#953F2F"
+        },
+        {
+            "type": "color",
+            "id": "close_button_color",
+            "label": "Close Button Color",
+            "default": "#FBEEDB"
+        },
+        {
+            "type": "richtext",
+            "id": "email_modal_content",
+            "label": "Content",
+            "default": "<p>We’ve got you covered on your order with <b>free shipping.</b></p>"
+        },
+        {
+            "type": "richtext",
+            "id": "email_modal_content_success",
+            "label": "Content success",
+            "default": "<p>Welcome to your NuNorm!</p>"
+        },
+        {
+            "type": "color",
+            "id": "email_modal_subtitle_text_color",
+            "label": "Subtitle Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "text",
+            "id": "email_modal_button_text",
+            "label": "Button Text",
+            "default": "GRAB YOUR CODE"
+        },
+        {
+            "type": "color",
+            "id": "submit_button_background_color",
+            "label": "Submit Button Background Color",
+            "default": "#8C2A26"
+        },
+        {
+            "type": "color",
+            "id": "submit_button_text_color",
+            "label": "Submit Button Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "text",
+            "id": "email_modal_button_text_success",
+            "label": "Copy To Clipboard",
+            "default": "GRAB YOUR CODE"
+        },
+        {
+            "type": "text",
+            "id": "email_modal_discount_code",
+            "label": "Discount Code",
+            "default": "ADWADWA"
+        }
+
+        ]
+}
+{% endschema %}

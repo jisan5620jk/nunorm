@@ -1,0 +1,130 @@
+<section class="not-sure-sec layout">
+<div class="page-width">
+  <!--/ heading /-->
+  <h1 class="sec-heading">{{ section.settings.sec-head }}</h1>
+
+  <div class="pera-wrap">{{ section.settings.content }}
+  
+  <!--/ pera /-->
+  </div>
+
+
+  <!--/ not sure key icons /-->
+  <div class="not-sure-icons">
+{% for block in section.blocks %}
+    <!--/ Box 1 /-->
+    <span class="box">
+      <!--/ 1 /-->
+      <div class="icon-svg">
+        <img src="{{ block.settings.img-url | image_url: 'master' }}">
+      </div>
+
+      <!--/ title /-->
+      <h4>{{ block.settings.box-head }}</h4>
+
+      <!--/ pera /-->
+      <p>{{ block.settings.box-content }}</p>
+      
+    </span>
+{% endfor %}
+{% comment %}
+    <!--/ Box 2 /-->
+    <span class="box">
+      <!--/ 1 /-->
+      <div class="icon-svg">
+        <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-deep-mimic-wrinkles-5585452_1.svg?v=1684995180">
+      </div>
+
+      <!--/ title /-->
+      <h4>inflammatory disorders</h4>
+
+      <!--/ pera /-->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.</p>
+      
+    </span>
+
+     <!--/ Box 3 /-->
+    <span class="box">
+      <!--/ 1 /-->
+      <div class="icon-svg">
+        <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-post-acne-scars-5585463_1.svg?v=1684995180">
+      </div>
+
+      <!--/ title /-->
+      <h4>premature aging</h4>
+
+      <!--/ pera /-->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.</p>
+      
+    </span>
+
+    <!--/ Box 4 /-->
+    <span class="box">
+      <!--/ 1 /-->
+      <div class="icon-svg">
+        <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/noun-mens-face-clear-skin-5585475_1.svg?v=1684995180">
+      </div>
+
+      <!--/ title /-->
+      <h4>boosting self-confidence</h4>
+
+      <!--/ pera /-->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.</p>
+      
+    </span>
+{% endcomment %}    
+  </div>
+</div>
+</section>
+{% schema %}
+  {
+    "name": "about-why-nu-norm",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Description"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "box",
+        "name": "box",
+        "limit": 4,
+        "settings": [
+          {
+            "id": "img-url",
+            "type": "url",
+            "label": "SVG Image url"
+          },
+          {
+            "type": "text",
+            "id": "box-head",
+            "label": "Box Heading"
+          },
+          {
+            "type": "text",
+            "id": "box-content",
+            "label": "Box Description"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+      "name": "about-why-nu-norm"
+    }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

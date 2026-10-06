@@ -1,0 +1,221 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "h1,h2,h3,h4,p {color: #213346 !important;}",
+        "h4 {font-size: 18px 1important;}",
+        "h1 {font-size: 32px !important;}",
+        "h3 {font-size: 24px !important;}",
+        "h2 {font-size: 27px !important;}",
+        "@media (max-width: 768px) {h2 {font-size: 20px !important; } h1 {font-size: 25px; } h2 {font-size: 22px !important; } h4 {font-size: 17px; } h3 {font-size: 20px !important; }}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "tutorial_videos_ggMP7x": {
+      "type": "tutorial-videos",
+      "blocks": {
+        "featured_8Mb8iP": {
+          "type": "featured",
+          "settings": {
+            "featured_image": "shopify://shop_images/Picture_NuNorm_December-39_jpg.png",
+            "title": "Brow Rescue",
+            "how_title": "how to use",
+            "how_text": "<p>Using short, hair-like strokes, fill and define brows and facial hair with filler pencil, then comb through with included brush to blend.</p>",
+            "avatar_1": "shopify://shop_images/Picture_Brow_Rescue_Mirror_Success_Zoomed_In_jpg.png",
+            "avatar_2": "shopify://shop_images/Picture_DSC01160.JPG_1.png",
+            "avatar_3": "shopify://shop_images/Picture_DSC01753.JPG_1.png",
+            "avatar_4": "shopify://shop_images/Picture_NuNorm_December-12.jpg_1.png",
+            "tips_title": "tips & tricks",
+            "tips_text": "<ul><li>For the most natural look, follow the natural shape of your brows, using a light hand.</li><li>Use the sharp, chiseled edge to achieve detailed hair-like strokes. Good for the “tail” (outer ends) of the brow.</li><li>Use the flat edge to fill and shade gaps in brows and facial hair. Blend using attached spoolie brush.</li><li>Don’t worry too much about making both brows identical- remember they are brothers, not twins!</li></ul>"
+          }
+        },
+        "card_RdKa6H": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_a450a297-d2a7-4c78-a2e3-091449539383.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        },
+        "card_YbjmUa": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_1_c1b336ae-9498-4b37-829c-743502d06c12.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        },
+        "card_Q78xfN": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_2_5d4b9b55-d39d-40a3-b558-e5a4a63aa127.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        },
+        "card_HWbfKC": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_1_c1b336ae-9498-4b37-829c-743502d06c12.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        },
+        "card_zCHfRJ": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_4.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        },
+        "card_W8cLhg": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_5.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        },
+        "card_PLxVeQ": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_a450a297-d2a7-4c78-a2e3-091449539383.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        },
+        "card_C3qFGq": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Quick_Cover_1_c1b336ae-9498-4b37-829c-743502d06c12.png",
+            "title": "Brow Rescue",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_8Mb8iP",
+        "card_RdKa6H",
+        "card_YbjmUa",
+        "card_Q78xfN",
+        "card_HWbfKC",
+        "card_zCHfRJ",
+        "card_W8cLhg",
+        "card_PLxVeQ",
+        "card_C3qFGq"
+      ],
+      "name": "Tutorial videos",
+      "settings": {
+        "eyebrow_text": "WATCH OUR",
+        "heading_main": "TUTORIAL VIDEOS",
+        "subtitle": "This is your about section paragraph. It's a great place to give a short introduction about what you do.",
+        "filter_by_product_label": "Filter By Product",
+        "filter_by_product_link": "",
+        "filter_by_concerns_label": "Filter By Concerns",
+        "filter_by_concerns_link": "",
+        "active_filter_label": "x- filter item",
+        "active_filter_link": "",
+        "button_label": "VIEW MORE"
+      }
+    },
+    "learn_from_guys_3XtEkr": {
+      "type": "learn-from-guys",
+      "blocks": {
+        "image_JjhWAj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_DSC01753_JPG.png",
+            "alt_text": ""
+          }
+        },
+        "image_ETGQ6w": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_DSC01160_JPG.png",
+            "alt_text": ""
+          }
+        },
+        "image_JKmE7D": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_NuNorm_December-12_jpg.png",
+            "alt_text": ""
+          }
+        },
+        "image_prMifE": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_NuNorm_December-32_jpg.png",
+            "alt_text": ""
+          }
+        },
+        "image_nbp3XD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_DSC01753_JPG.png",
+            "alt_text": ""
+          }
+        },
+        "image_rUCw6a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_DSC01160_JPG.png",
+            "alt_text": ""
+          }
+        },
+        "image_dpcTKm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_NuNorm_December-12_jpg.png",
+            "alt_text": ""
+          }
+        },
+        "image_mYxfMA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Picture_NuNorm_December-32_jpg.png",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_JjhWAj",
+        "image_ETGQ6w",
+        "image_JKmE7D",
+        "image_prMifE",
+        "image_nbp3XD",
+        "image_rUCw6a",
+        "image_dpcTKm",
+        "image_mYxfMA"
+      ],
+      "name": "Learn from other guys",
+      "settings": {
+        "eyebrow_text": "LEARN FROM",
+        "heading": "OTHER GUYS",
+        "subheading": "This is your about section paragraph. It's a great place to give a short introduction about what you do.",
+        "button_label": "EXPLORE OUR COMMUNITY PAGE",
+        "button_link": "shopify://pages/community-blog"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "tutorial_videos_ggMP7x",
+    "learn_from_guys_3XtEkr"
+  ]
+}

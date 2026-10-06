@@ -1,0 +1,232 @@
+{{ 'section-image-text-arrow-grid.css' | asset_url | stylesheet_tag }}
+
+<!-- / our community / -->
+<section class="our-community-outer layout">
+  <!-- / heading sec / -->
+  <div class="sec-heading page-width">
+    <h2>{{ section.settings['sec-heading'] }}</h2>
+    <p class="pera">{{ section.settings.pera }}</p>
+  </div>
+
+  <!-- / our-community list / -->
+  <div class="our-community-inner">
+    <!-- / 1 / -->
+    <div class="our-community-list">
+      <!-- / img people / -->
+      <div class="img-box">
+        <img loading="lazy" src="{{ section.settings.img1 | img_url: '1000x' }}" alt="{{ section.settings.img1.alt }}">
+        {% if section.settings.img11 != blank %}
+          <img
+            loading="lazy"
+            src="{{ section.settings.img11 | img_url: '1000x' }}"
+            alt="{{ section.settings.img1.alt }}"
+          >
+        {% endif %}
+      </div>
+
+      <!-- / text-box / -->
+      <div class="text-box">
+        <!-- / name / -->
+        <h3 class="ITAG_Card-header">{{ section.settings.name1 }}</h3>
+        <p class="ITAG_Card-text" >{{ section.settings['detail-1'] }}</p>
+      </div>
+    </div>
+
+    <!-- / 2 / -->
+    <div class="our-community-list">
+      <!-- / img people / -->
+      <div class="img-box">
+        <img loading="lazy" src="{{ section.settings.img2 | img_url: '1000x' }}" alt="{{ section.settings.img2.alt }}">
+        {% if section.settings.img22 != blank %}
+          <img
+            loading="lazy"
+            src="{{ section.settings.img22 | img_url: '1000x' }}"
+            alt="{{ section.settings.img2.alt }}"
+          >
+        {% endif %}
+      </div>
+
+      <!-- / text-box / -->
+      <div class="text-box">
+        <!-- / name / -->
+        <h3 class="ITAG_Card-header">{{ section.settings.name2 }}</h3>
+        <p class="ITAG_Card-text" >{{ section.settings['detail-2'] }}</p>
+      </div>
+    </div>
+
+    <!-- / 3 / -->
+    <div class="our-community-list">
+      <!-- / text-box / -->
+      <div class="text-box">
+        <!-- / name / -->
+        <h3 class="ITAG_Card-header">{{ section.settings.name3 }}</h3>
+        <p class="ITAG_Card-text" >{{ section.settings['detail-3'] }}</p>
+      </div>
+
+      <!-- / img people / -->
+      <div class="img-box">
+        <img loading="lazy" src="{{ section.settings.img3 | img_url: '1000x' }}" alt="{{ section.settings.img3.alt }}">
+        {% if section.settings.img33 != blank %}
+          <img
+            loading="lazy"
+            src="{{ section.settings.img33 | img_url: '1000x' }}"
+            alt="{{ section.settings.img3.alt }}"
+          >
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- / 4 / -->
+    <div class="our-community-list">
+      <!-- / text-box / -->
+      <div class="text-box">
+        <!-- / name / -->
+        <h3 class="ITAG_Card-header">{{ section.settings.name4 }}</h3>
+        <p class="ITAG_Card-text" >{{ section.settings['detail-4'] }}</p>
+      </div>
+
+      <!-- / img people / -->
+      <div class="img-box">
+        <img loading="lazy" src="{{ section.settings.img4 | img_url: '1000x' }}" alt="{{ section.settings.img4.alt }}">
+        {% if section.settings.img44 != blank %}
+          <img
+            loading="lazy"
+            src="{{ section.settings.img44 | img_url: '1000x' }}"
+            alt="{{ section.settings.img44.alt }}"
+          >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- / button / -->
+  <center class="center-btn">
+    <div class="button_gray">
+      <span class="gray_button_circle"> </span>
+      <a href="{{ section.settings.btn-link }}" class="button_gray_inner">
+        <span class="button_text_container">
+          {{ section.settings['btn-text'] }}
+        </span>
+      </a>
+    </div>
+  </center>
+</section>
+
+{% schema %}
+{
+  "name": "our-community-home",
+  "settings": [
+
+     {
+    "type": "liquid",
+    "id": "our-community-home",
+    "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+    "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+  },
+  {
+    "type": "text",
+    "id": "sec-heading",
+    "label": "Heading"
+  },
+  {
+    "type": "inline_richtext",
+    "id": "pera",
+    "label": "Content"
+  },
+  {
+    "type": "image_picker",
+    "id": "img1",
+    "label": "Community First Image"
+  },
+        {
+    "type": "image_picker",
+    "id": "img11",
+    "label": "Community Hover Image"
+  },
+  {
+    "type": "text",
+    "id": "name1",
+    "label": "Community First Member Name"
+  },
+  {
+    "type": "richtext",
+    "id": "detail-1",
+    "label": "Community First Member Detail"
+  },
+   {
+    "type": "image_picker",
+    "id": "img2",
+    "label": "Community Second Image"
+  },
+   {
+    "type": "image_picker",
+    "id": "img22",
+    "label": "Community Hover Image"
+  },
+  {
+    "type": "text",
+    "id": "name2",
+    "label": "Community Second Member Name"
+  },
+  {
+    "type": "richtext",
+    "id": "detail-2",
+    "label": "Community Second Member Detail"
+  },
+  {
+    "type": "image_picker",
+    "id": "img3",
+    "label": "Community Third Image"
+  },
+        {
+    "type": "image_picker",
+    "id": "img33",
+    "label": "Community Hover Image"
+  },
+  {
+    "type": "text",
+    "id": "name3",
+    "label": "Community Third Member Name"
+  },
+  {
+    "type": "richtext",
+    "id": "detail-3",
+    "label": "Community Third Member Detail"
+  },
+  {
+    "type": "image_picker",
+    "id": "img4",
+    "label": "Community Fourth Image"
+  },
+        {
+    "type": "image_picker",
+    "id": "img44",
+    "label": "Community Hover Image"
+  },
+  {
+    "type": "text",
+    "id": "name4",
+    "label": "Community Fourth Member Name"
+  },
+  {
+    "type": "richtext",
+    "id": "detail-4",
+    "label": "Community Fourth Member Detail"
+  },
+  {
+    "type": "text",
+    "id": "btn-text",
+    "label": "Button Text"
+  },
+  {
+    "type": "url",
+    "id": "btn-link",
+    "label": "Button Link"
+  }
+  ],
+ "presets": [
+  {
+    "name": "our-community-home"
+  }
+]
+}
+{% endschema %}

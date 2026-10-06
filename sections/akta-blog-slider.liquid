@@ -1,0 +1,365 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+<style>
+  .blog-slider {
+    padding: clamp(40px, 6vw, 80px) 0;
+  }
+  .blog-slider__heading {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 40px;
+    font-size: 32px;
+    font-family: Montserrat;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: rgba(33, 51, 70, 1);
+    line-height: 1.4;
+  }
+  .blog-slider__image {
+    display: block;
+    position: relative;
+    aspect-ratio: 4 / 3.5;
+   /* border: 4px solid #c07147;
+    border-radius: 45px 0;*/
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .blog-slider__image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .blog-slider__tag {
+    background: rgba(122, 28, 32, 1);
+    color: rgba(251, 238, 218, 1);
+    margin: 0;
+    font-size: 12px;
+    font-family: Montserrat;
+    font-weight: 500;
+    /*text-transform: uppercase;*/
+    line-height: 1.1;
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 30px;
+  }
+
+  .blog-slider__date {
+    color: rgba(33, 51, 70, 1);
+    margin: 0;
+    font-size: 16px;
+    font-family: Montserrat;
+    font-weight: 400;
+    line-height: 1.4;
+    display: inline-block;
+    letter-spacing: 0.6px;
+  }
+  .blog-slider__content-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .blog-slider__title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgba(33, 51, 69, 1);
+    line-height: 1.5;
+    letter-spacing: 0.6px;
+    font-style: italic;
+  }
+  .blog-slider__read-more {
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    font-family: Montserrat;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(122, 28, 32, 1);
+    line-height: 1.4;
+    letter-spacing: 0.6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .blog-slider__excerpt {
+    margin: 0 0 30px;
+    font-size: 16px;
+    font-family: Montserrat;
+    font-weight: 400;
+    line-height: 1.4;
+    display: inline-block;
+    letter-spacing: 0.6px;
+    color: rgba(33, 51, 70, 1);
+  }
+
+
+  .blog-slider__view-more {
+    text-align: center;
+    margin-top: 25px;
+  }
+  .blog-slider__button {
+    background: rgba(147, 63, 44, 1);
+    color: rgba(251, 238, 218, 1);
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    text-decoration: none;
+    min-width: 230px;
+    max-width: 100%;
+  }
+
+  .blog-slider__pagination {
+    display: flex;
+    gap: 0;
+    margin-top: 40px;
+    justify-content: center;
+    position: static;
+  }
+  .blog-slider__pagination .swiper-pagination-bullet {
+    background: transparent;
+    height: auto;
+    border: none;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(15, 15, 15, 1);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(205, 204, 204, 1);
+    width: 90px;
+    max-width: 100%;
+    padding: 20px 0 15px;
+    transition: 0.3s;
+    border-radius: 0;
+    opacity: 1;
+    margin: 0 !important;
+
+  }
+
+  .blog-slider__pagination .swiper-pagination-bullet-active {
+    border-bottom: 3px solid rgba(0, 0, 0, 1);
+  }
+
+  .swiper-slide.blog-slider__slide {
+    height: auto;
+  }
+
+  .blog-slider__card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-slider__content {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    flex: 1;
+  }
+
+  .blog-slider__read-more {
+    margin-top: auto;
+  }
+
+
+  @media(max-width: 768px){
+    .blog-slider__heading {
+      margin-bottom: 36px;
+      font-size: 24px;
+    }
+    .blog-slider {
+      padding: 40px 0;
+    }
+  }
+
+  @media(max-width: 375px){
+    .blog-slider__date {
+      font-size: 14px;
+    }
+    .blog-slider__tag {
+      font-size: 10px;
+    }
+    .blog-slider__title {
+      font-size: 18px;
+    }
+    .blog-slider__excerpt {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<section class="blog-slider section-{{ section.id }}" id="{{ section.settings.id }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="blog-slider__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="swiper blog-slider__swiper">
+      <div class="swiper-wrapper">
+        {% assign blog = blogs[section.settings.blog] %}
+        {% for article in blog.articles limit: section.settings.post_limit %}
+          <div class="swiper-slide blog-slider__slide">
+            <article class="blog-slider__card">
+              {% if article.image %}
+                <div class="blog-slider__image">
+                  <img src="{{ article.image | img_url: '600x' }}" alt="{{ article.title }}">
+                </div>
+              {% endif %}
+
+              <div class="blog-slider__content">
+                <div class="blog-slider__content-meta">
+                  <span class="blog-slider__tag">
+                    {% if section.settings.tag != blank %}
+                      {{ section.settings.tag }}
+                    {% else %}
+                      {{ blog.title }}
+                    {% endif %}
+                  </span>
+                  <span class="blog-slider__date">{{ article.published_at | date: '%B %d, %Y' }}</span>
+                </div>
+
+                <h3 class="blog-slider__title">{{ article.title }}</h3>
+                <p class="blog-slider__excerpt">
+                  {{ article.content | strip_html | truncate: 160 }}
+                </p>
+
+                <a href="{{ article.url }}" class="blog-slider__read-more">
+                  Read more
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.6548 5.59387C17.8535 5.594 18.0441 5.67301 18.1846 5.81354C18.3252 5.95408 18.4042 6.14466 18.4043 6.34341L18.4043 14.8287C18.4079 14.9293 18.3911 15.0297 18.355 15.1237C18.319 15.2178 18.2643 15.3036 18.1944 15.376C18.1244 15.4485 18.0406 15.5061 17.9479 15.5455C17.8552 15.5849 17.7555 15.6051 17.6548 15.6051C17.5541 15.6051 17.4544 15.5849 17.3617 15.5455C17.269 15.5061 17.1851 15.4485 17.1152 15.376C17.0452 15.3036 16.9906 15.2178 16.9545 15.1237C16.9184 15.0297 16.9017 14.9293 16.9052 14.8287L16.9052 8.1536L6.8714 18.1874C6.73074 18.3281 6.53998 18.4071 6.34106 18.4071C6.14215 18.4071 5.95139 18.3281 5.81074 18.1874C5.67008 18.0468 5.59107 17.856 5.59107 17.6571C5.59106 17.4582 5.67008 17.2674 5.81074 17.1268L15.8446 7.09294L9.16949 7.09294C9.06884 7.09649 8.9685 7.07974 8.87446 7.04367C8.78042 7.0076 8.69461 6.95296 8.62214 6.88301C8.54968 6.81306 8.49205 6.72923 8.45268 6.63652C8.41332 6.54381 8.39303 6.44412 8.39303 6.34341C8.39304 6.24269 8.41332 6.143 8.45268 6.05029C8.49205 5.95758 8.54968 5.87376 8.62214 5.8038C8.69461 5.73385 8.78042 5.67921 8.87446 5.64315C8.9685 5.60708 9.06884 5.59032 9.16949 5.59387L17.6548 5.59387Z" fill="#7A1C20"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="blog-slider__pagination swiper-pagination"></div>
+    </div>
+
+    {% if section.settings.show_view_more %}
+      <div class="blog-slider__view-more">
+        <a href="{{ blog.url }}" class="blog-slider__button">
+          {{ section.settings.view_more_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sectionEl = document.querySelector('.section-{{ section.id }}');
+    if (!sectionEl) return;
+
+    const swiperEl = sectionEl.querySelector('.blog-slider__swiper');
+    const paginationEl = sectionEl.querySelector('.blog-slider__pagination');
+
+    new Swiper(swiperEl, {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 15,
+
+      pagination: {
+        el: paginationEl,
+        clickable: true,
+        renderBullet(index, className) {
+          return `<span class="${className}">${index + 1}</span>`;
+        },
+      },
+
+      breakpoints: {
+        375: {
+          slidesPerView: 1.2,
+          slidesPerGroup: 1,
+        },
+        475: {
+          slidesPerView: 1.5,
+          slidesPerGroup: 1,
+        },
+        600: {
+          slidesPerView: 2,
+          slidesPerGroup: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+          slidesPerGroup: 3,
+          spaceBetween: 30,
+        },
+        1400: {
+          slidesPerView: 3,
+          slidesPerGroup: 3,
+          spaceBetween: 45,
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Akta Blog slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "Section Id"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Product Education"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "label": "Number of posts",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Blog Tag",
+      "default": "Community",
+      "info": "If left blank, the blog title will be used."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_more",
+      "label": "Show View More button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_more_text",
+      "label": "View more button text",
+      "default": "View more"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Akta Blog slider"
+    }
+  ]
+}
+{% endschema %}

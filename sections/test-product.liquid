@@ -1,0 +1,244 @@
+<style>
+  .custom-test-product {
+    display: flex;
+    width: 100%;
+    column-gap: 20px;
+    padding: 30px 0px;
+}
+
+.inner-test {
+    width: 50%;
+}
+
+.inner-test.inner-test-left {
+    text-align: center;
+    /* border-left: 1px solid; */
+}
+
+footer {
+    display: none;
+}
+
+.section-header.shopify-section-group-header-group {
+    display: none;
+}
+  .announcement-bar.color-accent-1.gradient {
+    display: none;
+}
+  a.button_gray_inner {
+    font-size: 18px!important;
+    line-height: 34px;
+    background-color: #d9a785;
+    color: #fff;
+    letter-spacing: 0;
+    min-height: 52px;
+    min-width: 257px;
+    justify-content: center;
+}
+.custom-test-product .button_gray {
+    margin-top: 20px;
+} 
+
+
+.custom-test-product .core-collection-variant {
+    display: flex;
+    border: none;
+    gap: 10px;
+    padding: 16px 0px 0 0;
+    max-width: 600px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.custom-test-product .core-collection-variant legend.form__label {
+    display: none;
+}
+
+.custom-test-product .core-collection-variant .variant-input {
+    position: relative;
+}
+
+.custom-test-product .core-collection-variant .variant-input input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+}
+
+.custom-test-product .core-collection-variant .variant-input label {
+    width: 30px;
+    height: 30px;
+}
+label.custom-redio-color1 {
+    position: relative;
+    z-index: 9;
+}
+@media only screen and (max-width: 767px) {
+  .custom-test-product {
+    display: block;
+}
+  .inner-test {
+   margin: auto;
+}
+  a.button_gray_inner
+  {
+    min-width:100% !important;
+  }
+}
+  
+</style>
+
+
+
+
+{% assign product = section.settings.product %}
+ {% render 'try-on-popup',product:product %} 
+
+
+<div class="custom-test-product">
+
+  <div class="inner-test inner-test-left">
+    <img src="{{ product.featured_image |img_url:'large' }}" />
+  </div>
+  <div class="inner-test inner-test-right">
+    <h2>{{ product.title }}</h2>
+   {% comment %} <p class="price">{{ product.price |money }}</p>{% endcomment %}
+{%- unless product.has_only_default_variant -%}
+   {%- for option in product.options_with_values -%}
+   {%- liquid
+   assign is_color = false
+   assign color_option_index = 0
+   assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
+   assign color_option_index = forloop.index0
+   assign downcased_option = option.name | downcase
+   if downcased_option contains swatch_trigger
+   assign is_color = true
+   elsif downcased_option == 'kleur'
+   assign is_color = true
+   elsif swatch_trigger == 'color' or downcased_option contains 'colour'
+   assign is_color = true
+   endif
+   -%}
+   <fieldset id="ProductSelect-option-{{ forloop.index0 }}" class="core-collection-variant" name="{{ option.name | handleize }}">
+      <legend class="form__label">Shade-<span class="top-variant-title"></span></legend>
+      {%- for value in option.values -%}
+      {%- liquid
+      assign product_available = true
+      if product.options.size == 1
+      assign product_available = product.variants[forloop.index0].available
+      endif
+      -%}
+      {% for variant in product.variants %}
+      {% if variant.title contains value %}
+      {%- assign img = variant.image.id -%}
+      {%- assign color = variant.metafields.custom.color.value -%} 
+      {% assign variant-id = variant.id %}
+      {%- assign img-url = variant.image |img_url:'master' -%}
+      {% assign data-price = variant.price |money %}
+      {% assign variant-title = variant.metafields.custom.variant_title.value %}
+      {% endif %}
+      {% endfor %}
+
+       
+      <div 
+         class="variant-input"
+         data-index="option{{ option_index }}"
+         data-value="{{ value | escape }}">
+        
+         <input type="radio"
+         {% if option.selected_value == value %} checked="checked"{% endif %}
+         form="{{ form_id }}"
+         data-id="{{ variant-id }}"
+         d-title="{{ variant-title }}"
+         d-matatitle="{{ product.selected_or_first_available_variant.title }} "
+         d-price = "{{ data-price }}"
+         
+         media-data="{{ img }}"
+         media-img="{{ img-url }}"
+         value="{{ value | escape }}"
+         data-index="option{{ option_index }}"
+         name="{{ option.name }}"
+         class="{{ is_color }}{% unless product_available %} disabled{% endunless %}{% if is_color %} variant__input--color-swatch{% endif %} {% if option.selected_value == value %}active{% endif %} visible_item"
+         {% if is_color %} data-color-name="{{ value | escape }}"{% endif %}
+         {% if is_color %} data-color-index="{{ color_option_index }}"{% endif %}
+         id="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}">
+         {%- if is_color -%}
+         {%- liquid
+         assign color_file_name = value | handle | append: '.' | append: swatch_file_extension
+         assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
+         assign color_swatch_fallback = value | split: ' ' | last | handle
+         -%}
+         <label
+            for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+            class="color-swatch color-swatch--{{ value | handle }}{% unless product_available %} disabled{% endunless %}"
+            style="background-color: {{ color }};{% if images[color_file_name] != blank %}  background-color: url({{ color_image }});{% endif %}"
+            >
+           
+         
+         </label>
+         {%- else -%}
+         <label class="custom-redio-color1 {% if option.selected_value == value %}active{% endif %}"  d-price = "{{ data-price }}" for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"{% unless product_available %} class="disabled"{% endunless %} style="background-color: {{ color }}">
+           {{ value }}
+           </label>
+         {%- endif -%}
+      </div>
+        
+      {%- endfor -%}
+   </fieldset>
+   {%- endfor -%}
+   {%- endunless -%}
+    
+    <div class="button_gray">
+      <span class="gray_button_circle desplode-gray-circle" style="left: 106.5px; top: 54.8906px;">
+      </span>
+          <a class="button_gray_inner custom-try-on ">
+          <span class="button_text_container">
+          Try it on
+          </span>
+          </a>
+      
+    </div>
+  </div>
+  
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+   $(document).ready ( function () {
+  
+    $(".custom-redio-color1").click(function(){
+     $('#ProductSelect-option-0 .custom-redio-color1.active').removeClass('active');
+      $(this).addClass('active');
+    });
+    
+});
+</script>
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Test Product",
+    "settings": [
+       {
+          "type": "product",
+          "id": "product",
+          "label": "Add Product"
+        }
+    ],
+    "presets": [
+    {
+      "name": "Test Product"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

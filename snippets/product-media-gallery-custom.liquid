@@ -1,0 +1,415 @@
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+<div class="banner-slider">
+  <div class="slider slider-nav thumb-image">
+    {%- for media in product.media -%}
+      {% if media.alt != 'variant' %}
+        <div data-component-thumbnail-image class="thumbnail-image">
+          <div class="thumbImg">
+            {{
+              media
+              | image_url: width: 100
+              | image_tag: id: media.id, alt: media.alt, height: image.height, width: image.width, loading: lazy
+            }}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div
+    class="slider-banner-image {% if media.media_type == 'image' %} zoom {% endif %} featured-banner-image"
+    bg-image="{{ product.featured_image |img_url:'master' }}"
+  >
+    <img
+      data-component-featured-banner-image
+      style="display: none;"
+      loading="lazy"
+      height="{{ product.featured_image.height }}"
+      width="{{ product.featured_image.width }}"
+      src="{{ product.featured_image |img_url:'master' }}"
+      alt="{{ product.featured_image.alt }}"
+    >
+  </div>
+  <div data-component-slider-for style="display: block;" class="slider slider-for">
+    {%- for media in product.media -%}
+      {% if media.alt != 'variant' %}
+        <div
+          class="slider-banner-image {% if media.media_type == 'image' %} zoom {% endif %} {{ forloop.index }}"
+          id="{{ media.id }}"
+          bg-image="{{ media |img_url:'master' }}"
+        >
+          {% if media.media_type == 'image' %}
+            {% if forloop.first %}
+              {{
+                media
+                | image_url: width: 1600
+                | image_tag: alt: media.alt, height: image.height, width: image.width, preload: true
+              }}
+            {% else %}
+              {{
+                media
+                | image_url: width: 1600
+                | image_tag: alt: media.alt, height: image.height, width: image.width, loading: 'lazy'
+              }}
+            {% endif %}
+          {% else %}
+            {% case media.media_type %}
+              {% when 'video' %}
+                <div data-is-video class="product-single__media" data-media-id="{{ media.id }}">
+                  {{
+                    media
+                    | video_tag:
+                      controls: true,
+                      autoplay: true,
+                      mute: true,
+                      loop: true,
+                      width: 100,
+                      height: auto,
+                      id: custom-video-gallery
+                  }}
+                </div>
+              {% when 'external_video' %}
+                {% liquid
+                  assign video_id = 'custom-video-gallery'
+                  assign width = '100%'
+                  assign height = '600px'
+                %}
+
+                <div
+                  class="product-single__media"
+                  data-media-id="{{ media.id }}"
+                >
+                  {{ media | external_video_tag: width: width, height: height, id: video_id }}
+              {% when 'model' %}
+                <div
+                  class="product-single__media"
+                  style="padding-top: 100%"
+                  data-media-id="{{ media.id }}"
+                >
+                  {{ media | model_viewer_tag }}
+                </div>
+              {% else %}
+                <div
+                  class="product-single__media"
+                  style="padding-top: 100%;"
+                  data-media-id="{{ media.id }}"
+                >
+                  {{ media | media_tag }}
+                </div>
+            {% endcase %}
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+<style>
+  .zoom {
+    background-repeat: no-repeat;
+    overflow: hidden;
+    cursor: zoom-in;
+    margin: auto;
+    filter: none !important;
+  }
+
+  .zoom img {
+    transition: opacity 0.5s;
+    display: block;
+    width: 100%;
+  }
+
+  @media (min-width: 992px) {
+    .zoom img:hover {
+      opacity: 0;
+    }
+  }
+
+  /* popup css */
+  /* popup css end   */
+  /*USE CSS for Slider*/
+  .banner-slider img {
+    max-width: 100%;
+  }
+
+  .banner-slider .car-slider-desc {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+
+  .banner-slider .slider.slider-for {
+    max-width: 84%;
+    padding-left: 35px;
+  }
+
+  .banner-slider .slider.slider-nav {
+    max-width: 16%;
+  }
+
+  .banner-slider .slider.slider-for,
+  .banner-slider .slider.slider-nav {
+    width: 100%;
+    float: left;
+  }
+
+  .banner-slider .slider.slider-nav {
+    overflow: hidden;
+  }
+
+  .banner-slider .slider.slider-nav {
+    padding: 30px 0;
+  }
+
+  .slider-nav .slick-slide.thumbnail-image .thumbImg {
+    max-width: 178px;
+    height: 110px;
+    margin: 0 auto;
+    border: 1px solid #ebebeb;
+  }
+
+  .slider-banner-image img,
+  .slider-nav .slick-slide.thumbnail-image .thumbImg img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .slick-vertical .slick-slide:active,
+  .slick-vertical .slick-slide:focus,
+  .slick-arrow:hover,
+  .slick-arrow:focus {
+    border: 0;
+    outline: 0;
+  }
+
+  .slider-nav .slick-slide.slick-current.thumbnail-image .thumbImg {
+    border: 2px solid #196db6;
+  }
+
+  .slider-nav .slick-slide.slick-current span {
+    color: #196db6;
+  }
+
+  .slider-nav .slick-slide {
+    text-align: center;
+  }
+
+  .slider-nav .slick-slide span {
+    font-size: 14px;
+    display: block;
+    padding: 5px 0 15px;
+  }
+
+  .slick-arrow {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 0;
+    height: 18px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+
+  .slick-prev {
+    top: 0;
+  }
+
+  .slick-next {
+    bottom: 0;
+    background-color: #fff;
+  }
+
+  /*End USE CSS for Slider*/
+  @media screen and (max-width: 991px) {
+    .slider-for {
+      touch-action: auto;
+    }
+
+    .banner-slider .slider.slider-for:not(.slick-initialized) {
+      aspect-ratio: 469 / 328;
+      overflow: hidden;
+    }
+
+    .banner-slider .slider.slider-for,
+    .banner-slider .slider.slider-nav {
+      max-width: 100%;
+      float: none;
+    }
+
+    .banner-slider .slider.slider-for {
+      padding-right: 0;
+    }
+
+    .banner-slider .slider.slider-nav {
+      height: auto;
+    }
+
+    .slider-nav:not(.slick-initialized) {
+      aspect-ratio: 241 / 34;
+      overflow: hidden;
+    }
+
+    .slider.slider-nav.thumb-image {
+      padding: 10px 30px 0;
+    }
+
+    .slider-nav .slick-slide span {
+      padding: 5px 0;
+    }
+
+    .slick-arrow {
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      top: 50%;
+      bottom: 0;
+      -webkit-transform: translateY(-50%) rotate(-90deg);
+      -moz-transform: translateY(-50%) rotate(-90deg);
+      -ms-transform: translateY(-50%) rotate(-90deg);
+      transform: translateY(-50%) rotate(-90deg);
+    }
+
+    .slick-prev {
+      left: 0;
+      right: unset;
+    }
+
+    .slick-next {
+      left: unset;
+      right: 0;
+      background-color: transparent;
+    }
+
+    .banner-slider .car-slider-desc {
+      max-width: 340px;
+    }
+
+    .bid-tag {
+      padding: 10px 0 15px;
+    }
+
+    .slider.slider-nav.thumb-image {
+      white-space: nowrap;
+    }
+
+    .thumbnail-image.slick-slide {
+      padding: 0px 5px;
+      min-width: 75px;
+      display: inline-block;
+      float: none;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .slider.slider-nav.thumb-image {
+      padding: 0px 20px 0;
+      margin: 10px 0px 0;
+    }
+
+    .slider-nav .slick-slide.thumbnail-image .thumbImg {
+      max-width: 140px;
+      height: 80px;
+    }
+
+    .slick-prev.slick-arrow {
+      background-position: center 10px;
+    }
+
+    .slick-next.slick-arrow {
+      background-position: center 10px, center;
+    }
+
+    .slider-nav .slick-slide span {
+      font-size: 12px;
+      white-space: normal;
+    }
+
+    .product__media-wrapper .banner-slider .slider-nav .slick-slide {
+      margin-right: 10px;
+    }
+  }
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      fade: true,
+      asNavFor: '.slider-nav',
+      focusOnSelect: true,
+    });
+    $('.slider-nav').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      vertical: true,
+      arrows: true,
+      asNavFor: '.slider-for',
+      focusOnSelect: true,
+      verticalSwiping: true,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            vertical: false,
+          },
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            vertical: false,
+          },
+        },
+        {
+          breakpoint: 580,
+          settings: {
+            vertical: false,
+            slidesToShow: 4,
+          },
+        },
+        {
+          breakpoint: 380,
+          settings: {
+            vertical: false,
+            slidesToShow: 4,
+          },
+        },
+      ],
+    });
+
+    if (window.innerWidth > 992) {
+      $('.zoom').mousemove(function (e) {
+        var image = $(this).attr('bg-image');
+        $(this).css('background-image', 'url(' + image + ')');
+        zoom(e);
+      });
+      $('.zoom').mouseleave(function (e) {
+        var image = $(this).attr('bg-image');
+        $(this).css('background-image', 'none');
+        zoom(e);
+      });
+      function zoom(e) {
+        var x, y;
+
+        var zoomer = e.currentTarget;
+        if (e.offsetX) {
+          offsetX = e.offsetX;
+        } else {
+          offsetX = e.touches[0].pageX;
+        }
+
+        if (e.offsetY) {
+          offsetY = e.offsetY;
+        } else {
+          offsetX = e.touches[0].pageX;
+        }
+        x = (offsetX / zoomer.offsetWidth) * 100;
+        y = (offsetY / zoomer.offsetHeight) * 100;
+        zoomer.style.backgroundPosition = x + '% ' + y + '%';
+      }
+    }
+  });
+</script>

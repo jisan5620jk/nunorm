@@ -1,0 +1,138 @@
+<style>
+  .sf-zoom-lens {
+    position: absolute;
+    max-width: 95%;
+    max-height: 95%;
+    border: 2px solid rgba(0,0,0,0.35);
+    background: rgba(255,255,255,0.25);
+    pointer-events: none;
+    z-index: 10;
+    display: none;
+  }
+  .sf-zoom-preview {
+    position: absolute;
+    top: 0;
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ddd;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+  }
+  .main-image {
+    position: relative;
+  }
+  .product-main-new__details.pdp-bottom {
+    position: relative;
+    overflow: hidden;
+  }
+</style>
+
+{% if section.settings.magnifying_zoom %}
+  <script>
+    let zoomInitialized = false;
+
+    function initZoom() {
+      // Prevent multiple inits
+      if (zoomInitialized) return;
+
+      const BASE_LENS = 300;
+      const MANUAL_ZOOM = 1;
+      const ZOOM_SIZE = 200;
+
+      const blocks = document.querySelector('.product-main-new__details.pdp-bottom');
+      if (!blocks) return;
+
+      /* Create zoom preview */
+      const preview = document.createElement('div');
+      preview.className = 'sf-zoom-preview';
+      preview.style.width = ZOOM_SIZE + '%';
+      preview.style.height = ZOOM_SIZE + '%';
+      preview.style.display = 'none';
+      preview.style.backgroundRepeat = 'no-repeat';
+      preview.style.backgroundPosition = 'center';
+      preview.style.backgroundSize = 'cover';
+
+      blocks.appendChild(preview);
+
+      /* Create lens */
+      const lens = document.createElement('div');
+      lens.className = 'sf-zoom-lens';
+      lens.style.display = 'none';
+
+      document.addEventListener('mousemove', function (e) {
+        const target = e.target;
+
+        if (!(target instanceof Element)) {
+          preview.style.display = 'none';
+          lens.style.display = 'none';
+          return;
+        }
+
+        const img = target.closest('#mainMediaImage');
+
+        if (!img) {
+          preview.style.display = 'none';
+          lens.style.display = 'none';
+          return;
+        }
+
+        const media = img.closest('.main-image');
+        if (!media) return;
+
+        if (!media.contains(lens)) media.appendChild(lens);
+
+        const rect = img.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+          preview.style.display = 'none';
+          lens.style.display = 'none';
+          return;
+        }
+
+        preview.style.display = 'block';
+        lens.style.display = 'block';
+
+        const LENS_SIZE = BASE_LENS / MANUAL_ZOOM;
+
+        const lx = Math.max(0, Math.min(x - LENS_SIZE / 2, rect.width - LENS_SIZE));
+        const ly = Math.max(0, Math.min(y - LENS_SIZE / 2, rect.height - LENS_SIZE));
+
+        lens.style.width = LENS_SIZE + 'px';
+        lens.style.height = LENS_SIZE + 'px';
+        lens.style.left = lx + 'px';
+        lens.style.top = ly + 'px';
+
+        let bgX = (x / rect.width) * img.naturalWidth * MANUAL_ZOOM - ZOOM_SIZE;
+        let bgY = (y / rect.height) * img.naturalHeight * MANUAL_ZOOM - ZOOM_SIZE;
+
+        preview.style.backgroundImage = `url(${img.currentSrc || img.src})`;
+        preview.style.backgroundSize = `${img.naturalWidth * MANUAL_ZOOM}px ${img.naturalHeight * MANUAL_ZOOM}px`;
+        preview.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+      });
+
+      document.addEventListener('mouseleave', function () {
+        preview.style.display = 'none';
+        lens.style.display = 'none';
+      });
+
+      zoomInitialized = true;
+    }
+
+    function checkDevice() {
+      if (window.innerWidth < 768) {
+        // On small devices we simply DO NOT init zoom
+        return;
+      } else {
+        initZoom();
+      }
+    }
+
+    window.addEventListener('resize', checkDevice);
+    checkDevice();
+  </script>
+{% endif %}

@@ -1,0 +1,82 @@
+{% assign home_img = product.metafields.custom.home_page_image %}
+
+{% comment %}
+  Get first variant's image if we're on a collection page and it exists
+{% endcomment %}
+{% assign is_collection_page = false %}
+{% if template.name contains 'collection' %}
+  {% assign is_collection_page = true %}
+{% endif %}
+{% assign variant_image = product.variants.first.image %}
+
+{% assign image_to_use = '' %}
+
+{% if is_collection_page and variant_image %}
+  {% assign image_to_use = variant_image.src %}
+{% elsif home_img %}
+  {% assign image_to_use = home_img | img_url: '400x' %}
+{% else %}
+  {% assign image_to_use = product.featured_image | img_url: '400x' %}
+{% endif %}
+
+<div
+  class="product-card"
+  data-price="{{ product.price | money_without_currency | replace: ',', '' }}"
+  data-collections="{{ product.collections | map: 'handle' | join: ',' }}"
+  data-shades="{{ product.options_with_values | where: 'name', 'Shade' | map: 'values' | first | json }}"
+  data-concerns="{{ product.metafields.custom.concerns | downcase }}"
+>
+  <a style="text-decoration: none;" href="{{ product.url }}">
+    <div class="prod-img-wrap">
+      <img
+        src="{{ image_to_use }}"
+        alt="{{ product.title }}"
+        loading="lazy"
+      >
+      {% if product.metafields.custom.shop_page_button_fys_or_gyp == true %}
+        <div class="prod-cta bundle-cta {{ section.settings.button_style }}">Select Your Shade</div>
+      {% endif %}
+
+      {%- assign item = card_product | default: product -%}
+
+      {%- assign variant = item.selected_or_first_available_variant -%}
+      {%- if variant == null -%}
+        {%- assign variant = item.variants | where: 'available', true | first -%}
+      {%- endif -%}
+      {%- if variant == null -%}
+        {%- assign variant = item.variants.first -%}
+      {%- endif -%}
+      {% if product.metafields.custom.shop_page_button_fys_or_gyp == false %}
+        <div class="prod-cta bundle-cta {{ section.settings.button_style }}">Grab Your Product</div>
+      {% endif %}
+    </div>
+
+    <div class="product-content-data">
+      <div class="prod-card-title">{{ product.title }}</div>
+
+      <div class="product-title">
+        {{ product.metafields.custom.description }}
+      </div>
+      <div class="prod-card-title prod-card-price" style="margin-top: 0px !important;">{{ product.price | money }}</div>
+      <div class="product-variants">
+        {% assign variants_count = product.variants | size %}
+        {% if variants_count > 1 %}
+          {{ variants_count }} shades
+        {% endif %}
+      </div>
+    </div>
+    {% comment %} {% render 'five-stars' %} {% endcomment %}
+    <!-- Start of Judge.me code -->
+    <div
+      style="{{ jm_style }}"
+      class="jdgm-widget jdgm-preview-badge"
+      data-id="{{ product.id }}"
+      data-auto-install="false"
+    >
+      {{ product.metafields.judgeme.badge }}
+    </div>
+    <!-- End of Judge.me code -->
+  </a>
+</div>
+
+<style></style>

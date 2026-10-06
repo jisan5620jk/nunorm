@@ -1,0 +1,266 @@
+{% comment %}
+  Section: FlipDown Countdown
+  File: sections/flipdown-countdown.liquid
+{% endcomment %}
+
+{%- comment -%}
+  External FlipDown CSS
+{%- endcomment -%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css">
+
+<style>
+  #flipdown-wrapper-{{ section.id }} {
+    text-align: center;
+    padding: 24px 0;
+    background: {{ section.settings.background }};
+  }
+
+  #flipdown-wrapper-{{ section.id }} .flipdown-heading {
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #213346;
+    padding: 0 16px;
+    margin: 64px 0 0;
+  }
+
+  #flipdown-wrapper-{{ section.id }} .flipdown-heading strong {
+    font-weight: 800;
+    color: #7a1c20;
+  }
+
+  /* Center the counter */
+  #flipdown-wrapper-{{ section.id }} .flipdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Optional: little scale control */
+  #flipdown-wrapper-{{ section.id }} .flipdown.flipdown--scaled {
+    transform: scale({{ section.settings.scale }});
+    transform-origin: center;
+  }
+
+  /* Slightly tweak FlipDown default style to look more "physical" */
+  #flipdown-wrapper-{{ section.id }} .flipdown.flipdown__theme-dark .rotor,
+  #flipdown-wrapper-{{ section.id }} .flipdown.flipdown__theme-light .rotor {
+    border-radius: 7px;
+    box-shadow:
+      0 10px 18px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(255, 255, 255, 0.12) inset;
+      font-family: 'Montserrat';
+  }
+
+  #flipdown-wrapper-{{ section.id }} .flipdown .rotor-group:last-child {
+    margin-right: 0;
+  }
+
+  #flipdown-wrapper-{{ section.id }} .flipdown {
+    width: 100%;
+    height: 110px;
+  }
+
+  #flipdown-wrapper-{{ section.id }}.flipdown.flipdown__theme-dark .rotor-bottom,#flipdown-wrapper-{{ section.id }} .flipdown.flipdown__theme-dark .rotor-leaf-rear {
+    color: #efefef;
+    background-color: #343434;
+  }
+
+    #flipdown-wrapper-{{ section.id }} .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,#flipdown-wrapper-{{ section.id }} .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+        background: #d1d3d4;
+    }
+  #flipdown-wrapper-{{ section.id }} .flipdown .rotor-group:first-child:before {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 115px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d1d3d4;
+  }
+
+  #flipdown-wrapper-{{ section.id }} .flipdown .rotor-group:first-child:after {
+    content: '';
+    position: absolute;
+    bottom: 50px;
+    left: 115px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d1d3d4;
+  }
+
+
+  /* Hide headings if user turns them off */
+  #flipdown-wrapper-{{ section.id }} .flipdown.no-headings .rotor-group-heading {
+    display: none;
+  }
+
+  @media (max-width:767px) {
+    #flipdown-wrapper-{{ section.id }} .flipdown.flipdown--scaled {
+        transform: scale(1);
+    }
+    #flipdown-wrapper-{{ section.id }} .flipdown-heading {
+        margin: 48px 0 0;
+    }
+
+  }
+
+  @media (max-width:600px) {
+    #flipdown-wrapper-{{ section.id }} .flipdown.flipdown--scaled {
+        transform: scale(0.9);
+    }
+
+  }
+  @media (max-width: 550px) {
+    #flipdown-wrapper-{{ section.id }} {
+      padding: 6px 0 12px;
+    }
+    #flipdown-wrapper-{{ section.id }} .flipdown .rotor-group:first-child:before {
+        bottom: 13px;
+        height: 8px;
+        width: 8px;
+    }
+    #flipdown-wrapper-{{ section.id }} .flipdown .rotor-group:first-child:after {
+        bottom: 29px;
+        height: 8px;
+        width: 8px;
+    }
+    #flipdown-wrapper-{{ section.id }} .flipdown .rotor-group:first-child:before, #flipdown-wrapper-{{ section.id }} .flipdown .rotor-group:first-child:after {
+        left: 69px;
+    }
+
+    #flipdown-wrapper-{{ section.id }} .flipdown-heading {
+        margin: 26px 0 0;
+    }
+
+  }
+</style>
+
+{% if request.path == '/pages/clean-grooming-giveaway' %}
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+  </style>
+{% endif %}
+
+<section id="flipdown-wrapper-{{ section.id }}">
+  <div
+    id="flipdown-{{ section.id }}"
+    class="flipdown flipdown--scaled flipdown__theme-{{ section.settings.theme }}{% unless section.settings.show_labels %} no-headings{% endunless %}"
+  ></div>
+
+  {% if section.settings.heading != blank %}
+    <h2 class="flipdown-heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+</section>
+
+{%- comment -%}
+  External FlipDown JS
+{%- endcomment -%}
+<script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js" defer></script>
+
+<script>
+  (function() {
+    var endTimeRaw = "{{ section.settings.end_time | escape }}";
+    if (!endTimeRaw) return;
+
+    // Accept "YYYY-MM-DD HH:MM" or "YYYY-MM-DDTHH:MM[:SS]"
+    var endTimeString = endTimeRaw.indexOf('T') === -1
+      ? endTimeRaw.replace(' ', 'T')
+      : endTimeRaw;
+
+    var endDate = new Date(endTimeString);
+    if (isNaN(endDate.getTime())) {
+      console.warn('FlipDown countdown: invalid end_time setting');
+      return;
+    }
+
+    var unixTimestamp = Math.floor(endDate.getTime() / 1000);
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof FlipDown === 'undefined') {
+        console.error('FlipDown library not loaded');
+        return;
+      }
+
+      var showLabels = {{ section.settings.show_labels | json }};
+      var headings   = showLabels
+        ? ['Days', 'Hours', 'Minutes', 'Seconds']
+        : ['', '', '', ''];
+
+      new FlipDown(unixTimestamp, "flipdown-{{ section.id }}", {
+        theme: "{{ section.settings.theme }}",
+        headings: headings
+      }).start().ifEnded(function() {
+        // countdown sesh hole chaile ekhane kichhu korar code likhte paren
+        // document.getElementById('flipdown-wrapper-{{ section.id }}').style.display = 'none';
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FlipDown countdown",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Giveaway closes on December XX, 2025. Winner will be contacted via email and announced on Instagram."
+    },
+    {
+      "type": "text",
+      "id": "end_time",
+      "label": "End date and time",
+      "info": "Format: YYYY-MM-DD HH:MM or YYYY-MM-DD HH:MM:SS (store time). Example: 2025-12-31 23:59",
+      "default": "2025-12-31 23:59"
+    },
+    {
+      "type": "select",
+      "id": "theme",
+      "label": "FlipDown theme",
+      "default": "dark",
+      "options": [
+        { "value": "dark", "label": "Dark (like your screenshot)" },
+        { "value": "light", "label": "Light" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_labels",
+      "label": "Show labels (Days / Hours / Minutes / Seconds)",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background color",
+      "default": "#fdf1dd"
+    },
+    {
+      "type": "range",
+      "id": "scale",
+      "label": "Size (scale)",
+      "min": 0.6,
+      "max": 1.4,
+      "step": 0.1,
+      "unit": "x",
+      "default": 1.0
+    }
+  ],
+  "presets": [
+    {
+      "name": "FlipDown countdown"
+    }
+  ]
+}
+{% endschema %}

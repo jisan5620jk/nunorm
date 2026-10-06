@@ -1,0 +1,297 @@
+<style>
+  .main-image img.grooming_award_badge {
+    max-width: 100%;
+    height: 80px;
+    object-fit: contain;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    width: 150px;
+    pointer-events: none;
+  }
+</style>
+<div class="media-gallery">
+  <div class="media-wrapper">
+    <!-- Vertical Thumbnail Slider -->
+    <div class="thumbs-vertical">
+      <button class="thumb-nav up" aria-label="Scroll up">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+          <path d="M 24.984375 14 C 24.722656 14.003906 24.476563 14.109375 24.292969 14.292969 L 4.292969 34.292969 C 4.03125 34.542969 3.925781 34.917969 4.019531 35.265625 C 4.109375 35.617188 4.382813 35.890625 4.734375 35.980469 C 5.082031 36.074219 5.457031 35.96875 5.707031 35.707031 L 25 16.414063 L 44.292969 35.707031 C 44.542969 35.96875 44.917969 36.074219 45.265625 35.980469 C 45.617188 35.890625 45.890625 35.617188 45.980469 35.265625 C 46.074219 34.917969 45.96875 34.542969 45.707031 34.292969 L 25.707031 14.292969 C 25.515625 14.101563 25.253906 13.996094 24.984375 14 Z"></path>
+        </svg>
+      </button>
+      <div class="thumb-list">
+        <div class="thumb-list-inner">
+          {% for media in product.media %}
+            {% comment %} {{ media.variants | json }} {% endcomment %}
+            <br>
+
+            <div class="thumb" data-image="{{ media | img_url: 'master' }}" data-variantimageId="{{ media.id }}">
+              <img src="{{ media | img_url: '100x100_crop_center' }}" alt="{{ media.alt | escape }}">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <button class="thumb-nav down" aria-label="Scroll down">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+          <path d="M 44.988281 13.984375 C 44.726563 13.992188 44.476563 14.101563 44.292969 14.292969 L 25 33.585938 L 5.707031 14.292969 C 5.519531 14.097656 5.261719 13.992188 4.992188 13.988281 C 4.582031 13.992188 4.21875 14.238281 4.0625 14.613281 C 3.910156 14.992188 4 15.421875 4.292969 15.707031 L 24.292969 35.707031 C 24.683594 36.097656 25.316406 36.097656 25.707031 35.707031 L 45.707031 15.707031 C 46.003906 15.421875 46.09375 14.980469 45.9375 14.601563 C 45.777344 14.222656 45.402344 13.976563 44.988281 13.984375 Z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Main Image -->
+    <div class="main-image square-aspect">
+      {% assign badge = product.metafields.custom.grooming_award_badge %}
+
+      {% if badge != blank %}
+        <img
+          class="grooming_award_badge"
+          src="{{ badge | image_url }}"
+          alt="grooming_award_badge"
+          height="{{ badge.height }}"
+          width="{{ badge.width }}"
+        >
+      {% endif %}
+      <img
+        id="mainMediaImage"
+        src="{{ product.featured_image | img_url: 'master' }}"
+        alt="{{ product.title | escape }}"
+      >
+    </div>
+  </div>
+
+  <!-- Video Gallery Thumbnails -->
+  {% if product.metafields.custom.video_gallery != blank %}
+    <div class="video-gallery">
+      {% assign videos = product.metafields.custom.video_gallery.value %}
+      {% for video in videos %}
+        <div class="video-thumb" data-video="{{ video }}">
+          <img src="https://img.youtube.com/vi/{{ video | split: 'v=' | last }}/hqdefault.jpg" alt="Video Thumbnail">
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if section.settings.show_upsell %}
+    <!-- upsell -->
+    {% render 'product-upsell', product: product %}
+  {% endif %}
+</div>
+
+<script>
+  window.productData = {
+    id: {{ product.id }},
+    title: {{ product.title | json }},
+    variants: [
+      {% for variant in product.variants %}
+      {
+        id: {{ variant.id }},
+        title: {{ variant.title | json }},
+        metafields: {
+          custom: {
+            feature_images: {
+              value: {{ variant.metafields.custom.feature_images.value | json }}
+            }
+          }
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  };
+</script>
+
+<style>
+  .media-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .media-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .thumbs-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80pxpx;
+  }
+  .thumb-list {
+    overflow: hidden;
+    height: 340px; /* 4 thumbnails * (100px + 5px gap) */
+  }
+  .thumb-list-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: transform 0.3s ease;
+  }
+  .thumb {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .thumb-nav {
+    background: none;
+    border: none;
+    padding:0px;
+    cursor: pointer;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 8px 0px;
+  }
+  .thumb-nav svg {
+    fill: #000;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+
+
+  .main-image {
+      flex: 1;
+      border-radius: 80px 0px 80px 0px;
+      overflow: hidden;
+  }
+  .square-aspect {
+    aspect-ratio: 1 / 1;
+  }
+  .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .video-gallery {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.75rem;
+  }
+  .video-thumb {
+    width: 100px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+  }
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+  }
+
+  /* Modal styles */
+  .video-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  .video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+  }
+  .video-modal iframe {
+    width: 100%;
+    height: 100%;
+  }
+  .close-video {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainImage = document.getElementById('mainMediaImage');
+
+    function bindThumbClick() {
+      const thumbs = document.querySelectorAll('.thumb');
+
+      thumbs.forEach((thumb) => {
+        // Remove previous click handlers to prevent duplicates
+        thumb.replaceWith(thumb.cloneNode(true));
+      });
+
+      const newThumbs = document.querySelectorAll('.thumb');
+      newThumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          const img = thumb.dataset.image;
+          if (img) mainImage.src = img;
+        });
+      });
+    }
+
+    // Run once on page load
+    bindThumbClick();
+
+    // Listen for variant updates
+    document.addEventListener('variant:updated', (e) => {
+      // You can use e.detail.variantId if needed
+      bindThumbClick(); // Rebind new thumbnails
+    });
+
+    // Video modal logic (unchanged)
+    const videoThumbs = document.querySelectorAll('.video-thumb');
+    videoThumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const videoUrl = thumb.dataset.video;
+        const modal = document.createElement('div');
+        modal.className = 'video-modal';
+        modal.innerHTML = `
+        <div class="video-modal-content">
+          <iframe src="${videoUrl}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+          <button class="close-video">×</button>
+        </div>`;
+        document.body.appendChild(modal);
+        modal.querySelector('.close-video').addEventListener('click', () => modal.remove());
+      });
+    });
+
+    // Thumbnail scroll logic (unchanged)
+    const inner = document.querySelector('.thumb-list-inner');
+    const upBtn = document.querySelector('.thumb-nav.up');
+    const downBtn = document.querySelector('.thumb-nav.down');
+    const thumbHeight = 105;
+    let scrollIndex = 0;
+
+    function updateScroll() {
+      const maxIndex = Math.max(0, inner.children.length - 4);
+      scrollIndex = Math.min(scrollIndex, maxIndex);
+      inner.style.transform = `translateY(-${scrollIndex * thumbHeight}px)`;
+    }
+
+    upBtn.addEventListener('click', () => {
+      if (scrollIndex > 0) {
+        scrollIndex--;
+        updateScroll();
+      }
+    });
+    downBtn.addEventListener('click', () => {
+      const maxIndex = Math.max(0, inner.children.length - 4);
+      if (scrollIndex < maxIndex) {
+        scrollIndex++;
+        updateScroll();
+      }
+    });
+  });
+</script>

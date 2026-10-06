@@ -1,0 +1,361 @@
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+<style>
+  .recomendation {
+    position: relative;
+  }
+  .recomendation-swiper-wrpper {
+    position: relative;
+    padding: 0 15px 15px;
+  }
+  .recomendation-header {
+    padding: 8px 20px 0;
+  }
+  .recomendation-product {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    overflow: hidden;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: #FEFAF4;
+  }
+  img.rec_product-img {
+    border-radius: 4px;
+    width: 71px;
+    height: 76px;
+    display: block;
+    object-fit: contain;
+  }
+  .recomendation-title {
+    margin: 0 0 8px;
+    letter-spacing: -0.072px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #213347;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.25px;
+  }
+  .recomendation-title::before,
+  .recomendation-title::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #EDCFBB;
+    margin: 0 10px;
+  }
+  .inner .inner--title {
+    margin: 0;
+    color: #213346;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+  button.cart-add-btn {
+    border-radius: 7px;
+    background: #953F2F;
+    border: 0;
+    cursor: pointer;
+    min-width: fit-content;
+    display: inline-flex;
+    padding: 10px 8px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 12px;
+    text-transform: uppercase;
+    margin-left: auto;
+    transition: 0.3s;
+  }
+  button.cart-add-btn:hover {
+    background: #953F2Fd4;
+  }
+  span.recom--old-price {
+    text-decoration: line-through;
+    font-size: 14px;
+    margin-right: 6px;
+  }
+
+  span.recom--current-price {
+    font-weight: 600;
+  }
+  .recom__prev,
+  .recom__next {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .recom__prev {
+    left: 3px;
+  }
+  .recom__next {
+    right: 3px;
+  }
+  .recomendation:has(.swiper-wrapper:empty) {
+    display: none;
+  }
+  span.recom--current-price {
+    font-size: 14px;
+  }
+  .rec-variant-options {
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+  span.rec-variant-option.active span {
+    border: 1px solid #213346 !important;
+  }
+  span.rec-variant-option {
+    display: block;
+    line-height: 1.2;
+  }
+  .mrk-tooltip-wrap {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  /* Tooltip box */
+  .mrk-tooltip {
+    position: absolute;
+    bottom: 125%; /* position above the element */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #213346;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 99;
+  }
+  /* Show on hover */
+.mrk-tooltip-wrap:hover .mrk-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+</style>
+
+{%- assign upsell_collection = settings.upsell_cart_drawer_collection -%}
+
+{%- if cart != empty -%}
+  <div class="recomendation">
+    <div class="recomendation-header">
+      <p class="recomendation-title">
+        <span>You may also like</span>
+      </p>
+    </div>
+    <div class="recomendation-swiper-wrpper">
+      <div class="swiper recomendation-swiper">
+        <div class="swiper-wrapper">
+          {%- for rec_product in upsell_collection -%}
+            {%- assign selected_variant = rec_product.selected_or_first_available_variant -%}
+            {%- assign in_cart = false -%}
+            {%- for cart_item in cart.items -%}
+              {%- if cart_item.id == selected_variant.id -%}
+                {%- assign in_cart = true -%}{% break %}{%- endif -%}
+            {%- endfor -%}
+            {%- unless in_cart -%}
+              <div class="swiper-slide">
+                <div class="recomendation-product">
+                  <img
+                    class="rec_product-img"
+                    src="{{ rec_product.featured_image | image_url: width:300, height:300 }}"
+                    width=""
+                    height=""
+                    alt="{{ rec_product.title }}">
+                  <div class="inner">
+                    <h4 class="inner--title">{{ rec_product.title }}</h4>
+                    <div class="recomendation--price-wrapper">
+                      {%- if rec_product.compare_at_price > rec_product.price -%}
+                        <span class="recom--old-price">{{ rec_product.compare_at_price | money }}</span>
+                      {%- endif -%}
+                      <span class="recom--current-price">{{ rec_product.price | money }}</span>
+                    </div>
+                    <div class="rec-select-variant">
+                      {%- if rec_product.variants.size > 1 -%}
+
+                        <div class="rec-variant-options" data-product-id="{{ rec_product.id }}">
+                          {%- for variant in rec_product.variants -%}
+                            <span class="rec-variant-option{% if forloop.first %} active{% endif %}" data-variant-id="{{ variant.id }}">
+
+                              {% assign swatch_color = variant.metafields.custom.color %}
+                              {% assign swatch_image = variant.metafields.custom.pdp_swatch_image %}
+                              {% if swatch_image != blank %}
+                                <img
+                                  src="{{ swatch_image | image_url: width: 32, height: 32 }}"
+                                  alt="{{ variant.title }}"
+                                  style="width:16px; height:16px; display:inline-block; margin-left:4px; vertical-align:middle; border-radius:50%;"
+                                  width=""
+                                  height="">
+                              {% elsif swatch_color != blank %}
+                                <span class="mrk-tooltip-wrap"  style="display:inline-block; width:16px; height:16px; background-color: {{ swatch_color }}; margin-left:4px; vertical-align:middle; border-radius:50%; border:1px solid #ccc;">
+                                  <span class="mrk-tooltip">
+                                    {{ variant.title }}
+                                  </span>
+                                </span>
+                              {% endif %}
+                            </span>
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+
+                  </div>
+                  <button class="cart-add-btn" data-id="{{ selected_variant.id }}">
+                    {%- if rec_product.available -%}
+                      Add +
+                    {%- else -%}
+                      Sold Out
+                    {%- endif -%}
+                  </button>
+                </div>
+              </div>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="recom__prev">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="none"
+          viewBox="0 0 20 20">
+          <path d="M12 16C11.744 16 11.488 15.902 11.293 15.707L6.293 10.707C5.902 10.316 5.902 9.684 6.293 9.293L11.293 4.293C11.684 3.902 12.316 3.902 12.707 4.293C13.098 4.684 13.098 5.316 12.707 5.707L8.414 10L12.707 14.293C13.098 14.684 13.098 15.316 12.707 15.707C12.512 15.902 12.256 16 12 16Z" fill="#BBC0C4" />
+        </svg>
+      </div>
+      <div class="recom__next">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="none"
+          viewBox="0 0 20 20">
+          <path d="M8 4C8.256 4 8.512 4.098 8.707 4.293L13.707 9.293C14.098 9.684 14.098 10.316 13.707 10.707L8.707 15.707C8.316 16.098 7.684 16.098 7.293 15.707C6.902 15.316 6.902 14.684 7.293 14.293L11.586 10L7.293 5.707C6.902 5.316 6.902 4.684 7.293 4.293C7.488 4.098 7.744 4 8 4Z" fill="#BBC0C4" />
+        </svg>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+  // VARIANT SELECT LOGIC
+  document.body.addEventListener('click', (e) => {
+  const option = e.target.closest('.rec-variant-option');
+  if (!option) return;
+  
+  const wrapper = option.closest('.rec-variant-options');
+  const allOptions = wrapper.querySelectorAll('.rec-variant-option');
+  allOptions.forEach(o => o.classList.remove('active'));
+  option.classList.add('active');
+  
+  const variantId = option.dataset.variantId;
+  const productEl = wrapper.closest('.recomendation-product');
+  const addBtn = productEl.querySelector('.cart-add-btn');
+  
+  if (addBtn) {
+    addBtn.setAttribute('data-id', variantId);
+  }
+  });
+</script>
+<script>
+  function initUpsellSwiper() {
+  const swiperEl = document.querySelector('.recomendation-swiper');
+  if (!swiperEl) return;
+  
+  // Prevent multiple Swipers
+  if (window.upsellSwiper && window.upsellSwiper.destroy) {
+    window.upsellSwiper.destroy(true, true);
+  }
+  
+  const nextBtn = swiperEl.parentElement.querySelector('.recom__next');
+  const prevBtn = swiperEl.parentElement.querySelector('.recom__prev');
+  
+  window.upsellSwiper = new Swiper(swiperEl, {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    autoHeight: true,
+    loop: true,
+    navigation: { nextEl: nextBtn, prevEl: prevBtn },
+  });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  initUpsellSwiper();
+  
+  document.body.addEventListener('click', async (event) => {
+    const button = event.target.closest('.cart-add-btn');
+    if (!button) return;
+  
+    event.preventDefault();
+    const variantId = button.getAttribute('data-id');
+    if (!variantId) return;
+  
+    button.disabled = true;
+    button.textContent = 'Adding...';
+  
+    try {
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: 1 }),
+      });
+  
+      // cart drawer refresh
+      const response = await fetch(`${window.location.pathname}?section_id=cart-drawer`);
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const newDrawer = doc.getElementById('CartDrawer');
+      const currentDrawer = document.getElementById('CartDrawer');
+  
+      if (newDrawer && currentDrawer) {
+        currentDrawer.innerHTML = newDrawer.innerHTML;
+  
+        // slider init once immediately
+        initUpsellSwiper();
+  
+        // slider init again after 5 seconds
+        setTimeout(() => {
+          initUpsellSwiper();
+        }, 5000);
+      }
+  
+      document.dispatchEvent(new Event('cart:updated'));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Added ✓';
+      setTimeout(() => { button.textContent = 'Add +'; }, 1500);
+    }
+  });
+  
+  document.addEventListener('cart:updated', () => {
+    initUpsellSwiper();
+    setTimeout(() => {
+      initUpsellSwiper();
+    }, 5000);
+  });
+  
+  window.addEventListener("AVADA:change", function(e) {
+    console.log("Slider cart changed");
+    initUpsellSwiper();
+    setTimeout(() => {
+      initUpsellSwiper();
+    }, 5000);
+  });
+  });
+</script>

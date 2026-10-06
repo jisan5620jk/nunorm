@@ -1,0 +1,268 @@
+<div class="confident-steps__container layout image-{{ section.settings.image_position }}">
+  <div class="confident-steps__text">
+    <div class="confident-steps__title">
+      {{ section.settings.title | raw }}
+    </div>
+    <ul class="confident-steps__list">
+      {% for block in section.blocks %}
+        <li class="confident-steps__item">
+          {{ block.settings.item_text }}
+        </li>
+      {% endfor %}
+    </ul>
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="confident-steps__button {{ section.settings.button_style }}">
+        <span class="desktop-text">{{ section.settings.button_text }}</span>
+        <span class="mobile-text">{{ section.settings.mobile_button_text }}</span>
+      </a>
+    {% endif %}
+  </div>
+  <div class="confident-steps__image right-box">
+    <div class="left_imgs">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 1000 }}" alt="Step Image" loading="lazy">
+      {% endif %}
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image_1 | image_url: width: 1000 }}" alt="Step Image" loading="lazy">
+      {% endif %}
+    </div>
+    <div class="rght_imgs">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image_2 | image_url: width: 1000 }}" alt="Step Image" loading="lazy">
+      {% endif %}
+    </div>
+  </div>
+</div>
+<style>
+        .confident-steps {
+          padding: 120px 20px;
+        }
+        .confident-steps__container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 40px;
+          max-width: 90%;
+          margin: 0 auto;
+          flex-wrap: wrap;
+        }
+        .confident-steps__text {
+          flex: 1;
+          min-width: 300px;
+        }
+        .confident-steps__title {
+          font-weight: 700;
+          margin-bottom: 24px;
+          color: #2F465B;
+        }
+    .confident-steps__title,
+    .confident-steps__title * {
+      font-size: {{ section.settings.title_size_desktop }}px;
+           color: {{ section.settings.title_color }} !important;
+    }
+    li.confident-steps__item p,
+        li.confident-steps__item p *{
+      font-size: {{ section.settings.list_size_desktop }}px;
+           color: {{ section.settings.list_color }} !important;
+    }
+        .confident-steps__list {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 32px 0;
+        }
+
+        .confident-steps__item {
+          margin-bottom: 16px;
+          font-weight: 500;
+        }
+
+        .confident-steps__image {
+          flex: 1;
+          text-align: right;
+          min-width: 300px;
+        }
+
+        .confident-steps__image img {
+        border-radius: 60px 0px;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+        .image-left {
+          flex-direction: row-reverse;
+        }
+        .desktop-text { display: inline; }
+    .mobile-text { display: none; }
+
+  @media (max-width: 768px) {
+          .confident-steps__container {
+            flex-direction: column;
+            text-align: center;
+            max-width: 100% !important;
+            margin: 0;
+            padding: 0;
+          }
+          .confident-steps__image {
+            text-align: center;
+            margin-top: 30px;
+          }
+          .confident-steps__text {
+            text-align: center;
+          }
+         .confident-steps__title,
+      .confident-steps__title * {
+        font-size: {{ section.settings.title_size_mobile }}px !important;
+      }
+      .confident-steps__list p {
+        font-size: {{ section.settings.list_size_mobile }}px !important;
+      }
+    .desktop-text { display: none; }
+    .mobile-text { display: inline; }
+        }
+</style>
+{% schema %}
+{
+  "name": "Confident Steps Section",
+  "tag": "section",
+  "class": "confident-steps",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title (supports HTML)",
+      "default": "<h5>3 SIMPLE STEPS<br>TO A CONFIDENT LOOK</h5>"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "default": "btn-primary",
+      "options": [
+        {
+          "value": "btn-primary",
+          "label": "Primary Button"
+        },
+        {
+          "value": "btn-secondary",
+          "label": "Secondary Button"
+        },
+        {
+          "value": "btn-tertiary",
+          "label": "Tertiary Button"
+        },
+        {
+          "value": "btn-fourth",
+          "label": "Fourth Button"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size (Desktop)",
+      "min": 16,
+      "max": 60,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size (Mobile)",
+      "min": 12,
+      "max": 40,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "list_size_desktop",
+      "label": "List Size (Desktop)",
+      "min": 14,
+      "max": 32,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "list_size_mobile",
+      "label": "List Size (Mobile)",
+      "min": 12,
+      "max": 28,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "list_color",
+      "label": "List Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Explore Products Made for Men"
+    },
+    {
+      "type": "text",
+      "id": "mobile_button_text",
+      "label": "Button Text for Mobile",
+      "default": "Explore Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "default": "right",
+      "options": [
+        { "label": "Right", "value": "right" },
+        { "label": "Left", "value": "left" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step Item",
+      "settings": [
+        {
+          "type": "html",
+          "id": "item_text",
+          "label": "Step Text",
+          "default": "<p>1. find your shade & try it on virtually – select your product then use our AI tool to get your shade recommendation.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Confident Steps",
+      "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }]
+    }
+  ]
+}
+{% endschema %}

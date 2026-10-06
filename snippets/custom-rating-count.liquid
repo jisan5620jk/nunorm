@@ -1,0 +1,87 @@
+<div style="opacity: 0; visibility: collapse; position: absolute; z-index: -99;">
+  {% render 'judgeme_widgets'
+    , widget_type: 'judgeme_preview_badge'
+    , concierge_install: true %}
+</div>
+
+<div class="custom-review"></div>
+<style>
+    .custom-review {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #953f2f;
+        font-size: 28px;
+    }
+    .custom-review .stars {
+        color: #953f2f;
+        display: flex;
+        align-items: center;
+    }
+    .custom-review .stars span {
+        font-size: 18px;
+    }
+    .custom-review .review-count {
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        color: #26252A !important;
+        line-height: 120% !important;
+        margin: 0 !important;
+    }
+    @media(max-width: 991px){
+        .custom-review .review-count span{
+            display:none;
+        }
+    }
+    @media(max-width: 767px){
+        .custom-review .review-count {
+            font-size: 26px !important;
+            font-weight: 600 !important;
+        }
+        .custom-review .stars span {
+            font-size: 24px !important;
+        }
+        p.line-sep {
+            font-size: 26px !important;
+        }
+        .price-wrap {
+            align-items: center !important;
+        }
+    }
+</style>
+
+<script>
+  (function(){
+  function renderAllCustomReviews() {
+    const badges = document.querySelectorAll('.jdgm-prev-badge');
+    const containers = document.querySelectorAll('.custom-review');
+
+    badges.forEach((badge, index) => {
+      const rating = parseFloat(badge.getAttribute('data-average-rating'));
+      const count = parseInt(badge.getAttribute('data-number-of-reviews'));
+
+      let stars = '';
+      for (let i = 1; i <= 5; i++) {
+        stars += (i <= Math.round(rating)) ? '<span class="jdgm-star jdgm--on"></span>' : '☆';
+      }
+
+      // Assign badge to corresponding container
+      const container = containers[index];
+      if (container && !container.innerHTML) {
+        container.innerHTML = `
+          <div class="stars">${stars} <span>(${rating.toFixed(2)})</span></div>
+          <div class="review-count">${count} <span>review${count > 1 ? 's' : ''}</span></div>
+        `;
+      }
+    });
+  }
+
+  // Retry until badges are loaded
+  const interval = setInterval(function() {
+    if (document.querySelectorAll('.jdgm-prev-badge').length > 0) {
+      renderAllCustomReviews();
+      clearInterval(interval);
+    }
+  }, 500);
+  })();
+</script>

@@ -1,0 +1,75 @@
+<section class="wear-makeup-sec layout">
+  <div class="page-width">
+     <!--/ heading /-->
+  <h1 class="sec-heading">{{ section.settings.sec-head }}</h1>
+
+  <!--/ pera /-->
+  <div class="pera-wrap">{{ section.settings.content }}</div>
+
+  <!--/  img sec /-->  
+  <div class="img-sec">
+    <img src="{{ section.settings.img | img_url: 'master' }}">
+  </div>
+  <div class="pera-wrap">{{ section.settings.content-1 }}</div>
+  </div>
+   <!--/ button /-->
+  <center class="center-btn">
+     <div class="button_gray">
+        <span class="gray_button_circle">
+        </span>
+        <a href="{{ section.settings.btn-link }}" class="button_gray_inner">
+          <span class="button_text_container">
+          {{ section.settings.btn-text }} 
+          </span>
+        </a>
+      </div>
+  </center>
+</section>
+{% schema %}
+  {
+    "name": "Community Everyone...",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sec-head",
+        "label": "heading"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Descrition"
+      },
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Image"
+      },
+      {       
+        "type": "richtext",
+        "id": "content-1",
+        "label": "Bottom Descrition"
+      },
+      {
+      "type": "text",
+      "id": "btn-text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn-link",
+      "label": "Button Link"
+    }
+    ],
+    "presets": [
+    {
+      "name": "Community Everyone..."
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,599 @@
+<style>
+  #section-{{ section.id }} {
+    position: relative;
+    padding: 80px 0 80px;
+    background: linear-gradient(90deg, #F7D3A1 0%, #FBEEDA 100%);
+    text-align: center;
+  }
+
+  #section-{{ section.id }} .podcast-inner {
+    max-width: 1360px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+
+  /* Top platform buttons */
+  #section-{{ section.id }} .podcast-platform-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 49px;
+  }
+
+  #section-{{ section.id }} .podcast-platform-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 25.61px 24px;
+    width: 100%;
+    border-radius: 24px;
+    border: none;
+    background-color: #C07147;
+    color: #FFF1DD;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.24px;
+    vertical-align: middle;
+  }
+
+  #section-{{ section.id }} .podcast-platform-btn span.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #section-{{ section.id }} .podcast-platform-btn span.icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+  }
+
+  #section-{{ section.id }} .podcast-platform-btn:focus-visible {
+    outline: 2px solid #3a1a19;
+    outline-offset: 2px;
+  }
+
+  /* Heading + subtitle */
+  #section-{{ section.id }} .podcast-heading {
+    margin: 0 0 48px 0;
+    color: #213346;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 145%;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+
+  #section-{{ section.id }} .podcast-subtitle {
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 640px;
+    margin: 0 auto 32px auto;
+    color: #4f3729;
+  }
+
+  #section-{{ section.id }} .podcast-subtitle p {
+    margin: 0;
+  }
+
+  /* Grid */
+  #section-{{ section.id }} .podcast-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 48px;
+    text-align: left;
+  }
+
+  #section-{{ section.id }} .podcast-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #section-{{ section.id }} .podcast-card-image {
+    width: 100%;
+    padding: 6px;
+  }
+
+  #section-{{ section.id }} .podcast-card-image a,
+  #section-{{ section.id }} .podcast-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  #section-{{ section.id }} .podcast-card-image img {
+    object-fit: cover;
+    aspect-ratio: 1;
+  }
+
+  #section-{{ section.id }} .podcast-card-body {
+    padding: 11px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  #section-{{ section.id }} .podcast-card-badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 5.5px 10px;
+    border-radius: 10px;
+    background-color: #7A1C20;
+    color: #ffffff;
+    margin-bottom: 16px;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 1.44px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  #section-{{ section.id }} .podcast-card-title {
+    margin: 0 0 8px 0;
+    font-family: Montserrat;
+    font-weight: 900;
+    font-style: Italic;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+
+  #section-{{ section.id }} .podcast-card-excerpt {
+    color: #213346;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+  }
+
+  #section-{{ section.id }} .podcast-card-excerpt p {
+    font-size: 16px;
+  }
+
+  #section-{{ section.id }} .podcast-card-readmore {
+    margin-top: auto;
+    color: #7A1C20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 25.2px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  #section-{{ section.id }} .podcast-card-readmore svg {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+  }
+
+  #section-{{ section.id }} .podcast-card-link {
+    text-decoration: none;
+    border-radius: 46px;
+    overflow: hidden;
+    color: #213345;
+  }
+
+  /* Pagination numbers */
+  #section-{{ section.id }} .podcast-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 42px;
+    margin-bottom: 28px;
+  }
+
+  #section-{{ section.id }} .podcast-page-btn {
+    font-family: Montserrat;
+    width: 87.59px;
+    font-weight: 400;
+    padding: 17px;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    background: transparent;
+    color: #000000;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    border-bottom: 1px solid #CDCCCC;
+  }
+
+  #section-{{ section.id }} .podcast-page-btn.is-active {
+    border-bottom: 3px solid #000000;
+  }
+
+  #section-{{ section.id }} .podcast-page-btn:focus-visible {
+    outline: 2px solid #341c11;
+    outline-offset: 2px;
+  }
+
+  /* View more */
+  #section-{{ section.id }} .podcast-view-more-wrap {
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  #section-{{ section.id }} .podcast-view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18.8px 32px;
+    max-width: 230px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #933F2C;
+    color: #FBEEDA;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #section-{{ section.id }} .podcast-view-more-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  @media (max-width: 960px) {
+    #section-{{ section.id }} {
+      padding-top: 56px;
+      padding-bottom: 72px;
+    }
+
+    #section-{{ section.id }} .podcast-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #section-{{ section.id }} .podcast-heading {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    #section-{{ section.id }} {
+        padding: 40px 0 80px;
+    }
+    #section-{{ section.id }} .podcast-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 575px) {
+    #section-{{ section.id }} .podcast-card-title {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    #section-{{ section.id }} .podcast-card-excerpt {
+        font-size: 14px;
+    }
+  }
+</style>
+
+<section id="section-{{ section.id }}" class="podcast-listing-section">
+  <div class="podcast-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="podcast-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      {% assign platform_blocks = section.blocks | where: 'type', 'platform' %}
+
+      {% if platform_blocks.size > 0 %}
+        <div class="podcast-platform-row">
+          {% for block in platform_blocks %}
+            {% if block.settings.url != blank %}
+              <a
+                href="{{ block.settings.url }}"
+                class="podcast-platform-btn"
+                {{ block.shopify_attributes }}
+                {% if block.settings.open_in_new_tab %}
+                  target="_blank" rel="noopener noreferrer"
+                {% endif %}
+              >
+                {% if block.settings.icon != blank %}
+                  <span class="icon">
+                    {{
+                      block.settings.icon
+                      | image_url: width: 100
+                      | image_tag: loading: 'lazy', alt: block.settings.label
+                    }}
+                  </span>
+                {% endif %}
+                <span>{{ block.settings.label }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.subtitle != blank %}
+        <div class="podcast-subtitle">
+          {{ section.settings.subtitle }}
+        </div>
+      {% endif %}
+    {% endif %}
+
+    <div class="podcast-grid" data-podcast-grid>
+      {% assign blogs = section.settings.selected_article %}
+
+      {% for article in blogs.articles %}
+        <article class="podcast-card" data-podcast-card>
+          {% if article.image %}
+            <div class="podcast-card-image">
+              <a href="{{ article.url }}" class="podcast-card-link">
+                {{ article.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: article.title }}
+              </a>
+            </div>
+          {% endif %}
+
+          <div class="podcast-card-body">
+            {% comment %}
+              {% if article.published_at %}
+                <div class="podcast-card-badge">
+                  {{ article.published_at | date: '%B %d, %Y' }}
+                </div>
+              {% endif %}
+            {% endcomment %}
+            {% if article.metafields.custom.publish_time != blank %}
+              <div class="podcast-card-badge">
+                {{ article.metafields.custom.publish_time }}
+              </div>
+            {% endif %}
+
+            {% if article.title %}
+              <a href="{{ article.url }}" class="podcast-card-link">
+                <h3 class="podcast-card-title">{{ article.title | upcase }}</h3>
+              </a>
+            {% endif %}
+
+            <div class="podcast-card-excerpt">
+              {{ article.excerpt_or_content | strip_html | truncatewords: 20, '…' }}
+            </div>
+
+            {% if section.settings.learn_more_link %}
+              <a href="{{ article.url }}" class="podcast-card-readmore">
+                <span>{{ section.settings.learn_more_link }}</span>
+                <!-- SVG arrow -->
+                <svg width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0649 0C12.2637 0 12.4543 0.0795 12.5948 0.2200C12.7353 0.3606 12.8143 0.5512 12.8145 0.7499V9.2352C12.818 9.3358 12.8013 9.4362 12.7652 9.5302C12.7291 9.6243 12.6745 9.7101 12.6045 9.7825C12.5346 9.855 12.4508 9.9126 12.358 9.952C12.2653 9.9914 12.1656 10.0116 12.0649 10.0116C11.9642 10.0116 11.8645 9.9914 11.7718 9.952C11.6791 9.9126 11.5953 9.855 11.5253 9.7825C11.4554 9.7101 11.4007 9.6243 11.3647 9.5302C11.3286 9.4362 11.3118 9.3358 11.3154 9.2352V2.5601L1.2816 12.5939C1.1409 12.7346 0.9501 12.8136 0.7512 12.8136C0.5523 12.8136 0.3615 12.7346 0.2209 12.5939C0.0802 12.4533 0.0012 12.2625 0.0012 12.0636C0.0012 11.8647 0.0802 11.6739 0.2209 11.5333L10.2547 1.4994H3.5797C3.479 1.503 3.3786 1.4862 3.2846 1.4502C3.1906 1.4141 3.1048 1.3595 3.0323 1.2895C2.9598 1.2196 2.9022 1.1357 2.8628 1.043C2.8235 0.9503 2.8032 0.8506 2.8032 0.7499C2.8032 0.6492 2.8235 0.5495 2.8628 0.4568C2.9022 0.3641 2.9598 0.2802 3.0323 0.2103C3.1048 0.1403 3.1906 0.0857 3.2846 0.0496C3.3786 0.0136 3.479 -0.0032 3.5797 0H12.0649Z" fill="#7A1C20"/>
+                </svg>
+              </a>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="podcast-pagination" data-podcast-pagination></div>
+
+    {% if section.settings.enable_view_more %}
+      <div class="podcast-view-more-wrap">
+        <button type="button" class="podcast-view-more-btn" data-podcast-view-more>
+          {{ section.settings.view_more_label }}
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  (function () {
+    var section = document.getElementById('section-{{ section.id }}');
+    if (!section) return;
+
+    var grid = section.querySelector('[data-podcast-grid]');
+    if (!grid) return;
+
+    var cards = Array.prototype.slice.call(
+      grid.querySelectorAll('[data-podcast-card]')
+    );
+    if (!cards.length) return;
+
+    var paginationEl = section.querySelector('[data-podcast-pagination]');
+    var viewMoreBtn  = section.querySelector('[data-podcast-view_more], [data-podcast-view-more]');
+
+    var itemsPerPage = {{ section.settings.items_per_page | default: 6 | json }};
+    if (itemsPerPage < 1) { itemsPerPage = 6; }
+
+    var totalItems = cards.length;
+    var totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
+
+    var currentPage = 1;
+    var allExpanded = false;
+
+    function renderPagination() {
+      if (!paginationEl) return;
+      paginationEl.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      var activePage = allExpanded ? totalPages : currentPage;
+
+      for (var i = 1; i <= totalPages; i += 1) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'podcast-page-btn' + (i === activePage ? ' is-active' : '');
+        btn.setAttribute('data-page', i);
+        btn.textContent = i;
+        paginationEl.appendChild(btn);
+      }
+    }
+
+    function renderPage() {
+      if (allExpanded) {
+        cards.forEach(function(card) {
+          card.style.display = '';
+        });
+      } else {
+        cards.forEach(function(card, index) {
+          var pageIndex = Math.floor(index / itemsPerPage) + 1;
+          card.style.display = (pageIndex === currentPage) ? '' : 'none';
+        });
+      }
+
+      if (viewMoreBtn) {
+        viewMoreBtn.disabled = allExpanded;
+      }
+
+      renderPagination();
+    }
+
+    if (paginationEl) {
+      paginationEl.addEventListener('click', function(event) {
+        if (allExpanded) return;
+        var target = event.target.closest('[data-page]');
+        if (!target) return;
+
+        var page = parseInt(target.getAttribute('data-page') || '1', 10);
+        if (isNaN(page) || page < 1 || page > totalPages) return;
+
+        currentPage = page;
+        renderPage();
+      });
+    }
+
+    if (viewMoreBtn) {
+      viewMoreBtn.addEventListener('click', function() {
+        allExpanded = true;
+        renderPage();
+      });
+    }
+
+    renderPage();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Podcast listing (blocks)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "No Filter Needed"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle / intro text",
+      "default": "<p>Drop the act. This is where real stories and honest conversations take center stage. Use this section to highlight your latest podcast episodes.</p>"
+    },
+    {
+      "type": "blog",
+      "id": "selected_article",
+      "label": "Select Blog"
+    },
+    {
+      "type": "text",
+      "id": "learn_more_link",
+      "label": "Learn More Link Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_view_more",
+      "label": "Show View more button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_more_label",
+      "label": "View more button label",
+      "default": "View more"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "platform",
+      "name": "Platform button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "YouTube Podcast"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button link URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image (optional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_in_new_tab",
+          "label": "Open in new tab",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Podcast listing (blocks)",
+      "blocks": [
+        {
+          "type": "platform",
+          "settings": {
+            "label": "YouTube Podcast"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Apple Podcast"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "label": "Spotify Podcast"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

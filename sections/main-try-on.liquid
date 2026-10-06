@@ -1,0 +1,113 @@
+<script>
+
+  (function (d,k) {
+
+    var s = d.createElement('script');
+
+    s.type = 'text/javascript';
+
+    s.async = true;
+
+    s.src = 'https://plugins-media.makeupar.com/c1021826/sdk.js?apiKey=' + k;
+
+    var x = d.getElementsByTagName('script')[0];
+
+    x.parentNode.insertBefore(s, x);
+
+  })(document, 'gWvRcmXLYlWlialXs2gAw');
+
+</script>
+
+<div class="page-main-try-on layout">
+  <div class="main-try-on">
+
+    <div id="YMK-module"></div>
+
+    <div id="ToolInterface">
+      <div>
+        <h1 class="tool-title font-pointpanther text-center">{{ section.settings.heading }}</h1>
+        <h2 class="tool-subtitle font-montserrat text-center">{{ section.settings.description }}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+var listeners = [];
+function registerEvents() {
+var l = YMK.addEventListener("loaded", function () {
+// do something on 'loaded' event
+});
+var l2 = YMK.addEventListener("closed", function () {
+// do something on 'closed' event
+});
+listeners.push(l, l2);
+}
+window.ymkAsyncInit = function () {
+registerEvents();
+YMK.init({
+
+  userConsent: 'agree' });
+YMK.open();
+};
+</script>
+<script>
+function applyMakeupBySku(itemGuidOrSkuId) {
+if (YMK.isLoaded()) {
+YMK.applyMakeupBySku(itemGuidOrSkuId);
+}
+}
+function closeYMKModule() {
+YMK.close();
+for (var l in listeners) {
+YMK.removeEventListener(l);
+}
+}
+</script>
+
+
+{% schema %}
+{
+  "name": "main-try-on",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+    
+  ]
+}
+{% endschema %}

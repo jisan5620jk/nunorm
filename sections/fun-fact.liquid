@@ -1,0 +1,49 @@
+{% unless section.settings.hide == '1' %}
+  <!--/ fun fact  /-->
+  <section class="fun-fact-outer page-width layout">
+    <!--/ img /-->
+    <div class="chat-icon">
+      <img src="https://cdn.shopify.com/s/files/1/0758/3639/1698/files/chat.svg?v=1684403999">
+    </div>
+
+    <!--/ heading /-->
+    <h3 class="heading">{{ section.settings.head }}</h3>
+    <p class="pera">{{ section.settings.pera }}</p>
+  </section>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "fun-fact-home",
+    "settings": [ 
+      {
+      "type": "text",
+      "id": "hide",
+      "label": "Hide",
+      "default": "0"
+      },
+
+       {
+      "type": "liquid",
+      "id": "fun-fact-home",
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+     "type": "richtext",
+     "id": "head",
+     "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "pera",
+      "label": "Content"
+    }
+    ],
+   "presets": [
+    { 
+      "name": "fun-fact-home"
+    }
+  ]
+  }
+{% endschema %}

@@ -1,0 +1,51 @@
+<style>
+  .highlight-icons-title {
+    margin: 0;
+    font-size: 20px;
+    padding: 20px 0 10px;
+    margin-top: 30px;
+    border-top: 2px solid #213346;
+    margin-bottom: 10px;
+  }
+  .highlight-icons-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+
+  .highlight-icons-list img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .highlight-icons-list-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 120px;
+  }
+</style>
+<div class="highlight-icons" {{ block.shopify_attributes }}>
+  <h2 class="highlight-icons-title">{{ block.settings.title }}</h2>
+
+  {% assign icon_item = section.blocks | where: 'type', 'highlight_icon' %}
+
+  <div class="highlight-icons-list">
+    {% for item in icon_item %}
+      {% if item.settings.icon != blank %}
+        <div class="highlight-icons-list-item" {{ block.shopify_attributes }}>
+          <img
+            src="{{ item.settings.icon | image_url: width: 800 }}"
+            alt="{{ item.settings.text }}"
+            width=""
+            height=""
+          >
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

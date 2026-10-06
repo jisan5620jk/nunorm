@@ -1,0 +1,115 @@
+<!-- / Hero banner sectionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn / -->
+<section class="tutorials-page-hero">
+  <!-- / img  / -->
+  <div class="img-box">
+    <img src="{{ section.settings.img | img_url: 'master' }}" width="100%" alt="{{ section.settings.img.alt }}">
+    {% if section.settings.img1 != blank %}
+      <img
+        class="mobile_img_banre"
+        src="{{ section.settings.img1 | img_url: 'master' }}"
+        width="100%"
+        alt="{{ section.settings.img1.alt }}"
+      >
+      <style>
+        .tutorials-page-hero .img-box img.mobile_img_banre {
+          display: none;
+        }
+
+        @media screen and (max-width: 767px) {
+          .tutorials-page-hero .img-box img {
+            display: none;
+          }
+
+          .tutorials-page-hero .img-box img.mobile_img_banre {
+            display: block;
+          }
+        }
+      </style>
+    {% endif %}
+  </div>
+
+  <!-- / caption / -->
+  <div class="caption-box">
+    <h1 class="bigger-heading hero-home__title">{{ section.settings.head }}</h1>
+    <p class="hero-home__description">{{ section.settings.description }}</p>
+    {% if section.settings['btn-link'] != blank %}
+      <div class="button_gray">
+        <span class="gray_button_circle desplode-gray-circle" style="left: 149.391px; top: 73.9844px;"> </span>
+        <a href="{{ section.settings.btn-link }}" class="button_gray_inner">
+          <span class="button_text_container">
+            {{ section.settings['btn-text'] }}
+          </span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+  <style>
+    #shopify-section-{{section.id}} .tutorials-page-hero {
+        background-color: {{section.settings.background_color}};
+    }
+  </style>
+</section>
+{% schema %}
+{
+  "name": "Tutorial Page Hero Banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "img1",
+      "label": "Mobile Banner Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "head",
+      "label": "Heading",
+      "default": "Become a <strong>Makeup Pro</strong>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Quick makeup and skincare tutorials tailored for beginners."
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn-link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tutorial Page Hero Banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+  @media screen and (max-width: 767px) {
+    #shopify-section-Tutorial-page-hero-banner a.button_gray_inner {
+      max-width: 100% !important;
+    }
+  }
+</style>

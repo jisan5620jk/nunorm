@@ -1,0 +1,710 @@
+{% style %}
+  .tutorial-videos-section {
+    padding: 80px 16px 80px;
+    background: linear-gradient(90deg, #F7D3A1 0%, #FBEEDA 100%);
+  }
+
+  .tutorial-videos {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  /* FILTER BUTTONS */
+  .tutorial-videos__filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin: 0 auto 48px;
+    justify-content: center;
+  }
+
+  .tutorial-videos__filter-btn {
+    display: inline-block;
+    background-color: #7A1C20;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 13.5px 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    text-decoration: none;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 1.44px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .tutorial-videos__filter-btn:hover {
+    transform: translateY(1px);
+  }
+
+  .tutorial-videos__filter-btn:focus-visible {
+    outline: 2px solid #1b2836;
+    outline-offset: 2px;
+  }
+
+  .tutorial-videos__header {
+    text-align: center;
+    margin-bottom: 47px;
+  }
+
+  .tutorial-videos__title {
+    margin: 0 0 16px;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 145%;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+
+  .tutorial-videos__eyebrow {
+    color: #7a1c20;
+    font-style: italic;
+  }
+
+  .tutorial-videos__heading-main {
+    color: #213346;
+  }
+
+  .tutorial-videos__subtitle {
+    max-width: 640px;
+    margin: 0 auto;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    color: #213346;
+  }
+
+  /* Featured tutorial */
+  .tutorial-videos__featured {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 65px;
+  }
+
+  .tutorial-videos__featured-media {
+    border-radius: 24px;
+    overflow: hidden;
+    background: #f3f0ea;
+  }
+
+  .tutorial-videos__featured-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .tutorial-videos__featured-title {
+    margin: 0 0 0;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-style: Italic;
+    font-size: 20px;
+    line-height: 145%;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #7A1C20;
+  }
+
+  .tutorial-videos__featured-subheading {
+    margin: 16px 0 17px;
+    font-family: 'MONTSERRAT';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22.4px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    text-transform: lowercase;
+    color: #213346;
+  }
+
+  .tutorial-videos__featured-text p {
+    font-family: 'MONTSERRAT';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22.4px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    text-transform: lowercase;
+    margin: 0 0 12px;
+    color: #213346;
+  }
+
+  .tutorial-videos__featured-text ul {
+    padding-left: 18px;
+    margin: 6px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tutorial-videos__featured-text li {
+    font-family: 'MONTSERRAT';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22.4px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    text-transform: lowercase;
+    color: #213346;
+  }
+
+  .tutorial-videos__avatars {
+    display: flex;
+    gap: 8px;
+    margin: 22px 0 26px;
+  }
+
+  .tutorial-videos__avatar {
+    height: 87.6px;
+  }
+
+  .tutorial-videos__avatar img {
+    width: auto;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Tutorial grid */
+  .tutorial-videos__grid {
+    display: grid;
+    gap: 22px 32px;
+    margin-bottom: 80px;
+  }
+
+  .tutorial-videos__card {
+    display: block;
+  }
+
+  .tutorial-videos__card-inner {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tutorial-videos__card-media {
+    overflow: hidden;
+    padding: 2.7px  6.1px 0 6.1px;
+  }
+
+  .tutorial-videos__card-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 24px;
+    object-fit: cover;
+  }
+
+  .tutorial-videos__card-title {
+    font-family: 'MONTSERRAT';
+    font-style: italic;
+    margin-top: 18px;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 21.6px;
+    letter-spacing: 0;
+    font-weight: 800;
+    color: #953F2F;
+  }
+
+  /* Pagination & button */
+  .tutorial-videos__footer {
+    text-align: center;
+  }
+
+  .tutorial-videos__pagination {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .tutorial-videos__page-btn {
+    font-family: Montserrat;
+    width: 87.59px;
+    font-weight: 400;
+    padding: 17px;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    background: transparent;
+    color: #000000;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    border-bottom: 1px solid #CDCCCC;
+  }
+
+
+  .tutorial-videos__page-btn.is-active {
+    border-bottom: 3px solid #000000;
+  }
+
+  .tutorial-videos__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18.8px 32px;
+    max-width: 230px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #933F2C;
+    color: #FBEEDA;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 16px;
+  }
+
+  .tutorial-videos__button.is-disabled,
+    .tutorial-videos__button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .tutorial-videos__featured {
+      grid-template-columns: 1.18fr 1fr;
+    }
+    .tutorial-videos__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    .tutorial-videos__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .tutorial-videos-section {
+        padding: 80px 16px 0px;
+    }
+    .tutorial-videos__grid {
+        margin-bottom: 40px;
+    }
+  }
+  @media screen and (max-width: 575px) {
+    .tutorial-videos__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+<section id="section-{{ section.id }}" class="tutorial-videos-section">
+  <div class="tutorial-videos">
+    <!-- FILTER BUTTONS (WITH LINKS) -->
+    <div class="tutorial-videos__filters">
+      {% if section.settings.filter_by_product_label != blank %}
+        <a
+          href="{{ section.settings.filter_by_product_link | default: '#' }}"
+          class="tutorial-videos__filter-btn"
+        >
+          {{ section.settings.filter_by_product_label }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.filter_by_concerns_label != blank %}
+        <a
+          href="{{ section.settings.filter_by_concerns_link | default: '#' }}"
+          class="tutorial-videos__filter-btn"
+        >
+          {{ section.settings.filter_by_concerns_label }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.active_filter_label != blank %}
+        <a
+          href="{{ section.settings.active_filter_link | default: '#' }}"
+          class="tutorial-videos__filter-btn"
+        >
+          {{ section.settings.active_filter_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- HEADER -->
+    <div class="tutorial-videos__header">
+      {% if section.settings.eyebrow_text != blank or section.settings.heading_main != blank %}
+        <h2 class="tutorial-videos__title">
+          {% if section.settings.eyebrow_text != blank %}
+            <span class="tutorial-videos__eyebrow">{{ section.settings.eyebrow_text }}</span>
+          {% endif %}
+          {% if section.settings.heading_main != blank %}
+            <span class="tutorial-videos__heading-main">{{ section.settings.heading_main }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subtitle != blank %}
+        <p class="tutorial-videos__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <!-- FEATURED TUTORIAL -->
+    {%- assign featured_block = section.blocks | where: 'type', 'featured' | first -%}
+    {% if featured_block %}
+      {% assign fb = featured_block %}
+      <div class="tutorial-videos__featured" {{ fb.shopify_attributes }}>
+        <div class="tutorial-videos__featured-media">
+          {% if fb.settings.featured_image != blank %}
+            {{
+              fb.settings.featured_image
+              | image_url: width: 1400
+              | image_tag: loading: 'lazy', alt: fb.settings.featured_image.alt
+            }}
+          {% endif %}
+        </div>
+
+        <div class="tutorial-videos__featured-content">
+          {% if fb.settings.title != blank %}
+            <h3 class="tutorial-videos__featured-title">{{ fb.settings.title }}</h3>
+          {% endif %}
+
+          {% if fb.settings.how_title != blank %}
+            <p class="tutorial-videos__featured-subheading">{{ fb.settings.how_title }}</p>
+          {% endif %}
+
+          {% if fb.settings.how_text != blank %}
+            <div class="tutorial-videos__featured-text">{{ fb.settings.how_text }}</div>
+          {% endif %}
+
+          {% if fb.settings.avatar_1 or fb.settings.avatar_2 or fb.settings.avatar_3 %}
+            <div class="tutorial-videos__avatars" aria-label="Tutorial authors">
+              {% if fb.settings.avatar_1 %}
+                <div class="tutorial-videos__avatar">
+                  {{ fb.settings.avatar_1 | image_url: width: 100 | image_tag: loading: 'lazy', alt: '' }}
+                </div>
+              {% endif %}
+              {% if fb.settings.avatar_2 %}
+                <div class="tutorial-videos__avatar">
+                  {{ fb.settings.avatar_2 | image_url: width: 100 | image_tag: loading: 'lazy', alt: '' }}
+                </div>
+              {% endif %}
+              {% if fb.settings.avatar_3 %}
+                <div class="tutorial-videos__avatar">
+                  {{ fb.settings.avatar_3 | image_url: width: 100 | image_tag: loading: 'lazy', alt: '' }}
+                </div>
+              {% endif %}
+              {% if fb.settings.avatar_4 %}
+                <div class="tutorial-videos__avatar">
+                  {{ fb.settings.avatar_4 | image_url: width: 100 | image_tag: loading: 'lazy', alt: '' }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if fb.settings.tips_title != blank %}
+            <p class="tutorial-videos__featured-subheading">{{ fb.settings.tips_title }}</p>
+          {% endif %}
+
+          {% if fb.settings.tips_text != blank %}
+            <div class="tutorial-videos__featured-text">{{ fb.settings.tips_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- GRID OF CARDS -->
+    {% assign cards = section.blocks | where: 'type', 'card' %}
+    {% assign cards_count = cards.size %}
+
+    {% if cards_count > 0 %}
+      <div class="tutorial-videos__grid" data-tutorial-grid>
+        {% for block in cards %}
+          <article class="tutorial-videos__card" data-tutorial-card {{ block.shopify_attributes }}>
+            {% if block.settings.link != blank %}
+              <a class="tutorial-videos__card-inner" href="{{ block.settings.link }}">
+                <div class="tutorial-videos__card-media">
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag: loading: 'lazy', alt: block.settings.image.alt
+                    }}
+                  {% endif %}
+                </div>
+                {% if block.settings.title != blank %}
+                  <div class="tutorial-videos__card-title">{{ block.settings.title }}</div>
+                {% endif %}
+              </a>
+            {% else %}
+              <div class="tutorial-videos__card-inner">
+                <div class="tutorial-videos__card-media">
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag: loading: 'lazy', alt: block.settings.image.alt
+                    }}
+                  {% endif %}
+                </div>
+                {% if block.settings.title != blank %}
+                  <div class="tutorial-videos__card-title">{{ block.settings.title }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- PAGINATION + BUTTON -->
+    <div class="tutorial-videos__footer">
+      {%- comment -%}
+        Pagination container always present.
+        JS will show/hide it based on card count.
+      {%- endcomment -%}
+      <div
+        class="tutorial-videos__pagination"
+        data-tutorial-pagination
+        aria-label="Tutorial pagination"
+        style="display:none;"
+      ></div>
+      <div class="tutorial-videos__pagination-line" style="display:none;"></div>
+
+      {% if section.settings.button_label != blank %}
+        <button type="button" class="tutorial-videos__button" data-tutorial-view-more>
+          {{ section.settings.button_label }}
+        </button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const sectionId = {{ section.id | json }};
+    const rootId = `section-${sectionId}`;
+
+    function initTutorialPagination() {
+      const sectionEl = document.getElementById(rootId);
+      if (!sectionEl) return;
+
+      const grid = sectionEl.querySelector('[data-tutorial-grid]');
+      if (!grid) return;
+
+      const cards = Array.from(grid.querySelectorAll('[data-tutorial-card]'));
+      if (!cards.length) return;
+
+      const paginationEl = sectionEl.querySelector('[data-tutorial-pagination]');
+      const lineEl = sectionEl.querySelector('.tutorial-videos__pagination-line');
+      const viewMoreBtn = sectionEl.querySelector('[data-tutorial-view-more]');
+
+      const perPage = 6;
+      const totalItems = cards.length;
+      const totalPages = Math.max(1, Math.ceil(totalItems / perPage));
+
+      // If only one page -> show all, hide pagination + view more
+      if (totalItems <= perPage) {
+        cards.forEach(card => (card.style.display = ''));
+        if (paginationEl) paginationEl.style.display = 'none';
+        if (lineEl) lineEl.style.display = 'none';
+        if (viewMoreBtn) viewMoreBtn.style.display = 'none';
+        return;
+      }
+
+      let currentPage = 1;
+
+      function updateViewMore() {
+        if (!viewMoreBtn) return;
+
+        viewMoreBtn.style.display = ''; // ensure visible when multiple pages
+        const isLastPage = currentPage >= totalPages;
+
+        viewMoreBtn.disabled = isLastPage;
+        viewMoreBtn.setAttribute('aria-disabled', isLastPage ? 'true' : 'false');
+        viewMoreBtn.classList.toggle('is-disabled', isLastPage);
+      }
+
+      function renderPagination() {
+        if (!paginationEl) return;
+
+        paginationEl.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'tutorial-videos__page-btn' + (i === currentPage ? ' is-active' : '');
+          btn.setAttribute('data-page', String(i));
+          btn.setAttribute('aria-label', `Go to page ${i}`);
+          if (i === currentPage) btn.setAttribute('aria-current', 'page');
+          btn.textContent = i;
+          paginationEl.appendChild(btn);
+        }
+
+        paginationEl.style.display = 'inline-flex';
+        if (lineEl) lineEl.style.display = 'block';
+      }
+
+      function renderPage() {
+        cards.forEach((card, index) => {
+          const pageIndex = Math.floor(index / perPage) + 1;
+          card.style.display = pageIndex === currentPage ? '' : 'none';
+        });
+
+        renderPagination();
+        updateViewMore();
+      }
+
+      // Pagination click (1,2,3...)
+      if (paginationEl) {
+        paginationEl.onclick = (event) => {
+          const target = event.target.closest('[data-page]');
+          if (!target) return;
+
+          const page = parseInt(target.getAttribute('data-page') || '1', 10);
+          if (!page || page < 1 || page > totalPages) return;
+
+          currentPage = page;
+          renderPage();
+          grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+      }
+
+      // View more click (next page)
+      if (viewMoreBtn) {
+        viewMoreBtn.onclick = () => {
+          if (currentPage >= totalPages) return;
+          currentPage += 1;
+          renderPage();
+          grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+      }
+
+      renderPage();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTutorialPagination);
+    } else {
+      initTutorialPagination();
+    }
+
+    document.addEventListener('shopify:section:load', (event) => {
+      if (event.detail.sectionId === sectionId) initTutorialPagination();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Tutorial videos",
+  "settings": [
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text (first part of heading)", "default": "WATCH OUR" },
+    { "type": "text", "id": "heading_main", "label": "Main heading text", "default": "TUTORIAL VIDEOS" },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "This is your about section paragraph. It's a great place to give a short introduction about what you do."
+    },
+
+    {
+      "type": "text",
+      "id": "filter_by_product_label",
+      "label": "Filter by product button label",
+      "default": "Filter By Product"
+    },
+    { "type": "url", "id": "filter_by_product_link", "label": "Filter by product button link" },
+
+    {
+      "type": "text",
+      "id": "filter_by_concerns_label",
+      "label": "Filter by concerns button label",
+      "default": "Filter By Concerns"
+    },
+    { "type": "url", "id": "filter_by_concerns_link", "label": "Filter by concerns button link" },
+
+    {
+      "type": "text",
+      "id": "active_filter_label",
+      "label": "Active filter example label",
+      "default": "x- filter item"
+    },
+    { "type": "url", "id": "active_filter_link", "label": "Active filter example link" },
+
+    { "type": "text", "id": "button_label", "label": "View more button label", "default": "VIEW MORE" }
+  ],
+  "blocks": [
+    {
+      "type": "featured",
+      "name": "Featured tutorial",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "featured_image", "label": "Featured image" },
+        { "type": "text", "id": "title", "label": "Featured title", "default": "Brow Rescue" },
+        { "type": "text", "id": "how_title", "label": "How to use title", "default": "how to use" },
+        {
+          "type": "richtext",
+          "id": "how_text",
+          "label": "How to use text",
+          "default": "<p>Using short, hair-like strokes, fill and define brows and facial hair with filler pencil, then comb through with included brush to blend.</p>"
+        },
+        { "type": "image_picker", "id": "avatar_1", "label": "Avatar 1" },
+        { "type": "image_picker", "id": "avatar_2", "label": "Avatar 2" },
+        { "type": "image_picker", "id": "avatar_3", "label": "Avatar 3" },
+        { "type": "image_picker", "id": "avatar_4", "label": "Avatar 4" },
+        { "type": "text", "id": "tips_title", "label": "Tips & tricks title", "default": "tips & tricks" },
+        {
+          "type": "richtext",
+          "id": "tips_text",
+          "label": "Tips & tricks text",
+          "default": "<ul><li>For the most natural look, follow the natural shape of your brows, using a light hand.</li><li>Use the sharp edge to achieve detailed hair-like strokes.</li><li>Use the flat edge to fill and shade gaps in brows and facial hair.</li></ul>"
+        }
+      ]
+    },
+    {
+      "type": "card",
+      "name": "Tutorial card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Thumbnail image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Brow Rescue" },
+        { "type": "url", "id": "link", "label": "Link (optional)" }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Tutorial videos",
+      "blocks": [
+        { "type": "featured" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,370 @@
+{{ 'try-on-popup.css' | asset_url | stylesheet_tag }}
+
+{{ 'bootstrap-icons.min.css' | asset_url | stylesheet_tag }}
+
+<script>
+  (function (d,k) {
+  var s = d.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://plugins-media.makeupar.com/c1021826/sdk.js?apiKey=' + k;
+  var x = d.getElementsByTagName('script')[0];
+  x.parentNode.insertBefore(s, x);
+  })(document, 'gWvRcmXLYlWlialXs2gAw');
+</script>
+
+{% if template.name != 'product' %}
+  {% assign product = all_products['tinted-moisturizer'] %}
+{% endif %}
+
+<div data-shade-finder-modal class="custom-model-main try-on-popup">
+  <div class="custom-modal-inner">
+    <div class="custom-model-message">
+      <span id="message_above_popup"
+        >Welcome The NuNorm<br>
+        <span style="font-weight: 700;">Shade Finder + Try-on Tool</span></span
+      >
+    </div>
+    <div class="custom-modal-wrap">
+      <div style="display: block;" class="shade-finder-privacy-policy">
+        {{ 'privacy-content.css' | asset_url | stylesheet_tag }}
+        {% render 'privacy-content' %}
+        <div class="shade-finder-privacy-policy-response-container">
+          <input
+            data-shade-finder-privacy-policy-response-agree
+            type="submit"
+            id="agree"
+            class="shade-finder-privacy-policy-response-agree"
+            value="Agree"
+          >
+          <input
+            data-shade-finder-privacy-policy-response-disagree
+            type="submit"
+            id="disagree"
+            class="shade-finder-privacy-policy-response-disagree"
+            value="Disagree"
+          >
+        </div>
+      </div>
+
+      <div style="display: none;" class="pop-up-content-wrap">
+        <div id="YMK-module"></div>
+        <div id="output"></div>
+        <div class="color-shade">
+          <div class="custom-shade">
+            <div class="color-btn">
+              <button data-component-shade-color-group-tab data-index="1" class="shade-color-btn1 shade-color-btn">All Shade</button>
+              <button data-component-shade-color-group-tab data-index="2" class="shade-color-btn2 shade-color-btn">Lighter</button>
+              <button data-component-shade-color-group-tab data-index="3" class="shade-color-btn3 shade-color-btn active">Best Match</button>
+              <button data-component-shade-color-group-tab data-index="4" class="shade-color-btn4 shade-color-btn">Deeper</button>
+            </div>
+        <!--   <div data-product-info-container class="product-info product-info1">
+              <div class="product-info-inner">
+                <div class="fearure-image">
+                  <img
+                    alt="{{ product.title | escape }}"
+                    height="{{ product.featured_image.height }}"
+                    width="{{ product.featured_image.width }}"
+                    src="{{ product.featured_image | image_url: width: 500 }}"
+                  >
+                </div>
+                <div class="product-variant">
+                  <div class="inline-color-variant">
+                    {% for variant in product.variants %}
+                      {% liquid
+                        assign color = variant.metafields.custom.color.value
+                        assign sku_id = variant.sku
+                        assign titlevar = variant.title
+                        assign shade_title = variant.title
+                      %}
+                      <div
+                        data-component-try-on-color-swatch
+                        data-title="{{ shade_title }}"
+                        class="radio-btn-color custom-variant{{ forloop.index }}"
+                        {{ titlevar }}
+                        title="{{ titlevar }}"
+                      >
+                        <input
+                          onclick="YMK.applyMakeupBySku('{{ sku_id }}')"
+                          type="radio"
+                          id="variant-{{ variant.id }}"
+                          name="variant"
+                          class="popup-variant-input {% if forloop.first %}active{% endif %}"
+                          value="{{ variant.id }}"
+                          {% if forloop.first %}
+                            checked
+                          {% endif %}
+                        >
+                        <label for="variant-{{ variant.id }}" style="background-color:{{ color }}">
+                          {{- variant.title -}}
+                        </label>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="hb-product-sec">
+                    <div class="product-title">{{ product.title }}</div>
+                    <form method="post" action="/cart/add">
+                      <input
+                        data-product-title="{{ product.title }}"
+                        data-shade-finder-form-variant
+                        data-variant-title="{{ product.variants.first.title }}"
+                        data-variant-price="{{ product.variants.first.price | money_without_currency }}"
+                        type="hidden"
+                        name="id"
+                        id="pop-variant"
+                        value="{{ product.variants.first.id }}"
+                      >
+                      <input min="1" type="number" id="quantity" name="quantity" value="1" hidden>
+
+                      <input type="submit" class="try-on-add-btn" value="Add to cart" class="btn">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-product-info-container class="product-info product-info2">
+              <div class="product-info-inner">
+                <div class="fearure-image">
+                  <img
+                    alt="{{ product.title | escape }}"
+                    height="{{ product.featured_image.height }}"
+                    width="{{ product.featured_image.width }}"
+                    src="{{ product.featured_image | image_url: width: 500 }}"
+                  >
+                </div>
+                <div class="product-variant">
+                  <div class="inline-color-variant lighter">
+                    {% for variant in product.variants %}
+                      {%- assign color = variant.metafields.custom.color.value -%}
+                      {% assign skuId = variant.sku %}
+                      {% assign titlevar = variant.title %}
+                      {% assign variantFound = true %}
+                      {% assign shade_title = variant.title %}
+                      <div
+                        data-title="{{ shade_title }}"
+                        data-component-try-on-color-swatch="lighter"
+                        class="radio-btn-color custom-variant{{ forloop.index }}"
+                        id="{{ skuId }}"
+                        title="{{ titlevar }}"
+                      >
+                        <input
+                          data-component-try-on-color-swatch-input="{{ shade_title }}"
+                          onclick="YMK.applyMakeupBySku('{{ skuId }}')"
+                          type="radio"
+                          id="variant-{{ variant.id }}"
+                          name="variant"
+                          class="popup-variant-input {% if forloop.first %}active{% endif %}"
+                          value="{{ variant.id }}"
+                          {% if forloop.first %}
+                            checked
+                          {% endif %}
+                        >
+                        <label for="variant-{{ variant.id }}" style="background-color:{{ color }}">
+                          {{- variant.title -}}
+                        </label>
+                      </div>
+                    {% endfor %}
+
+                    {% unless variantFound %}
+                      <p>No variant found.</p>
+                    {% endunless %}
+                  </div>
+                  <div class="hb-product-sec">
+                    <div class="product-title">{{ product.title }}</div>
+                    <form method="post" action="/cart/add">
+                      <input
+                        data-product-title="{{ product.title }}"
+                        data-shade-finder-form-variant
+                        data-variant-title="{{ product.variants.first.title }}"
+                        data-variant-price="{{ product.variants.first.price | money_without_currency }}"
+                        type="hidden"
+                        name="id"
+                        id="pop-variant"
+                        value="{{ product.variants.first.id }}"
+                      >
+                      <input min="1" type="number" id="quantity" name="quantity" value="1" hidden>
+
+                      <input type="submit" class="try-on-add-btn" value="Add to cart" class="btn">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-product-info-container class="product-info product-info3  active">
+              <div class="product-info-inner">
+                <div class="fearure-image">
+                  <img
+                    alt="{{ product.title | escape }}"
+                    height="{{ product.featured_image.height }}"
+                    width="{{ product.featured_image.width }}"
+                    src="{{ product.featured_image | image_url: width: 500 }}"
+                  >
+                </div>
+                <div class="product-variant">
+                  <div data-matched-color-container class="inline-color-variant matched">
+                    {% assign variantFound = false %}
+                    {% for variant in product.variants %}
+                      {%- assign color = variant.metafields.custom.color.value -%}
+                      {% assign skuId = variant.sku %}
+                      {% assign titlevar = variant.title %}
+                      {% assign variantFound = true %}
+                      {% assign shade_title = variant.title %}
+                      <div
+                        data-title="{{ shade_title }}"
+                        data-component-try-on-color-swatch="matched"
+                        class="radio-btn-color {{ titlevar }} custom-variant{{ forloop.index }}"
+                        id="{{ skuId }}"
+                        title="{{ titlevar }}"
+                      >
+                        <input
+                          onclick="YMK.applyMakeupBySku('{{ skuId }}')"
+                          type="radio"
+                          id="variant-{{ variant.id }}"
+                          name="variant"
+                          class="popup-variant-input {% if forloop.first %}active{% endif %}"
+                          value="{{ variant.id }}"
+                          {% if forloop.first %}
+                            checked
+                          {% endif %}
+                        >
+                        <label
+                          for="variant-{{ variant.id }}"
+                          style="background-color:{{ color }}"
+                          class="variant-label"
+                        >
+                          {{- variant.title -}}
+                        </label>
+                      </div>
+                    {% endfor %}
+                    {% unless variantFound %}
+                      <p>No variant found.</p>
+                    {% endunless %}
+                  </div>
+                  <div class="hb-product-sec">
+                    <div class="product-title">{{ product.title }}</div>
+                    <form data-component-shade-finder-form method="post" action="/cart/add">
+                      <input
+                        data-product-title="{{ product.title }}"
+                        data-shade-finder-form-variant
+                        data-variant-title="{{ product.variants.first.title }}"
+                        data-variant-price="{{ product.variants.first.price | money_without_currency }}"
+                        type="hidden"
+                        name="id"
+                        id="pop-variant"
+                        value="{{ product.variants.first.id }}"
+                      >
+                      <input min="1" type="number" id="quantity" name="quantity" value="1" hidden>
+
+                      <input type="submit" class="try-on-add-btn" value="Add to cart" class="btn">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-product-info-container class="product-info product-info4">
+              <div class="product-info-inner">
+                <div class="fearure-image">
+                  <img
+                    alt="{{ product.title | escape }}"
+                    height="{{ product.featured_image.height }}"
+                    width="{{ product.featured_image.width }}"
+                    src="{{ product.featured_image | image_url: width: 500 }}"
+                  >
+                </div> -->
+                <div class="product-variant">
+                  <div class="inline-color-variant deeper">
+                    {% assign variantFound = false %}
+
+                    {% assign variantFound = false %}
+                    {% for variant in product.variants %}
+                      {%- assign color = variant.metafields.custom.color.value -%}
+                      {% assign skuId = variant.sku %}
+                      {% assign titlevar = variant.title %}
+                      {% assign variantFound = true %}
+                      <div
+                        data-component-try-on-color-swatch="deeper"
+                        data-title="{{ titlevar }}"
+                        class="radio-btn-color {{ titlevar }} custom-variant{{ forloop.index }}"
+                        id="{{ skuId }}"
+                        title="{{ titlevar }}"
+                      >
+                        <input
+                          onclick="YMK.applyMakeupBySku('{{ skuId }}')"
+                          type="radio"
+                          id="variant-{{ variant.id }}"
+                          name="variant"
+                          class="popup-variant-input {% if forloop.first %}active{% endif %}"
+                          value="{{ variant.id }}"
+                          {% if forloop.first %}
+                            checked
+                          {% endif %}
+                        >
+                        <label
+                          for="variant-{{ vaAriant.id }}"
+                          style="background-color:{{ color }}"
+                          class="variant-label"
+                        >
+                          <!-- <span class="variant-title">{{ variant.title }}</span> -->
+                          {{- variant.title -}}
+                        </label>
+                      </div>
+                    {% endfor %}
+                    {% unless variantFound %}
+                      <p>No variant found.</p>
+                    {% endunless %}
+                  </div>
+                  <div class="hb-product-sec">
+                    <div class="product-title">{{ product.title }}</div>
+                    <form method="post" action="/cart/add">
+                      <input
+                        data-product-title="{{ product.title }}"
+                        data-shade-finder-form-variant
+                        data-variant-title="{{ product.variants.first.title }}"
+                        data-variant-price="{{ product.variants.first.price | money_without_currency }}"
+                        type="hidden"
+                        name="id"
+                        id="pop-variant"
+                        value="{{ product.variants.first.id }}"
+                      >
+                      <input min="1" type="number" id="quantity" name="quantity" value="1" hidden>
+
+                      <input type="submit" class="try-on-add-btn" value="Add to cart" class="btn">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <fieldset
+              data-shade-finder-variant-title-container
+              class="js product-form__input shade-finder-variant-title-container"
+            >
+              <legend class="form__label">
+                <span>Shade-</span>
+                <span id="top-variant-title" data-shade-finder-variant-title class="top-variant-title"></span>
+              </legend>
+            </fieldset>
+          </div>
+          <div class="text-info">
+            Follow the instructions above for the shade scan to begin.
+            <span>For best result use a higher resolution camera on your phone.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-overlay"></div>
+</div>
+
+<script>
+  window.productId = {{ product.id }};
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LE5GT95YY7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LE5GT95YY7');
+</script>
+<script src="{{ 'try-on-popup.js' | asset_url }}"></script>

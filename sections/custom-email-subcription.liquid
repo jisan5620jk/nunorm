@@ -1,0 +1,391 @@
+
+{{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #Banner-{{ section.id }}::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+  }
+
+  {%- if section.settings.image_height == 'adapt-image' and section.settings.image != blank -%}
+    @media screen and (max-width: 749px) {
+      #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+    }
+
+    #Banner-{{ section.id }}::before,
+    #Banner-{{ section.id }} .banner__media::before {
+      padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+      content: '';
+      display: block;
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<style>
+  .custom-password {
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+}
+._form-thank-you {
+    text-align: left !important;
+}
+._form-branding {
+    display: none;
+}
+  div#shopify-section-main-password-header {
+    display: none;
+}
+.custom-password
+  {
+    background-image:url('{{ section.settings.image |img_url:'master' }}')
+  }
+  .mob-left-img
+  {
+    display:none;
+  }
+  .destop-left-img
+  {
+    display:block;
+  }
+
+password-modal {
+    padding-top: 5vh !important;
+    display: block;
+}
+
+password-modal .modal__content {
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    top: 25%;
+}
+custom-password h2 {
+    font-size: 30px;
+}
+
+*:focus-visible {
+    outline: none;
+    outline-offset: 0;
+    box-shadow: none;
+}
+
+.password-field.field:before {
+    display: none;
+}
+
+.password-field.field:after {
+    display: none;
+}
+
+input#Password:focus {
+    box-shadow: none;
+}
+
+
+.password-field--error {
+    flex-direction: column;
+}
+#smsbump-form-263648 .cw-header-text {
+    display: none;
+}
+#smsbump-form-263648 .description-text {
+    display: none;
+}
+#smsbump-form-263648 .cw-compliance-text {
+    display: none;
+}
+#smsbump-form-263648 .sc-vxbem9-0.gpItNz {
+    background-color: transparent;
+}
+#smsbump-form-263648 svg.sc-toknsu-0.fckFyV {
+    display: none;
+}
+.success-container .header-text {
+    text-align: left;
+    font-size: 23px !important;
+}
+.smsb-subscribe-button {
+    min-height: 50px;
+}
+
+span#smsb-button-field-subscribe {
+    margin-top: 8px;
+    font-weight: 600;
+}
+@media screen and (max-width: 989px) {
+password-modal .modal__content {
+    width: 80%;
+    height: 50%;
+    left: 10%;
+    top: 25%;
+}
+}
+    
+@media screen and (max-width: 767px) {
+
+password-modal .modal__content {
+    width: 95%;
+    height: 50%;
+    left: 2.5%;
+    top: 25%;
+}
+.custom-password {
+    flex-direction: column-reverse;
+  background-image:url('{{ section.settings.mob-bg-image |img_url:'master' }}')
+}
+.destop-left-img
+  {
+    display:none;
+  }
+  .mob-left-img
+  {
+    display:block;
+  }
+  }
+
+._form-thank-you {
+    font-size: 23px !important;
+    font-family: "Work Sans" !important;
+    line-height: 26px !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    margin: 0.83em 0;
+}
+
+#phone_cus {
+width: 100%
+}
+
+.disabled-btn {
+  opacity: 0.5;
+
+}
+  
+</style>
+
+
+<div class="custom-password layout" >
+<div class="inner-password inner-password-left">
+<img class="destop-left-img" src="{{ section.settings.image-left |img_url:'master' }}"/>
+<img class="mob-left-img" src="{{ section.settings.mob-left-image |img_url:'master' }}"/>
+  
+</div>
+<div class="inner-password inner-password-right">
+<img class="logo-pwd-desktop1" src="{{ section.settings.img-desk-logo | img_url:'small' }}">
+
+<h2>{{ section.settings.heading1 }}</h2>
+<h5>{{ section.settings.heading2 }}</h5>
+ {% if section.settings.custom-content != blank %} 
+  {{ section.settings.custom-content }}
+ {% endif %}
+ <div class="custom-email-section">
+<div class="_form_5"></div><script src="https://nunorm.activehosted.com/f/embed.php?id=5" type="text/javascript" charset="utf-8"></script>
+ </div>
+
+<div class="custom-phone-section">
+ <div style="width: 100%; max-width: 1200px; padding: 12px 0px; margin: 0 auto;"><div><script type="text/javascript" src="https://forms-akamai.smsbump.com/734078/form_263648.js?ver=1701523268"></script></div></div>
+</div>
+  
+ <password-modal>
+      <details class="password-modal modal">
+        <summary class="modal__toggle" aria-haspopup="dialog">
+          <div class="modal__toggle-open password-link link underlined-link">
+            {% render 'icon-padlock' %}
+           Admin {% comment %} {{ 'general.password_page.login_password_button' | t }}{% endcomment %}
+          </div>
+          <div class="modal__toggle-close" aria-hidden="true">
+            {% render 'icon-close' %}
+          </div>
+        </summary>
+        <div
+          class="modal__content"
+          role="dialog"
+          aria-labelledby="DialogHeading"
+          aria-modal="true"
+        >
+          <div class="password-modal__content" tabindex="-1">
+            <button type="button" class="modal__close-button link" aria-label="{{ 'accessibility.close' | t }}">
+              {% render 'icon-close' %}
+            </button>
+            <h2 class="password-modal__content-heading" id="DialogHeading">
+              {{ 'general.password_page.login_form_heading' | t }}
+            </h2>
+            {%- form 'storefront_password', class: 'password-form' -%}
+              <div class="password-field field{% if form.errors %} password-field--error{% endif %}">
+                <input
+                  type="password"
+                  name="password"
+                  id="Password"
+                  class="field__input"
+                  autocomplete="current-password"
+                  {% if form.errors %}
+                    aria-invalid="true"
+                    aria-describedby="PasswordLoginForm-password-error"
+                  {%- endif -%}
+                  placeholder="{{ 'general.password_page.login_form_password_placeholder' | t }}"
+                >
+                <label class="field__label" for="{{ 'general.password_page.login_form_password_label' | t }}">
+                  {{- 'general.password_page.login_form_password_placeholder' | t -}}
+                </label>
+                {%- if form.errors -%}
+                  <div id="PasswordLoginForm-password-error" role="status">
+                    <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                    <span class="form__message">
+                      {%- render 'icon-error' %}
+                      {{ 'general.password_page.login_form_error' | t -}}
+                    </span>
+                  </div>
+                {%- endif -%}
+              </div>
+              <button name="commit" class="password-button button button--outline">
+                {{ 'general.password_page.login_form_submit' | t }}
+              </button>
+            {%- endform -%}
+            <small class="password__footer-text">{{ 'general.password_page.admin_link_html' | t }}</small>
+          </div>
+        </div>
+      </details>
+    </password-modal>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  
+$(document).ready(function(){
+
+  $(".custom-phone-section").hide();
+  let stepForm = 1
+  let phoneVal = ''
+
+  setTimeout(function() {
+    $("form._form_5 ._form-content").prepend('<input id="phone_cus" style="display: none; width: 100%" type="text" placeholder="Please enter your phone number" name="phone" />')
+    $('#phone_cus').on('input change keydown', function() {
+      phoneVal = $(this).val()
+    })
+  },500)
+
+
+  $("#_form_5_submit").click(async function(e){
+
+    if(stepForm == 1) {
+      e.preventDefault()
+      var email = $("#email").val();
+
+      if(email == '')
+      {
+        
+      }
+      else
+      {
+        
+        $("form._form_5 #email").hide();
+        $("form._form_5 #phone_cus").show();
+        $(this).text('Unlock My Discount')
+        stepForm = 2
+        return
+      }
+    }
+
+    if(stepForm == 2) {
+      e.preventDefault()
+      $("#_form_5_submit").css('opacity', '0.5')
+      $("#_form_5_submit").css('pointer-events', 'none')
+      $("#_form_5_submit").addClass('disabled-btn')
+      const resp = await fetch('https://api.smsbump.com/v2/formsPublic/subscribe', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Smsbump-Key": "1702598645472",
+          "X-Smsbump-Platform": "shopify"
+        },
+        body: JSON.stringify({
+          country: "US",
+          customer_id: 0,
+          email: $("#email").val(),
+          form_id: 263648,
+          from_page: "https://www.nunorm.com/password",
+          loyalty_app: null,
+          phone: phoneVal,
+          resubscribe_confirm: false,
+          step_subscribe_request_id: 0,
+          timezone: 'America/New_York'
+        })
+      })
+      stepForm = 3
+      $("#_form_5_submit").click()
+    }
+     
+     
+  });
+
+  
+
+  
+});
+
+</script>
+
+{% schema %}
+{
+  "name": "Custom Email Subcription",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.email-signup-banner.settings.paragraph.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.email-signup-banner.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob-bg-image",
+      "label": "Mobile background image"
+    },
+     {
+      "type": "image_picker",
+      "id": "image-left",
+      "label": "image left box"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob-left-image",
+      "label": "Mobile left image"
+    },
+    
+        {
+      "type": "image_picker",
+      "id": "img-desk-logo",
+      "label": "desktop Logo"
+    },
+   {
+          "type": "text",
+          "id": "heading1",
+          "label": "main Text"
+        },
+            {
+          "type": "text",
+          "id": "heading2",
+          "label": "Sub Text",
+          "default": "Coming Soon"
+        },
+     {
+          "type": "richtext",
+          "id": "custom-content",
+          "label": "Text description"
+        }
+  ],
+  "presets": [
+    {
+      "name": "Custom Email Subcription"
+    }
+  ],
+  "templates": ["password"]
+}
+{% endschema %}

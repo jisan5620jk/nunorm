@@ -1,0 +1,852 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css"
+>
+
+<!-- / the core collection / -->
+<section class="core-collection-home page-width layout">
+  <!-- / heading sec / -->
+  <div class="sec-heading">
+    <h1>{{ section.settings['sec-heading'] }}</h1>
+    <p class="pera">{{ section.settings.pera }}</p>
+  </div>
+
+  <div class="core_slider_main">
+    {% for block in section.blocks %}
+      {% assign product-handle = block.settings.product %}
+
+      <div class="core_slider_main_box core_slider_main_{{ forloop.index }} ">
+        <div class="video_image_box">
+          <!-- / video sec / -->
+          <div class="video-box">
+            <!-- / play pause button  / -->
+            <div class="play-pause-btn">
+              <button class="PP-btn play_btn" type="button" id="play-btn-loop">
+                <img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/play-btn.svg?v=1677224169">
+              </button>
+              <button class="PP-btn pause_btn" type="button" id="pause-btn-loop" style="display:none;">
+                <img src="https://cdn.shopify.com/s/files/1/0727/3594/9103/files/pause-btn.svg?v=1677224169">
+              </button>
+            </div>
+            <video loop autoplay muted class="" id="loop-Video" width="100%" height="100%" playsinline>
+              <source type="video/mp4" src="{{ block.settings.video }}">
+            </video>
+            <img class="loop-img" id="loop-banner-bg" src="{{ block.settings.poster-img | img_url: 'master' }}">
+          </div>
+          <script>
+            $(document).ready(function(){
+             var vid = ".core_slider_main_{{ forloop.index }} video";
+
+            $(".core_slider_main_{{ forloop.index }} .play_btn").click(function(){
+            $(".core_slider_main_{{ forloop.index }} video").show();
+            $(".core_slider_main_{{ forloop.index }} .loop-img").hide();
+            $(".core_slider_main_{{ forloop.index }} .pause_btn").show();
+            $(".core_slider_main_{{ forloop.index }} .play_btn").hide();
+                  vid.play();
+              });
+
+              $(".core_slider_main_{{ forloop.index }} .pause_btn").click(function(){
+              $(".core_slider_main_{{ forloop.index }} video").hide();
+              $(".core_slider_main_{{ forloop.index }} .loop-img").show();
+              $(".core_slider_main_{{ forloop.index }} .pause_btn").hide();
+              $(".core_slider_main_{{ forloop.index }} .play_btn").show();
+              vid.pause();
+              });
+            });
+          </script>
+          <script>
+            $(document).ready(function(){
+              $(".core_slider_main_{{ forloop.index }} video").hide();
+              $(".core_slider_main_{{ forloop.index }} .pause_btn").hide();
+            });
+          </script>
+        </div>
+
+        <div class="text_details_box">
+          {% for media in product-handle.media %}
+            {% if forloop.index == 1 %}
+              <a href="{{ product-handle.url }}">
+                <img
+                  class="product-img"
+                  data-src="{{ media | img_url:'master'}}"
+                  src="{{ media | img_url:'master'}}"
+                  alt=""
+                  data-was-processed="true"
+                >
+              </a>
+            {% endif %}
+          {% endfor %}
+
+          <h4 class="feature-item__heading">
+            <a class="full-unstyled-link" href="{{ product-handle.url }}">{{ product-handle.title }}</a>
+          </h4>
+          <p class="feature-item__copy">{{ product-handle.description | strip_html | truncate: 150 }}</p>
+
+          {%- unless product-handle.has_only_default_variant -%}
+            {%- for option in product-handle.options_with_values -%}
+              {%- liquid
+                assign is_color = false
+                assign color_option_index = 0
+                assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
+                assign color_option_index = forloop.index0
+                assign downcased_option = option.name | downcase
+                if downcased_option contains swatch_trigger
+                  assign is_color = true
+                elsif downcased_option == 'kleur'
+                  assign is_color = true
+                elsif swatch_trigger == 'color' or downcased_option contains 'colour'
+                  assign is_color = true
+                endif
+              -%}
+              <fieldset
+                id="ProductSelect-option-{{ forloop.index0 }}"
+                class="core-collection-variant"
+                name="{{ option.name | handleize }}"
+              >
+                <legend class="form__label">Shade-<span class="top-variant-title"></span></legend>
+                {%- for value in option.values -%}
+                  {%- liquid
+                    assign product_available = true
+                    if product.options.size == 1
+                      assign product_available = product.variants[forloop.index0].available
+                    endif
+                  -%}
+                  {% for variant in product-handle.variants %}
+                    {% if variant.title contains value %}
+                      {%- assign img = variant.image.id -%}
+                      {%- assign color = variant.metafields.custom.color.value -%}
+                      {% assign variant-id = variant.id %}
+                      {%- assign img-url = variant.image | img_url: 'master' -%}
+                      {% assign data-price = variant.price | money %}
+                      {% assign variant-title = variant.metafields.custom.variant_title.value %}
+                    {% endif %}
+                  {% endfor %}
+
+                  <div
+                    class="variant-input"
+                    data-index="option{{ option_index }}"
+                    data-value="{{ value | escape }}"
+                  >
+                    <input
+                      type="radio"
+                      {% if option.selected_value == value %}
+                        checked="checked"
+                      {% endif %}
+                      form="{{ form_id }}"
+                      data-id="{{ variant-id }}"
+                      d-title="{{ variant-title }}"
+                      d-matatitle="{{ product-handle.selected_or_first_available_variant.title }} "
+                      d-price="{{ data-price }}"
+
+                      media-data="{{ img }}"
+                      media-img="{{ img-url }}"
+                      value="{{ value | escape }}"
+                      data-index="option{{ option_index }}"
+                      name="{{ option.name }}"
+                      class="{{ is_color }}{% unless product_available %} disabled{% endunless %}{% if is_color %} variant__input--color-swatch{% endif %} {% if option.selected_value == value %}active{% endif %} visible_item"
+                      {% if is_color %}
+                        data-color-name="{{ value | escape }}"
+                      {% endif %}
+                      {% if is_color %}
+                        data-color-index="{{ color_option_index }}"
+                      {% endif %}
+                      id="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                    >
+                    {%- if is_color -%}
+                      {%- liquid
+                        assign color_file_name = value | handle | append: '.' | append: swatch_file_extension
+                        assign color_image = color_file_name | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
+                        assign color_swatch_fallback = value | split: ' ' | last | handle
+                      -%}
+                      <label
+                        for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                        class="color-swatch color-swatch--{{ value | handle }}{% unless product_available %} disabled{% endunless %}"
+                        style="background-color: {{ color }};{% if images[color_file_name] != blank %}  background-color: url({{ color_image }});{% endif %}"
+                      >
+                      </label>
+                    {%- else -%}
+                      <label
+                        class="custom-redio-color1 {% if option.selected_value == value %}active{% endif %}"
+                        d-price="{{ data-price }}"
+                        for="ProductSelect-{{ section_id }}-{{ product.id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                        {% unless product_available %}
+                          class="disabled"
+                        {% endunless %}
+                        style="background-color: {{ color }}"
+                      >
+                        {{ value }}
+                      </label>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </fieldset>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <div class="button-box-outer">
+            <!-- / button / -->
+            <div class="button_gray">
+              <span class="gray_button_circle"> </span>
+              <div class="button_gray_inner">
+                <span class="button_text_container ">
+                  <form method="post" action="/cart/add" class="ContactForm center ">
+                    <input
+                      class="dark_{{ forloop.index }}"
+                      type="hidden"
+                      name="id"
+                      id="variant-id"
+                      value="{{ product-handle.variants.first.id }}"
+                    >
+                    <input min="1" type="hidden" id="quantity" name="quantity" value="1">
+                    <input
+                      class="dark_{{ forloop.index }}"
+                      type="submit"
+                      value="Add to cart"
+                      class="button"
+                    >
+                  </form>
+                </span>
+              </div>
+            </div>
+
+            <!-- / button / -->
+            <div class="button_gray try_it">
+              <span class="gray_button_circle"> </span>
+              <a class="button_gray_inner pink_{{ forloop.index }} custom-try-on">
+                <span class="button_text_container">
+                  {{ block.settings['btn-text'] }}
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="buton_core">
+            <button class="btn_main_dark btn_core_dark_{{ forloop.index }}">
+              Add to cart
+            </button>
+            <button class="btn_main_pink  btn_core_pink_{{ forloop.index }}">{{ block.settings['btn-text'] }}</button>
+          </div>
+
+          <script>
+            $(document).ready(function(){
+
+              $(".btn_core_dark_{{ forloop.index }}").click(function(){
+                $(".dark_{{ forloop.index }}").click();
+              });
+
+              $(".btn_core_pink_{{ forloop.index }}").click(function(){
+                $(".pink_{{ forloop.index }}").click();
+              });
+
+            });
+          </script>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings['explore-link'] != blank %}
+    <a class="arrow-link" href="{{ section.settings.explore-link }}"
+      ><span>{{ section.settings['explore-text'] }}</span></a
+    >
+  {% endif %}
+
+  <span class="pagingInfo"></span>
+</section>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<script>
+  $('.core_slider_main').slick({
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    centerPadding: "0px",
+    customPaging : function(slider, i) {
+      var thumb = $(slider.$slides[i++]).data();
+      return '<a class="dot">'+i+'</a>';
+              },
+    centerMode: true,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  });
+</script>
+
+<script>
+   $(document).ready ( function () {
+        var title1 = $(".custom-redio-color1.active").text();
+         $(".top-variant-title").text(title1);
+
+      $(".custom-redio-color1").click(function(){
+       $('.custom-redio-color1.active').removeClass('active');
+        $(this).addClass('active');
+        var title = $(this).text();
+        var price = $(".custom-redio-color1.active").attr("d-price");
+        $(".btn_core_dark_{{ forloop.index }} .slide-variant-btn").text(price);
+
+       $(".top-variant-title").text(title);
+      });
+      $(".variant-input input").click(function () {
+
+       var data =  $(this).attr("data-id");
+      $("#variant-id").val(data);
+      });
+  });
+</script>
+
+<style>
+  .core_slider_main .slick-list {
+      padding: 80px 0 !important;
+  }
+
+  .core_slider_main .slick-slide {
+      margin: 10px;
+      box-shadow: 0px 0px 10px 0px #ddd;
+  }
+
+  .core_slider_main .slick-track {
+      display: flex;
+      align-items: center;
+  }
+
+  .core_slider_main .core_slider_main_box .video_image_box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box img.product-img {
+      max-height: 250px;
+      margin: auto;
+  }
+
+  .core_slider_main .core_slider_main_box {
+      display: flex;
+      min-height: 670px;
+      align-items: stretch;
+      position: relative;
+  }
+
+  .core_slider_main .core_slider_main_box .video_image_box {
+      width: 60%;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box {
+      width: 55%;
+      padding: 20px;
+  }
+
+  .core_slider_main .core_slider_main_box .video_image_box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box img.product-img {
+      max-height: 250px;
+      margin: auto;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant {
+      display: flex;
+      padding: 0;
+      gap: 8px 16px;
+      border: none;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant legend.form__label:first-child {
+      display: none;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant input + label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 30px;
+      z-index: 99;
+      top: 0;
+      height: 30px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant .variant-input {
+      position: relative;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box a.full-unstyled-link {
+      color: #262626;
+      font-family: Point Panther;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 110%;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box p.feature-item__copy {
+      color: #515050;
+      font-family: Montserrat;
+      font-size: 18.658px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 141.682%;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current {
+      transform: scale(2.1);
+      background-color: #fff;
+      position: relative;
+      z-index: 99999;
+      min-height: 400px;
+      margin: 5px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current img.product-img {
+      max-height: 120px;
+      padding: 10px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current a.full-unstyled-link {
+      font-size: 15px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current p.feature-item__copy {
+      margin: 0 !important;
+      font-size: 9px;
+      margin-bottom: 14px !important;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current h4.feature-item__heading {
+      margin: 8px 0px 5px 0px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .core-collection-variant {
+      gap: 0px 6px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .core-collection-variant input {
+      margin: 0 !important;
+      opacity: 0;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .core-collection-variant label {
+      width: 15px !important;
+      height: 15px !important;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .text_details_box {
+      padding: 0px 20px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .video_image_box {
+      width: 40%;
+  }
+
+  .core_slider_main .button-box-outer {
+      height: 0;
+      width: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+  }
+
+  .core_slider_main .button-box-outer {
+      height: 0;
+      width: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+  }
+
+  .core_slider_main .buton_core {
+      margin-top: 20px;
+  }
+
+  .core_slider_main .buton_core button {
+      border-radius: 4.104px;
+      overflow: hidden;
+      background: #262626;
+      display: inline-flex;
+      padding: 8px 10px;
+      justify-content: center;
+      position: relative;
+      align-items: center;
+      cursor: pointer;
+      border: gainsboro;
+      margin: 3px 0;
+      color: #FFF;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 9px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 1.2px;
+      max-width: 220px;
+      width: 100%;
+      text-transform: uppercase;
+      min-height: 27px;
+  }
+
+  .core_slider_main button.btn_main_pink {
+      background: #D9A785;
+      font-size: 8.5px;
+  }
+
+  .core_slider_main button.btn_main_pink:after {
+      position: absolute;
+      left: 10%;
+      top: 10%;
+      height: calc(0% * 8);
+      width: calc(0% * 8);
+      background-color: #0000000d;
+      content: '';
+      border-radius: 1000px;
+      transition: 1s;
+  }
+
+  .core_slider_main button.btn_main_pink:hover:after {
+      height: calc(80% * 8);
+      width: calc(10% * 8);
+  }
+
+  .core_slider_main .buton_core button.btn_main_dark:after {
+      position: absolute;
+      left: 17%;
+      top: 10%;
+      height: calc(0% * 8);
+      width: calc(0% * 8);
+      background-color: #ffffff1c;
+      content: '';
+      border-radius: 1000px;
+      transition: 1s;
+  }
+
+  .core_slider_main button.btn_main_dark:hover:after {
+      height: calc(80% * 8);
+      width: calc(8% * 8);
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .text_details_box .core-collection-variant .variant-input {
+      position: relative;
+      height: 20px;
+  }
+
+  .core-collection-home ul.slick-dots {
+      position: unset;
+      display: flex;
+      justify-content: center;
+  }
+
+  .core-collection-home ul.slick-dots li {
+      width: 65px;
+      color: #CDCCCC;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 148.682%; /* 17.842px */
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #D9D9D9;
+      margin: 0;
+      cursor: pointer;
+  }
+
+  .core-collection-home ul.slick-dots li.slick-active {
+      font-weight: 700;
+      color: #515050;
+  }
+
+  .core-collection-home ul.slick-dots li.slick-active:after {
+      content: '';
+      bottom: -2px;
+      height: 4px;
+      width: 100%;
+      background-color: #515050;
+      position: absolute;
+  }
+
+  .core-collection-home ul.slick-dots li a.dot {
+      cursor: pointer;
+  }
+
+  /* responsive */
+
+  @media screen and (max-width: 1100px) {
+
+  .core_slider_main .core_slider_main_box.slick-current {
+      transform: scale(2.3);
+  }
+  }
+
+  @media screen and (max-width: 800px) {
+
+  .core_slider_main .core_slider_main_box .text_details_box img.product-img {
+      max-height: 150px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box {
+      padding: 15px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box a.full-unstyled-link {
+      font-size: 18px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box p.feature-item__copy {
+      font-size: 16.658px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant {
+      gap: 1px 6px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant input + label {
+      width: 20px;
+      height: 20px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .text_details_box {
+      padding: 0px 10px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box a.full-unstyled-link {
+      font-size: 13px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box p.feature-item__copy {
+      font-size: 8px;
+  }
+
+  .core_slider_main .buton_core {
+      margin-top: 10px;
+  }
+
+  .core_slider_main .core_slider_main_box {
+      min-height: 500px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current {
+      transform: scale(2.1);
+      min-height: 330px;
+      margin: 0px;
+  }
+
+  }
+
+  @media screen and (max-width: 767px) {
+
+  .core_slider_main .core_slider_main_box.slick-current h4.feature-item__heading {
+      margin: 10px 0;
+      text-align: center;
+      padding: 10px 15px;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current {
+      transform: scale(1);
+      min-height: auto;
+      margin: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      box-shadow: none;
+      height: auto;
+  }
+
+  .core_slider_main .core_slider_main_box {
+      transform: scale(1);
+      min-height: auto;
+      margin: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      height: 400px;
+      padding: 20px 0;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .video_image_box {
+      width: 100% !important;
+  }
+
+  .core_slider_main .core_slider_main_box.video_image_box {
+      width: 100% !important;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .text_details_box {
+      padding: 20px 10px;
+      width: 100%;
+  }
+
+  .core_slider_main .core_slider_main_box.slick-current .text_details_box {
+      padding: 20px 10px;
+      width: 100%;
+      padding-bottom: 0;
+  }
+
+  .core_slider_main .slick-list {
+      padding: 10px 0 !important;
+  }
+
+  .core_slider_main .core_slider_main_box .video_image_box img {
+      max-height: 186px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box a.full-unstyled-link {
+      font-size: 17px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box p.feature-item__copy {
+      padding: 0 15px;
+      color: #000 !important;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant input + label {
+      width: 30px !important;
+      height: 30px !important;
+  }
+
+  .core_slider_main .core_slider_main_box .text_details_box .core-collection-variant {
+      gap: 24px 27px !important;
+      justify-content: center;
+      padding: 5px 15px 15px 15px;
+  }
+
+  .core_slider_main .buton_core {
+      max-width: calc(100% - 20%);
+      margin: 10px auto 0px auto;
+  }
+
+  .core_slider_main .buton_core button {
+      padding: 13px 10px;
+      margin: 5px 0;
+      font-size: 15px;
+      max-width: 100%;
+  }
+
+  .core_slider_main button.btn_main_pink {
+      font-size: 14px;
+  }
+
+    .core-collection-home ul.slick-dots {
+      margin-top: -10px;
+  }
+
+  .core-collection-home ul.slick-dots li {
+      width: 55px;
+  }
+
+  .core-collection-home a.arrow-link {
+      justify-content: center;
+      color: #000;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px;
+  }
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": "core-collection-home-mob",
+   "class": "core-collection-home-mob",
+  "settings": [
+  {
+    "type": "liquid",
+    "id": "logos-home",
+    "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+    "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+  },
+  {
+    "type": "text",
+    "id": "sec-heading",
+    "label": "Heading"
+  },
+  {
+    "type": "inline_richtext",
+    "id": "pera",
+    "label": "Content"
+  },
+  {
+    "type": "text",
+    "id": "explore-text",
+    "label": "Explore more text",
+    "default": "Explore more"
+  },
+  {
+    "type": "url",
+    "id": "explore-link",
+    "label": "Explore Link"
+  }
+
+  ],
+  "blocks": [
+  {
+    "type": "product",
+    "name": "core-collection-home",
+    "settings": [
+      {
+        "type": "url",
+        "id": "video",
+        "label": "Add Video Url"
+      },
+      {
+        "type": "image_picker",
+        "id": "poster-img",
+        "label": "Add Poster Image"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Add Product"
+      },
+      {
+        "type": "text",
+        "id": "btn-text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "btn-link",
+        "label": "Button Link"
+      }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "core-collection-home"
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

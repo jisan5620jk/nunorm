@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "our_story_hero_QpwDJW": {
+      "type": "our-story-hero",
+      "custom_css": [
+        "@media screen and (max-width: 767px) {.our-story-hero {grid-template-columns: 1fr; } .img-pos-3 {max-width: 100%; } .text-bottom-mobile {max-width: 100%; padding: 12px; }}",
+        ".text-desktop {font-size: 32px !important; max-width: 800px;}"
+      ],
+      "name": "Our Story Hero",
+      "settings": {
+        "text_block_1": "We believe men often overlook the importance of mental + physical health.",
+        "text_block_2": "Our products were created to enhance your confidence & inspire you to make time for your self-care.",
+        "text_color": "#fbeeda",
+        "text_size": 18,
+        "image_1": "shopify://shop_images/bbbcfb_db05a06d76274a3a911409e48c9943ac_mv2.jpg",
+        "image_2": "shopify://shop_images/bbbcfb_71d66763d8364f1c87aafb05d496eb6a_mv2.jpg",
+        "image_3": "shopify://shop_images/NuNorm_EQUAL_Project_For_Men_s_Mental_Health_shutterstock_2257172697.jpg"
+      }
+    },
+    "content_2_col_XwPVix": {
+      "type": "content-2-col",
+      "disabled": true,
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; }}"
+      ],
+      "name": "Content 2 Column",
+      "settings": {
+        "text_position": "text-left",
+        "heading": "Our Story",
+        "body": "<p>NuNorm began with a simple but powerful moment. Jeff, our founder, saw his kids experimenting with makeup—especially his son Quincy, who used it with such a carefree spirit that it brought out confidence and joy.</p>",
+        "button_text": "Learn More",
+        "button_link": "",
+        "media_type": "video",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/5d3873a7d987481486bf3e91cde88820.mp4"
+      }
+    },
+    "story_content_2_yEGNzM": {
+      "type": "story-content-2",
+      "name": "Content 2 story",
+      "settings": {
+        "text_position": "text-left",
+        "heading": "Our Story",
+        "body": "<p>NuNorm began with a simple but powerful moment. Jeff, our founder, saw his kids experimenting with makeup—especially his son Quincy, who used it with such a carefree spirit that it brought out confidence and joy.</p>",
+        "button_text": "Learn More",
+        "button_link": "",
+        "media_type": "video_file",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video": "shopify://files/videos/5d3873a7d987481486bf3e91cde88820.mp4"
+      }
+    },
+    "content_2_col_3QEt4h": {
+      "type": "content-2-col",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; }}"
+      ],
+      "name": "Content 2 Column",
+      "settings": {
+        "text_position": "text-right",
+        "heading": "Challenging  Outdated Ideas",
+        "body": "<p>Quincy’s commitment to furthering awareness for men’s mental and physical health, led us here to redefine what makeup means for men. NuNorm challenges outdated ideas of masculinity by offering products made specifically for men’s skin—because every man deserves to feel comfortable and confident in his own skin. This inspiration led us to create a line of products that truly meet the needs of men.</p>",
+        "button_text": "Learn More",
+        "button_link": "",
+        "media_type": "image",
+        "image": "shopify://shop_images/bbbcfb_fa85deba6a76411b869e18256ddd63f7_mv2.jpg",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video_url": ""
+      }
+    },
+    "hero_bg_video_XP7Ftz": {
+      "type": "hero-bg-video",
+      "name": "Hero with Video",
+      "settings": {
+        "custom_class": "custom class",
+        "media_type": "image",
+        "button_style": "btn-primary",
+        "video_url": "",
+        "image_bg": "shopify://shop_images/bbbcfb_5a8bb2c6a8f1477c9069df49cd72c29b_mv2.jpg",
+        "fix-bg": true,
+        "heading": "Products Built for Men",
+        "heading_size_desktop": 28,
+        "heading_size_mobile": 22,
+        "subtext": "Most makeup products aren’t made for men, and that’s something we’re changing. We’ve developed lightweight, buildable products that work seamlessly with men’s skin—easy to use and perfect for your daily routine so you can feel confident.",
+        "subtext_size_desktop": 16,
+        "subtext_size_mobile": 14,
+        "heading_color": "#fbedda",
+        "subtext_color": "#ffffff",
+        "button_text": "Learn More",
+        "button_link": "shopify://blogs/behind-nunorm/nunorms-mens-makeup-essentials",
+        "text_position": "bottom-right",
+        "button_color": "maroon"
+      }
+    },
+    "simple_text_yHEiRW": {
+      "type": "simple-text",
+      "name": "Simple Text Section",
+      "settings": {
+        "headline": "OUR MISSION",
+        "subheadline": "Enhancement + Empowerment + Ease",
+        "body_text": "We want men to feel and look their best without any compromise. Our mission is to make makeup accessible, comfortable, and free of stigma—giving you the tools to enhance your natural features while staying true to yourself.",
+        "button_text": "Learn More",
+        "button_link": ""
+      }
+    },
+    "content_2_col_AUdT7Y": {
+      "type": "content-2-col",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; }}"
+      ],
+      "name": "Content 2 Column",
+      "settings": {
+        "text_position": "text-left",
+        "heading": "A Word from Our Founders",
+        "body": "<p>“Our mission is to help men feel confident and empowered by offering high-quality makeup products that cater to their specific needs. We acknowledge that men's skin is fundamentally different than women’s, and, as such, men need a line of products designed specifically to address their unique challenges.” <strong>- Jeff Lau</strong></p><p> “We passionately believe that makeup is for everyone, and we want to change the outdated perception that it is exclusively for women. We hope to see a future where wearing makeup is the “norm” for all genders. We invite you to step out of your comfort zone and join us in this journey of discovery and societal transformation.”<strong> - Quincy Lau</strong></p>",
+        "button_text": "Learn More",
+        "button_link": "",
+        "media_type": "image",
+        "image": "shopify://shop_images/bbbcfb_71497189a33748939e50080046ea345e_mv2.png",
+        "image_ratio": "1-1",
+        "image_radius": false,
+        "video_url": ""
+      }
+    },
+    "simple_text_wTiTmG": {
+      "type": "simple-text",
+      "name": "Simple Text Section",
+      "settings": {
+        "headline": "<i>What’s at Stake</i>",
+        "subheadline": "",
+        "body_text": "Without the right products and support, many men remain disconnected from tools that could help boost their confidence and challenge outdated norms. NuNorm is about more than just high-quality products; we’re building a community where men can embrace their best selves and redefine masculinity. Join us in challenging these outdated norms and embracing confidence without limits.",
+        "button_text": "Learn More",
+        "button_link": ""
+      }
+    },
+    "content_2_col_JqADQX": {
+      "type": "content-2-col",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.text-column {text-align: center; } .btn-primary {font-size: 11px; }}"
+      ],
+      "name": "Content 2 Column",
+      "settings": {
+        "text_position": "text-left",
+        "heading": "How We Give Back",
+        "body": "<p>NuNorm was founded alongside The EQUAL Project, a non for profit foundation to help men build their relationship with self-care through an annual grant to support organizations doing the work.</p><p> Everyone deserve to take care of themselves physically & mentally. With every purchase you will make a direct impact to help someone. 2% of our profits will go towards funding men’s mental health programs.</p>",
+        "button_text": "Learn More About The EQUAL Project",
+        "button_link": "shopify://pages/equal-page",
+        "media_type": "image",
+        "image": "shopify://shop_images/EQUAL_Logo_2024_912c1531-f136-4302-a756-7b07fcb74903.svg",
+        "image_ratio": "4-3",
+        "image_radius": false,
+        "video_url": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "our_story_hero_QpwDJW",
+    "content_2_col_XwPVix",
+    "story_content_2_yEGNzM",
+    "content_2_col_3QEt4h",
+    "hero_bg_video_XP7Ftz",
+    "simple_text_yHEiRW",
+    "content_2_col_AUdT7Y",
+    "simple_text_wTiTmG",
+    "content_2_col_JqADQX"
+  ]
+}

@@ -1,0 +1,68 @@
+<div class="HR_Text-container">
+  {% if section.settings.title %}
+    <h1
+      style="--section-hero-heroText-color: {{ section.settings.hero_text_color }};--text-alignment: {{ section.settings.title_text_alignment }};"
+      class="HR_Title"
+    >
+      {{ section.settings.title }}
+    </h1>
+  {% endif %}
+  {% if section.settings.subtitle != blank %}
+    {% if section.settings.subtitle_image != blank %}<div class="HR_Subtitile-container">{% endif %}
+    <p
+      style="--line-height: var(--font-body-line-height-{{section.settings.subtitle_line_height}}); --text-alignment: {{ section.settings.subtitle_text_alignment }}"
+      style="--section-hero-subtitle-color: {{section.settings.text_color}};"
+      class="HR_Subtitle"
+    >
+      {{ section.settings.subtitle }}
+    </p>
+    {% if section.settings.subtitle_image != blank %}
+      {{
+        section.settings.subtitle_image
+        | image_url: width: 400
+        | image_tag: loading: 'lazy', class: 'HR_Subtitle-image'
+      }}
+    {% endif %}
+    {% if section.settings.subtitle_image != blank %}</div>{% endif %}
+  {% endif %}
+  {% if section.settings.button_link != blank and section.settings.button != blank %}
+    <a
+      href="{{ section.settings.button_link }}"
+      style="--section-hero-button-text-color: {{ section.settings.button_text_color  }}; --section-hero-button-color: {{ section.settings.button_color   }}; --button-font-weight: {{ section.settings.button_font_weight }};"
+      class="HR_Button"
+    >
+      {{ section.settings.button }}
+    </a>
+  {% endif %}
+
+  {% if section.settings.badge_image_1 != blank %}
+    <div class="hero__badgelist">
+      <div class="hero__badgelist-item">
+        <img
+          sizes="100vw"
+          class="HR_Image_badge"
+          height="{{ section.settings.badge_image_1.height }}"
+          width="{{ section.settings.badge_image_1.width }}"
+          loading="eager"
+          src=" {{ section.settings.badge_image_1 | image_url: width: 1000 }}"
+          srcset="{{ section.settings.badge_image_1 |  image_url:  width:  1000 }} 1000w,  {{  section.settings.badge_image_1 | image_url: width: 1500 }} 1500w, {{ section.settings.badge_image_1 |  image_url: width: 2000 }} 2000w"
+          alt="{{ section.settings.badge_image_1.alt }}"
+        >
+      </div>
+      {% if section.settings.badge_image_2 != blank %}
+        <div class="hero__badgelist-item">
+          <img
+            sizes="100vw"
+            class="HR_Image_badge"
+            height="{{ section.settings.badge_image_2.height }}"
+            width="{{ section.settings.badge_image_2.width }}"
+            loading="eager"
+            src=" {{ section.settings.badge_image_2 | image_url: width: 1000 }}"
+            srcset="{{ section.settings.badge_image_2 |  image_url:  width:  1000 }} 1000w,  {{  section.settings.badge_image_2 | image_url: width: 1500 }} 1500w, {{ section.settings.badge_image_2 |  image_url: width: 2000 }} 2000w"
+            alt="{{ section.settings.badge_image_2.alt }}"
+          >
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

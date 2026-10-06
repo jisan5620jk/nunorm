@@ -1,0 +1,284 @@
+<div>
+  <div class="faq-tabs layout">
+    <div class="faq-tabs__nav" style="max-width: 100%;">
+      {%- assign first_active = false -%}
+
+      {%- if section.settings.general_faqs != blank -%}
+        <button class="faq-tab-button active" data-tab="general">FREQUENTLY ASKED QUESTIONS</button>
+        {%- assign first_active = true -%}
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'product_tab' -%}
+            {%- assign p = block.settings.product -%}
+            {%- if p and p.metafields.custom.pdp_faqs != blank -%}
+              {%- assign tab_id = 'prod_' | append: block.id -%}
+              <button class="faq-tab-button {% if first_active == false %}active{% endif %}" data-tab="{{ tab_id }}">
+                {{ block.settings.title_override | default: p.title }}
+              </button>
+              {%- assign first_active = true -%}
+            {%- endif -%}
+
+          {%- when 'custom_tab' -%}
+            {%- if block.settings.tab_title != blank and block.settings.tab_richtext != blank -%}
+              {%- assign tab_id = 'custom_' | append: block.id -%}
+              <button class="faq-tab-button {% if first_active == false %}active{% endif %}" data-tab="{{ tab_id }}">
+                {{ block.settings.tab_title }}
+              </button>
+              {%- assign first_active = true -%}
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="faq-tabs__content">
+      {%- comment -%} Render helper: <strong>Question</strong> + answer {%- endcomment -%}
+
+      {%- if section.settings.general_faqs != blank -%}
+        <div class="faq-tab-panel active" data-tab-panel="general">
+          {%- assign rt_html = section.settings.general_faqs -%}
+          {%- assign _html = rt_html
+            | replace: '<p><strong>', '<strong>'
+            | replace: '</strong></p>', '</strong>'
+            | replace: '<b>', '<strong>'
+            | replace: '</b>', '</strong>'
+          -%}
+          {%- assign parts = _html | split: '<strong>' -%}
+          {%- for part in parts -%}
+            {%- if part contains '</strong>' -%}
+              {%- assign q = part | split: '</strong>' | first | strip -%}
+              {%- assign a = part | split: '</strong>' | last | strip -%}
+              {%- if q != blank and a != blank -%}
+                <div class="faq-accordion">
+                  <button class="accordion-header" aria-expanded="false">
+                    <span>{{ q }}</span>
+                    <span class="chevron">...</span>
+                  </button>
+                  <div class="accordion-body">{{ a }}</div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- assign any_panel_active = false -%}
+      {%- if section.settings.general_faqs != blank -%}
+        {%- assign any_panel_active = true -%}
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'product_tab' -%}
+            {%- assign p = block.settings.product -%}
+            {%- if p and p.metafields.custom.pdp_faqs != blank -%}
+              {%- assign tab_id = 'prod_' | append: block.id -%}
+              <div
+                class="faq-tab-panel {% if any_panel_active == false %}active{% endif %}"
+                data-tab-panel="{{ tab_id }}"
+              >
+                {%- assign rt_html = p.metafields.custom.pdp_faqs | metafield_tag -%}
+                {%- assign _html = rt_html
+                  | replace: '<p><strong>', '<strong>'
+                  | replace: '</strong></p>', '</strong>'
+                  | replace: '<b>', '<strong>'
+                  | replace: '</b>', '</strong>'
+                -%}
+                {%- assign parts = _html | split: '<strong>' -%}
+                {%- for part in parts -%}
+                  {%- if part contains '</strong>' -%}
+                    {%- assign q = part | split: '</strong>' | first | strip -%}
+                    {%- assign a = part | split: '</strong>' | last | strip -%}
+                    {%- if q != blank and a != blank -%}
+                      <div class="faq-accordion">
+                        <button class="accordion-header" aria-expanded="false">
+                          <span>{{ q }}</span>
+                          <span class="chevron">...</span>
+                        </button>
+                        <div class="accordion-body">{{ a }}</div>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              {%- assign any_panel_active = true -%}
+            {%- endif -%}
+
+          {%- when 'custom_tab' -%}
+            {%- if block.settings.tab_title != blank and block.settings.tab_richtext != blank -%}
+              {%- assign tab_id = 'custom_' | append: block.id -%}
+              <div
+                class="faq-tab-panel {% if any_panel_active == false %}active{% endif %}"
+                data-tab-panel="{{ tab_id }}"
+              >
+                {%- assign rt_html = block.settings.tab_richtext -%}
+                {%- assign _html = rt_html
+                  | replace: '<p><strong>', '<strong>'
+                  | replace: '</strong></p>', '</strong>'
+                  | replace: '<b>', '<strong>'
+                  | replace: '</b>', '</strong>'
+                -%}
+                {%- assign parts = _html | split: '<strong>' -%}
+                {%- for part in parts -%}
+                  {%- if part contains '</strong>' -%}
+                    {%- assign q = part | split: '</strong>' | first | strip -%}
+                    {%- assign a = part | split: '</strong>' | last | strip -%}
+                    {%- if q != blank and a != blank -%}
+                      <div class="faq-accordion">
+                        <button class="accordion-header" aria-expanded="false">
+                          <span>{{ q }}</span>
+                          <span class="chevron">...</span>
+                        </button>
+                        <div class="accordion-body">{{ a }}</div>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              {%- assign any_panel_active = true -%}
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+
+      {%- unless section.settings.general_faqs != blank or section.blocks.size > 0 -%}
+        <p>No FAQs added yet.</p>
+      {%- endunless -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .faq-tabs__nav {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    display:flex;
+    overflow-x: auto;
+  }
+  .faq-tab-button {
+    background: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Montserrat';
+    color: #213345;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+  .faq-tab-button.active {
+    border-bottom: none;
+    font-weight: bold !important;
+  }
+  .faq-tab-panel { display: none; }
+  .faq-tab-panel.active { display: block; }
+  .faq-accordion { border-top: none; border-bottom: 1px solid var(--color-burgundy); }
+  .accordion-body p { font-size: 15px; color: var(--color-midnight); }
+  .accordion-header {
+    font-family: 'Montserrat'; color: var(--color-midnight); width: 100%;
+    text-align: left; background: none; border: none; font-size: 15px; line-height: 120%;
+    padding: 20px 0px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold;
+  }
+  .accordion-header .chevron { transition: transform 0.3s ease; }
+  .accordion-header.active .chevron { transform: rotate(180deg); }
+  /* Animation */
+  .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  button.faq-tab-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: Point Panther;
+    font-size: 30px !important;
+    letter-spacing: 2px !important;
+    color: #213346 !important;
+    margin: auto;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Tabs
+    document.querySelectorAll('.faq-tab-button').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.faq-tab-button').forEach((b) => b.classList.remove('active'));
+        document.querySelectorAll('.faq-tab-panel').forEach((p) => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        const panel = document.querySelector(`[data-tab-panel="${btn.dataset.tab}"]`);
+        if (!panel) return;
+        panel.classList.add('active');
+
+        // Reset accordions in the newly visible panel
+        panel.querySelectorAll('.accordion-header').forEach((h) => {
+          h.classList.remove('active');
+          h.setAttribute('aria-expanded', 'false');
+        });
+        panel.querySelectorAll('.accordion-body').forEach((b) => (b.style.maxHeight = '0px'));
+      });
+    });
+
+    // Accordions — document-level delegation so it works in ALL tabs
+    document.addEventListener(
+      'click',
+      function (e) {
+        const header = e.target.closest('.accordion-header');
+        if (!header) return;
+
+        // Ensure click is inside a currently active panel of this section
+        const panel = header.closest('.faq-tab-panel');
+        if (!panel || !panel.classList.contains('active')) return;
+
+        header.classList.toggle('active');
+        const body = header.nextElementSibling;
+
+        if (body.style.maxHeight && body.style.maxHeight !== '0px') {
+          header.setAttribute('aria-expanded', 'false');
+          body.style.maxHeight = '0px';
+        } else {
+          header.setAttribute('aria-expanded', 'true');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      },
+      false
+    );
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Page Tabs",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "general_faqs",
+      "label": "General FAQs (richtext)",
+      "info": "Use <strong>Question</strong> followed by the answer. Each bold block renders as an accordion."
+    }
+  ],
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "product_tab",
+      "name": "Product FAQ Tab",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Select product (reads custom.pdp_faqs)" },
+        { "type": "text", "id": "title_override", "label": "Tab label override (optional)" }
+      ]
+    },
+    {
+      "type": "custom_tab",
+      "name": "Custom FAQ Tab",
+      "settings": [
+        { "type": "text", "id": "tab_title", "label": "Tab title" },
+        {
+          "type": "richtext",
+          "id": "tab_richtext",
+          "label": "Tab content (richtext). Use <strong>Question</strong> Answer..."
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ Page Tabs" }]
+}
+{% endschema %}
